@@ -1,6 +1,6 @@
 <script lang="ts">
     export let icon: any | undefined = undefined;
-    export let title: string;
+    export let title: string | undefined = undefined;
     export let href: string;
 </script>
 
@@ -11,8 +11,12 @@
     <div class="flex flex-row gap-5 items-center hover:!bg-transparent text-base">
         <slot name="icon" />
 
-        <div class="text-base-100-content font-normal">
-            {title}
-        </div>
+        {#if title}
+            <div class="text-base-100-content font-normal">
+                {title}
+            </div>
+        {:else}
+            <slot />
+        {/if}
     </div>
 </a>

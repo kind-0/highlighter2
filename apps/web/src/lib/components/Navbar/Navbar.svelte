@@ -4,6 +4,7 @@
     import RelaysButton from '$lib/components/RelaysButton.svelte';
     import SearchInput from './SearchInput.svelte';
     import Logo from '$lib/icons/Logo.svelte';
+    import {AtlasNotesLogo} from '@kind0/ui-common';
     import { currentUser } from '$lib/store';
 
     export let isHiddenSidebar = false;

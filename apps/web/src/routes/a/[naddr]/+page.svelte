@@ -13,7 +13,6 @@
     import ZapEventCard from '$lib/components/zaps/ZapEventCard.svelte';
     import EventCard from '$lib/components/events/generic/card.svelte';
     import Navbar from '$lib/components/Navbar/Navbar.svelte';
-    import SidebarMode from '$lib/components/Sidebar/SidebarMode.svelte';
 
     const { naddr } = $page.params;
     let article: NDKEvent | NDKArticle;

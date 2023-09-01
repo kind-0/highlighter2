@@ -9,7 +9,6 @@
     import { Card, Skeleton, TestimonialPlaceholder } from 'flowbite-svelte';
 
     import Navbar from '$lib/components/Navbar/Navbar.svelte';
-    import SidebarMode from '$lib/components/Sidebar/SidebarMode.svelte';
     import { onMount } from 'svelte';
 
     const {npub} = $page.data;
@@ -52,11 +51,6 @@
 </script>
 
 <Navbar />
-
-<div class="flex mb-4 px-2 md:px-6">
-    <SidebarMode />
-
-</div>
 
 {#await articlePromise}
     <div class="full relative card">

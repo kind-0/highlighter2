@@ -1,4 +1,5 @@
 <script>
+	import {AtlasNotesLogo} from '@kind0/ui-common';
     import SidebarFolders from "../Sidebar/SidebarFolders.svelte";
     import MenuItem from './MenuItem.svelte';
     import { sortedHighlightList, sortedUserList } from "$lib/stores/list";
@@ -72,6 +73,12 @@
             <SidebarFolders title="SHELVES" list={sortedHighlightList} />
         </ul>
     </CardWithTitle>
+
+    <SectionLink
+        href="/lists"
+    >
+        <AtlasNotesLogo class="w-6 h-6 text-accent2" />
+    </SectionLink>
 </div>
 
 <style>

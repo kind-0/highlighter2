@@ -2,7 +2,6 @@
     import { page } from '$app/stores';
     import { fetchArticle } from '$lib/article';
     import Navbar from '$lib/components/Navbar/Navbar.svelte';
-    import SidebarMode from '$lib/components/Sidebar/SidebarMode.svelte';
     import Reader from '$lib/components/articles/reader.svelte';
     import { NDKUser } from '@nostr-dev-kit/ndk';
 
@@ -32,11 +31,6 @@
 </script>
 
 <Navbar />
-
-<div class="flex mb-4 px-2 md:px-6">
-    <SidebarMode />
-
-</div>
 
 {#if text}
     {#if contentType === 'text/plain'}

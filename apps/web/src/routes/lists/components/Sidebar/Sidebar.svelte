@@ -1,5 +1,4 @@
 <script>
-    import SidebarMode from "$lib/components/Sidebar/SidebarMode.svelte";
     import Highlight from "$lib/icons/Highlight.svelte";
     import Relays from "$lib/icons/Relays.svelte";
     import { NDKKind } from "$lib/ndk-kinds";
@@ -10,8 +9,6 @@
 </script>
 
 <div class="flex flex-col gap-8">
-    <SidebarMode />
-
     <ul class="menu bg-base-200 w-full rounded-box">
         <RelaySetButton />
 
