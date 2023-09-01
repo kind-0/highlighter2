@@ -6,7 +6,7 @@
     import { currentUser } from "$lib/store";
     import { user, userFollowHashtags } from "$stores/session";
     import ReaderIcon from "$icons/ReaderIcon.svelte";
-    import SectionLink from "../Sidebar/SectionLink.svelte";
+    import {SidebarSectionLink} from '@kind0/ui-common';
     import Highlight from "$icons/Highlight.svelte";
     import CardWithTitle from "$components/cards/CardWithTitle.svelte";
     import Hashtag from "$icons/Hashtag.svelte";
@@ -14,12 +14,12 @@
 </script>
 
 <div class="flex flex-col items-center gap-8">
-    <SectionLink
+    <SidebarSectionLink
         href="/reader"
         title="Reader"
     >
         <span slot="icon"><ReaderIcon class="w-6 h-6 text-accent2" /></span>
-    </SectionLink>
+    </SidebarSectionLink>
 
     <CardWithTitle
         icon={Highlight}
@@ -74,11 +74,17 @@
         </ul>
     </CardWithTitle>
 
-    <SectionLink
+    <SidebarSectionLink
         href="/lists"
     >
-        <AtlasNotesLogo class="w-6 h-6 text-accent2" />
-    </SectionLink>
+        <div class="flex flex-col gap-4 items-start justify-stretch py-4 text-left">
+            <AtlasNotesLogo class="w-6 h-6 text-accent2" />
+            <span class="!font-light">
+                A phenomenal personal information management tool,
+                built right in nostr.
+            </span>
+        </div>
+    </SidebarSectionLink>
 </div>
 
 <style>

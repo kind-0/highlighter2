@@ -6,6 +6,7 @@
     import Logo from '$lib/icons/Logo.svelte';
     import {AtlasNotesLogo} from '@kind0/ui-common';
     import { currentUser } from '$lib/store';
+    import { page } from '$app/stores';
 
     export let isHiddenSidebar = false;
     export let isHiddenDrawerBtn = false;
@@ -15,7 +16,19 @@
     let navbarOpened = false;
 
     $: homeLink = $currentUser ? `/highlights` : '/';
+
+    let currentRoute: string;
+    let logoToUse = FullLogo;
+
+    $: currentRoute = $page.url.pathname;
+    $: if (currentRoute.startsWith('/lists')) {
+        logoToUse = AtlasNotesLogo;
+    } else {
+        logoToUse = FullLogo;
+    }
 </script>
+
+{currentRoute}
 
 <nav class="navbar bg-base-100 shrink-0 sticky top-0 z-20 py-4 bg-base-100/80 justify-center gap-4">
     <div class="max-w-7xl mx-auto w-full">
@@ -34,7 +47,9 @@
 
             <a href={homeLink} class="w-full">
                 <div class="flex flex-shrink-0 items-center">
-                    <div class="w-48 hidden sm:block"><FullLogo /></div>
+                    <div class="w-48 hidden sm:block">
+                        <svelte:component this={logoToUse} />
+                    </div>
                 </div>
                 <div class="w-full flex justify-center">
                     <div class="sm:hidden"><Logo /></div>

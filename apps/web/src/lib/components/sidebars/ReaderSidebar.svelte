@@ -2,16 +2,16 @@
     import ReaderIcon from '$icons/ReaderIcon.svelte';
     import CardWithTitle from '$components/cards/CardWithTitle.svelte';
     import Highlight from '$icons/Highlight.svelte';
-    import SectionLink from '$components/Sidebar/SectionLink.svelte';
+    import {SidebarSectionLink} from '@kind0/ui-common';
 </script>
 
 <div class="flex flex-col gap-8">
-    <SectionLink
+    <SidebarSectionLink
         href="/highlights"
         title="Highlighter"
     >
         <span slot="icon"><Highlight class="w-5 h-5 text-accent" /></span>
-    </SectionLink>
+    </SidebarSectionLink>
 
     <CardWithTitle
         icon={ReaderIcon}

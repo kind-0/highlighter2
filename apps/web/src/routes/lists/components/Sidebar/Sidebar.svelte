@@ -3,9 +3,11 @@
     import Relays from "$lib/icons/Relays.svelte";
     import { NDKKind } from "$lib/ndk-kinds";
     import { BookBookmark, Users } from "phosphor-svelte";
+    import {SidebarSectionLink} from '@kind0/ui-common';
     import SidebarFolderTree from "./SidebarFolderTree.svelte";
     import RelaySetButton from "$lib/components/Sidebar/RelaySetButton.svelte";
     import SidebarUnsavedNotes from "$lib/components/Sidebar/SidebarUnsavedNotes.svelte";
+    import Logo from "$icons/Logo.svelte";
 </script>
 
 <div class="flex flex-col gap-8">
@@ -50,5 +52,12 @@
             </div>
         </SidebarFolderTree>
     </ul>
+
+    <SidebarSectionLink
+        href="/highlights"
+        title="Highlighter"
+    >
+        <div slot="icon"><Logo /></div>
+    </SidebarSectionLink>
 </div>
 
