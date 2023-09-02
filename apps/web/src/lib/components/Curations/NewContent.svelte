@@ -1,5 +1,4 @@
 <script lang="ts">
-    import ArticleCard from '$components/Articles/ArticleCard.svelte';
     import { newArticles } from '$stores/articles';
     import type { NDKArticle } from '@nostr-dev-kit/ndk';
     import { onDestroy, onMount } from 'svelte';
@@ -42,7 +41,8 @@
 
 {#if items}
     <div class="
-        {expanded ? "grid grid-flow-row grid-cols-2 md:grid-cols-3 max-h-[50vh] overflow-y-auto" : "grid grid-flow-col auto-cols-max"} gap-4">
+        {expanded ? "grid grid-flow-row grid-cols-2 md:grid-cols-3 max-h-[50vh] overflow-y-auto" : "grid grid-flow-col auto-cols-max"} gap-4"
+    >
         {#each items as article (article.id)}
             <ArticleContentCard {article} on:author-loaded={authorLoaded} />
         {/each}

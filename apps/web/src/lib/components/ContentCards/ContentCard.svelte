@@ -40,7 +40,7 @@
 
 </script>
 
-<a href={url} class="flex flex-col gap-4 w-[174px]">
+<a href={url} class="flex flex-col gap-4 w-[174px] {$$props.class??""}">
     <div class="relative group overflow-hidden flex flex-col justify-end h-[244px] w-full shadow rounded-xl">
         <div class="absolute top-0 left-0 h-full w-full rounded-xl {!imgLoaded ? 'grad-blue' : ''}">
         {#if image}
@@ -67,7 +67,7 @@
         </div>
     </div>
 
-    <div class="flex w-full px-2 justify-center items-center">
+    <div class="flex w-full px-2 justify-start items-center">
         <slot name="footer" />
     </div>
 </a>

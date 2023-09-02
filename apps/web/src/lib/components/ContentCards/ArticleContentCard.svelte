@@ -29,12 +29,13 @@
         image={article.image}
         url={`/a/${article.encode()}`}
         event={article}
+        class="truncate text-left items-start"
     >
         <LongForm slot="icon" class="w-7 h-7" />
         <AvatarWithName
             slot="footer"
             pubkey={article.pubkey}
             avatarClass="w-7 h-7"
-            nameClass="text-base-100-content" />
+            nameClass="text-base-100-content items-start" />
     </ContentCard>
 {/await}
