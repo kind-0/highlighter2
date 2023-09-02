@@ -3,8 +3,7 @@
     import SidebarFolderLeaf from './SidebarFolderLeaf.svelte';
     import { sortedLists} from '$lib/stores/list';
 
-    import type NDKList from '$lib/ndk-kinds/lists';
-    import type { NDKTag } from '@nostr-dev-kit/ndk';
+    import type { NDKTag, NDKList } from '@nostr-dev-kit/ndk';
 
     export let item: NDKList;
     export let href: string;

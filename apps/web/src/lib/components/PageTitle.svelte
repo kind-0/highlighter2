@@ -6,7 +6,7 @@
 
 <div class="flex flex-row items-start justify-stretch w-full">
     <div class="min-w-0 flex-1 flex flex-col gap-4">
-        <h1 class="text-2xl lg:text-5xl font-bold leading-7 sm:truncate sm:text-3xl sm:tracking-tight">{title}</h1>
+        <h1 class="text-2xl lg:text-3xl font-bold leading-7 sm:truncate sm:text-3xl sm:tracking-tight">{title}</h1>
         <div class="mt-1 flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap sm:space-x-6">
             {#if subtitle}
                 <h2 class="flex items-center font-light text-base">

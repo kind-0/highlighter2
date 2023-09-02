@@ -28,9 +28,7 @@
     }
 </script>
 
-{currentRoute}
-
-<nav class="navbar bg-base-100 shrink-0 sticky top-0 z-20 py-4 bg-base-100/80 justify-center gap-4">
+<nav class="navbar bg-base-100 shrink-0 sticky top-0 z-20 py-4 bg-base-100/80 backdrop-blur-sm justify-center gap-4">
     <div class="max-w-7xl mx-auto w-full">
         <div class="
             {navbarOpened ? 'hidden lg:flex' : 'flex'}

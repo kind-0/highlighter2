@@ -8,7 +8,6 @@
 
     import CommentIcon from '$lib/icons/Comment.svelte';
     import LinkIcon from '$lib/icons/Link.svelte';
-    import ndk from "$lib/stores/ndk";
 
     import HighlightContent from "./HighlightContent.svelte";
 

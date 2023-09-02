@@ -5,7 +5,7 @@
 
 <WithLeftSidebar containerClass="max-w-7xl">
     <div slot="sidebar">
-        <Sidebar isHiddenSidebar={false} />
+        <Sidebar />
     </div>
 
     <slot />

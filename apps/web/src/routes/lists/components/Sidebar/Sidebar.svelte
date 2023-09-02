@@ -10,23 +10,26 @@
     import Logo from "$icons/Logo.svelte";
 </script>
 
-<div class="flex flex-col gap-8">
+<div class="flex flex-col gap-8 pr-4 max-h-full overscroll-y-auto overflow-x-hidden">
     <ul class="menu bg-base-200 w-full rounded-box">
         <RelaySetButton />
+    </ul>
+
+    <ul class="menu bg-base-200 w-full rounded-box">
 
         <SidebarUnsavedNotes />
 
         <SidebarFolderTree kinds={[NDKKind.HighlightList]}>
             <div slot="title">
                 <li class="menu-title flex flex-row items-center">
-                    <Highlight class="w-4 h-4 mr-2" />
+                    <Highlight class="w-4 h-4 mr-2 text-accent" />
                     HIGHLIGHTS
                 </li>
             </div>
         </SidebarFolderTree>
 
         <SidebarFolderTree kinds={[NDKKind.GenericList]}>
-            <div slot="title">
+            <div slot="title" class="mt-2">
                 <li class="menu-title flex flex-row items-center">
                     <BookBookmark class="w-4 h-4 mr-2" />
                     GENERIC
@@ -35,7 +38,7 @@
         </SidebarFolderTree>
 
         <SidebarFolderTree kinds={[NDKKind.UserList]}>
-            <div slot="title">
+            <div slot="title" class="mt-2">
                 <li class="menu-title flex flex-row items-center">
                     <Users class="w-4 h-4 mr-2" />
                     PROFILES
@@ -44,7 +47,7 @@
         </SidebarFolderTree>
 
         <SidebarFolderTree kinds={[NDKKind.RelayList]}>
-            <div slot="title">
+            <div slot="title" class="mt-2">
                 <li class="menu-title flex flex-row items-center">
                     <Relays class="w-4 h-4 mr-2" />
                     RELAY SETS

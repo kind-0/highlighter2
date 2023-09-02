@@ -29,7 +29,7 @@
     class={$$props.class}
     on:click={copy}
 >
-    <div class="flex flex-row items-center gap-2">
+    <div class="flex flex-row items-center gap-2 whitespace-nowrap">
         {#if copied}
             <CheckIcon class={classnames('w-4 h-4', $$props.iconClass)} />
         {:else }

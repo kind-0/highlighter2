@@ -11,7 +11,7 @@
     <div class="mx-auto md:pt-2 sm:px-2 xl:px-0 {$$props.containerClass}">
         <div class="drawer {!forceHideSidebar ? 'lg:drawer-open ' : ''}">
             <input id="left-drawer" type="checkbox" class="drawer-toggle" bind:checked={drawer} />
-            <div class="drawer-content overflow-x-auto">
+            <div class="drawer-content overflow-x-hidden">
                 <div class="
                     flex flex-col gap-4
                     w-full lg:pl-32 lg:pr-0
@@ -22,7 +22,7 @@
                 </div>
             </div>
 
-            <div id="left-sidebar" class="drawer-side fixed lg:!w-sidebar z-50 lg:z-0 {$$props.sidebarClass}">
+            <div id="left-sidebar" class="drawer-side fixed lg:!w-sidebar z-50 lg:z-0 {$$props.sidebarClass} h-[calc(90vh-4rem)] overflow-x-hidden overflow-y-auto">
                 <label for="left-drawer" class="drawer-overlay"></label>
                 <div class="
                     flex flex-col items-stretch w-full overflow-y-auto

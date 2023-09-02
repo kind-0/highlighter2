@@ -1,10 +1,8 @@
 <script lang="ts">
-    import { Skeleton } from 'flowbite-svelte';
-
     import SidebarFolderBranch from '$lib/components/Sidebar/SidebarFolderBranch.svelte';
-    import type NDKList from '$lib/ndk-kinds/lists';
+    import type { NDKList } from '@nostr-dev-kit/ndk';
 
-    import { sortedLists } from '$lib/stores/list';
+    import { userLists } from '$stores/session';
 
     import { debounce } from 'throttle-debounce';
 
@@ -16,10 +14,11 @@
     let renderedList: NDKList[] | undefined = undefined;
 
     const updatedRenderedLists = debounce(300, () => {
-        renderedList = $sortedLists.filter(shouldDisplay);
+        const lists: NDKList[] = Array.from($userLists.values());
+        renderedList =lists.filter(shouldDisplay);
     });
 
-    $: if (renderedList?.length !== $sortedLists.length) {
+    $: if (renderedList?.length !== $userLists.size) {
         updatedRenderedLists();
     }
 
@@ -29,7 +28,7 @@
     }
 
     function isTopLevel(thisList: NDKList) {
-        for (const _list of $sortedLists) {
+        for (const _list of $userLists.values()) {
             const referenced = _list.tags.find((t) => t[1] === thisList.tagId());
             const notReferencedByItself = _list.tags.find((t) => t[1] !== _list.tagId()); // that is not itself
             if (referenced && notReferencedByItself) {
@@ -53,16 +52,5 @@
         />
     {/each}
 {:else}
-    <Skeleton size="sm" class="my-8" />
+    <span class="loading loading-lg"></span>
 {/if}
-<!--
-<style>
-
-.list-container {
-    flex-shrink: 1;
-    flex-grow: 1;
-    flex-basis: 200px;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-</style> -->

@@ -7,9 +7,7 @@
     import { createEventDispatcher } from 'svelte';
     import type { NDKEvent, NDKFilter } from '@nostr-dev-kit/ndk';
     import { currentUser } from '$lib/store';
-    import { Card } from 'flowbite-svelte'
     import NDKList from '$lib/ndk-kinds/lists';
-    import { Name } from '@nostr-dev-kit/ndk-svelte-components';
     import NDKHighlight from '$lib/ndk-kinds/highlight';
     import { filterForId, filterFromNaddr, naddrFromTagValue } from '$lib/utils';
     import ZapEventCard from '$lib/components/zaps/ZapEventCard.svelte';

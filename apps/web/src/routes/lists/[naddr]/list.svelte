@@ -19,7 +19,7 @@
     import PageTitle from '$lib/components/PageTitle.svelte';
     import CopyButton from '$lib/components/buttons/CopyButton.svelte';
     import { writable } from 'svelte/store';
-    import { Trash } from 'phosphor-svelte';
+    import { DotsThree, Trash } from 'phosphor-svelte';
     import {
         Tab,
         TabGroup,
@@ -180,8 +180,8 @@
                 <div class="dropdown">
                     <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
                     <!-- svelte-ignore a11y-label-has-associated-control -->
-                    <label tabindex="0" class="btn btn-base-100 btn-circle">
-                        <MoreOptionsIcon />
+                    <label tabindex="0" class="btn btn-sm btn-base-100 btn-circle">
+                        <DotsThree class="w-4 h-4" />
                     </label>
 
                     <!-- svelte-ignore a11y-no-noninteractive-tabindex -->

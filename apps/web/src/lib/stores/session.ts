@@ -250,6 +250,11 @@ async function fetchData(
 
     const processList = (event: NDKEvent) => {
         const list = NDKList.from(event);
+
+        if (!list.name || list.name.startsWith('chats/')) {
+            return;
+        }
+
         opts.listsStore!.update((lists) => {
             lists.set(list.tagId(), list);
             return lists;

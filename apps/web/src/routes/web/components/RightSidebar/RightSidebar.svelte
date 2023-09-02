@@ -1,18 +1,49 @@
 <script lang="ts">
-	import { NDKDVMJobResult, NDKDVMRequest, NDKKind } from '@nostr-dev-kit/ndk';
+	import { NDKDVMJobResult, NDKDVMRequest, NDKEvent, NDKKind } from '@nostr-dev-kit/ndk';
     import MenuItem from "$components/sidebars/MenuItem.svelte";
     import ndk from "$lib/stores/ndk";
+    import { onMount } from 'svelte';
+
+    let requests: Map<string, NDKEvent>;
+    let jobResponses: Set<NDKEvent>;
+
+    onMount(async () => {
+        const recentRequests = await $ndk.fetchEvents(
+            { kinds: [NDKKind.DVMJobRequestTranscription], limit: 100 }
+        );
+
+        requests = new Map(Array.from(recentRequests).map((r: NDKEvent) => [r.tagId(), r]));
+
+        jobResponses = await $ndk.fetchEvents(
+            {
+                kinds: [NDKKind.DVMJobResult],
+                "#e": Array.from(recentRequests).map((r: NDKEvent) => r.tagId())
+            }
+        );
+    });
+
+    function jobRequest(response: NDKEvent) {
+        const input = response.tagValue("e");
+        if (!input) return;
+        return requests.get(input);
+    }
+
 </script>
 
-<ul class="menu bg-base-200 w-full rounded-box overflow-hidden">
-    <li class="menu-title uppercase">Recent transcriptions</li>
+{#if jobResponses && jobResponses.size > 0}
+    <ul class="menu bg-base-200 w-full rounded-box overflow-hidden">
+        <li class="menu-title uppercase">Recent transcriptions</li>
 
-    <MenuItem href="/highlights/network/newest">
-        <div class="flex flex-row gap-2 items-center">
-            <!-- svelte-ignore a11y-missing-attribute -->
-            <img src="https://public.overcast-cdn.com/art/2598591?v15" class="w-10 h-10" />
-
-            <span class="truncate">CD100: The Disturbing Chainalysis Led Prosec</span>
-        </div>
-    </MenuItem>
-</ul>
+        {#each Array.from(jobResponses) as jobResponse (jobResponse.id)}
+            {#if jobRequest(jobResponse)}
+                <MenuItem href="/highlights/network/newest">
+                    <div class="flex flex-row gap-2 items-center">
+                        <span class="truncate">
+                            {jobRequest(jobResponse)?.tagValue("i")}
+                        </span>
+                    </div>
+                </MenuItem>
+            {/if}
+        {/each}
+    </ul>
+{/if}

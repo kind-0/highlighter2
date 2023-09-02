@@ -1,10 +1,8 @@
 <script lang="ts">
     import { page } from '$app/stores';
-    import type NDKList from '$lib/ndk-kinds/lists';
-    import { Graph, UserCircle } from 'phosphor-svelte';
-    import Highlight from '$lib/icons/Highlight.svelte';
     import MenuItem from "../sidebars/MenuItem.svelte";
     import { createDraggableEvent } from "$lib/utils/draggable";
+    import type { NDKList } from '@nostr-dev-kit/ndk';
 
     export let item: NDKList;
     export let href: string;
