@@ -76,6 +76,7 @@
 
     <SidebarSectionLink
         href="/lists"
+        class="!h-fit"
     >
         <div class="flex flex-col gap-4 items-start justify-stretch py-4 text-left">
             <AtlasNotesLogo class="w-6 h-6 text-accent2" />
