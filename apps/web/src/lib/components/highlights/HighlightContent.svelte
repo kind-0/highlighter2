@@ -71,6 +71,6 @@
     }
 
     .quote-line {
-        width: 8px !important;
+        width: 4px !important;
     }
 </style>
