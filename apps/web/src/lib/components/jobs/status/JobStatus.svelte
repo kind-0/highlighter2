@@ -1,14 +1,15 @@
 <script lang="ts">
     import { zapInvoiceFromEvent, type NDKEvent, NDKKind, NDKDVMJobResult } from "@nostr-dev-kit/ndk";
     import AcceptResultButtons from "./AcceptResultButtons.svelte";
-    import { currentUser } from "$lib/store";
     import { onDestroy } from "svelte";
-    import ndk, { type NDKEventStore } from '$lib/stores/ndk';
+    import ndk from '$lib/stores/ndk';
     import AvatarWithName from "$lib/components/AvatarWithName.svelte";
     import PaymentRequestButton from "./PaymentRequestButton.svelte";
+    import { user } from '$stores/session';
     import rejectEvent from './reject.js';
     import CheckIcon from "$lib/icons/Check.svelte";
     import EventContent from "$lib/components/events/content.svelte";
+    import type { NDKEventStore } from "@nostr-dev-kit/ndk-svelte";
 
     export let events: NDKEvent[];
     export let pubkey: string;
@@ -118,8 +119,8 @@
     // Calculate how much the user owes to this event
     $: pendingAmount = Math.max(0, totalAmountRequested - zappedByUserAmount);
 
-    const user = $ndk.getUser({hexpubkey: pubkey});
-    const fetchProfilePromise = user.fetchProfile();
+    const dvmUser = $ndk.getUser({hexpubkey: pubkey});
+    const fetchProfilePromise = dvmUser.fetchProfile();
 
     onDestroy(() => {
         zaps.unsubscribe();
@@ -130,7 +131,7 @@
             const zapInvoice = zapInvoiceFromEvent(zap);
             if (!zapInvoice) return acc;
 
-            if (zapInvoice.zappee === $currentUser?.hexpubkey()) {
+            if (zapInvoice.zappee === $user?.hexpubkey()) {
                 acc += zapInvoice.amount;
             }
 
@@ -149,7 +150,6 @@
 {#await fetchProfilePromise}
     Loading
 {:then}
-here
     <div class="card group card-bordered">
         <div class="card-body">
             <div class="flex flex-row items-start justify-stretch w-full">

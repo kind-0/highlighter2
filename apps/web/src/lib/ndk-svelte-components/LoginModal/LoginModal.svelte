@@ -3,13 +3,12 @@
     import ndk, {bunkerNDK} from '$lib/stores/ndk';
     import { closeModal } from "svelte-modals";
     import { onMount } from "svelte";
-    import { currentUser } from "$lib/store";
-    import { fetchFollowers } from '$lib/currentUser';
 
-    import ModalWrapper from "$lib/components/ModalWrapper.svelte";
+    import {ModalWrapper} from "@kind0/ui-common";
     import Textarea from "$lib/components/Textarea.svelte";
     import { login } from "$lib/utils/login";
     import { setupPlaceholderProfile } from "./placeholder-profile";
+    import { user } from "$stores/session";
 
     let nip46ConnectionString = '';
     let nip46ConnectionStatus: string | undefined = undefined;
@@ -60,11 +59,10 @@
 
             nip46ConnectionStatus = 'Authorized';
             $ndk.signer = remoteSigner;
-            $currentUser = await remoteSigner.user();
-            $currentUser.ndk = $ndk;
+            $user = await remoteSigner.user();
+            $user.ndk = $ndk;
             localStorage.setItem('nostr-key-method', 'nip46');
-            localStorage.setItem('nostr-target-npub', $currentUser.npub);
-            fetchFollowers();
+            localStorage.setItem('nostr-target-npub', $user.npub);
 
             setTimeout(() => { closeModal(); }, 1000);
         } catch (e: any) {
@@ -75,11 +73,11 @@
     async function loginAsGuest() {
         const pk = NDKPrivateKeySigner.generate();
         $ndk.signer = pk;
-        $currentUser = await $ndk.signer.user();
+        $user = await $ndk.signer.user();
 
         localStorage.setItem('nostr-key-method', 'pk');
         localStorage.setItem('nostr-key', pk.privateKey!);
-        localStorage.setItem('nostr-target-npub', $currentUser.npub);
+        localStorage.setItem('nostr-target-npub', $user.npub);
 
         setupPlaceholderProfile();
 
@@ -92,9 +90,9 @@
         if (!user) {
             alert('Login failed');
         } else {
-            $currentUser = user;
+            $user = user;
             localStorage.setItem('nostr-key-method', 'nip07');
-            localStorage.setItem('nostr-target-npub', $currentUser.npub);
+            localStorage.setItem('nostr-target-npub', $user.npub);
 
             closeModal();
         }
@@ -103,7 +101,10 @@
     let mode: string | undefined;
 </script>
 
-<ModalWrapper class="w-full max-w-xl">
+<ModalWrapper
+    class="w-full max-w-xl"
+    title=""
+>
     <div class="card rounded-xl shadow-xl">
         <div class="card-body">
             {#if !mode}

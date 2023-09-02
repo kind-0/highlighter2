@@ -1,7 +1,7 @@
 <script lang="ts">
     import CollapsableDropdown from '$lib/components/CollapsableDropdown.svelte';
     import Avatar from './Avatar.svelte';
-    import { currentUser } from '$lib/store';
+    import { user } from '$stores/session';
     import ndk from '$lib/stores/ndk';
     import GearIcon from '$lib/icons/Gear.svelte';
     import { logout } from '$lib/currentUser';
@@ -12,7 +12,7 @@
 
 <CollapsableDropdown>
         <div slot="dropdown-button" class="btn-circle avatar hover:border hover:border-accent2">
-            <Avatar ndk={$ndk} user={$currentUser}/>
+            <Avatar ndk={$ndk} user={$user}/>
         </div>
 
         <ul slot="dropdown-content" class="divide-y divide-neutral-800 menu p-0 w-[245px] rounded-box">
@@ -21,7 +21,7 @@
                     <div class="w-0 flex flex-grow flex-row items-center gap-4">
                         <Avatar
                             ndk={$ndk}
-                            user={$currentUser}
+                            user={$user}
                             class="
                                 w-8 h-8 border-2 border-base-300 rounded-full
                             "
@@ -29,7 +29,7 @@
                         <div class="text-center text-base text-base-100-content font-medium truncate">
                             <Name
                                 ndk={$ndk}
-                                user={$currentUser}
+                                user={$user}
                                 class="
                                 "
                             />

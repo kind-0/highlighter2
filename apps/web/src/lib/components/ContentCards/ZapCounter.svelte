@@ -1,6 +1,6 @@
 <script lang="ts">
     import ZapCounterIcon from "$icons/ZapCounterIcon.svelte";
-    import { currentUser } from "$lib/store";
+    import { user } from "$stores/session";
     import ndk from "$stores/ndk";
     import { nicelyFormattedMilliSatNumber } from "$utils";
     import { onDestroy } from "svelte";
@@ -28,7 +28,7 @@
             const zapInvoice = zapInvoiceFromEvent(zap);
             if (!zapInvoice) return acc;
 
-            if (zapInvoice.zappee === $currentUser?.hexpubkey()) {
+            if (zapInvoice.zappee === $user?.hexpubkey()) {
                 zappedByCurrentUser = true;
             }
 

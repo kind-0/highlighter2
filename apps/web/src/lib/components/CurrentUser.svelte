@@ -1,10 +1,10 @@
 <script lang="ts">
-    import { currentUser } from '$lib/store';
+    import { user } from '$stores/session';
     import LoginDropdown from '$lib/ndk-svelte-components/LoginDropdown.svelte';
     import UserDropdown from './UserDropdown.svelte';
 </script>
 
-{#if $currentUser}
+{#if $user}
     <UserDropdown />
 {:else}
     <LoginDropdown />

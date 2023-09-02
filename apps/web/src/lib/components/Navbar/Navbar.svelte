@@ -5,7 +5,7 @@
     import SearchInput from './SearchInput.svelte';
     import Logo from '$lib/icons/Logo.svelte';
     import {AtlasNotesLogo} from '@kind0/ui-common';
-    import { currentUser } from '$lib/store';
+    import { user } from '$stores/session';
     import { page } from '$app/stores';
 
     export let isHiddenSidebar = false;
@@ -15,7 +15,7 @@
     let homeLink = '/';
     let navbarOpened = false;
 
-    $: homeLink = $currentUser ? `/highlights` : '/';
+    $: homeLink = $user ? `/highlights` : '/';
 
     let currentRoute: string;
     let logoToUse = FullLogo;

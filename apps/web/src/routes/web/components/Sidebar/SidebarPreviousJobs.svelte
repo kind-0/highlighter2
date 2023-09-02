@@ -1,10 +1,10 @@
 <script lang="ts">
-    import { currentUser } from "$lib/store";
-    import ndk, { type NDKEventStore } from "$lib/stores/ndk";
+    import ndk from "$lib/stores/ndk";
     import { type NDKFilter, NDKDVMRequest } from "@nostr-dev-kit/ndk";
     import { onMount } from "svelte";
     import SidebarJobRequestItem from "./SidebarJobRequestItem.svelte";
     import { derived, type Readable } from "svelte/store";
+    import type { NDKEventStore } from "@nostr-dev-kit/ndk-svelte";
 
     let previousJobs: NDKEventStore<NDKDVMRequest>;
     let sortedJobs: Readable<NDKDVMRequest[]>;
@@ -12,8 +12,8 @@
     onMount(() => {
         const query: NDKFilter = { kinds: [65002 as number], limit: 10 };
 
-        if ($currentUser) {
-            query.authors = [$currentUser.hexpubkey()];
+        if ($user) {
+            query.authors = [$user.hexpubkey()];
         }
 
         previousJobs = $ndk.storeSubscribe(

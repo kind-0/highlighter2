@@ -4,7 +4,6 @@
     import { goto } from "$app/navigation";
     import type { NDKArticle } from "@nostr-dev-kit/ndk";
     import { onDestroy, onMount } from "svelte";
-    import { currentUser } from "$lib/store";
     import ndk from "$lib/stores/ndk";
     import Textarea from '$lib/components/Textarea.svelte';
     import { addLongForm, removeLongForm, isSaved as isLongFormSaved } from "$lib/stores/long-form";
@@ -45,9 +44,9 @@
 
         if (visibility === 'Secret') {
             event.kind = 31023;
-            event.title = await $ndk.signer!.encrypt($currentUser!, title);
+            event.title = await $ndk.signer!.encrypt($user!, title);
 
-            await event.encrypt($currentUser!);
+            await event.encrypt($user!);
         }
 
         await event.sign();

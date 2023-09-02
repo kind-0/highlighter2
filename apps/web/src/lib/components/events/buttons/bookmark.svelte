@@ -5,17 +5,17 @@
     import BookmarkModal from '$lib/modals/Bookmark.svelte';
 
     import type { NDKEvent } from '@nostr-dev-kit/ndk';
-    import { currentUser } from '$lib/store';
+    import { user } from '$stores/session';
 
     export let event: NDKEvent;
 
-    $: tooltip = $currentUser ? 'Bookmark' : 'You are not logged in';
+    $: tooltip = $user ? 'Bookmark' : 'You are not logged in';
 </script>
 
 <div class="tooltip" data-tip={tooltip}>
     <button
         class="{$$props.class}"
-        class:cursor-not-allowed={!$currentUser}
+        class:cursor-not-allowed={!$user}
         on:click={() => { openModal(BookmarkModal, { event }) }}
     ><BookmarkIcon class="w-4 h-4" /></button>
 </div>

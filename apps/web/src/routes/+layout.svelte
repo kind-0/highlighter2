@@ -1,7 +1,6 @@
 <script lang="ts">
     import ndk, { bunkerNDK } from '$lib/stores/ndk';
     import { onMount } from 'svelte';
-    import { currentUser } from '$lib/store';
     import { login } from '$lib/utils/login';
     import '../app.postcss';
     import { Modals, closeModal } from 'svelte-modals'
@@ -13,32 +12,26 @@
     import { goto } from '$app/navigation';
 
     import { user, prepareSession, loadingScreen, userFollows, networkFollows } from '$stores/session';
-    import { setNewArticlesFilters } from '$stores/articles';
 
     $: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : ''
 
     let sessionPreparationStarted = false;
     let mounted = false;
 
-    $: $user = $currentUser;
-
     onMount(async () => {
         try {
             $ndk.connect();
-            $currentUser = await login($ndk, $bunkerNDK);
-            console.log($currentUser);
-            $user = $currentUser;
-            console.log(`setting $user`, !!$user);
+            login($ndk, $bunkerNDK).then((user) => {
+                $user = user;
+            })
             mounted = true;
         } catch (e) {
-            console.log('here')
             console.error(`layout error`, e);
             mounted = true;
         }
     });
 
     $: if (mounted && !!$user && !sessionPreparationStarted) {
-        console.log(`here`, $userFollows.size);
         sessionPreparationStarted = true;
         if ($userFollows.size === 0) {
             $loadingScreen = true;
@@ -48,7 +41,7 @@
             }
 
             prepareSession().then(() => {
-                // $loadingScreen = false;
+                $loadingScreen = false;
             })
         } else {
             prepareSession();
@@ -57,11 +50,11 @@
 
     let shouldShowLoadingScreen = true;
 
-    // $: shouldShowLoadingScreen = $page.url.pathname !== '/';
-
+    $: shouldShowLoadingScreen = $page.url.pathname !== '/';
 </script>
 
 <svelte:head>
+    <title>Highlighter</title>
     {@html webManifestLink}
 </svelte:head>
 
@@ -73,6 +66,7 @@
     <div transition:fade>
         <slot />
     </div>
+{:else}
 {/if}
 
 <Modals>

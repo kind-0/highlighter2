@@ -1,16 +1,16 @@
 import { NDKUser, type NDKUserProfile } from "@nostr-dev-kit/ndk";
 import { get as getStore } from 'svelte/store';
-import { currentUser } from '$lib/store';
+import { user } from '$stores/session';
 import ndk from '$lib/stores/ndk';
 
 export async function setupPlaceholderProfile(profile?: NDKUserProfile) {
-    const $currentUser = getStore(currentUser);
+    const $user = getStore(user);
     const $ndk = getStore(ndk);
 
-    if (!$currentUser) throw new Error('No current user');
-    $currentUser.ndk = $ndk;
+    if (!$user) throw new Error('No current user');
+    $user.ndk = $ndk;
 
-    const imagehash = $currentUser.npub;
+    const imagehash = $user.npub;
 
     const p = {
         image: `https://robohash.org/${imagehash}.png?size=200x200&set=set5`,
@@ -19,9 +19,9 @@ export async function setupPlaceholderProfile(profile?: NDKUserProfile) {
         ...profile
     };
 
-    $currentUser.profile = p;
-    await $currentUser.publish();
+    $user.profile = p;
+    await $user.publish();
 
     const pablo = new NDKUser({npub: 'npub1l2vyh47mk2p0qlsku7hg0vn29faehy9hy34ygaclpn66ukqp3afqutajft'});
-    await $currentUser.follow(pablo);
+    await $user.follow(pablo);
 }

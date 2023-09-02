@@ -2,7 +2,7 @@
     import {Name} from '@nostr-dev-kit/ndk-svelte-components';
 
     import ChevronDownIcon from '$lib/icons/ChevronDown.svelte';
-    import { currentUser } from '$lib/store';
+    import { user } from '$stores/session';
     import _ndk from '$lib/stores/ndk';
 
     import type { NDKUser } from '@nostr-dev-kit/ndk';
@@ -15,7 +15,7 @@
     let ndk = $_ndk as NDK;
 </script>
 
-{#if $currentUser}
+{#if $user}
     <div class="dropdown">
         <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
         <!-- svelte-ignore a11y-label-has-associated-control -->
@@ -30,7 +30,7 @@
         ">
             <div class="font-normal truncate">
                 {#if value === 'Public'}
-                    Public (as <Name {ndk} user={$currentUser} />)
+                    Public (as <Name {ndk} user={$user} />)
                 {:else if value === 'Delegated'}
                     Public (as
                     {#if delegatedName}
@@ -51,7 +51,7 @@
             <li>
                 <button on:click={() => { value = "Public" }}>
                     <div class="flex flex-col pl-2.5">
-                        <span class="text-base brightness-150">Public (as <Name {ndk} user={$currentUser} />)</span>
+                        <span class="text-base brightness-150">Public (as <Name {ndk} user={$user} />)</span>
                         <div class="text-sm font-normal">Public note. Shows up in your followers' timeline.</div>
                     </div>
                 </button>

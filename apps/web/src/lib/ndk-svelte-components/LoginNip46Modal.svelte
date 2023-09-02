@@ -3,8 +3,7 @@
     import ndk, { bunkerNDK } from '$lib/stores/ndk';
     import { closeModal } from 'svelte-modals';
     import { onMount } from 'svelte';
-    import { currentUser } from '$lib/store';
-    import { fetchFollowers } from '$lib/currentUser';
+    import { user } from '$stores/session';
 
     import ModalWrapper from '$lib/components/ModalWrapper.svelte';
     import Textarea from '$lib/components/Textarea.svelte';
@@ -53,11 +52,10 @@
 
             nip46ConnectionStatus = 'Authorized';
             $ndk.signer = remoteSigner;
-            $currentUser = await remoteSigner.user();
-            $currentUser.ndk = $ndk;
+            $user = await remoteSigner.user();
+            $user.ndk = $ndk;
             localStorage.setItem('nostr-key-method', 'nip46');
-            localStorage.setItem('nostr-target-npub', $currentUser.npub);
-            fetchFollowers();
+            localStorage.setItem('nostr-target-npub', $user.npub);
 
             setTimeout(() => {
                 closeModal();

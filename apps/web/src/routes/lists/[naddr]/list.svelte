@@ -1,7 +1,7 @@
 <script lang="ts">
     import MoreOptionsIcon from '$lib/icons/MoreOptions.svelte';
 
-    import { currentUser } from '$lib/store';
+    import { user } from '$stores/session';
     import ndk from '$lib/stores/ndk';
 
     import Tags from './tags.svelte';
@@ -50,8 +50,8 @@
      */
     let currentUserPubkeys: string[] = [];
 
-    if ($currentUser) {
-        currentUserPubkeys.push($currentUser.hexpubkey());
+    if ($user) {
+        currentUserPubkeys.push($user.hexpubkey());
     }
 
     $: if (listSignerData?.user && !currentUserPubkeys.includes(listSignerData.user.hexpubkey())) {
@@ -63,10 +63,10 @@
             return;
         }
 
-        await list.encrypt($currentUser!);
+        await list.encrypt($user!);
         await list.delete();
-        if ($currentUser) {
-            getLists($currentUser);
+        if ($user) {
+            getLists($user);
         }
         goto('/lists');
     }
@@ -124,9 +124,9 @@
                     associatedEvent: list,
                     keyProfile: {
                         name: listSignerData.name,
-                        picture: $currentUser?.profile?.image,
-                        lud06: $currentUser?.profile?.lud06,
-                        lud16: $currentUser?.profile?.lud16,
+                        picture: $user?.profile?.image,
+                        lud06: $user?.profile?.lud06,
+                        lud16: $user?.profile?.lud16,
                     },
                 });
             } catch (e) {
@@ -242,7 +242,7 @@
                     class="tab tab-bordered {selectedIndex === 1 ? 'tab-active' : ''}"
                 >Secret</Tab>
 
-                {#if listSignerData?.saved && $currentUser}
+                {#if listSignerData?.saved && $user}
                     <Tab
                         class="tab tab-bordered {selectedIndex === 2 ? 'tab-active' : ''}"
                     >{`My Feed ${myFeedLength > 0 ? `(${myFeedLength})` : ''}`}</Tab>
@@ -284,7 +284,7 @@
 
                 </TabPanel>
 
-                {#if listSignerData?.saved && $currentUser}
+                {#if listSignerData?.saved && $user}
                     <TabPanel>
                         {#if myFeedLength === 0}
                             <div
@@ -306,7 +306,7 @@
                             filter={{
                                 kinds: [1, 9802, 4, 30023],
                                 '#p': [listSignerData.user.hexpubkey()],
-                                authors: [$currentUser.hexpubkey()],
+                                authors: [$user.hexpubkey()],
                             }}
                             bind:feedLength={myFeedLength}
                         />
@@ -337,7 +337,7 @@
                                 '#p': [listSignerData.user.hexpubkey()],
                             }}
                             bind:feedLength={globalFeedLength}
-                            eventFilter={(e) => e.pubkey !== $currentUser.hexpubkey()}
+                            eventFilter={(e) => e.pubkey !== $user.hexpubkey()}
                         />
 
                     </TabPanel>

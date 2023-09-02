@@ -3,14 +3,14 @@
     import Sidebar from "../lists/components/Sidebar/Sidebar.svelte";
     import WithLeftSidebar from "$lib/layouts/WithLeftSidebar.svelte";
     import ndk from '$lib/stores/ndk';
-    import { currentUser } from '$lib/store';
+    import { user } from '$stores/session';
     import { getLongForms } from '$lib/stores/long-form';
     import { onDestroy } from 'svelte';
     import type { NDKSubscription } from '@nostr-dev-kit/ndk';
 
     let readyToRender = true;
 
-    $: if ($currentUser && $ndk.signer) {
+    $: if ($user && $ndk.signer) {
         readyToRender = true;
     }
 
@@ -26,9 +26,9 @@
     let subscribed = false;
     let encryptedNotesSub: NDKSubscription | undefined = undefined;
 
-    $: if (!subscribed && $currentUser) {
+    $: if (!subscribed && $user) {
         subscribed = true;
-        encryptedNotesSub = getLongForms($currentUser);
+        encryptedNotesSub = getLongForms($user);
     }
 
     onDestroy(() => {

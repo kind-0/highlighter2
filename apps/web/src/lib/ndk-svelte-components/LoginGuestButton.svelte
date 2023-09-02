@@ -1,7 +1,7 @@
 <script lang="ts">
     import { NDKPrivateKeySigner } from '@nostr-dev-kit/ndk';
     import ndk from '$lib/stores/ndk';
-    import { currentUser } from '$lib/store';
+    import { user } from '$stores/session';
     import { setupPlaceholderProfile } from './LoginModal/placeholder-profile';
     import KeyIcon from '$lib/icons/Key.svelte';
     import AttentionButton from '$lib/components/buttons/AttentionButton.svelte';
@@ -9,11 +9,11 @@
     async function loginAsGuest() {
         const pk = NDKPrivateKeySigner.generate();
         $ndk.signer = pk;
-        $currentUser = await $ndk.signer.user();
+        $user = await $ndk.signer.user();
 
         localStorage.setItem('nostr-key-method', 'pk');
         localStorage.setItem('nostr-key', pk.privateKey!);
-        localStorage.setItem('nostr-target-npub', $currentUser.npub);
+        localStorage.setItem('nostr-target-npub', $user.npub);
 
         setupPlaceholderProfile();
     }

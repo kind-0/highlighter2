@@ -2,7 +2,7 @@
     import NewIcon from '$lib/icons/New.svelte';
 
     import type { NDKEvent } from '@nostr-dev-kit/ndk';
-    import { currentUser } from '$lib/store';
+    import { user } from '$stores/session';
     import ndk from "$lib/stores/ndk";
     import NDKArticle from "@nostr-dev-kit/ndk";
 
@@ -22,29 +22,29 @@
             .sort((a, b) => b.created_at! - a.created_at!);
     });
 
-    // $: if (!encryptedNotes && $currentUser) {
+    // $: if (!encryptedNotes && $user) {
     //     encryptedNotes = $ndk.storeSubscribe({
-    //         authors: [$currentUser.hexpubkey()],
+    //         authors: [$user.hexpubkey()],
     //         kinds: [4 as number],
-    //         '#p': [$currentUser.hexpubkey()]
+    //         '#p': [$user.hexpubkey()]
     //     })
     // }
 
-    // $: if (!encryptedLongForms && $currentUser) {
+    // $: if (!encryptedLongForms && $user) {
     //     encryptedLongForms = $ndk.storeSubscribe({
-    //         authors: [$currentUser.hexpubkey()],
+    //         authors: [$user.hexpubkey()],
     //         kinds: [31023 as number],
     //     }, { closeOnEose: false }, NDKArticle)
     // }
 
     // Decrypt notes
-    // $: if (mounted && $currentUser && $ndk.signer && $encryptedNotes.length !== decryptingNoteIds.size) {
+    // $: if (mounted && $user && $ndk.signer && $encryptedNotes.length !== decryptingNoteIds.size) {
     //     for (const note of $encryptedNotes) {
     //         const encode = note.encode();
     //         if (!decryptingNoteIds.has(encode)) {
     //             decryptingNoteIds.add(encode);
 
-    //             note.decrypt($currentUser, $ndk.signer)
+    //             note.decrypt($user, $ndk.signer)
     //                 .then(() => { decryptedNotes[encode] = note; });
     //         }
     //     }

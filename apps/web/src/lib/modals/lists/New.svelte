@@ -1,15 +1,14 @@
 <script lang="ts">
+    import { user } from '$stores/session';
     import ndk from '$lib/stores/ndk';
-    import CloseIcon from '$lib/icons/Close.svelte';
 
     import { closeModal } from 'svelte-modals';
     import type { NostrEvent } from '@nostr-dev-kit/ndk';
     import { goto } from '$app/navigation';
-    import ModalWrapper from '$lib/components/ModalWrapper.svelte';
+    import {ModalWrapper} from '@kind0/ui-common';
     import Input from '$lib/components/Input.svelte';
     import Textarea from '$lib/components/Textarea.svelte';
     import {  getLists } from "$lib/stores/list";
-    import { currentUser } from "$lib/store";
 
     import NDKList from '$lib/ndk-kinds/lists/index.js';
     import ModalButton from '$lib/components/ModalButton.svelte';
@@ -24,24 +23,19 @@
         list.name = name;
         list.description = description;
         await list.publish();
-        if ($currentUser) {
-            getLists($currentUser);
+        if ($user) {
+            getLists($user);
         }
         goto(`/lists/${list.encode()}`);
         closeModal();
     }
 </script>
 
-<ModalWrapper class="max-w-sm">
-    <button class="
-        transition duration-300
-        absolute top-2 right-2
-    " on:click={closeModal}>
-        <CloseIcon />
-    </button>
+<ModalWrapper
+    class="max-w-sm"
+    title="New List"
+>
     <div class="flex flex-col gap-8">
-        <h2 class="font-semibold text-base uppercase">NEW LIST</h2>
-
         <div class="flex flex-col join join-vertical">
             <Input type="text" class="
                 border-0

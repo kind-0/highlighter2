@@ -1,21 +1,22 @@
 <script lang="ts">
     import { NDKEvent, type NDKFilter } from '@nostr-dev-kit/ndk';
-    import ndk, { type NDKEventStore } from '$lib/stores/ndk';
+    import ndk from '$lib/stores/ndk';
     import NewHighlight from '$lib/components/highlights/NewHighlight.svelte';
-    import { currentUser, currentUserFollowPubkeys, currentScope } from '$lib/store';
+    import { currentScope } from '$lib/store';
     import { fade } from 'svelte/transition';
-    import { fetchFollowers } from '$lib/currentUser';
     import { derived, type Readable } from 'svelte/store';
     import MarginNotePopup from './MarginNotePopup.svelte';
 
     import HighlightWrapper from '../HighlightWrapper.svelte';
     import Article from '../Article.svelte';
-    import type { NDKArticle } from "@nostr-dev-kit/ndk";
+    import { NDKArticle } from "@nostr-dev-kit/ndk";
     import { onDestroy } from 'svelte';
     import NDKHighlight from '$lib/ndk-kinds/highlight';
     import MarkedContent from './MarkedContent.svelte';
     import AvatarWithName from '../AvatarWithName.svelte';
     import RightDrawerLayout from '$lib/layouts/RightDrawerLayout.svelte';
+    import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
+    import { user } from '$stores/session';
 
     export let article: NDKEvent | NDKArticle | string;
     export let content: string | undefined = undefined;
@@ -34,25 +35,6 @@
     $: if (scope !== $currentScope.label) {
         scope = $currentScope.label;
         let pubkeys: string[] | undefined | null = null;
-
-        if (scope === 'network') {
-            // check if we have the contacts loaded
-            if (!$currentUserFollowPubkeys) {
-                fetchFollowers();
-            } else {
-                // update the filter
-                pubkeys = $currentUserFollowPubkeys;
-            }
-        } else if (scope === 'personal' && $currentUser?.hexpubkey()) {
-            pubkeys = [$currentUser?.hexpubkey()];
-        } else if (scope === 'global') {
-            pubkeys = undefined;
-        }
-
-        // If pubkeys has been explicitly set to a value or undefined
-        if (pubkeys !== null) {
-            highlightFilter = {pubkeys};
-        }
 
         needsFilterUpdate = true;
     }
@@ -139,7 +121,7 @@
         if (selection) {
             if (!newHighlightItem) {
                 newHighlightItem = new NDKHighlight($ndk);
-                newHighlightItem.author = $currentUser;
+                newHighlightItem.author = $user!;
 
                 if (article.id) {
                     newHighlightItem.article = article!;
@@ -161,7 +143,7 @@
     }
 
     function articleTitle() {
-        if (article instanceof NDKEvent) {
+        if (article instanceof NDKArticle) {
             if (!article.title) {
                 return undefined;
             }

@@ -1,7 +1,7 @@
 <script lang="ts">
     import { page } from '$app/stores';
-    import { currentScope, currentUser } from '$lib/store';
-    import { userFollows } from '$stores/session';
+    import { currentScope } from '$lib/store';
+    import { user, userFollows } from '$stores/session';
     import MainWithRightSidebar from '$lib/layouts/MainWithRightSidebar.svelte';
     import MenuItem from '$components/sidebars/MenuItem.svelte';
     import PopularShelves from '$lib/components/lists/PopularShelves.svelte';
@@ -12,6 +12,7 @@
     import { getHighlights } from '$lib/stores/highlights';
     import type { NDKFilter, NDKSubscription } from '@nostr-dev-kit/ndk';
     import { onDestroy } from 'svelte';
+    import { AtlasNotesLogo, SidebarSectionLink } from '@kind0/ui-common';
 
     let subscribed = false;
     let highlightsSub: NDKSubscription;
@@ -51,8 +52,8 @@
 
         switch ($page.params.scope) {
             case 'personal':
-                if ($currentUser) {
-                    $currentScope.pubkeys = [$currentUser.hexpubkey()];
+                if ($user) {
+                    $currentScope.pubkeys = [$user.hexpubkey()];
                     $currentScope.label = $page.params.scope;
                 }
 
@@ -110,7 +111,7 @@
         <slot />
     {/if}
 
-    <div slot="right-sidebar">
+    <!-- <div slot="right-sidebar">
         <div class="flex flex-col items-center gap-8">
             <ul class="menu bg-base-200 w-full rounded-box">
                 <li class="menu-title">TOPICS</li>
@@ -131,6 +132,6 @@
 
             <PopularShelves />
         </div>
-    </div>
+    </div> -->
 </MainWithRightSidebar>
 

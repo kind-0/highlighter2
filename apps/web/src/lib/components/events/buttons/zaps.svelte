@@ -7,7 +7,7 @@
     import { onDestroy } from 'svelte';
     import { type NDKEvent, zapInvoiceFromEvent } from '@nostr-dev-kit/ndk';
     import { nicelyFormattedMilliSatNumber } from '$lib/utils';
-    import { currentUser } from '$lib/store';
+    import { user } from '$stores/session';
     import ndk from '$stores/ndk';
     import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
 
@@ -37,7 +37,7 @@
             const zapInvoice = zapInvoiceFromEvent(zap);
             if (!zapInvoice) return acc;
 
-            if (zapInvoice.zappee === $currentUser?.hexpubkey()) {
+            if (zapInvoice.zappee === $user?.hexpubkey()) {
                 zappedByCurrentUser = true;
             }
 
@@ -46,15 +46,15 @@
     }
 
     let tooltip: string;
-    $: tooltip = $currentUser ? 'Zap' : 'You are not logged in';
+    $: tooltip = $user ? 'Zap' : 'You are not logged in';
 
 </script>
 
-{#if event?.id && $currentUser}
+{#if event?.id && $user}
     <div class="tooltip flex flex-row items-center gap-1.5" data-tip={tooltip}>
         <button
             class="flex flex-row items-center gap-1.5"
-            class:cursor-not-allowed={!$currentUser}
+            class:cursor-not-allowed={!$user}
             on:click={() => { openModal(ZapModal, { event }) }}
         >
             <ZapIcon class="

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import ModalWrapper from '$lib/components/ModalWrapper.svelte';
+    import {ModalWrapper} from '@kind0/ui-common';
     import { getListsFromFilter, sortedListWithKind } from '$lib/stores/list';
     import { NDKKind } from '$lib/ndk-kinds';
     import RelaySetNavigatorCard from '$lib/components/Sidebar/RelaySetNavigatorCard.svelte';
@@ -7,8 +7,8 @@
     import ndk, { defaultRelays } from '$lib/stores/ndk';
     import { currentRelaySet } from '$lib/components/RelaySets';
     import { onDestroy } from 'svelte';
-    import { currentUser, currentUserFollowPubkeys } from '$lib/store';
     import type { NDKSubscription } from '@nostr-dev-kit/ndk';
+    import { user } from '$stores/session';
 
     const relaySetLists = sortedListWithKind(NDKKind.RelayList);
 
@@ -20,18 +20,18 @@
     let listSubFollowCount: number | undefined;
 
     // If we have the list of follows
-    $: if ($currentUserFollowPubkeys && listSubFollowCount !== $currentUserFollowPubkeys.length) {
-        if (listSub) listSub.stop();
-        listSubFollowCount = $currentUserFollowPubkeys.length;
-        listSub = getListsFromFilter({
-            kinds: [NDKKind.RelayList as number],
-            authors: $currentUserFollowPubkeys,
-            limit: 50,
-        })
-    }
+    // $: if ($userFollowPubkeys && listSubFollowCount !== $userFollowPubkeys.length) {
+    //     if (listSub) listSub.stop();
+    //     listSubFollowCount = $userFollowPubkeys.length;
+    //     listSub = getListsFromFilter({
+    //         kinds: [NDKKind.RelayList as number],
+    //         authors: $userFollowPubkeys,
+    //         limit: 50,
+    //     })
+    // }
 
     // If the user is not logged in
-    $: if (!$currentUser && !listSub) {
+    $: if (!$user && !listSub) {
         listSubFollowCount = undefined;
         listSub = getListsFromFilter({
             kinds: [NDKKind.RelayList as number],

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { currentUser } from '$lib/store';
+    import { user } from '$stores/session';
     import ndk from '$stores/ndk';
     import { type NDKEvent } from '@nostr-dev-kit/ndk';
 

@@ -6,7 +6,7 @@
     import ndk from '$lib/stores/ndk';
     import { createEventDispatcher } from 'svelte';
     import type { NDKEvent, NDKFilter } from '@nostr-dev-kit/ndk';
-    import { currentUser } from '$lib/store';
+    import { user } from '$stores/session';
     import NDKList from '$lib/ndk-kinds/lists';
     import NDKHighlight from '$lib/ndk-kinds/highlight';
     import { filterForId, filterFromNaddr, naddrFromTagValue } from '$lib/utils';
@@ -57,7 +57,7 @@
                 if (!e) return reject(`no event ${id}`);
 
                 if (e.kind === 4) {
-                    await e.decrypt($currentUser!);
+                    await e.decrypt($user!);
                 }
 
                 event = e;

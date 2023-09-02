@@ -2,7 +2,7 @@ import { findEphemeralSigner } from '$lib/signers/ephemeral';
 import { NDKPrivateKeySigner, type NDKSigner, type NDKUser } from '@nostr-dev-kit/ndk';
 import { writable, get as getStore, derived } from 'svelte/store';
 import ndkStore from './ndk';
-import { currentUser as currentUserStore } from '../store';
+import { user as userStore } from '$stores/session';
 import type NDKList from '$lib/ndk-kinds/lists';
 
 export type SignerStoreItem = {
@@ -30,15 +30,15 @@ export const npubSigners = derived(signers, ($signers) => {
 
 async function getDelegatedSignerName(list: NDKList) {
     let name = '';
-    const currentUser: NDKUser = getStore(currentUserStore);
+    const $user: NDKUser = getStore(userStore)!;
 
-    if (!currentUser?.profile) {
-        currentUser.ndk = getStore(ndkStore);
-        await currentUser?.fetchProfile();
+    if (!$user?.profile) {
+        $user.ndk = getStore(ndkStore);
+        await $user?.fetchProfile();
     }
 
-    if (currentUser?.profile?.name) {
-        name = currentUser.profile.displayName + `'s `;
+    if ($user?.profile?.name) {
+        name = $user.profile.displayName + `'s `;
     }
 
     return name + list.name;

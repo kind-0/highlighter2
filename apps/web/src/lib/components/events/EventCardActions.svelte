@@ -8,7 +8,7 @@
 
     import HighlightButton from "./buttons/HighlightButton.svelte";
     import { Link } from 'phosphor-svelte';
-    import { currentUser } from '$lib/store';
+    import { user } from '$stores/session';
 
     export let event: NDKEvent;
 
@@ -34,7 +34,7 @@
         </div>
     {/if}
 
-    {#if $currentUser}
+    {#if $user}
         <div class="md:opacity-0 group-hover:opacity-100 transition duration-300">
             <BookmarkButton {event} class="btn bg-base-100 hover:bg-base-200 btn-circle btn-xs w-6 h-6 p-1" />
         </div>

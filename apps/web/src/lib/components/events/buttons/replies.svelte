@@ -7,7 +7,7 @@
     import type { NDKEvent, NDKSigner, NDKUser } from '@nostr-dev-kit/ndk';
 
     import { signers } from '$lib/stores/signer';
-    import { currentUser } from '$lib/store';
+    import { user } from '$stores/session';
 
     export let event: NDKEvent;
 
@@ -28,7 +28,7 @@
 
     let tooltip: string;
 
-    $: tooltip = $currentUser ? 'Reply' : 'You are not logged in';
+    $: tooltip = $user ? 'Reply' : 'You are not logged in';
 </script>
 
 <div class="tooltip" data-tip={tooltip}>

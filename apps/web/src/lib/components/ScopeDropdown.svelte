@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { currentUserFollowPubkeys, currentScope, currentUser } from '$lib/store';
-    import { fetchFollowers } from '$lib/currentUser';
+    import { currentScope } from '$lib/store';
+    import { user, userFollows } from '$stores/session';
 
     export let scope: string;
     export let urlTemplate: string | undefined = undefined;
@@ -20,30 +20,30 @@
         showScopeMenu = false;
         $currentScope.label = value;
 
-        switch (value) {
-            case 'network':
-                if (!$currentUserFollowPubkeys) {
-                    fetchFollowers()?.then(() => {
-                        // update the filter
-                        $currentScope.pubkeys = $currentUserFollowPubkeys || [];
-                    });
+        // switch (value) {
+        //     case 'network':
+        //         if (!$userFollowPubkeys) {
+        //             fetchFollowers()?.then(() => {
+        //                 // update the filter
+        //                 $currentScope.pubkeys = $userFollowPubkeys || [];
+        //             });
 
-                    return;
-                } else {
-                    // update the filter
-                    $currentScope.pubkeys = $currentUserFollowPubkeys;
-                }
-                break;
-            case 'personal':
-                if ($currentUser?.hexpubkey()) {
-                    $currentScope.pubkeys = [$currentUser?.hexpubkey()];
-                } else {
-                    $currentScope.pubkeys = [];
-                }
-                break;
-            case 'global':
-                $currentScope.pubkeys = undefined;
-        }
+        //             return;
+        //         } else {
+        //             // update the filter
+        //             $currentScope.pubkeys = $userFollowPubkeys;
+        //         }
+        //         break;
+        //     case 'personal':
+        //         if ($user?.hexpubkey()) {
+        //             $currentScope.pubkeys = [$user?.hexpubkey()];
+        //         } else {
+        //             $currentScope.pubkeys = [];
+        //         }
+        //         break;
+        //     case 'global':
+        //         $currentScope.pubkeys = undefined;
+        // }
 
         if (!urlTemplate) {
             e.preventDefault();
@@ -77,7 +77,7 @@
         'curated'
     ];
 
-    $: options = $currentUser ? signedIn : signedOut;
+    $: options = $user ? signedIn : signedOut;
 </script>
 
 <div class="dropdown">

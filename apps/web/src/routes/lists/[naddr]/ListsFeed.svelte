@@ -8,7 +8,7 @@
     import type { NDKSubscription } from '@nostr-dev-kit/ndk';
     import { onDestroy, onMount } from 'svelte';
     import Tags from './tags.svelte';
-    import { currentUser } from '$lib/store';
+    import { user } from '$stores/session';
     import Button from '$lib/components/buttons/Button.svelte';
 
     let subs: NDKSubscription[] = [];
@@ -18,7 +18,7 @@
     onMount(async () => {
         const sub = $ndk.subscribe({ '#d': [name] });
         sub.on('event', (e) => {
-            if (e.pubkey === $currentUser?.hexpubkey()) return;
+            if (e.pubkey === $user?.hexpubkey()) return;
 
             const list = new NDKList($ndk, e.rawEvent());
 

@@ -3,7 +3,6 @@
     import SidebarFolders from "../Sidebar/SidebarFolders.svelte";
     import MenuItem from './MenuItem.svelte';
     import { sortedHighlightList, sortedUserList } from "$lib/stores/list";
-    import { currentUser } from "$lib/store";
     import { user, userFollowHashtags } from "$stores/session";
     import ReaderIcon from "$icons/ReaderIcon.svelte";
     import {SidebarSectionLink} from '@kind0/ui-common';
@@ -29,7 +28,7 @@
         <ul class="menu bg-base-200 w-full rounded-box">
             <RelaySetButton />
             <li class="menu-title">PROFILES</li>
-            {#if $currentUser}
+            {#if $user}
                 <MenuItem href="/highlights/me" activeClass="border-l-accent">
                     Just you
                 </MenuItem>
