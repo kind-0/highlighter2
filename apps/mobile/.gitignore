@@ -1,0 +1,20 @@
+.DS_Store
+node_modules
+/build
+/.svelte-kit
+/package
+.env
+.env.*
+!.env.example
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+# rust
+Cargo.lock
+/target/
+
+# dev
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+_.txt
