@@ -4,14 +4,14 @@ build:
     turbo build
 
 renew:
-    if [ -d {{LOCKFILE}} ]; then \
+    if [ -f {{LOCKFILE}} ]; then \
         rm {{LOCKFILE}}; \
     fi \
     && find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \; \
     && pnpm install
 
 renew-all:
-    if [ -d {{LOCKFILE}} ]; then \
+    if [ -f {{LOCKFILE}} ]; then \
         rm {{LOCKFILE}}; \
     fi \
     && find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \; \

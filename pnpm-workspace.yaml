@@ -1,5 +1,6 @@
 packages:
   - 'apps/*'
+  - 'mobile/'
   - 'packages/*'
   - 'packages/ndk/ndk'
   - 'packages/ndk/ndk-cache-redis'

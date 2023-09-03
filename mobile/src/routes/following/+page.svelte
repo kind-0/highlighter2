@@ -1,15 +1,13 @@
 <script lang="ts">
   import { page } from "$app/stores";
   import { faker } from "@faker-js/faker";
-  import type { HighlightMetadata } from "@highlighter/ui-mobile";
-  import { HighlightsOwnList, Navbar } from "@highlighter/ui-mobile";
+  import type { HighlightMetadata } from "@kind0/ui-mobile";
+  import {
+    HighlightsFollowingBanner,
+    HighlightsFollowingList,
+    Navbar,
+  } from "@kind0/ui-mobile";
   import { DateTime } from "luxon";
-
-  let isCompact = false;
-
-  const toggleCompact = () => {
-    isCompact = !isCompact;
-  };
 
   const randomDateCreatedWithin400Days = (): number => {
     const timeDelta = Math.floor(Math.random() * 500) + 1;
@@ -19,6 +17,19 @@
       return DateTime.now().minus({ seconds: timeDelta }).toMillis();
     }
   };
+
+  let bannerHighlights = Array.from({ length: 10 }).map(
+    (_): HighlightMetadata => ({
+      id: faker.string.alphanumeric(8),
+      author: faker.internet.userName(),
+      dateCreated: randomDateCreatedWithin400Days(),
+      title: faker.lorem.sentence(22),
+      preview: faker.lorem.sentence(18),
+      stars: faker.number.int(5),
+      zaps: faker.number.int(10000),
+      marginNotes: faker.lorem.sentence({ min: 20, max: 56 }),
+    })
+  );
 
   let listHighlights = Array.from({ length: 10 }).map(
     (_): HighlightMetadata => ({
@@ -39,5 +50,6 @@
 
 <div class="flex flex-col w-full justify-center items-center space-y-6">
   <Navbar pathname={$page.url.pathname} />
-  <HighlightsOwnList list={listHighlights} {isCompact} {toggleCompact} />
+  <HighlightsFollowingBanner list={bannerHighlights} />
+  <HighlightsFollowingList list={listHighlights} />
 </div>
