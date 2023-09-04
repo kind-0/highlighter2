@@ -267,6 +267,21 @@ importers:
       '@kind0/ui-mobile':
         specifier: workspace:*
         version: link:../packages/ui-mobile
+      '@nostr-dev-kit/ndk':
+        specifier: workspace:*
+        version: link:../packages/ndk/ndk
+      '@nostr-dev-kit/ndk-cache-dexie':
+        specifier: workspace:*
+        version: link:../packages/ndk/ndk-cache-dexie
+      '@nostr-dev-kit/ndk-cache-redis':
+        specifier: workspace:*
+        version: link:../packages/ndk/ndk-cache-redis
+      '@nostr-dev-kit/ndk-svelte':
+        specifier: workspace:*
+        version: link:../packages/ndk/ndk-svelte
+      '@nostr-dev-kit/ndk-svelte-components':
+        specifier: workspace:*
+        version: link:../packages/ndk/ndk-svelte-components
       '@tauri-apps/api':
         specifier: ^2.0.0-alpha.4
         version: 2.0.0-alpha.5
@@ -820,7 +835,7 @@ importers:
         specifier: ^8.4.28
         version: 8.4.28
       svelte:
-        specifier: ^4.1.2
+        specifier: ^4.2.0
         version: 4.2.0
 
   packages/ui-mobile:
@@ -848,7 +863,7 @@ importers:
         specifier: ^8.4.28
         version: 8.4.28
       svelte:
-        specifier: ^4.1.2
+        specifier: ^4.2.0
         version: 4.2.0
 
   packages/ui-web:
@@ -870,7 +885,7 @@ importers:
         specifier: ^8.4.28
         version: 8.4.28
       svelte:
-        specifier: ^4.1.2
+        specifier: ^4.2.0
         version: 4.2.0
 
   packages/utils:

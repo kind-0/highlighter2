@@ -12,6 +12,11 @@
 	},
 	"dependencies": {
 		"@kind0/ui-mobile": "workspace:*",
+		"@nostr-dev-kit/ndk": "workspace:*",
+		"@nostr-dev-kit/ndk-cache-dexie": "workspace:*",
+		"@nostr-dev-kit/ndk-cache-redis": "workspace:*",
+		"@nostr-dev-kit/ndk-svelte": "workspace:*",
+		"@nostr-dev-kit/ndk-svelte-components": "workspace:*",
 		"@faker-js/faker": "^8.0.2",
 		"@tauri-apps/api": "^2.0.0-alpha.4",
 		"@tauri-apps/plugin-dialog": "https://github.com/tauri-apps/tauri-plugin-dialog#v2",
