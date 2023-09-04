@@ -11,6 +11,7 @@
 		"tauri": "tauri"
 	},
 	"dependencies": {
+		"@highlighter/svelte-kit-lib": "*",
 		"@kind0/ui-mobile": "workspace:*",
 		"@nostr-dev-kit/ndk": "workspace:*",
 		"@nostr-dev-kit/ndk-cache-dexie": "workspace:*",
@@ -25,6 +26,7 @@
 	"devDependencies": {
 		"@kind0/eslint-config-custom": "workspace:*",
 		"@kind0/tailwind-config": "workspace:*",
+		"@kind0/tsconfig": "workspace:*",
 		"@sveltejs/adapter-static": "^1.0.0-next.50",
 		"@sveltejs/kit": "^1.20.4",
 		"@tauri-apps/cli": "^2.0.0-alpha.9",

@@ -1,5 +1,6 @@
 <script lang="ts">
-  //
+  import { teststore } from "@highlighter/svelte-kit-lib";
+
   let routes = [`following`, `your-highlights`];
 </script>
 
@@ -18,4 +19,16 @@
       </div>
     {/each}
   </div>
+  <button
+    class="btn"
+    on:click={() => {
+      teststore.set(!$teststore);
+    }}
+  >
+    tap teststore
+  </button>
+
+  <p>
+    {`teststore is: ${$teststore}`}
+  </p>
 </div>

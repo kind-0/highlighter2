@@ -9,6 +9,7 @@
 		"lint": "eslint ."
 	},
 	"devDependencies": {
+		"@kind0/tsconfig": "workspace:*",
 		"@grail-ui/svelte": "^0.10.1",
 		"@rgossiaux/svelte-headlessui": "^1.0.2",
 		"@rollup/plugin-alias": "^5.0.0",

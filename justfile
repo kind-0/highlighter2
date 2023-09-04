@@ -3,6 +3,10 @@ LOCKFILE := "pnpm-lock.yaml"
 build:
     turbo build
 
+clean:
+    find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \; \
+    && pnpm install
+
 renew:
     if [ -f {{LOCKFILE}} ]; then \
         rm {{LOCKFILE}}; \
