@@ -24,241 +24,6 @@ importers:
         specifier: latest
         version: 1.10.13
 
-  apps/web:
-    dependencies:
-      '@fontsource/lora':
-        specifier: ^5.0.8
-        version: 5.0.8
-      '@kind0/ui-common':
-        specifier: workspace:*
-        version: link:../../packages/ui-common
-      '@macfja/svelte-persistent-store':
-        specifier: ^2.3.2
-        version: 2.3.2(svelte@4.2.0)
-      '@mozilla/readability':
-        specifier: ^0.4.4
-        version: 0.4.4
-      '@noble/hashes':
-        specifier: ^1.3.1
-        version: 1.3.1
-      '@nostr-dev-kit/ndk':
-        specifier: workspace:*
-        version: link:../../packages/ndk/ndk
-      '@nostr-dev-kit/ndk-cache-dexie':
-        specifier: workspace:*
-        version: link:../../packages/ndk/ndk-cache-dexie
-      '@nostr-dev-kit/ndk-cache-redis':
-        specifier: workspace:*
-        version: link:../../packages/ndk/ndk-cache-redis
-      '@nostr-dev-kit/ndk-svelte':
-        specifier: workspace:*
-        version: link:../../packages/ndk/ndk-svelte
-      '@nostr-dev-kit/ndk-svelte-components':
-        specifier: workspace:*
-        version: link:../../packages/ndk/ndk-svelte-components
-      '@sveltejs/adapter-node':
-        specifier: ^1.2.3
-        version: 1.2.3(@sveltejs/kit@1.24.0)
-      '@tailwindcss/forms':
-        specifier: ^0.5.3
-        version: 0.5.4(tailwindcss@3.3.3)
-      '@tailwindcss/typography':
-        specifier: ^0.5.9
-        version: 0.5.9(tailwindcss@3.3.3)
-      '@tauri-apps/api':
-        specifier: 2.0.0-alpha.5
-        version: 2.0.0-alpha.5
-      '@types/turndown':
-        specifier: ^5.0.1
-        version: 5.0.1
-      add:
-        specifier: ^2.0.6
-        version: 2.0.6
-      cheerio:
-        specifier: 1.0.0-rc.12
-        version: 1.0.0-rc.12
-      classnames:
-        specifier: ^2.3.2
-        version: 2.3.2
-      debug:
-        specifier: ^4.3.4
-        version: 4.3.4
-      dexie:
-        specifier: ^3.2.4
-        version: 3.2.4
-      eventemitter3:
-        specifier: ^5.0.0
-        version: 5.0.1
-      flowbite:
-        specifier: ^1.7.0
-        version: 1.7.0
-      flowbite-svelte:
-        specifier: ^0.39.2
-        version: 0.39.2(svelte@4.2.0)
-      get-selection-more:
-        specifier: ^1.1.0
-        version: 1.1.0
-      inflected:
-        specifier: ^2.1.0
-        version: 2.1.0
-      jsdom:
-        specifier: ^21.1.1
-        version: 21.1.1
-      light-bolt11-decoder:
-        specifier: ^3.0.0
-        version: 3.0.0
-      linkify-it:
-        specifier: ^4.0.1
-        version: 4.0.1
-      markdown-it:
-        specifier: ^13.0.1
-        version: 13.0.1
-      markdown-it-footnote:
-        specifier: ^3.0.3
-        version: 3.0.3
-      markdown-it-task-list-plus:
-        specifier: ^2.1.3
-        version: 2.1.3
-      nostr-tools:
-        specifier: ^1.14.0
-        version: 1.14.0
-      sanitize-html:
-        specifier: ^2.10.0
-        version: 2.10.0
-      svelte-modals:
-        specifier: ^1.3.0
-        version: 1.3.0(svelte@4.2.0)
-      svelte-preprocess:
-        specifier: ^5.0.4
-        version: 5.0.4(@babel/core@7.22.11)(postcss@8.4.28)(svelte@4.2.0)(typescript@5.1.6)
-      svelte-tags-input:
-        specifier: ^5.0.0
-        version: 5.0.0
-      throttle-debounce:
-        specifier: ^5.0.0
-        version: 5.0.0
-      turndown:
-        specifier: ^7.1.2
-        version: 7.1.2
-      uuid:
-        specifier: ^9.0.0
-        version: 9.0.0
-      vite:
-        specifier: ^4.4.9
-        version: 4.4.9
-      vite-plugin-pwa:
-        specifier: ^0.16.4
-        version: 0.16.4(vite@4.4.9)(workbox-build@7.0.0)(workbox-window@7.0.0)
-      webln:
-        specifier: ^0.3.2
-        version: 0.3.2
-      websocket-polyfill:
-        specifier: ^0.0.3
-        version: 0.0.3
-    devDependencies:
-      '@grail-ui/svelte':
-        specifier: ^0.10.1
-        version: 0.10.1(svelte@4.2.0)
-      '@rgossiaux/svelte-headlessui':
-        specifier: ^1.0.2
-        version: 1.0.2(svelte@4.2.0)
-      '@rollup/plugin-alias':
-        specifier: ^5.0.0
-        version: 5.0.0(rollup@3.28.1)
-      '@rollup/plugin-node-resolve':
-        specifier: ^15.0.2
-        version: 15.0.2(rollup@3.28.1)
-      '@rollup/plugin-typescript':
-        specifier: ^11.1.0
-        version: 11.1.0(rollup@3.28.1)(tslib@2.6.1)(typescript@5.1.6)
-      '@sveltejs/adapter-auto':
-        specifier: ^2.1.0
-        version: 2.1.0(@sveltejs/kit@1.24.0)
-      '@sveltejs/adapter-static':
-        specifier: 1.0.0-next.50
-        version: 1.0.0-next.50(@sveltejs/kit@1.24.0)
-      '@sveltejs/kit':
-        specifier: ^1.22.3
-        version: 1.24.0(svelte@4.2.0)(vite@4.4.9)
-      '@sveltejs/package':
-        specifier: ^2.2.0
-        version: 2.2.1(svelte@4.2.0)(typescript@5.1.6)
-      '@tauri-apps/cli':
-        specifier: 2.0.0-alpha.10
-        version: 2.0.0-alpha.10
-      '@types/inflected':
-        specifier: ^2.1.0
-        version: 2.1.0
-      '@types/jsdom':
-        specifier: ^21.1.1
-        version: 21.1.1
-      '@types/sanitize-html':
-        specifier: ^2.9.0
-        version: 2.9.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^6.1.0
-        version: 6.4.0(@typescript-eslint/parser@6.4.0)(eslint@8.47.0)(typescript@5.1.6)
-      '@typescript-eslint/parser':
-        specifier: ^6.1.0
-        version: 6.4.0(eslint@8.47.0)(typescript@5.1.6)
-      '@vite-pwa/assets-generator':
-        specifier: ^0.0.4
-        version: 0.0.4
-      '@vite-pwa/sveltekit':
-        specifier: ^0.2.5
-        version: 0.2.5(@sveltejs/kit@1.24.0)(vite-plugin-pwa@0.16.4)
-      autoprefixer:
-        specifier: ^10.4.13
-        version: 10.4.15(postcss@8.4.28)
-      daisyui:
-        specifier: ^3.3.1
-        version: 3.6.4
-      dayjs:
-        specifier: ^1.11.9
-        version: 1.11.9
-      eslint:
-        specifier: ^8.45.0
-        version: 8.47.0
-      eslint-plugin-svelte:
-        specifier: ^2.32.4
-        version: 2.32.4(eslint@8.47.0)(svelte@4.2.0)
-      internal-ip:
-        specifier: ^8.0.0
-        version: 8.0.0
-      phosphor-svelte:
-        specifier: ^1.3.0
-        version: 1.3.0(svelte@4.2.0)
-      postcss:
-        specifier: ^8.4.21
-        version: 8.4.28
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      prettier-plugin-svelte:
-        specifier: ^2.10.1
-        version: 2.10.1(prettier@2.8.8)(svelte@4.2.0)
-      rollup-plugin-svelte:
-        specifier: ^7.1.4
-        version: 7.1.4(rollup@3.28.1)(svelte@4.2.0)
-      sirv-cli:
-        specifier: ^2.0.2
-        version: 2.0.2
-      svelte:
-        specifier: ^4.1.1
-        version: 4.2.0
-      svelte-time:
-        specifier: ^0.7.2
-        version: 0.7.2
-      tailwindcss:
-        specifier: ^3.3.2
-        version: 3.3.3
-      tslib:
-        specifier: ^2.4.1
-        version: 2.6.1
-      typescript:
-        specifier: ^5.1.3
-        version: 5.1.6
-
   mobile:
     dependencies:
       '@faker-js/faker':
@@ -900,6 +665,241 @@ importers:
       '@types/luxon':
         specifier: ^3.3.1
         version: 3.3.1
+
+  web:
+    dependencies:
+      '@fontsource/lora':
+        specifier: ^5.0.8
+        version: 5.0.8
+      '@kind0/ui-common':
+        specifier: workspace:*
+        version: link:../packages/ui-common
+      '@macfja/svelte-persistent-store':
+        specifier: ^2.3.2
+        version: 2.3.2(svelte@4.2.0)
+      '@mozilla/readability':
+        specifier: ^0.4.4
+        version: 0.4.4
+      '@noble/hashes':
+        specifier: ^1.3.1
+        version: 1.3.1
+      '@nostr-dev-kit/ndk':
+        specifier: workspace:*
+        version: link:../packages/ndk/ndk
+      '@nostr-dev-kit/ndk-cache-dexie':
+        specifier: workspace:*
+        version: link:../packages/ndk/ndk-cache-dexie
+      '@nostr-dev-kit/ndk-cache-redis':
+        specifier: workspace:*
+        version: link:../packages/ndk/ndk-cache-redis
+      '@nostr-dev-kit/ndk-svelte':
+        specifier: workspace:*
+        version: link:../packages/ndk/ndk-svelte
+      '@nostr-dev-kit/ndk-svelte-components':
+        specifier: workspace:*
+        version: link:../packages/ndk/ndk-svelte-components
+      '@sveltejs/adapter-node':
+        specifier: ^1.2.3
+        version: 1.2.3(@sveltejs/kit@1.24.0)
+      '@tailwindcss/forms':
+        specifier: ^0.5.3
+        version: 0.5.4(tailwindcss@3.3.3)
+      '@tailwindcss/typography':
+        specifier: ^0.5.9
+        version: 0.5.9(tailwindcss@3.3.3)
+      '@tauri-apps/api':
+        specifier: 2.0.0-alpha.5
+        version: 2.0.0-alpha.5
+      '@types/turndown':
+        specifier: ^5.0.1
+        version: 5.0.1
+      add:
+        specifier: ^2.0.6
+        version: 2.0.6
+      cheerio:
+        specifier: 1.0.0-rc.12
+        version: 1.0.0-rc.12
+      classnames:
+        specifier: ^2.3.2
+        version: 2.3.2
+      debug:
+        specifier: ^4.3.4
+        version: 4.3.4
+      dexie:
+        specifier: ^3.2.4
+        version: 3.2.4
+      eventemitter3:
+        specifier: ^5.0.0
+        version: 5.0.1
+      flowbite:
+        specifier: ^1.7.0
+        version: 1.7.0
+      flowbite-svelte:
+        specifier: ^0.39.2
+        version: 0.39.2(svelte@4.2.0)
+      get-selection-more:
+        specifier: ^1.1.0
+        version: 1.1.0
+      inflected:
+        specifier: ^2.1.0
+        version: 2.1.0
+      jsdom:
+        specifier: ^21.1.1
+        version: 21.1.1
+      light-bolt11-decoder:
+        specifier: ^3.0.0
+        version: 3.0.0
+      linkify-it:
+        specifier: ^4.0.1
+        version: 4.0.1
+      markdown-it:
+        specifier: ^13.0.1
+        version: 13.0.1
+      markdown-it-footnote:
+        specifier: ^3.0.3
+        version: 3.0.3
+      markdown-it-task-list-plus:
+        specifier: ^2.1.3
+        version: 2.1.3
+      nostr-tools:
+        specifier: ^1.14.0
+        version: 1.14.0
+      sanitize-html:
+        specifier: ^2.10.0
+        version: 2.10.0
+      svelte-modals:
+        specifier: ^1.3.0
+        version: 1.3.0(svelte@4.2.0)
+      svelte-preprocess:
+        specifier: ^5.0.4
+        version: 5.0.4(@babel/core@7.22.11)(postcss@8.4.28)(svelte@4.2.0)(typescript@5.1.6)
+      svelte-tags-input:
+        specifier: ^5.0.0
+        version: 5.0.0
+      throttle-debounce:
+        specifier: ^5.0.0
+        version: 5.0.0
+      turndown:
+        specifier: ^7.1.2
+        version: 7.1.2
+      uuid:
+        specifier: ^9.0.0
+        version: 9.0.0
+      vite:
+        specifier: ^4.4.9
+        version: 4.4.9
+      vite-plugin-pwa:
+        specifier: ^0.16.4
+        version: 0.16.4(vite@4.4.9)(workbox-build@7.0.0)(workbox-window@7.0.0)
+      webln:
+        specifier: ^0.3.2
+        version: 0.3.2
+      websocket-polyfill:
+        specifier: ^0.0.3
+        version: 0.0.3
+    devDependencies:
+      '@grail-ui/svelte':
+        specifier: ^0.10.1
+        version: 0.10.1(svelte@4.2.0)
+      '@rgossiaux/svelte-headlessui':
+        specifier: ^1.0.2
+        version: 1.0.2(svelte@4.2.0)
+      '@rollup/plugin-alias':
+        specifier: ^5.0.0
+        version: 5.0.0(rollup@3.28.1)
+      '@rollup/plugin-node-resolve':
+        specifier: ^15.0.2
+        version: 15.0.2(rollup@3.28.1)
+      '@rollup/plugin-typescript':
+        specifier: ^11.1.0
+        version: 11.1.0(rollup@3.28.1)(tslib@2.6.1)(typescript@5.1.6)
+      '@sveltejs/adapter-auto':
+        specifier: ^2.1.0
+        version: 2.1.0(@sveltejs/kit@1.24.0)
+      '@sveltejs/adapter-static':
+        specifier: 1.0.0-next.50
+        version: 1.0.0-next.50(@sveltejs/kit@1.24.0)
+      '@sveltejs/kit':
+        specifier: ^1.22.3
+        version: 1.24.0(svelte@4.2.0)(vite@4.4.9)
+      '@sveltejs/package':
+        specifier: ^2.2.0
+        version: 2.2.1(svelte@4.2.0)(typescript@5.1.6)
+      '@tauri-apps/cli':
+        specifier: 2.0.0-alpha.10
+        version: 2.0.0-alpha.10
+      '@types/inflected':
+        specifier: ^2.1.0
+        version: 2.1.0
+      '@types/jsdom':
+        specifier: ^21.1.1
+        version: 21.1.1
+      '@types/sanitize-html':
+        specifier: ^2.9.0
+        version: 2.9.0
+      '@typescript-eslint/eslint-plugin':
+        specifier: ^6.1.0
+        version: 6.4.0(@typescript-eslint/parser@6.4.0)(eslint@8.47.0)(typescript@5.1.6)
+      '@typescript-eslint/parser':
+        specifier: ^6.1.0
+        version: 6.4.0(eslint@8.47.0)(typescript@5.1.6)
+      '@vite-pwa/assets-generator':
+        specifier: ^0.0.4
+        version: 0.0.4
+      '@vite-pwa/sveltekit':
+        specifier: ^0.2.5
+        version: 0.2.5(@sveltejs/kit@1.24.0)(vite-plugin-pwa@0.16.4)
+      autoprefixer:
+        specifier: ^10.4.13
+        version: 10.4.15(postcss@8.4.28)
+      daisyui:
+        specifier: ^3.3.1
+        version: 3.6.4
+      dayjs:
+        specifier: ^1.11.9
+        version: 1.11.9
+      eslint:
+        specifier: ^8.45.0
+        version: 8.47.0
+      eslint-plugin-svelte:
+        specifier: ^2.32.4
+        version: 2.32.4(eslint@8.47.0)(svelte@4.2.0)
+      internal-ip:
+        specifier: ^8.0.0
+        version: 8.0.0
+      phosphor-svelte:
+        specifier: ^1.3.0
+        version: 1.3.0(svelte@4.2.0)
+      postcss:
+        specifier: ^8.4.21
+        version: 8.4.28
+      prettier:
+        specifier: ^2.8.8
+        version: 2.8.8
+      prettier-plugin-svelte:
+        specifier: ^2.10.1
+        version: 2.10.1(prettier@2.8.8)(svelte@4.2.0)
+      rollup-plugin-svelte:
+        specifier: ^7.1.4
+        version: 7.1.4(rollup@3.28.1)(svelte@4.2.0)
+      sirv-cli:
+        specifier: ^2.0.2
+        version: 2.0.2
+      svelte:
+        specifier: ^4.1.1
+        version: 4.2.0
+      svelte-time:
+        specifier: ^0.7.2
+        version: 0.7.2
+      tailwindcss:
+        specifier: ^3.3.2
+        version: 3.3.3
+      tslib:
+        specifier: ^2.4.1
+        version: 2.6.1
+      typescript:
+        specifier: ^5.1.3
+        version: 5.1.6
 
 packages:
 
@@ -3027,7 +3027,7 @@ packages:
     dependencies:
       '@jest/types': 29.6.3
       '@sinonjs/fake-timers': 10.3.0
-      '@types/node': 14.11.2
+      '@types/node': 20.5.9
       jest-message-util: 29.6.3
       jest-mock: 29.6.3
       jest-util: 29.6.3
@@ -5389,7 +5389,7 @@ packages:
   /@types/graceful-fs@4.1.6:
     resolution: {integrity: sha512-Sig0SNORX9fdW+bQuTEovKj3uHcUL6LQKbCrrqb1X7J6/ReAbhCXRAhc+SMejhLELFj2QcyuxmUooZ4bt5ReSw==}
     dependencies:
-      '@types/node': 14.11.2
+      '@types/node': 20.5.9
     dev: true
 
   /@types/hast@2.3.5:
@@ -8536,9 +8536,9 @@ packages:
       eslint: 8.47.0
       esutils: 2.0.3
       known-css-properties: 0.28.0
-      postcss: 8.4.28
-      postcss-load-config: 3.1.4(postcss@8.4.28)
-      postcss-safe-parser: 6.0.0(postcss@8.4.28)
+      postcss: 8.4.29
+      postcss-load-config: 3.1.4(postcss@8.4.29)
+      postcss-safe-parser: 6.0.0(postcss@8.4.29)
       postcss-selector-parser: 6.0.13
       semver: 7.5.4
       svelte: 4.2.0
@@ -8682,7 +8682,7 @@ packages:
       eslint-scope: 7.2.2
       eslint-utils: 3.0.0(eslint@8.4.1)
       eslint-visitor-keys: 3.4.3
-      espree: 9.2.0
+      espree: 9.6.1
       esquery: 1.5.0
       esutils: 2.0.3
       fast-deep-equal: 3.1.3
@@ -10405,7 +10405,7 @@ packages:
       '@jest/expect': 29.6.4
       '@jest/test-result': 29.6.4
       '@jest/types': 29.6.3
-      '@types/node': 14.11.2
+      '@types/node': 20.5.9
       chalk: 4.1.2
       co: 4.6.0
       dedent: 1.5.1
@@ -10529,7 +10529,7 @@ packages:
       '@jest/environment': 29.6.4
       '@jest/fake-timers': 29.6.4
       '@jest/types': 29.6.3
-      '@types/node': 14.11.2
+      '@types/node': 20.5.9
       jest-mock: 29.6.3
       jest-util: 29.6.3
     dev: true
@@ -10603,7 +10603,7 @@ packages:
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
       '@jest/types': 29.6.3
-      '@types/node': 14.11.2
+      '@types/node': 20.5.9
       jest-util: 29.6.3
     dev: true
 
@@ -10786,7 +10786,7 @@ packages:
     resolution: {integrity: sha512-6dpvFV4WjcWbDVGgHTWo/aupl8/LbBx2NSKfiwqf79xC/yeJjKHT1+StcKy/2KTmW16hE68ccKVOtXf+WZGz7Q==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
-      '@types/node': 14.11.2
+      '@types/node': 20.5.9
       jest-util: 29.6.3
       merge-stream: 2.0.0
       supports-color: 8.1.1
@@ -12283,25 +12283,16 @@ packages:
       '@babel/runtime': 7.22.11
     dev: true
 
-  /postcss-import@15.1.0(postcss@8.4.28):
+  /postcss-import@15.1.0(postcss@8.4.29):
     resolution: {integrity: sha512-hpr+J05B2FVYUAXHeK1YyI267J/dDDhMU6B6civm8hSY1jYJnBXxzKDKDswzJmtLHryrjhnDjqqp/49t8FALew==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       postcss: ^8.0.0
     dependencies:
-      postcss: 8.4.28
+      postcss: 8.4.29
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
       resolve: 1.22.4
-
-  /postcss-js@4.0.1(postcss@8.4.28):
-    resolution: {integrity: sha512-dDLF8pEO191hJMtlHFPRa8xsizHaM82MLfNkUHdUtVEV3tgTp5oj+8qbEqYM57SLfc74KSbw//4SeJma2LRVIw==}
-    engines: {node: ^12 || ^14 || >= 16}
-    peerDependencies:
-      postcss: ^8.4.21
-    dependencies:
-      camelcase-css: 2.0.1
-      postcss: 8.4.28
 
   /postcss-js@4.0.1(postcss@8.4.29):
     resolution: {integrity: sha512-dDLF8pEO191hJMtlHFPRa8xsizHaM82MLfNkUHdUtVEV3tgTp5oj+8qbEqYM57SLfc74KSbw//4SeJma2LRVIw==}
@@ -12311,9 +12302,8 @@ packages:
     dependencies:
       camelcase-css: 2.0.1
       postcss: 8.4.29
-    dev: true
 
-  /postcss-load-config@3.1.4(postcss@8.4.28):
+  /postcss-load-config@3.1.4(postcss@8.4.29):
     resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
     engines: {node: '>= 10'}
     peerDependencies:
@@ -12326,11 +12316,11 @@ packages:
         optional: true
     dependencies:
       lilconfig: 2.1.0
-      postcss: 8.4.28
+      postcss: 8.4.29
       yaml: 1.10.2
     dev: true
 
-  /postcss-load-config@4.0.1(postcss@8.4.28):
+  /postcss-load-config@4.0.1(postcss@8.4.29):
     resolution: {integrity: sha512-vEJIc8RdiBRu3oRAI0ymerOn+7rPuMvRXslTvZUKZonDHFIczxztIyJ1urxM1x9JXEikvpWWTUUqal5j/8QgvA==}
     engines: {node: '>= 14'}
     peerDependencies:
@@ -12343,34 +12333,34 @@ packages:
         optional: true
     dependencies:
       lilconfig: 2.1.0
-      postcss: 8.4.28
+      postcss: 8.4.29
       yaml: 2.3.2
 
-  /postcss-nested@6.0.1(postcss@8.4.28):
+  /postcss-nested@6.0.1(postcss@8.4.29):
     resolution: {integrity: sha512-mEp4xPMi5bSWiMbsgoPfcP74lsWLHkQbZc3sY+jWYd65CUwXrUaTp0fmNpa01ZcETKlIgUdFN/MpS2xZtqL9dQ==}
     engines: {node: '>=12.0'}
     peerDependencies:
       postcss: ^8.2.14
     dependencies:
-      postcss: 8.4.28
+      postcss: 8.4.29
       postcss-selector-parser: 6.0.13
 
-  /postcss-safe-parser@6.0.0(postcss@8.4.28):
+  /postcss-safe-parser@6.0.0(postcss@8.4.29):
     resolution: {integrity: sha512-FARHN8pwH+WiS2OPCxJI8FuRJpTVnn6ZNFiqAM2aeW2LwTHWWmWgIyKC6cUo0L8aeKiF/14MNvnpls6R2PBeMQ==}
     engines: {node: '>=12.0'}
     peerDependencies:
       postcss: ^8.3.3
     dependencies:
-      postcss: 8.4.28
+      postcss: 8.4.29
     dev: true
 
-  /postcss-scss@4.0.7(postcss@8.4.28):
+  /postcss-scss@4.0.7(postcss@8.4.29):
     resolution: {integrity: sha512-xPv2GseoyXPa58Nro7M73ZntttusuCmZdeOojUFR5PZDz2BR62vfYx1w9TyOnp1+nYFowgOMipsCBhxzVkAEPw==}
     engines: {node: '>=12.0'}
     peerDependencies:
       postcss: ^8.4.19
     dependencies:
-      postcss: 8.4.28
+      postcss: 8.4.29
     dev: true
 
   /postcss-selector-parser@6.0.10:
@@ -12405,7 +12395,6 @@ packages:
       nanoid: 3.3.6
       picocolors: 1.0.0
       source-map-js: 1.0.2
-    dev: true
 
   /prebuild-install@7.1.1:
     resolution: {integrity: sha512-jAXscXWMcCK8GgCoHOfIr0ODh5ai8mj63L2nWrjuAgXE6tDyYGnx4/8o/rCgU+B4JSyZBKbeZqzhtwtC3ovxjw==}
@@ -13219,7 +13208,7 @@ packages:
       htmlparser2: 8.0.2
       is-plain-object: 5.0.0
       parse-srcset: 1.0.2
-      postcss: 8.4.28
+      postcss: 8.4.29
     dev: false
 
   /saxes@6.0.0:
@@ -13863,8 +13852,8 @@ packages:
       eslint-scope: 7.2.2
       eslint-visitor-keys: 3.4.3
       espree: 9.6.1
-      postcss: 8.4.28
-      postcss-scss: 4.0.7(postcss@8.4.28)
+      postcss: 8.4.29
+      postcss-scss: 4.0.7(postcss@8.4.29)
       svelte: 4.2.0
     dev: true
 
@@ -14040,11 +14029,11 @@ packages:
       normalize-path: 3.0.0
       object-hash: 3.0.0
       picocolors: 1.0.0
-      postcss: 8.4.28
-      postcss-import: 15.1.0(postcss@8.4.28)
-      postcss-js: 4.0.1(postcss@8.4.28)
-      postcss-load-config: 4.0.1(postcss@8.4.28)
-      postcss-nested: 6.0.1(postcss@8.4.28)
+      postcss: 8.4.29
+      postcss-import: 15.1.0(postcss@8.4.29)
+      postcss-js: 4.0.1(postcss@8.4.29)
+      postcss-load-config: 4.0.1(postcss@8.4.29)
+      postcss-nested: 6.0.1(postcss@8.4.29)
       postcss-selector-parser: 6.0.13
       resolve: 1.22.4
       sucrase: 3.34.0
@@ -14402,7 +14391,7 @@ packages:
       execa: 5.1.1
       globby: 11.1.0
       joycon: 3.1.1
-      postcss-load-config: 3.1.4(postcss@8.4.28)
+      postcss-load-config: 3.1.4(postcss@8.4.29)
       resolve-from: 5.0.0
       rollup: 3.28.1
       source-map: 0.8.0-beta.0
@@ -14438,7 +14427,7 @@ packages:
       execa: 5.1.1
       globby: 11.1.0
       joycon: 3.1.1
-      postcss-load-config: 4.0.1(postcss@8.4.28)
+      postcss-load-config: 4.0.1(postcss@8.4.29)
       resolve-from: 5.0.0
       rollup: 3.28.1
       source-map: 0.8.0-beta.0
@@ -15111,7 +15100,7 @@ packages:
         optional: true
     dependencies:
       esbuild: 0.18.20
-      postcss: 8.4.28
+      postcss: 8.4.29
       rollup: 3.28.1
     optionalDependencies:
       fsevents: 2.3.3
