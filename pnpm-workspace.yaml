@@ -1,7 +1,7 @@
 packages:
   - 'highlighter/svelte-kit-lib'
   - 'mobile/'
-  - 'web/'
+  - 'apps/web/'
   - 'packages/*'
   - 'packages/ndk/ndk'
   - 'packages/ndk/ndk-cache-redis'
