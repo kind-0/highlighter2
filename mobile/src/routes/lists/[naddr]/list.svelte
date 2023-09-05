@@ -51,11 +51,11 @@
     let currentUserPubkeys: string[] = [];
 
     if ($user) {
-        currentUserPubkeys.push($user.hexpubkey());
+        currentUserPubkeys.push($user.hexpubkey);
     }
 
-    $: if (listSignerData?.user && !currentUserPubkeys.includes(listSignerData.user.hexpubkey())) {
-        currentUserPubkeys.push(listSignerData.user.hexpubkey());
+    $: if (listSignerData?.user && !currentUserPubkeys.includes(listSignerData.user.hexpubkey)) {
+        currentUserPubkeys.push(listSignerData.user.hexpubkey);
     }
 
     async function deleteList() {
@@ -296,7 +296,7 @@
                             >
                                 <p>
                                     This tab shows mentions <em>you</em> have done of this list's account
-                                    <AvatarWithName pubkey={listSignerData.user.hexpubkey()} />
+                                    <AvatarWithName pubkey={listSignerData.user.hexpubkey} />
                                 </p>
 
                                 <p>You can use this feature to mention things you would like to have show up in this feed.</p>
@@ -305,8 +305,8 @@
                         <FilterFeed
                             filter={{
                                 kinds: [1, 9802, 4, 30023],
-                                '#p': [listSignerData.user.hexpubkey()],
-                                authors: [$user.hexpubkey()],
+                                '#p': [listSignerData.user.hexpubkey],
+                                authors: [$user.hexpubkey],
                             }}
                             bind:feedLength={myFeedLength}
                         />
@@ -325,7 +325,7 @@
                             >
                                 <p>
                                     This tab shows <b>all</b> mentions of this list's account
-                                    <AvatarWithName pubkey={listSignerData.user.hexpubkey()} size="xs" />
+                                    <AvatarWithName pubkey={listSignerData.user.hexpubkey} size="xs" />
                                 </p>
 
                                 <p>You can use this feature to allow other people to suggest you to add things to this list.</p>
@@ -334,10 +334,10 @@
                         <FilterFeed
                             filter={{
                                 kinds: [1, 9802, 4, 30023],
-                                '#p': [listSignerData.user.hexpubkey()],
+                                '#p': [listSignerData.user.hexpubkey],
                             }}
                             bind:feedLength={globalFeedLength}
-                            eventFilter={(e) => e.pubkey !== $user.hexpubkey()}
+                            eventFilter={(e) => e.pubkey !== $user.hexpubkey}
                         />
 
                     </TabPanel>

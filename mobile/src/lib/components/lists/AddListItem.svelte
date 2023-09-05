@@ -81,7 +81,7 @@
                 content: _value || "",
                 kind: getKind(),
                 tags: [ ['client', 'highlighter'] ],
-                pubkey: user.hexpubkey(),
+                pubkey: user.hexpubkey,
             } as NostrEvent);
 
             if (visibility === 'Secret') {

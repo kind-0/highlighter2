@@ -63,7 +63,7 @@ Each <MarginNotePopup> component represents a single margin note.
     >
         <div class="card card-compact bg-base-300 hidden">
             <div class="card-body text-xs">
-                <AvatarWithName pubkey={user.hexpubkey()} />
+                <AvatarWithName pubkey={user.hexpubkey} />
             </div>
         </div>
 

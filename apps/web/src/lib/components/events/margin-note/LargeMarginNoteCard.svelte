@@ -70,7 +70,7 @@
         on:click
     >
         <div slot="header" class="text-base-100-content">
-            <AvatarWithName pubkey={event.author.hexpubkey()} />
+            <AvatarWithName pubkey={event.author.hexpubkey} />
         </div>
 
         {#if !skipHighlight}

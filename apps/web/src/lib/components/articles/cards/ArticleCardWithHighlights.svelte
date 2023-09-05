@@ -45,7 +45,7 @@
     function highlightAuthors(highlights: NDKHighlight[]) {
         const authors = new Set<string>();
         for (const highlight of highlights) {
-            authors.add(highlight.author.hexpubkey());
+            authors.add(highlight.author.hexpubkey);
         }
         return Array.from(authors);
     }
@@ -76,7 +76,7 @@
                 {/if}
 
                 {#if article?.author}
-                    <AvatarWithName pubkey={article?.author.hexpubkey()} />
+                    <AvatarWithName pubkey={article?.author.hexpubkey} />
                 {:else if typeof article === "string"}
                     <p>{article}</p>
                 {/if}

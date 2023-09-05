@@ -37,7 +37,7 @@
             const commentEvent = new NDKEvent($ndk, {
                 kind: 1,
                 content: comment,
-                pubkey: user.hexpubkey(),
+                pubkey: user.hexpubkey,
             } as NostrEvent)
             commentEvent.tag(event, 'reply');
 

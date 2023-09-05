@@ -15,7 +15,7 @@
 
     const lists = $ndk.storeSubscribe({
             kinds: NDKListKinds,
-            authors: [user.hexpubkey()]
+            authors: [user.hexpubkey]
         },
         undefined,
         NDKList

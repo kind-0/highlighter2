@@ -181,9 +181,9 @@
 
                 <div class="flex flex-row justify-between mb-2 overflow-clip items-center">
                     <!-- Author / URL -->
-                    {#if article?.author && article?.author?.hexpubkey()}
+                    {#if article?.author && article?.author?.hexpubkey}
                         <AvatarWithName
-                            pubkey={article.author.hexpubkey()}
+                            pubkey={article.author.hexpubkey}
                             avatarClass="w-12 h-12 rounded-full"
                             nameClass="text-xl font-semibold"
                         />

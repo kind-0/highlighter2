@@ -3,7 +3,7 @@ import type NDK from '@nostr-dev-kit/ndk';
 
 export async function loadNotesWithTaggedSigner(ndk: NDK, user: NDKUser) {
     return ndk.subscribe({
-        '#p': [user.hexpubkey()],
+        '#p': [user.hexpubkey],
         kinds: [1],
     });
 }

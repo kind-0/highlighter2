@@ -90,7 +90,7 @@ export function getLists(user: NDKUser) {
     const sub = $ndk.subscribe(
         {
             kinds: [...(NDKListKinds as number[])],
-            authors: [user.hexpubkey()],
+            authors: [user.hexpubkey],
         },
         {
             closeOnEose: false,

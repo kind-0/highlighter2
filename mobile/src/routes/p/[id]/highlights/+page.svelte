@@ -19,7 +19,7 @@
 
         highlights = $ndk.storeSubscribe({
             kinds: [NDKKind.Highlight as number],
-            authors: [user.hexpubkey()]
+            authors: [user.hexpubkey]
         }, undefined, NDKHighlight);
     });
 

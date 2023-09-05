@@ -15,7 +15,7 @@
 
         if (!user) { return; }
 
-        const events = await ndk.fetchEvents({ kinds: [30022 as number], authors: [user.hexpubkey()] });
+        const events = await ndk.fetchEvents({ kinds: [30022 as number], authors: [user.hexpubkey] });
         relaySets = Array.from(events).map((event: NDKEvent) => new NDKRelayList(ndk, event.rawEvent()));
     });
 </script>

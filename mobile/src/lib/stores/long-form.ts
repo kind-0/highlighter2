@@ -61,7 +61,7 @@ export function getLongForms(user: NDKUser): NDKSubscription {
     const $ndk = getStore(ndk);
     const sub = $ndk.subscribe({
         kinds: [NDKKind.LongForm, 31023 as number],
-        authors: [user.hexpubkey()],
+        authors: [user.hexpubkey],
     }, {
         closeOnEose: false,
         groupable: false,

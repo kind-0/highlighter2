@@ -10,7 +10,7 @@
     $: if ($user) {
         let event = new NDKArticle($ndk, {
             kind: 31023,
-            pubkey: $user.hexpubkey(),
+            pubkey: $user.hexpubkey,
             created_at: Math.floor(Date.now() / 1000),
         } as NostrEvent);
 

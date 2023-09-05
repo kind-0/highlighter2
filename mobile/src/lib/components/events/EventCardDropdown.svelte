@@ -28,12 +28,12 @@
 
     async function getSigner() {
         const user = await $ndk?.signer?.user();
-        if (event.pubkey === user?.hexpubkey()) {
+        if (event.pubkey === user?.hexpubkey) {
             return $ndk.signer;
         }
 
         const allSigners = Array.from($signers.entries()).map(([_, s]) => s);
-        const signer = allSigners.find(s => s.user.hexpubkey() === event.pubkey);
+        const signer = allSigners.find(s => s.user.hexpubkey === event.pubkey);
 
         return signer ? signer.signer : undefined;
     }
@@ -47,7 +47,7 @@
         const deletionEvent = new NDKEvent($ndk);
         deletionEvent.kind = 5;
         deletionEvent.tag(event);
-        deletionEvent.pubkey = user.hexpubkey();
+        deletionEvent.pubkey = user.hexpubkey;
         await deletionEvent.sign(signer);
         await deletionEvent.publish();
 

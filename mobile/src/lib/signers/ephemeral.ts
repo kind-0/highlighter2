@@ -93,7 +93,7 @@ async function getHashedKeyName(name: string) {
 async function generateTags(mainSigner: NDKSigner, opts: ISaveOpts = {}) {
     const mainUser = await mainSigner.user();
     const tags = [
-        ['p', mainUser.hexpubkey()],
+        ['p', mainUser.hexpubkey],
         ['client', 'atlas'],
     ];
 
@@ -131,7 +131,7 @@ export async function saveEphemeralSigner(ndk: NDK, targetSigner: NDKPrivateKeyS
         content: generateContent(targetSigner, opts),
         tags: await generateTags(mainSigner, opts),
     } as NostrEvent);
-    event.pubkey = mainUser.hexpubkey();
+    event.pubkey = mainUser.hexpubkey;
     await event.encrypt(mainUser, mainSigner);
     await event.publish();
 
@@ -143,7 +143,7 @@ export async function saveEphemeralSigner(ndk: NDK, targetSigner: NDKPrivateKeyS
             content: JSON.stringify(opts.keyProfile),
             tags: [] as NDKTag[],
         } as NostrEvent);
-        event.pubkey = user.hexpubkey();
+        event.pubkey = user.hexpubkey;
         await event.sign(targetSigner);
         await event.publish();
     }

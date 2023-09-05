@@ -18,7 +18,7 @@
     onMount(async () => {
         const sub = $ndk.subscribe({ '#d': [name] });
         sub.on('event', (e) => {
-            if (e.pubkey === $user?.hexpubkey()) return;
+            if (e.pubkey === $user?.hexpubkey) return;
 
             const list = new NDKList($ndk, e.rawEvent());
 

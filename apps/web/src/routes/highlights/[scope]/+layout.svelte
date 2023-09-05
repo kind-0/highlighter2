@@ -53,7 +53,7 @@
         switch ($page.params.scope) {
             case 'personal':
                 if ($user) {
-                    $currentScope.pubkeys = [$user.hexpubkey()];
+                    $currentScope.pubkeys = [$user.hexpubkey];
                     $currentScope.label = $page.params.scope;
                 }
 

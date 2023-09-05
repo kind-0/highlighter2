@@ -24,15 +24,15 @@
 
     // $: if (!encryptedNotes && $user) {
     //     encryptedNotes = $ndk.storeSubscribe({
-    //         authors: [$user.hexpubkey()],
+    //         authors: [$user.hexpubkey],
     //         kinds: [4 as number],
-    //         '#p': [$user.hexpubkey()]
+    //         '#p': [$user.hexpubkey]
     //     })
     // }
 
     // $: if (!encryptedLongForms && $user) {
     //     encryptedLongForms = $ndk.storeSubscribe({
-    //         authors: [$user.hexpubkey()],
+    //         authors: [$user.hexpubkey],
     //         kinds: [31023 as number],
     //     }, { closeOnEose: false }, NDKArticle)
     // }

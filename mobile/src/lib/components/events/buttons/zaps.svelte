@@ -37,7 +37,7 @@
             const zapInvoice = zapInvoiceFromEvent(zap);
             if (!zapInvoice) return acc;
 
-            if (zapInvoice.zappee === $user?.hexpubkey()) {
+            if (zapInvoice.zappee === $user?.hexpubkey) {
                 zappedByCurrentUser = true;
             }
 

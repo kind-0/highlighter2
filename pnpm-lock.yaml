@@ -1,4 +1,4 @@
-lockfileVersion: '6.0'
+lockfileVersion: '6.1'
 
 settings:
   autoInstallPeers: true
@@ -23,6 +23,244 @@ importers:
       turbo:
         specifier: latest
         version: 1.10.13
+
+  apps/web:
+    dependencies:
+      '@fontsource/lora':
+        specifier: ^5.0.8
+        version: 5.0.8
+      '@kind0/ui-common':
+        specifier: workspace:*
+        version: link:../../packages/ui-common
+      '@macfja/svelte-persistent-store':
+        specifier: ^2.3.2
+        version: 2.3.2(svelte@4.2.0)
+      '@mozilla/readability':
+        specifier: ^0.4.4
+        version: 0.4.4
+      '@noble/hashes':
+        specifier: ^1.3.1
+        version: 1.3.1
+      '@nostr-dev-kit/ndk':
+        specifier: workspace:*
+        version: link:../../packages/ndk/ndk
+      '@nostr-dev-kit/ndk-cache-dexie':
+        specifier: workspace:*
+        version: link:../../packages/ndk/ndk-cache-dexie
+      '@nostr-dev-kit/ndk-cache-redis':
+        specifier: workspace:*
+        version: link:../../packages/ndk/ndk-cache-redis
+      '@nostr-dev-kit/ndk-svelte':
+        specifier: workspace:*
+        version: link:../../packages/ndk/ndk-svelte
+      '@nostr-dev-kit/ndk-svelte-components':
+        specifier: workspace:*
+        version: link:../../packages/ndk/ndk-svelte-components
+      '@sveltejs/adapter-node':
+        specifier: ^1.2.3
+        version: 1.2.3(@sveltejs/kit@1.24.0)
+      '@tailwindcss/forms':
+        specifier: ^0.5.3
+        version: 0.5.4(tailwindcss@3.3.3)
+      '@tailwindcss/typography':
+        specifier: ^0.5.9
+        version: 0.5.9(tailwindcss@3.3.3)
+      '@tauri-apps/api':
+        specifier: 2.0.0-alpha.5
+        version: 2.0.0-alpha.5
+      '@types/turndown':
+        specifier: ^5.0.1
+        version: 5.0.1
+      add:
+        specifier: ^2.0.6
+        version: 2.0.6
+      cheerio:
+        specifier: 1.0.0-rc.12
+        version: 1.0.0-rc.12
+      classnames:
+        specifier: ^2.3.2
+        version: 2.3.2
+      debug:
+        specifier: ^4.3.4
+        version: 4.3.4
+      dexie:
+        specifier: ^3.2.4
+        version: 3.2.4
+      eventemitter3:
+        specifier: ^5.0.0
+        version: 5.0.1
+      flowbite:
+        specifier: ^1.7.0
+        version: 1.7.0
+      flowbite-svelte:
+        specifier: ^0.39.2
+        version: 0.39.2(svelte@4.2.0)
+      get-selection-more:
+        specifier: ^1.1.0
+        version: 1.1.0
+      inflected:
+        specifier: ^2.1.0
+        version: 2.1.0
+      jsdom:
+        specifier: ^21.1.1
+        version: 21.1.1
+      light-bolt11-decoder:
+        specifier: ^3.0.0
+        version: 3.0.0
+      linkify-it:
+        specifier: ^4.0.1
+        version: 4.0.1
+      markdown-it:
+        specifier: ^13.0.1
+        version: 13.0.1
+      markdown-it-footnote:
+        specifier: ^3.0.3
+        version: 3.0.3
+      markdown-it-task-list-plus:
+        specifier: ^2.1.3
+        version: 2.1.3
+      nostr-tools:
+        specifier: ^1.14.0
+        version: 1.14.0
+      sanitize-html:
+        specifier: ^2.10.0
+        version: 2.10.0
+      svelte-modals:
+        specifier: ^1.3.0
+        version: 1.3.0(svelte@4.2.0)
+      svelte-preprocess:
+        specifier: ^5.0.4
+        version: 5.0.4(@babel/core@7.22.11)(postcss@8.4.28)(svelte@4.2.0)(typescript@5.1.6)
+      svelte-tags-input:
+        specifier: ^5.0.0
+        version: 5.0.0
+      throttle-debounce:
+        specifier: ^5.0.0
+        version: 5.0.0
+      turndown:
+        specifier: ^7.1.2
+        version: 7.1.2
+      uuid:
+        specifier: ^9.0.0
+        version: 9.0.0
+      vite:
+        specifier: ^4.4.9
+        version: 4.4.9
+      vite-plugin-pwa:
+        specifier: ^0.16.4
+        version: 0.16.4(vite@4.4.9)(workbox-build@7.0.0)(workbox-window@7.0.0)
+      webln:
+        specifier: ^0.3.2
+        version: 0.3.2
+      websocket-polyfill:
+        specifier: ^0.0.3
+        version: 0.0.3
+    devDependencies:
+      '@grail-ui/svelte':
+        specifier: ^0.10.1
+        version: 0.10.1(svelte@4.2.0)
+      '@kind0/tsconfig':
+        specifier: workspace:*
+        version: link:../../packages/tsconfig
+      '@rgossiaux/svelte-headlessui':
+        specifier: ^1.0.2
+        version: 1.0.2(svelte@4.2.0)
+      '@rollup/plugin-alias':
+        specifier: ^5.0.0
+        version: 5.0.0(rollup@3.28.1)
+      '@rollup/plugin-node-resolve':
+        specifier: ^15.0.2
+        version: 15.0.2(rollup@3.28.1)
+      '@rollup/plugin-typescript':
+        specifier: ^11.1.0
+        version: 11.1.0(rollup@3.28.1)(tslib@2.6.1)(typescript@5.1.6)
+      '@sveltejs/adapter-auto':
+        specifier: ^2.1.0
+        version: 2.1.0(@sveltejs/kit@1.24.0)
+      '@sveltejs/adapter-static':
+        specifier: 1.0.0-next.50
+        version: 1.0.0-next.50(@sveltejs/kit@1.24.0)
+      '@sveltejs/kit':
+        specifier: ^1.22.3
+        version: 1.24.0(svelte@4.2.0)(vite@4.4.9)
+      '@sveltejs/package':
+        specifier: ^2.2.0
+        version: 2.2.1(svelte@4.2.0)(typescript@5.1.6)
+      '@tauri-apps/cli':
+        specifier: 2.0.0-alpha.10
+        version: 2.0.0-alpha.10
+      '@types/inflected':
+        specifier: ^2.1.0
+        version: 2.1.0
+      '@types/jsdom':
+        specifier: ^21.1.1
+        version: 21.1.1
+      '@types/sanitize-html':
+        specifier: ^2.9.0
+        version: 2.9.0
+      '@typescript-eslint/eslint-plugin':
+        specifier: ^6.1.0
+        version: 6.4.0(@typescript-eslint/parser@6.4.0)(eslint@8.47.0)(typescript@5.1.6)
+      '@typescript-eslint/parser':
+        specifier: ^6.1.0
+        version: 6.4.0(eslint@8.47.0)(typescript@5.1.6)
+      '@vite-pwa/assets-generator':
+        specifier: ^0.0.4
+        version: 0.0.4
+      '@vite-pwa/sveltekit':
+        specifier: ^0.2.5
+        version: 0.2.5(@sveltejs/kit@1.24.0)(vite-plugin-pwa@0.16.4)
+      autoprefixer:
+        specifier: ^10.4.13
+        version: 10.4.15(postcss@8.4.28)
+      daisyui:
+        specifier: ^3.3.1
+        version: 3.6.4
+      dayjs:
+        specifier: ^1.11.9
+        version: 1.11.9
+      eslint:
+        specifier: ^8.45.0
+        version: 8.47.0
+      eslint-plugin-svelte:
+        specifier: ^2.32.4
+        version: 2.32.4(eslint@8.47.0)(svelte@4.2.0)
+      internal-ip:
+        specifier: ^8.0.0
+        version: 8.0.0
+      phosphor-svelte:
+        specifier: ^1.3.0
+        version: 1.3.0(svelte@4.2.0)
+      postcss:
+        specifier: ^8.4.21
+        version: 8.4.28
+      prettier:
+        specifier: ^2.8.8
+        version: 2.8.8
+      prettier-plugin-svelte:
+        specifier: ^2.10.1
+        version: 2.10.1(prettier@2.8.8)(svelte@4.2.0)
+      rollup-plugin-svelte:
+        specifier: ^7.1.4
+        version: 7.1.4(rollup@3.28.1)(svelte@4.2.0)
+      sirv-cli:
+        specifier: ^2.0.2
+        version: 2.0.2
+      svelte:
+        specifier: ^4.1.1
+        version: 4.2.0
+      svelte-time:
+        specifier: ^0.7.2
+        version: 0.7.2
+      tailwindcss:
+        specifier: ^3.3.2
+        version: 3.3.3
+      tslib:
+        specifier: ^2.4.1
+        version: 2.6.1
+      typescript:
+        specifier: ^5.1.3
+        version: 5.1.6
 
   highlighter/svelte-kit-lib:
     dependencies:
@@ -443,12 +681,15 @@ importers:
       tsd:
         specifier: ^0.28.1
         version: 0.28.1
+      typescript-lru-cache:
+        specifier: ^2.0.0
+        version: 2.0.0
       utf8-buffer:
         specifier: ^1.0.0
         version: 1.0.0
     devDependencies:
       '@nostr-dev-kit/tsconfig':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../packages/tsconfig
       '@trivago/prettier-plugin-sort-imports':
         specifier: ^4.2.0
@@ -919,244 +1160,6 @@ importers:
       '@types/luxon':
         specifier: ^3.3.1
         version: 3.3.1
-
-  web:
-    dependencies:
-      '@fontsource/lora':
-        specifier: ^5.0.8
-        version: 5.0.8
-      '@kind0/ui-common':
-        specifier: workspace:*
-        version: link:../packages/ui-common
-      '@macfja/svelte-persistent-store':
-        specifier: ^2.3.2
-        version: 2.3.2(svelte@4.2.0)
-      '@mozilla/readability':
-        specifier: ^0.4.4
-        version: 0.4.4
-      '@noble/hashes':
-        specifier: ^1.3.1
-        version: 1.3.1
-      '@nostr-dev-kit/ndk':
-        specifier: workspace:*
-        version: link:../packages/ndk/ndk
-      '@nostr-dev-kit/ndk-cache-dexie':
-        specifier: workspace:*
-        version: link:../packages/ndk/ndk-cache-dexie
-      '@nostr-dev-kit/ndk-cache-redis':
-        specifier: workspace:*
-        version: link:../packages/ndk/ndk-cache-redis
-      '@nostr-dev-kit/ndk-svelte':
-        specifier: workspace:*
-        version: link:../packages/ndk/ndk-svelte
-      '@nostr-dev-kit/ndk-svelte-components':
-        specifier: workspace:*
-        version: link:../packages/ndk/ndk-svelte-components
-      '@sveltejs/adapter-node':
-        specifier: ^1.2.3
-        version: 1.2.3(@sveltejs/kit@1.24.0)
-      '@tailwindcss/forms':
-        specifier: ^0.5.3
-        version: 0.5.4(tailwindcss@3.3.3)
-      '@tailwindcss/typography':
-        specifier: ^0.5.9
-        version: 0.5.9(tailwindcss@3.3.3)
-      '@tauri-apps/api':
-        specifier: 2.0.0-alpha.5
-        version: 2.0.0-alpha.5
-      '@types/turndown':
-        specifier: ^5.0.1
-        version: 5.0.1
-      add:
-        specifier: ^2.0.6
-        version: 2.0.6
-      cheerio:
-        specifier: 1.0.0-rc.12
-        version: 1.0.0-rc.12
-      classnames:
-        specifier: ^2.3.2
-        version: 2.3.2
-      debug:
-        specifier: ^4.3.4
-        version: 4.3.4
-      dexie:
-        specifier: ^3.2.4
-        version: 3.2.4
-      eventemitter3:
-        specifier: ^5.0.0
-        version: 5.0.1
-      flowbite:
-        specifier: ^1.7.0
-        version: 1.7.0
-      flowbite-svelte:
-        specifier: ^0.39.2
-        version: 0.39.2(svelte@4.2.0)
-      get-selection-more:
-        specifier: ^1.1.0
-        version: 1.1.0
-      inflected:
-        specifier: ^2.1.0
-        version: 2.1.0
-      jsdom:
-        specifier: ^21.1.1
-        version: 21.1.1
-      light-bolt11-decoder:
-        specifier: ^3.0.0
-        version: 3.0.0
-      linkify-it:
-        specifier: ^4.0.1
-        version: 4.0.1
-      markdown-it:
-        specifier: ^13.0.1
-        version: 13.0.1
-      markdown-it-footnote:
-        specifier: ^3.0.3
-        version: 3.0.3
-      markdown-it-task-list-plus:
-        specifier: ^2.1.3
-        version: 2.1.3
-      nostr-tools:
-        specifier: ^1.14.0
-        version: 1.14.0
-      sanitize-html:
-        specifier: ^2.10.0
-        version: 2.10.0
-      svelte-modals:
-        specifier: ^1.3.0
-        version: 1.3.0(svelte@4.2.0)
-      svelte-preprocess:
-        specifier: ^5.0.4
-        version: 5.0.4(@babel/core@7.22.11)(postcss@8.4.28)(svelte@4.2.0)(typescript@5.1.6)
-      svelte-tags-input:
-        specifier: ^5.0.0
-        version: 5.0.0
-      throttle-debounce:
-        specifier: ^5.0.0
-        version: 5.0.0
-      turndown:
-        specifier: ^7.1.2
-        version: 7.1.2
-      uuid:
-        specifier: ^9.0.0
-        version: 9.0.0
-      vite:
-        specifier: ^4.4.9
-        version: 4.4.9
-      vite-plugin-pwa:
-        specifier: ^0.16.4
-        version: 0.16.4(vite@4.4.9)(workbox-build@7.0.0)(workbox-window@7.0.0)
-      webln:
-        specifier: ^0.3.2
-        version: 0.3.2
-      websocket-polyfill:
-        specifier: ^0.0.3
-        version: 0.0.3
-    devDependencies:
-      '@grail-ui/svelte':
-        specifier: ^0.10.1
-        version: 0.10.1(svelte@4.2.0)
-      '@kind0/tsconfig':
-        specifier: workspace:*
-        version: link:../packages/tsconfig
-      '@rgossiaux/svelte-headlessui':
-        specifier: ^1.0.2
-        version: 1.0.2(svelte@4.2.0)
-      '@rollup/plugin-alias':
-        specifier: ^5.0.0
-        version: 5.0.0(rollup@3.28.1)
-      '@rollup/plugin-node-resolve':
-        specifier: ^15.0.2
-        version: 15.0.2(rollup@3.28.1)
-      '@rollup/plugin-typescript':
-        specifier: ^11.1.0
-        version: 11.1.0(rollup@3.28.1)(tslib@2.6.1)(typescript@5.1.6)
-      '@sveltejs/adapter-auto':
-        specifier: ^2.1.0
-        version: 2.1.0(@sveltejs/kit@1.24.0)
-      '@sveltejs/adapter-static':
-        specifier: 1.0.0-next.50
-        version: 1.0.0-next.50(@sveltejs/kit@1.24.0)
-      '@sveltejs/kit':
-        specifier: ^1.22.3
-        version: 1.24.0(svelte@4.2.0)(vite@4.4.9)
-      '@sveltejs/package':
-        specifier: ^2.2.0
-        version: 2.2.1(svelte@4.2.0)(typescript@5.1.6)
-      '@tauri-apps/cli':
-        specifier: 2.0.0-alpha.10
-        version: 2.0.0-alpha.10
-      '@types/inflected':
-        specifier: ^2.1.0
-        version: 2.1.0
-      '@types/jsdom':
-        specifier: ^21.1.1
-        version: 21.1.1
-      '@types/sanitize-html':
-        specifier: ^2.9.0
-        version: 2.9.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^6.1.0
-        version: 6.4.0(@typescript-eslint/parser@6.4.0)(eslint@8.47.0)(typescript@5.1.6)
-      '@typescript-eslint/parser':
-        specifier: ^6.1.0
-        version: 6.4.0(eslint@8.47.0)(typescript@5.1.6)
-      '@vite-pwa/assets-generator':
-        specifier: ^0.0.4
-        version: 0.0.4
-      '@vite-pwa/sveltekit':
-        specifier: ^0.2.5
-        version: 0.2.5(@sveltejs/kit@1.24.0)(vite-plugin-pwa@0.16.4)
-      autoprefixer:
-        specifier: ^10.4.13
-        version: 10.4.15(postcss@8.4.28)
-      daisyui:
-        specifier: ^3.3.1
-        version: 3.6.4
-      dayjs:
-        specifier: ^1.11.9
-        version: 1.11.9
-      eslint:
-        specifier: ^8.45.0
-        version: 8.47.0
-      eslint-plugin-svelte:
-        specifier: ^2.32.4
-        version: 2.32.4(eslint@8.47.0)(svelte@4.2.0)
-      internal-ip:
-        specifier: ^8.0.0
-        version: 8.0.0
-      phosphor-svelte:
-        specifier: ^1.3.0
-        version: 1.3.0(svelte@4.2.0)
-      postcss:
-        specifier: ^8.4.21
-        version: 8.4.28
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      prettier-plugin-svelte:
-        specifier: ^2.10.1
-        version: 2.10.1(prettier@2.8.8)(svelte@4.2.0)
-      rollup-plugin-svelte:
-        specifier: ^7.1.4
-        version: 7.1.4(rollup@3.28.1)(svelte@4.2.0)
-      sirv-cli:
-        specifier: ^2.0.2
-        version: 2.0.2
-      svelte:
-        specifier: ^4.1.1
-        version: 4.2.0
-      svelte-time:
-        specifier: ^0.7.2
-        version: 0.7.2
-      tailwindcss:
-        specifier: ^3.3.2
-        version: 3.3.3
-      tslib:
-        specifier: ^2.4.1
-        version: 2.6.1
-      typescript:
-        specifier: ^5.1.3
-        version: 5.1.6
 
 packages:
 
@@ -15272,6 +15275,10 @@ packages:
     dependencies:
       ts-toolbelt: 9.6.0
     dev: true
+
+  /typescript-lru-cache@2.0.0:
+    resolution: {integrity: sha512-Jp57Qyy8wXeMkdNuZiglE6v2Cypg13eDA1chHwDG6kq51X7gk4K7P7HaDdzZKCxkegXkVHNcPD0n5aW6OZH3aA==}
+    dev: false
 
   /typescript@5.1.6:
     resolution: {integrity: sha512-zaWCozRZ6DLEWAWFrVDz1H6FVXzUSfTy5FUMWsQlU8Ym5JP9eO4xkTIROFCQvhQf61z6O/G6ugw3SgAnvvm+HA==}

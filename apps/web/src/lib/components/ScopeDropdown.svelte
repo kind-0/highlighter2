@@ -35,8 +35,8 @@
         //         }
         //         break;
         //     case 'personal':
-        //         if ($user?.hexpubkey()) {
-        //             $currentScope.pubkeys = [$user?.hexpubkey()];
+        //         if ($user?.hexpubkey) {
+        //             $currentScope.pubkeys = [$user?.hexpubkey];
         //         } else {
         //             $currentScope.pubkeys = [];
         //         }

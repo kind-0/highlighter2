@@ -13,7 +13,7 @@
         const query: NDKFilter = { kinds: [65002 as number], limit: 10 };
 
         if ($user) {
-            query.authors = [$user.hexpubkey()];
+            query.authors = [$user.hexpubkey];
         }
 
         previousJobs = $ndk.storeSubscribe(

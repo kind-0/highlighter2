@@ -45,7 +45,7 @@
 
     async function createList() {
         const tags = Array.from(currentSelection).map((user) => {
-            return ['p', user.hexpubkey()];
+            return ['p', user.hexpubkey];
         });
         // tags.push(['client', 'atlas']);
         tags.push(['name', listName]);
@@ -80,7 +80,7 @@
         <div class="grid  2xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1 gap-4">
             {#each Array.from(followsList.values()) as user}
                 <div class="flex flex-col items-center gap-4 ">
-                    <UserCard pubkey={user.hexpubkey()}>
+                    <UserCard pubkey={user.hexpubkey}>
                         <button type="submit" class="
                             text-zinc-400 hover:text-zinc-600
                             hover:bg-zinc-100

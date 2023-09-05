@@ -18,7 +18,7 @@ const UserInterface = {
                         let userProfile: App.UserProfile = {
                             event: '',
                             ...(user.profile || {}),
-                            id: user.hexpubkey(),
+                            id: user.hexpubkey,
                         };
 
                         user.fetchProfile({ groupableDelay: 200 } as NDKFilterOptions).then(async (events) => {

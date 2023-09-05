@@ -73,7 +73,7 @@ export async function prepareSession(): Promise<void> {
         fetchData(
             'user',
             $ndk,
-            [$user.hexpubkey()],
+            [$user.hexpubkey],
             {
                 highlightStore: highlights,
                 followsStore: userFollows,
@@ -209,6 +209,7 @@ async function fetchData(
 
     const processHighlight = (event: NDKEvent) => {
         const highlight = NDKHighlight.from(event);
+        console.log(`process highlight event.id`)
         opts.highlightStore!.update((highlights) => {
             highlights.set(highlight.id, highlight);
 

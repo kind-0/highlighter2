@@ -24,7 +24,7 @@
         articlePromise = new Promise((resolve) => {
             $ndk.fetchEvent({
                 kinds: [30023],
-                authors: [user.hexpubkey()],
+                authors: [user.hexpubkey],
                 "#d": [dTag]
             }).then((e) => {
                 if (!e) {

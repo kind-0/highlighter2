@@ -73,7 +73,7 @@ export async function prepareSession(): Promise<void> {
         fetchData(
             'user',
             $ndk,
-            [$user.hexpubkey()],
+            [$user.hexpubkey],
             {
                 highlightStore: highlights,
                 followsStore: userFollows,

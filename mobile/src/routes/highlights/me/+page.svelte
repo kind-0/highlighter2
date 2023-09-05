@@ -16,7 +16,7 @@
             return;
         }
 
-        const currentPubkey = $user.hexpubkey();
+        const currentPubkey = $user.hexpubkey;
 
         sortedStore = derived(highlights, ($highlights) => {
             return Array.from($highlights.values())
