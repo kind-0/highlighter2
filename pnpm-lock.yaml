@@ -225,6 +225,9 @@ importers:
       eslint:
         specifier: ^8.45.0
         version: 8.47.0
+      eslint-config-prettier:
+        specifier: ^9.0.0
+        version: 9.0.0(eslint@8.47.0)
       eslint-plugin-svelte:
         specifier: ^2.32.4
         version: 2.32.4(eslint@8.47.0)(svelte@4.2.0)
@@ -584,6 +587,12 @@ importers:
       '@nostr-dev-kit/ndk':
         specifier: workspace:*
         version: link:../ndk/ndk
+      '@nostr-dev-kit/ndk-cache-dexie':
+        specifier: workspace:*
+        version: link:../ndk/ndk-cache-dexie
+      '@nostr-dev-kit/ndk-cache-redis':
+        specifier: workspace:*
+        version: link:../ndk/ndk-cache-redis
       '@nostr-dev-kit/ndk-svelte':
         specifier: workspace:*
         version: link:../ndk/ndk-svelte
