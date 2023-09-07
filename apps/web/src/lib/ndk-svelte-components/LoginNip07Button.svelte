@@ -2,7 +2,7 @@
     import { ndk } from "@kind0/lib-svelte-kit";
     import { login } from '$lib/utils/login';
     import { user } from '$stores/session';
-    import SubtleButton from '$lib/components/buttons/SubtleButton.svelte';
+    import { SubtleButton } from "@kind0/ui-common";
 
     let noNip07extenion: boolean;
 

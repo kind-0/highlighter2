@@ -2,10 +2,9 @@
     import { NDKEvent, type NostrEvent } from "@nostr-dev-kit/ndk";
     import { ndk } from "@kind0/lib-svelte-kit";
 
-    import Textarea from "$lib/components/Textarea.svelte";
-    import ButtonWithBorderGradient2 from "$lib/components/buttons/ButtonWithBorderGradient2.svelte";
     import { Pen } from "phosphor-svelte";
     import { createEventDispatcher } from "svelte";
+    import { Textarea } from "@kind0/ui-common";
 
     const dispatch = createEventDispatcher();
 

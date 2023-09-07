@@ -2,11 +2,11 @@
     import { ndk } from "@kind0/lib-svelte-kit";
     import { NDKEvent, NDKList, type NostrEvent } from '@nostr-dev-kit/ndk';
     import { createEventDispatcher } from 'svelte';
-    import type NDKHighlight from '$lib/ndk-kinds/highlight';
+    import type { NDKHighlight } from "@nostr-dev-kit/ndk";
     import TopicInput from '../TopicInput.svelte';
     import MainCtaInSecondaryActionButton from '../buttons/MainCTAInSecondaryActionButton.svelte';
     import { CaretDown, Folder, Pen } from 'phosphor-svelte';
-    import Textarea from '../Textarea.svelte';
+    import { Textarea } from '@kind0/ui-common';
     import HighlightContentBox from './HighlightContentBox.svelte';
     import ListSelectionDropdown from '$lib/components/lists/ListSelectionDropdown.svelte';
     import { NDKKind } from '$lib/ndk-kinds';

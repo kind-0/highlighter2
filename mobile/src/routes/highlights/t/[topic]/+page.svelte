@@ -6,7 +6,7 @@
     import PageTitle from '$lib/components/PageTitle.svelte';
     import { onDestroy } from 'svelte';
     import { NDKKind } from '$lib/ndk-kinds';
-    import NDKHighlight from '$lib/ndk-kinds/highlight';
+    import { NDKHighlight } from "@nostr-dev-kit/ndk";
     import MainWithRightSidebar from "$lib/layouts/MainWithRightSidebar.svelte";
     import RightSidebar from './components/RightSidebar/RightSidebar.svelte';
     import ModeTab from './components/ModeTab.svelte';

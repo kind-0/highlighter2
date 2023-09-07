@@ -1,8 +1,9 @@
 <script lang="ts">
-    import type NDKHighlight from "$lib/ndk-kinds/highlight";
+    import { ndk } from "@kind0/lib-svelte-kit";
+    import type { NDKHighlight } from "@nostr-dev-kit/ndk";
     import type NDKArticle from "@nostr-dev-kit/ndk";
     import type { NDKEvent } from "@nostr-dev-kit/ndk";
-    import NoteContent from '$lib/components/events/content.svelte';
+    import { EventContent } from "@nostr-dev-kit/ndk-svelte-components";
 
     export let highlight: NDKHighlight;
     export let article: NDKArticle | NDKEvent | string | undefined = undefined;
@@ -51,7 +52,11 @@
         <div class="bg-accent h-100 rounded-lg quote-line shrink-0"></div>
     {/if}
     <div class="flex-grow">
-        <NoteContent note={contextWithHighlight} tags={(article??highlight)?.tags} />
+        <EventContent
+            ndk={$ndk}
+            event={highlight}
+            content={contextWithHighlight}
+        />
     </div>
 </div>
 

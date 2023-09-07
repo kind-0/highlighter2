@@ -1,6 +1,6 @@
 <script lang="ts">
     import HighlightList from '$lib/components/HighlightList.svelte';
-    import type NDKHighlight from '$lib/ndk-kinds/highlight';
+    import type { NDKHighlight } from "@nostr-dev-kit/ndk";
     // import { highlights } from '$lib/stores/highlights';
     import { throttle } from 'throttle-debounce';
     import { highlights, userFollows } from "$stores/session";

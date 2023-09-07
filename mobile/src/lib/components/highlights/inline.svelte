@@ -13,7 +13,7 @@
 
     import { Tooltip } from "flowbite-svelte";
     import { NDKEvent, NDKUser } from "@nostr-dev-kit/ndk";
-    import type NDKHighlight from '$lib/ndk-kinds/highlight';
+    import type { NDKHighlight } from "@nostr-dev-kit/ndk";
 
     export let highlight: NDKHighlight;
     export let skipHighlighter = false;

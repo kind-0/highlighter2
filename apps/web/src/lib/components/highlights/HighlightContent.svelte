@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type NDKHighlight from "$lib/ndk-kinds/highlight";
+    import type { NDKHighlight } from "@nostr-dev-kit/ndk";
     import type NDKArticle from "@nostr-dev-kit/ndk";
     import type { NDKEvent } from "@nostr-dev-kit/ndk";
     import NoteContent from '$lib/components/events/content.svelte';

@@ -1,18 +1,15 @@
 <script lang="ts">
     import { NDKUser, type NDKEvent } from "@nostr-dev-kit/ndk";
-    import ndk from '$lib/stores/ndk';
-    import HighlightContent from "$lib/components/highlights/HighlightContent.svelte";
-    import EventCard from "../EventCard.svelte";
-    import EventContent from '$lib/components/events/content.svelte';
+    import { ndk } from "@kind0/lib-svelte-kit";
+    // import HighlightContent from "$lib/components/highlights/HighlightContent.svelte";
+    import { SubtleButton, EventCard } from "@kind0/ui-common";
     import { removeQuotedEvent, fetchQuotedHighlight } from './utils';
-    import type NDKHighlight from "$lib/ndk-kinds/highlight";
+    import type { NDKHighlight} from "@nostr-dev-kit/ndk";
     import { AvatarWithName } from "@kind0/ui-common";
-    import type { NDKEventStore } from "$lib/stores/ndk";
     import { onDestroy } from "svelte";
-    import { Avatar, Name } from "@nostr-dev-kit/ndk-svelte-components";
-    import { Pen } from "phosphor-svelte";
+    import { Avatar, Name, EventContent } from "@nostr-dev-kit/ndk-svelte-components";
+    import type { NDKEventStore } from "@nostr-dev-kit/ndk-svelte";
     import ReplyView from "./ReplyView.svelte";
-    import MainCtaInSecondaryActionButton from "$lib/components/buttons/MainCTAInSecondaryActionButton.svelte";
 
     /**
      * Event to render
@@ -32,7 +29,7 @@
     let replies: NDKEventStore<NDKEvent> = $ndk.storeSubscribe({
         kinds: [1],
         "#e": [event.id]
-    }, { closeOnEose: false, groupableDelay: 1000 });
+    }, { closeOnEose: false, groupableDelay: 250 });
 
     onDestroy(() => {
         replies.unsubscribe();
@@ -75,9 +72,9 @@
 
         {#if !skipHighlight}
             <div class="text-sm">
-                <HighlightContent
+                <!-- <HighlightContent
                     {highlight}
-                />
+                /> -->
             </div>
         {/if}
 
@@ -87,7 +84,9 @@
             text-base-100-content cursor-pointer
         ">
             <EventContent
-                note={removeQuotedEvent(event)}
+                ndk={$ndk}
+                {event}
+                content={removeQuotedEvent(event)}
                 tags={event.tags}
             />
         </div>
@@ -121,16 +120,11 @@
             </div>
 
             <div>
-                <MainCtaInSecondaryActionButton
-                    class="btn-sm"
-                    on:click={(e) => {
-                        replying = true
-                        e.stopPropagation()
-                    }}
+                <SubtleButton
+                    on:click={(e) => { replying = true; e.stopPropagation(); }}
                 >
-                    <Pen class="w-4 h-4" />
                     Add your thoughts
-                </MainCtaInSecondaryActionButton>
+                </SubtleButton>
             </div>
         </div>
     </EventCard>

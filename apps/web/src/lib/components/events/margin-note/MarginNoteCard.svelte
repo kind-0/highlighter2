@@ -1,11 +1,11 @@
 <script lang="ts">
-    import type { NDKEvent } from "@nostr-dev-kit/ndk";
+    import type { NDKEvent, NDKHighlight } from "@nostr-dev-kit/ndk";
     import HighlightContent from "$lib/components/highlights/HighlightContent.svelte";
     import EventCard from "../EventCard.svelte";
     import HighlightHeader from "$lib/components/highlights/HighlightHeader.svelte";
     import EventContent from '$lib/components/events/content.svelte';
-    import { removeQuotedEvent, fetchQuotedHighlight } from './utils';
-    import type NDKHighlight from "$lib/ndk-kinds/highlight";
+    // import { removeQuotedEvent, fetchQuotedHighlight } from './utils';
+    // import type NDKHighlight from "$lib/ndk-kinds/highlight";
     import linkToArticle from "$lib/components/highlights/link-to-article";
 
     /**
@@ -18,7 +18,7 @@
 
     let highlight: NDKHighlight | null;
 
-    fetchQuotedHighlight(event).then(h => highlight = h)
+    // fetchQuotedHighlight(event).then(h => highlight = h)
 </script>
 
 {#if highlight}

@@ -5,7 +5,7 @@
     import { NDKUser } from "@nostr-dev-kit/ndk";
     import HighlightList from "$lib/components/HighlightList.svelte";
     import ndk from "$lib/stores/ndk";
-    import NDKHighlight from "$lib/ndk-kinds/highlight";
+    import { NDKHighlight } from "@nostr-dev-kit/ndk";
     import { NDKKind } from "$lib/ndk-kinds";
     import { onDestroy, onMount } from "svelte";
 

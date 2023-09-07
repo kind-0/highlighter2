@@ -8,7 +8,7 @@
     import type { NDKEvent, NDKFilter } from '@nostr-dev-kit/ndk';
     import { user } from '$stores/session';
     import NDKList from '$lib/ndk-kinds/lists';
-    import NDKHighlight from '$lib/ndk-kinds/highlight';
+    import { NDKHighlight } from "@nostr-dev-kit/ndk";
     import { filterForId, filterFromNaddr, naddrFromTagValue } from '$lib/utils';
     import ZapEventCard from '$lib/components/zaps/ZapEventCard.svelte';
     import ListCard from '$lib/components/lists/ListCard.svelte';

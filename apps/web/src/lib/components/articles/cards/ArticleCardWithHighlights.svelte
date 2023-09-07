@@ -1,6 +1,6 @@
 <script lang="ts">
 	import MarkdownIt from 'markdown-it';
-    import type NDKHighlight from "$lib/ndk-kinds/highlight";
+    import { NDKHighlight } from "@nostr-dev-kit/ndk";
     import { Card } from "flowbite-svelte";
     import { AvatarWithName } from "@kind0/ui-common";
     import { Avatar } from "@kind0/ui-common";

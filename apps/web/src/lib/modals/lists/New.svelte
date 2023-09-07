@@ -7,7 +7,7 @@
     import { goto } from '$app/navigation';
     import {ModalWrapper} from '@kind0/ui-common';
     import Input from '$lib/components/Input.svelte';
-    import Textarea from '$lib/components/Textarea.svelte';
+    import { Textarea } from '@kind0/ui-common';
     import {  getLists } from "$lib/stores/list";
 
     import NDKList from '$lib/ndk-kinds/lists/index.js';

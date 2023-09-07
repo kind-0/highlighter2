@@ -6,7 +6,7 @@
     import { user } from '$stores/session';
 
     import ModalWrapper from '$lib/components/ModalWrapper.svelte';
-    import Textarea from '$lib/components/Textarea.svelte';
+    import { Textarea } from '@kind0/ui-common';
 
     let nip46ConnectionString = '';
     let nip46ConnectionStatus: string | undefined = undefined;

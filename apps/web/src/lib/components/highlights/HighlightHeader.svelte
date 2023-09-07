@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type NDKHighlight from "$lib/ndk-kinds/highlight";
+    import { NDKHighlight } from "@nostr-dev-kit/ndk";
     import { AvatarWithName } from "@kind0/ui-common";
     import Favicon from "../Favicon.svelte";
     import linkToArticle from './link-to-article';

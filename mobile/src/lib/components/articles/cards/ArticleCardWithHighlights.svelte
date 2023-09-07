@@ -1,6 +1,6 @@
 <script lang="ts">
 	import MarkdownIt from 'markdown-it';
-    import type NDKHighlight from "$lib/ndk-kinds/highlight";
+    import { NDKHighlight } from "@nostr-dev-kit/ndk";
     import ndk from "$lib/stores/ndk";
     import CardContent from '$lib/components/events/content.svelte';
     import HighlightList from '$lib/components/HighlightList.svelte';

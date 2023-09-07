@@ -5,7 +5,7 @@
     import HighlightHeader from "$lib/components/highlights/HighlightHeader.svelte";
     import EventContent from '$lib/components/events/content.svelte';
     import { removeQuotedEvent, fetchQuotedHighlight } from './utils';
-    import type NDKHighlight from "$lib/ndk-kinds/highlight";
+    import { NDKHighlight } from "@nostr-dev-kit/ndk";
     import linkToArticle from "$lib/components/highlights/link-to-article";
 
     /**

@@ -1,7 +1,7 @@
 <script lang="ts">
     import MainWithRightSidebar from "$lib/layouts/MainWithRightSidebar.svelte";
     import { user, userFollows, highlights } from "$stores/session";
-    import type NDKHighlight from "$lib/ndk-kinds/highlight";
+    import { NDKHighlight } from "@nostr-dev-kit/ndk";
     import { onMount } from "svelte";
     import HighlightList from "$lib/components/HighlightList.svelte";
     import { derived, type Readable } from "svelte/store";

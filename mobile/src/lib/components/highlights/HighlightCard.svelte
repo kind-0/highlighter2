@@ -5,7 +5,7 @@
     import ndk from '$lib/stores/ndk';
 
     import type { NDKEvent } from '@nostr-dev-kit/ndk';
-    import type NDKHighlight from '$lib/ndk-kinds/highlight';
+    import type { NDKHighlight } from "@nostr-dev-kit/ndk";
     import type { NDKArticle } from "@nostr-dev-kit/ndk";
     import { onDestroy, onMount } from 'svelte';
     import linkToArticle from './link-to-article';

@@ -1,6 +1,6 @@
 <script lang="ts">
     import HighlightListItem from "./HighlightListItem.svelte";
-    import type NDKHighlight from "$lib/ndk-kinds/highlight";
+    import { NDKHighlight } from "@nostr-dev-kit/ndk";
     import { setContext } from "svelte";
 
     export let items: NDKHighlight[] = [];

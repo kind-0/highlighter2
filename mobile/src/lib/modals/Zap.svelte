@@ -12,7 +12,7 @@
     import Fire from '$lib/icons/Fire.svelte';
     import Rocket from '$lib/icons/Rocket.svelte';
     import ZapSent from '$lib/icons/ZapSent.svelte';
-    import SubtleButton from '$lib/components/buttons/SubtleButton.svelte';
+    import { SubtleButton } from "@kind0/ui-common";
     import CheckSimple from '$lib/icons/CheckSimple.svelte';
 
     export let event: NDKEvent;

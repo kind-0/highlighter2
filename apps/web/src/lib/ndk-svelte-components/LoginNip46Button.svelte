@@ -1,7 +1,7 @@
 <script lang="ts">
     import { openModal } from 'svelte-modals';
     import LoginNip46Modal from './LoginNip46Modal.svelte';
-    import SubtleButton from '$lib/components/buttons/SubtleButton.svelte';
+    import { SubtleButton } from "@kind0/ui-common";
 
     async function openNip46Modal() {
         // Close dropdown

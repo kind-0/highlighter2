@@ -11,7 +11,7 @@
     import Article from '../Article.svelte';
     import { NDKArticle } from "@nostr-dev-kit/ndk";
     import { onDestroy } from 'svelte';
-    import NDKHighlight from '$lib/ndk-kinds/highlight';
+    import { NDKHighlight } from "@nostr-dev-kit/ndk";
     import MarkedContent from './MarkedContent.svelte';
     import AvatarWithName from '../AvatarWithName.svelte';
     import RightDrawerLayout from '$lib/layouts/RightDrawerLayout.svelte';

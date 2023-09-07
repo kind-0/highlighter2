@@ -5,7 +5,7 @@
     import type { NDKArticle } from "@nostr-dev-kit/ndk";
     import { onDestroy, onMount } from "svelte";
     import ndk from "$lib/stores/ndk";
-    import Textarea from '$lib/components/Textarea.svelte';
+    import { Textarea } from '@kind0/ui-common';
     import { addLongForm, removeLongForm, isSaved as isLongFormSaved } from "$lib/stores/long-form";
     import type { NDKList } from "@nostr-dev-kit/ndk";
     import Toolbar from "./Toolbar.svelte";

@@ -5,7 +5,7 @@
     import { user } from '$stores/session';
 
     import ModalWrapper from '$lib/components/ModalWrapper.svelte';
-    import Textarea from '$lib/components/Textarea.svelte';
+    import { Textarea } from '@kind0/ui-common';
     import { bunkerNDK, ndk } from '@kind0/lib-svelte-kit';
 
     let nip46ConnectionString = '';

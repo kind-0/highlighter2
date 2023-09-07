@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type NDKHighlight from "$lib/ndk-kinds/highlight";
+    import { NDKHighlight } from "@nostr-dev-kit/ndk";
     import HighlightContent from "./HighlightContent.svelte";
 
     export let highlight: NDKHighlight;

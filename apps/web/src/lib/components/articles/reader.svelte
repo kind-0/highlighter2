@@ -5,18 +5,19 @@
     import { currentScope } from '$lib/store';
     import { fade } from 'svelte/transition';
     import { derived, type Readable } from 'svelte/store';
-    import MarginNotePopup from './MarginNotePopup.svelte';
+    import { ReaderMarginNotePopup } from "@kind0/highlighter";
 
     import HighlightWrapper from '../HighlightWrapper.svelte';
     import Article from '../Article.svelte';
     import { NDKArticle } from "@nostr-dev-kit/ndk";
     import { onDestroy } from 'svelte';
-    import NDKHighlight from '$lib/ndk-kinds/highlight';
+    import { NDKHighlight } from "@nostr-dev-kit/ndk";
     import MarkedContent from './MarkedContent.svelte';
     import { AvatarWithName } from "@kind0/ui-common";
     import RightDrawerLayout from '$lib/layouts/RightDrawerLayout.svelte';
     import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
     import { user } from '$stores/session';
+    import { rightDrawerContent } from '$stores/right-drawer';
 
     export let article: NDKEvent | NDKArticle | string;
     export let content: string | undefined = undefined;
@@ -199,6 +200,8 @@
     marginNotes= {$marginNotes?.length} length
 {/if}
 
+<h1>here</h1>
+
 <RightDrawerLayout>
     <div class="flex flex-col md:flex-row w-full mx-auto md:px-6">
         <div class="card md:w-7/12 leading-loose flex flex-col gap-2 text-lg card-compact md:card-normal">
@@ -288,7 +291,12 @@
                     {#if article}
                         <div class="flex flex-col gap-4">
                             {#each $highlights as highlight}
-                                <MarginNotePopup markId={highlight.id} user={highlight.author} {marginNotes} />
+                                <ReaderMarginNotePopup
+                                    markId={highlight.id}
+                                    user={highlight.author}
+                                    {marginNotes}
+                                    class={!!$rightDrawerContent ? "hidden" : ""}
+                                />
                             {/each}
                         </div>
                     {/if}

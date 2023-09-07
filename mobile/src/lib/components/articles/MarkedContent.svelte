@@ -1,6 +1,6 @@
     <script lang="ts">
     import CardContent from '$lib/components/events/content.svelte';
-    import type NDKHighlight from "$lib/ndk-kinds/highlight";
+    import { NDKHighlight } from "@nostr-dev-kit/ndk";
     import type { NDKTag } from '@nostr-dev-kit/ndk';
     import { createEventDispatcher } from "svelte";
     import { debounce } from 'throttle-debounce';

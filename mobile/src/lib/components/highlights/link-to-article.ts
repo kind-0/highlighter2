@@ -1,4 +1,4 @@
-import type NDKHighlight from "$lib/ndk-kinds/highlight";
+import { NDKHighlight } from "@nostr-dev-kit/ndk";
 import { tagToNip19 } from '$lib/utils';
 
 export default function linkToArticle(highlight: NDKHighlight) {

@@ -3,7 +3,7 @@ import { ndk } from "@kind0/lib-svelte-kit";
 import { NDKEvent, NDKList, NDKSubscriptionCacheUsage, type NDKFilter, type NDKTag, type NDKUser } from '@nostr-dev-kit/ndk';
 import type NDKSvelte from '@nostr-dev-kit/ndk-svelte';
 import { NDKListKinds } from '$lib/ndk-kinds';
-import NDKHighlight from '$lib/ndk-kinds/highlight';
+import { NDKHighlight } from "@nostr-dev-kit/ndk";
 import { persist, createLocalStorage } from "@macfja/svelte-persistent-store";
 import { newArticles } from './articles';
 import debug from 'debug';

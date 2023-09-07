@@ -4,7 +4,7 @@
     import{ Avatar } from "@kind0/ui-common";
 
     import NoteCard from '$lib/components/notes/card.svelte';
-    import type NDKHighlight from '$lib/ndk-kinds/highlight';
+    import type { NDKHighlight } from "@nostr-dev-kit/ndk";
     import type { NDKEvent } from '@nostr-dev-kit/ndk';
     import MarginNoteCard from './events/margin-note/MarginNoteCard.svelte';
     import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
