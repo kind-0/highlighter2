@@ -3,16 +3,13 @@
 
     import ChevronDownIcon from '$lib/icons/ChevronDown.svelte';
     import { user } from '$stores/session';
-    import _ndk from '$lib/stores/ndk';
 
     import type { NDKUser } from '@nostr-dev-kit/ndk';
-    import type NDK from '@nostr-dev-kit/ndk';
+    import { ndk } from "@kind0/lib-svelte-kit";
 
     export let delegatedName: string | undefined = undefined;
     export let delegatedUser: NDKUser | undefined = undefined;
     export let value: string;
-
-    let ndk = $_ndk as NDK;
 </script>
 
 {#if $user}
@@ -30,13 +27,13 @@
         ">
             <div class="font-normal truncate">
                 {#if value === 'Public'}
-                    Public (as <Name {ndk} user={$user} />)
+                    Public (as <Name ndk={$ndk} user={$user} />)
                 {:else if value === 'Delegated'}
                     Public (as
                     {#if delegatedName}
                         {delegatedName}
                     {:else if delegatedUser}
-                        <Name ndk={ndk} user={delegatedUser} />
+                        <Name ndk={$ndk} user={delegatedUser} />
                     {/if})
                 {:else if value === 'Secret'}
                     Secret
@@ -51,7 +48,7 @@
             <li>
                 <button on:click={() => { value = "Public" }}>
                     <div class="flex flex-col pl-2.5">
-                        <span class="text-base brightness-150">Public (as <Name {ndk} user={$user} />)</span>
+                        <span class="text-base brightness-150">Public (as <Name ndk={$ndk} user={$user} />)</span>
                         <div class="text-sm font-normal">Public note. Shows up in your followers' timeline.</div>
                     </div>
                 </button>
@@ -65,7 +62,7 @@
                             {#if delegatedName}
                                 {delegatedName}
                             {:else}
-                                <Name {ndk} user={delegatedUser} />
+                                <Name ndk={$ndk} user={delegatedUser} />
                             {/if})
                         </span>
                         <div class="text-sm font-normal">Public note. Will not show up in your followers' timeline</div>

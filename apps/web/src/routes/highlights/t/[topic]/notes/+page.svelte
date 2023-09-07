@@ -3,10 +3,9 @@
     import { page } from "$app/stores";
     // import HighlightFilter from "../../../HighlightFilter.svelte";
 
-    import ndk from '$lib/stores/ndk';
-
-    import type { NDKEventStore } from "$lib/stores/ndk";
-    import type { NDKEvent, NDKSubscription } from "@nostr-dev-kit/ndk";
+    import { ndk } from "@kind0/lib-svelte-kit";
+    import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
+    import type { NDKEvent } from '@nostr-dev-kit/ndk';
 
     let topic: string
     let prevTopic: string
@@ -20,7 +19,7 @@
     }
 
     function subscribe(topic: string) {
-        if (quotedHighlights) quotedHighlights.stop();
+        if (quotedHighlights) quotedHighlights.unsubscribe();
 
         quotedHighlights = $ndk.storeSubscribe({
             "kinds": [1],

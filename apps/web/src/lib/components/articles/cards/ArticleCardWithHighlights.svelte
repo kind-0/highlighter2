@@ -1,9 +1,6 @@
 <script lang="ts">
 	import MarkdownIt from 'markdown-it';
     import type NDKHighlight from "$lib/ndk-kinds/highlight";
-    import ndk from "$lib/stores/ndk";
-    import CardContent from '$lib/components/events/content.svelte';
-    import HighlightList from '$lib/components/HighlightList.svelte';
     import { Card } from "flowbite-svelte";
     import AvatarWithName from "$lib/components/AvatarWithName.svelte";
     import Avatar from "$lib/components/Avatar.svelte";

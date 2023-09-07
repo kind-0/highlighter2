@@ -1,5 +1,5 @@
 <script lang="ts">
-    import ndk from '$lib/stores/ndk';
+    import { ndk } from "@kind0/lib-svelte-kit";
     import {NDKEvent} from '@nostr-dev-kit/ndk';
     import type { NostrEvent } from '@nostr-dev-kit/ndk';
     import {createEventDispatcher} from 'svelte';

@@ -3,7 +3,7 @@
     import { currentScope } from '$lib/store';
     import { user, userFollows } from '$stores/session';
     import MainWithRightSidebar from '$lib/layouts/MainWithRightSidebar.svelte';
-    import ndk from '$lib/stores/ndk';
+    import { ndk } from "@kind0/lib-svelte-kit";
     import type { NDKEvent } from '@nostr-dev-kit/ndk';
     import NDKList from '$lib/ndk-kinds/lists';
     import PageTitle from '$lib/components/PageTitle.svelte';

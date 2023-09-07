@@ -1,6 +1,6 @@
 <script lang="ts">
     import { NDKPrivateKeySigner } from '@nostr-dev-kit/ndk';
-    import ndk from '$lib/stores/ndk';
+    import { ndk } from "@kind0/lib-svelte-kit";
     import { user } from '$stores/session';
     import { setupPlaceholderProfile } from './LoginModal/placeholder-profile';
     import KeyIcon from '$lib/icons/Key.svelte';

@@ -1,5 +1,4 @@
 <script lang="ts">
-    import ndk, { bunkerNDK } from '$lib/stores/ndk';
     import { onMount } from 'svelte';
     import { login } from '$lib/utils/login';
     import '../app.postcss';
@@ -12,6 +11,7 @@
     import { goto } from '$app/navigation';
 
     import { user, prepareSession, loadingScreen, userFollows, networkFollows } from '$stores/session';
+    import { bunkerNDK, ndk } from '@kind0/lib-svelte-kit';
 
     $: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : ''
 

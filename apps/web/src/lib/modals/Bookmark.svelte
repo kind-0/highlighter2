@@ -1,5 +1,5 @@
 <script lang="ts">
-    import ndk from '$lib/stores/ndk';
+    import { ndk } from "@kind0/lib-svelte-kit";
     import CloseIcon from '$lib/icons/Close.svelte';
     import { NDKEvent, type NostrEvent } from '@nostr-dev-kit/ndk';
 

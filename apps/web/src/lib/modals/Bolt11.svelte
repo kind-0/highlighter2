@@ -1,5 +1,5 @@
 <script lang="ts">
-    import ndk from '$lib/stores/ndk';
+    import { ndk } from "@kind0/lib-svelte-kit";
     import UserCard from '$lib/components/UserCard.svelte';
     import PillButton from '$lib/components/buttons/pill.svelte';
     import Input from '$lib/components/Input.svelte';

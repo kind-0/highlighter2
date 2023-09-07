@@ -4,7 +4,7 @@
     import Reader from '$lib/components/articles/reader.svelte';
     import MarkdownIt from 'markdown-it';
     import { NDKUser, type NDKEvent } from '@nostr-dev-kit/ndk';
-    import ndk from '$lib/stores/ndk';
+    import { ndk } from "@kind0/lib-svelte-kit";
     import NDKArticle from "@nostr-dev-kit/ndk";
     import { Card, Skeleton, TestimonialPlaceholder } from 'flowbite-svelte';
 

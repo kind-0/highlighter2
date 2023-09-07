@@ -1,7 +1,7 @@
 import { NDKUser, type NDKUserProfile } from "@nostr-dev-kit/ndk";
 import { get as getStore } from 'svelte/store';
 import { user } from '$stores/session';
-import ndk from '$lib/stores/ndk';
+import { ndk } from "@kind0/lib-svelte-kit";
 
 export async function setupPlaceholderProfile(profile?: NDKUserProfile) {
     const $user = getStore(user);

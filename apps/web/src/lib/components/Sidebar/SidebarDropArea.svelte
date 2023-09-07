@@ -3,7 +3,7 @@
     import BookmarkModal from "$lib/modals/Bookmark.svelte";
     import DroppableEvent from "../utilities/DroppableEvent.svelte";
     import type { NDKEvent } from "@nostr-dev-kit/ndk";
-    import ndk from '$lib/stores/ndk';
+    import { ndk } from "@kind0/lib-svelte-kit";
 
     function drop(e: Event) {
         const id = e.detail.id;

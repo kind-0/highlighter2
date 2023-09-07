@@ -1,7 +1,8 @@
 <script lang="ts">
-    import ndk, { type NDKEventStore } from '$lib/stores/ndk';
     import { onDestroy, onMount } from "svelte";
     import { NDKDVMRequest, NDKDVMJobResult, NDKKind } from "@nostr-dev-kit/ndk";
+    import { ndk } from "@kind0/lib-svelte-kit";
+    import type { NDKEventStore } from "@nostr-dev-kit/ndk-svelte";
 
     export let jobRequest: NDKDVMRequest;
 

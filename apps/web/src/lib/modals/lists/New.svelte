@@ -1,6 +1,6 @@
 <script lang="ts">
     import { user } from '$stores/session';
-    import ndk from '$lib/stores/ndk';
+    import { ndk } from "@kind0/lib-svelte-kit";
 
     import { closeModal } from 'svelte-modals';
     import type { NostrEvent } from '@nostr-dev-kit/ndk';

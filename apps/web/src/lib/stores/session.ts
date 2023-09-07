@@ -1,5 +1,5 @@
 import { writable, get as getStore, type Writable, readable, derived } from 'svelte/store';
-import ndk from './ndk';
+import { ndk } from "@kind0/lib-svelte-kit";
 import { NDKEvent, NDKList, NDKSubscriptionCacheUsage, type NDKFilter, type NDKTag, type NDKUser } from '@nostr-dev-kit/ndk';
 import type NDKSvelte from '@nostr-dev-kit/ndk-svelte';
 import { NDKListKinds } from '$lib/ndk-kinds';

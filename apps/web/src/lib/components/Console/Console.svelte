@@ -1,9 +1,10 @@
 <script lang="ts">
     import { NDKEvent, NDKKind, NDKTranscriptionDVM, NDKDVMRequest } from '@nostr-dev-kit/ndk';
-    import ndk, { type NDKEventStore } from '$lib/stores/ndk';
     import JobRequestEventsFeed from '$lib/components/jobs/request/event-feed/JobRequestEventsFeed.svelte';
     import JobRequestTranscription from '$lib/components/jobs/request/JobRequestTranscription.svelte';
     import { searchQuery, processingInstructions } from '$lib/stores/search';
+    import { ndk } from '@kind0/lib-svelte-kit';
+    import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
 
     let prevSearchQuery: string | undefined = undefined;
     let jobRequestId: string | undefined;

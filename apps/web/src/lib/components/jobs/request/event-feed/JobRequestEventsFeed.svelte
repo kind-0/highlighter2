@@ -1,8 +1,9 @@
 <script lang="ts">
-    import ndk, { type NDKEventStore } from "$lib/stores/ndk";
     import JobStatus from '$lib/components/jobs/status/JobStatus.svelte';
     import { onDestroy } from "svelte";
     import type { NDKEvent, NDKDVMRequest } from "@nostr-dev-kit/ndk";
+    import { ndk } from '@kind0/lib-svelte-kit';
+    import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
 
     export let jobRequest: NDKDVMRequest;
     export let onlyJobsWithResults = false;

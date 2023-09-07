@@ -3,7 +3,7 @@
     import HighlightCard from '$lib/components/highlights/HighlightCard.svelte';
     import NoteCard from '$lib/components/notes/card.svelte';
     import { getContext } from 'svelte';
-    import ndk from '$lib/stores/ndk';
+    import { ndk } from "@kind0/lib-svelte-kit";
     import { createEventDispatcher } from 'svelte';
     import type { NDKEvent, NDKFilter } from '@nostr-dev-kit/ndk';
     import { user } from '$stores/session';

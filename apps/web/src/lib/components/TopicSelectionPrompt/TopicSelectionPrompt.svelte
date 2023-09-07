@@ -4,7 +4,7 @@
     import Hashtag from "$icons/Hashtag.svelte";
     import { user, userFollowHashtags, userFollows } from "$stores/session";
     import { fade } from "svelte/transition";
-    import ndk from '$stores/ndk';
+    import { ndk } from "@kind0/lib-svelte-kit";
     import { NDKList, type NDKEvent, type NDKFilter, type NostrEvent } from "@nostr-dev-kit/ndk";
     import GeneralButton from "$components/buttons/GeneralButton.svelte";
     import EmptyState from "$icons/EmptyState.svelte";

@@ -6,7 +6,7 @@
     import type NDKList from "$lib/ndk-kinds/lists";
     import { page } from "$app/stores";
     import { derived, type Readable } from "svelte/store";
-    import ndk from "$lib/stores/ndk";
+    import {ndk} from "@kind0/lib-svelte-kit";
     import { pageTitle, pageSubtitle } from "$lib/store";
     import { MainWithRightSidebar } from "@kind0/ui-common";
 

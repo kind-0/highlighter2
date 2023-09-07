@@ -1,5 +1,5 @@
 <script lang="ts">
-    import ndk from "$lib/stores/ndk";
+    import {ndk} from "@kind0/lib-svelte-kit";
     import { type NDKFilter, NDKDVMRequest } from "@nostr-dev-kit/ndk";
     import { onMount } from "svelte";
     import SidebarJobRequestItem from "./SidebarJobRequestItem.svelte";

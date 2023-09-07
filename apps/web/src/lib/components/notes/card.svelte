@@ -1,6 +1,4 @@
 <script lang="ts">
-    import ndk, { type NDKEventStore } from '$lib/stores/ndk';
-
     import EventCard from "$lib/components/events/EventCard.svelte";
     import NoteContent from '$lib/components/events/content.svelte';
 
@@ -9,6 +7,8 @@
     import Avatar from '../Avatar.svelte';
     import { Name } from '@nostr-dev-kit/ndk-svelte-components';
     import EventCardActions from '../events/EventCardActions.svelte';
+    import { ndk } from "@kind0/lib-svelte-kit";
+    import type { NDKEventStore } from "@nostr-dev-kit/ndk-svelte";
 
     export let event: NDKEvent;
     export let skipFooter = false;

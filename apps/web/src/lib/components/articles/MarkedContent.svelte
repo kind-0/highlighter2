@@ -1,4 +1,4 @@
-    <script lang="ts">
+<script lang="ts">
     import CardContent from '$lib/components/events/content.svelte';
     import type NDKHighlight from "$lib/ndk-kinds/highlight";
     import type { NDKTag } from '@nostr-dev-kit/ndk';

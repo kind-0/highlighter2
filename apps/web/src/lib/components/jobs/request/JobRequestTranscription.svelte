@@ -1,5 +1,5 @@
 <script lang="ts">
-    import ndk from '$lib/stores/ndk';
+    import { ndk } from "@kind0/lib-svelte-kit";
     import { createEventDispatcher } from "svelte";
     import type { ProcessableTypes } from './types';
     import TranscriptionTimeRange from './TranscriptionTimeRange.svelte';

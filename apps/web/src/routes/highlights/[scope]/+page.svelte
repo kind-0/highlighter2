@@ -2,7 +2,7 @@
     import { page } from "$app/stores";
 
     import Newest from './newest.svelte';
-    import ndk from "$stores/ndk";
+    import { ndk } from "@kind0/lib-svelte-kit";
     import NDKHighlight from "$lib/ndk-kinds/highlight";
     import type { NDKEventStore } from "@nostr-dev-kit/ndk-svelte";
     import { onDestroy } from "svelte";

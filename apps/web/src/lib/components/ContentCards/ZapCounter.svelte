@@ -1,7 +1,7 @@
 <script lang="ts">
     import ZapCounterIcon from "$icons/ZapCounterIcon.svelte";
     import { user } from "$stores/session";
-    import ndk from "$stores/ndk";
+    import { ndk } from "@kind0/lib-svelte-kit";
     import { nicelyFormattedMilliSatNumber } from "$utils";
     import { onDestroy } from "svelte";
     import { zapInvoiceFromEvent, type NDKEvent } from "@nostr-dev-kit/ndk";

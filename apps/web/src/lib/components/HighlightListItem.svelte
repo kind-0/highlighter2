@@ -3,11 +3,12 @@
 
     import Avatar from '$lib/components/Avatar.svelte';
 
-    import ndk, { type NDKEventStore } from '$lib/stores/ndk';
     import NoteCard from '$lib/components/notes/card.svelte';
     import type NDKHighlight from '$lib/ndk-kinds/highlight';
     import type { NDKEvent } from '@nostr-dev-kit/ndk';
     import MarginNoteCard from './events/margin-note/MarginNoteCard.svelte';
+    import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
+    import { ndk } from '@kind0/lib-svelte-kit';
 
     export let highlight: NDKHighlight;
     export let skipTitle: boolean = false;
@@ -27,7 +28,7 @@
     let quotePubkeys: string[] = [];
 
     // Set the quote pubkeys
-    $: if ($quotes && $quotes.length > 0 && quotes.length != quotePubkeys.length) {
+    $: if ($quotes && $quotes.length > 0 && $quotes.length != quotePubkeys.length) {
         quotePubkeys = $quotes.map((q: NDKEvent) => q.pubkey);
     }
 

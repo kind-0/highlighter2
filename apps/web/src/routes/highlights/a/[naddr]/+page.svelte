@@ -1,6 +1,6 @@
 <script lang="ts">
 	import GenericEventCard from '$lib/components/events/generic/card.svelte';
-    import ndk from '$lib/stores/ndk';
+    import { ndk } from "@kind0/lib-svelte-kit";
     import NDKList from '$lib/ndk-kinds/lists';
     import { page } from '$app/stores';
     import PageTitle from '$lib/components/PageTitle.svelte';

@@ -2,7 +2,7 @@
     import UserInterface from '$lib/interfaces/users';
     import type { Observable } from 'dexie';
 
-    import ndk from '$lib/stores/ndk';
+    import { ndk } from "@kind0/lib-svelte-kit";
 
     import { getContext } from 'svelte';
     import {Name} from '@nostr-dev-kit/ndk-svelte-components';

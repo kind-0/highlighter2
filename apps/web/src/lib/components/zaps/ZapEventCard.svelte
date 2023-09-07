@@ -1,11 +1,11 @@
 <script lang="ts">
-    import ndk, { type NDKEventStore } from '$lib/stores/ndk';
-
     import EventCard from '$lib/components/events/card.svelte';
 
     import { zapInvoiceFromEvent, type NDKEvent, type NDKZapInvoice, NDKUser } from '@nostr-dev-kit/ndk';
     import { onDestroy, onMount } from 'svelte';
     import { nicelyFormattedMilliSatNumber } from '$lib/utils';
+    import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
+    import { ndk } from '@kind0/lib-svelte-kit';
 
     export let event: NDKEvent;
     export let skipFooter = false;

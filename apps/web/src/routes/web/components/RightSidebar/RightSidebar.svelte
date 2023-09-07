@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { NDKDVMJobResult, NDKDVMRequest, NDKEvent, NDKKind } from '@nostr-dev-kit/ndk';
     import MenuItem from "$components/sidebars/MenuItem.svelte";
-    import ndk from "$lib/stores/ndk";
+    import {ndk} from "@kind0/lib-svelte-kit";
     import { onMount } from 'svelte';
 
     let requests: Map<string, NDKEvent>;

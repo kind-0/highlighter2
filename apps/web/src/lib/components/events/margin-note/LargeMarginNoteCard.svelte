@@ -1,18 +1,18 @@
 <script lang="ts">
     import { NDKUser, type NDKEvent } from "@nostr-dev-kit/ndk";
-    import ndk from '$lib/stores/ndk';
+    import { ndk } from "@kind0/lib-svelte-kit";
     import HighlightContent from "$lib/components/highlights/HighlightContent.svelte";
     import EventCard from "../EventCard.svelte";
     import EventContent from '$lib/components/events/content.svelte';
     import { removeQuotedEvent, fetchQuotedHighlight } from './utils';
     import type NDKHighlight from "$lib/ndk-kinds/highlight";
     import AvatarWithName from "$lib/components/AvatarWithName.svelte";
-    import type { NDKEventStore } from "$lib/stores/ndk";
     import { onDestroy } from "svelte";
     import { Avatar, Name } from "@nostr-dev-kit/ndk-svelte-components";
     import { Pen } from "phosphor-svelte";
     import ReplyView from "./ReplyView.svelte";
     import MainCtaInSecondaryActionButton from "$lib/components/buttons/MainCTAInSecondaryActionButton.svelte";
+    import type { NDKEventStore } from "@nostr-dev-kit/ndk-svelte";
 
     /**
      * Event to render

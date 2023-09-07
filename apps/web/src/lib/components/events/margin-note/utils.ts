@@ -1,6 +1,6 @@
 import { get as getStore } from "svelte/store";
 import NDKHighlight from "$lib/ndk-kinds/highlight";
-import ndk from "$lib/stores/ndk";
+import {ndk} from "@kind0/lib-svelte-kit";
 import type { NDKEvent } from "@nostr-dev-kit/ndk";
 import { nip19 } from 'nostr-tools';
 

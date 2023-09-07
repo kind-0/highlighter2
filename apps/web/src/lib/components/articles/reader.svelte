@@ -1,6 +1,6 @@
 <script lang="ts">
     import { NDKEvent, NDKKind, type NDKFilter } from '@nostr-dev-kit/ndk';
-    import ndk from '$lib/stores/ndk';
+    import { ndk } from "@kind0/lib-svelte-kit";
     import NewHighlight from '$lib/components/highlights/NewHighlight.svelte';
     import { currentScope } from '$lib/store';
     import { fade } from 'svelte/transition';

@@ -2,7 +2,7 @@
     import MoreOptionsIcon from '$lib/icons/MoreOptions.svelte';
 
     import { user } from '$stores/session';
-    import ndk from '$lib/stores/ndk';
+    import { ndk } from "@kind0/lib-svelte-kit";
 
     import Tags from './tags.svelte';
     import type { NDKTag } from '@nostr-dev-kit/ndk';

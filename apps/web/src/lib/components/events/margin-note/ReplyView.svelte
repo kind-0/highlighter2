@@ -1,6 +1,6 @@
 <script lang="ts">
     import { NDKEvent, type NostrEvent } from "@nostr-dev-kit/ndk";
-    import ndk from '$lib/stores/ndk';
+    import { ndk } from "@kind0/lib-svelte-kit";
 
     import Textarea from "$lib/components/Textarea.svelte";
     import ButtonWithBorderGradient2 from "$lib/components/buttons/ButtonWithBorderGradient2.svelte";

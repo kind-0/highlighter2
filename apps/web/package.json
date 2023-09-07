@@ -58,6 +58,7 @@
 		"@nostr-dev-kit/ndk-svelte": "workspace:*",
 		"@nostr-dev-kit/ndk-svelte-components": "workspace:*",
 		"@kind0/ui-common": "workspace:*",
+		"@kind0/lib-svelte-kit": "workspace:*",
 		"@sveltejs/adapter-node": "^1.2.3",
 		"@tailwindcss/forms": "^0.5.3",
 		"@tailwindcss/typography": "^0.5.9",

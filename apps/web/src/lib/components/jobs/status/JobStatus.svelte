@@ -2,7 +2,7 @@
     import { zapInvoiceFromEvent, type NDKEvent, NDKKind, NDKDVMJobResult } from "@nostr-dev-kit/ndk";
     import AcceptResultButtons from "./AcceptResultButtons.svelte";
     import { onDestroy } from "svelte";
-    import ndk from '$lib/stores/ndk';
+    import { ndk } from "@kind0/lib-svelte-kit";
     import AvatarWithName from "$lib/components/AvatarWithName.svelte";
     import PaymentRequestButton from "./PaymentRequestButton.svelte";
     import { user } from '$stores/session';

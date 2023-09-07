@@ -1,12 +1,12 @@
 <script lang="ts">
     import { NDKNip46Signer, NDKPrivateKeySigner } from '@nostr-dev-kit/ndk';
-    import ndk, { bunkerNDK } from '$lib/stores/ndk';
     import { closeModal } from 'svelte-modals';
     import { onMount } from 'svelte';
     import { user } from '$stores/session';
 
     import ModalWrapper from '$lib/components/ModalWrapper.svelte';
     import Textarea from '$lib/components/Textarea.svelte';
+    import { bunkerNDK, ndk } from '@kind0/lib-svelte-kit';
 
     let nip46ConnectionString = '';
     let nip46ConnectionStatus: string | undefined = undefined;

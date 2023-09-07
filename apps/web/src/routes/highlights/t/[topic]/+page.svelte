@@ -2,7 +2,6 @@
 	import { pageTitle, pageSubtitle } from '$lib/store.js';
     import HighlightList from '$lib/components/HighlightList.svelte';
     import { page } from "$app/stores";
-    import ndk, { type NDKEventStore } from '$lib/stores/ndk';
     import PageTitle from '$lib/components/PageTitle.svelte';
     import { onDestroy } from 'svelte';
     import { NDKKind } from '$lib/ndk-kinds';
@@ -10,6 +9,7 @@
     import MainWithRightSidebar from "$lib/layouts/MainWithRightSidebar.svelte";
     import RightSidebar from './components/RightSidebar/RightSidebar.svelte';
     import ModeTab from './components/ModeTab.svelte';
+    import { ndk } from '@kind0/lib-svelte-kit';
 
     let topic: string
     let prevTopic: string
