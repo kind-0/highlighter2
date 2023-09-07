@@ -1,6 +1,6 @@
 <script lang="ts">
     import NDKList from '$lib/ndk-kinds/lists';
-    import Name from '$lib/components/Name.svelte';
+    import{ Name } from "@kind0/ui-common";
 
     export let name: string;
 

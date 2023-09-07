@@ -1,9 +1,9 @@
 <script lang="ts">
     import type NDKHighlight from "$lib/ndk-kinds/highlight";
-    import AvatarWithName from "../AvatarWithName.svelte";
+    import { AvatarWithName } from "@kind0/ui-common";
     import Favicon from "../Favicon.svelte";
     import linkToArticle from './link-to-article';
-    import Avatar from "../Avatar.svelte";
+    import { Avatar } from "@kind0/ui-common";
     import { NDKEvent, type NDKUser, NDKArticle } from "@nostr-dev-kit/ndk";
 
     export let highlight: NDKHighlight;

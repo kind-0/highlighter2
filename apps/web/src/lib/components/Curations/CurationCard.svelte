@@ -1,5 +1,5 @@
 <script lang="ts">
-    import AvatarWithName from "$components/AvatarWithName.svelte";
+    import { AvatarWithName } from "@kind0/ui-common";
     import { NDKList, type NDKEvent } from "@nostr-dev-kit/ndk";
 
     export let curation: NDKEvent;

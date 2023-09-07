@@ -21,8 +21,9 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "devDependencies": {
-    "@kind0/eslint-config-custom": "*",
-    "@kind0/tsconfig": "*",
+    "@kind0/eslint-config-custom": "workspace:*",
+    "@kind0/tsconfig": "workspace:*",
+    "@kind0/ui-common": "workspace:*",
     "@sveltejs/package": "^2.2.1",
     "postcss": "^8.4.20",
     "svelte-preprocess": "^5.0.4",

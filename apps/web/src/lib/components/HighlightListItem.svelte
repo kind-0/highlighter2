@@ -1,7 +1,7 @@
 <script lang="ts">
     import HighlightCard from '$lib/components/highlights/HighlightCard.svelte';
 
-    import Avatar from '$lib/components/Avatar.svelte';
+    import{ Avatar } from "@kind0/ui-common";
 
     import NoteCard from '$lib/components/notes/card.svelte';
     import type NDKHighlight from '$lib/ndk-kinds/highlight';

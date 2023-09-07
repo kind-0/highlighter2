@@ -1,6 +1,6 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import AvatarWithName from "../AvatarWithName.svelte";
+    import { AvatarWithName } from "@kind0/ui-common";
 
     export let relayUrl: string;
 

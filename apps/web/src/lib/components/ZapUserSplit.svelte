@@ -1,6 +1,6 @@
 <script lang="ts">
-    import Avatar from '$lib/components/Avatar.svelte';
-    import Name from '$lib/components/Name.svelte';
+    import{ Avatar } from "@kind0/ui-common";
+    import{ Name } from "@kind0/ui-common";
 
     export let pubkey: string | undefined = undefined;
     export let split: number = 60;

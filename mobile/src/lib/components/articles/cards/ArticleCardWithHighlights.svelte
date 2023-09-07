@@ -5,8 +5,8 @@
     import CardContent from '$lib/components/events/content.svelte';
     import HighlightList from '$lib/components/HighlightList.svelte';
     import { Card } from "flowbite-svelte";
-    import AvatarWithName from "$lib/components/AvatarWithName.svelte";
-    import Avatar from "$lib/components/Avatar.svelte";
+    import { AvatarWithName } from "@kind0/ui-common";
+    import { Avatar } from "@kind0/ui-common";
     import { NDKKind } from "$lib/ndk-kinds";
     import { NDKEvent } from "@nostr-dev-kit/ndk";
     import HighlightListItem from '$lib/components/HighlightListItem.svelte';

@@ -1,6 +1,6 @@
 <script lang="ts">
     import CollapsableDropdown from '$lib/components/CollapsableDropdown.svelte';
-    import Avatar from './Avatar.svelte';
+    import { Avatar } from "@kind0/ui-common";
     import { user } from '$stores/session';
     import ndk from '$lib/stores/ndk';
     import GearIcon from '$lib/icons/Gear.svelte';

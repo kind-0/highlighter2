@@ -6,7 +6,7 @@
     import EventContent from '$lib/components/events/content.svelte';
     import { removeQuotedEvent, fetchQuotedHighlight } from './utils';
     import type NDKHighlight from "$lib/ndk-kinds/highlight";
-    import AvatarWithName from "$lib/components/AvatarWithName.svelte";
+    import { AvatarWithName } from "@kind0/ui-common";
     import { onDestroy } from "svelte";
     import { Avatar, Name } from "@nostr-dev-kit/ndk-svelte-components";
     import { Pen } from "phosphor-svelte";

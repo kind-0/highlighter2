@@ -284,11 +284,14 @@ importers:
         version: 4.2.0
     devDependencies:
       '@kind0/eslint-config-custom':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../packages/eslint-config-custom
       '@kind0/tsconfig':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../packages/tsconfig
+      '@kind0/ui-common':
+        specifier: workspace:*
+        version: link:../packages/ui-common
       '@sveltejs/package':
         specifier: ^2.2.1
         version: 2.2.1(svelte@4.2.0)(typescript@5.1.6)
@@ -1069,6 +1072,9 @@ importers:
 
   packages/ui-common:
     dependencies:
+      '@kind0/lib-svelte-kit':
+        specifier: workspace:*
+        version: link:../lib-svelte-kit
       '@kind0/nostr':
         specifier: workspace:*
         version: link:../nostr

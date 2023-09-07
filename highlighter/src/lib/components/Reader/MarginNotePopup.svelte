@@ -9,13 +9,13 @@ Each <MarginNotePopup> component represents a single margin note.
 
 -->
 <script lang="ts">
-	import { rightDrawerContent } from '$lib/stores/right-drawer';
     import type { NDKEvent, NDKUser } from "@nostr-dev-kit/ndk";
     import { AvatarWithName } from "@kind0/ui-common";
     import LargeMarginNoteCard from "../events/margin-note/LargeMarginNoteCard.svelte";
     import type { Readable } from 'svelte/motion';
     import { derived } from 'svelte/store';
 
+    export let rightDraw
     export let markId = '';
     export let user: NDKUser;
     export let marginNotes: Readable<NDKEvent[]>;

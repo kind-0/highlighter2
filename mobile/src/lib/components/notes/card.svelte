@@ -6,7 +6,7 @@
 
     import type { NDKEvent } from '@nostr-dev-kit/ndk';
     import { onDestroy, onMount } from 'svelte';
-    import Avatar from '../Avatar.svelte';
+    import { Avatar } from "@kind0/ui-common";
     import { Name } from '@nostr-dev-kit/ndk-svelte-components';
     import EventCardActions from '../events/EventCardActions.svelte';
 

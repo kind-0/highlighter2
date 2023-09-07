@@ -1,6 +1,6 @@
 <script lang="ts">
-    import Avatar from '$lib/components/Avatar.svelte';
-    import Name from '$lib/components/Name.svelte';
+    import{ Avatar } from "@kind0/ui-common";
+    import{ Name } from "@kind0/ui-common";
     import UserInterface from '$lib/interfaces/users';
     import type { Observable } from 'dexie';
     import CardContent from '$lib/components/events/content.svelte';

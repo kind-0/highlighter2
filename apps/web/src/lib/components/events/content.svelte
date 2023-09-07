@@ -1,6 +1,6 @@
 <script lang="ts">
     import GenericEventCard from '$lib/components/events/generic/card.svelte';
-    import Name from '$lib/components/Name.svelte';
+    import{ Name } from "@kind0/ui-common";
     import { parseContent } from '$lib/nip27';
     export let note: string;
     export let tags: any[];

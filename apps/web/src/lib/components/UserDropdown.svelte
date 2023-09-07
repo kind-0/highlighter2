@@ -1,6 +1,5 @@
 <script lang="ts">
     import CollapsableDropdown from '$lib/components/CollapsableDropdown.svelte';
-    import Avatar from './Avatar.svelte';
     import { user } from '$stores/session';
     import { ndk } from "@kind0/lib-svelte-kit";
     import GearIcon from '$lib/icons/Gear.svelte';
@@ -8,6 +7,7 @@
     import Notification from './Notification.svelte';
     import { Name } from '@nostr-dev-kit/ndk-svelte-components';
     import SubtleButton from './buttons/SubtleButton.svelte';
+    import { Avatar } from '@kind0/ui-common';
 </script>
 
 <CollapsableDropdown>

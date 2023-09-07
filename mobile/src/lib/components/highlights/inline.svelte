@@ -3,8 +3,8 @@
 	import BoostButton from '$lib/components/events/buttons/boost.svelte';
 	import BookmarkButton from '$lib/components/events/buttons/bookmark.svelte';
     import Zaps from "../events/buttons/zaps.svelte";
-    import Name from "../Name.svelte";
-    import Avatar from "../Avatar.svelte";
+    import { Name } from "@kind0/ui-common";
+    import { Avatar } from "@kind0/ui-common";
 
     import CommentIcon from '$lib/icons/Comment.svelte';
     import LinkIcon from '$lib/icons/Link.svelte';

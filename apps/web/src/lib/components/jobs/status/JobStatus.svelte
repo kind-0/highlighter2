@@ -3,7 +3,7 @@
     import AcceptResultButtons from "./AcceptResultButtons.svelte";
     import { onDestroy } from "svelte";
     import { ndk } from "@kind0/lib-svelte-kit";
-    import AvatarWithName from "$lib/components/AvatarWithName.svelte";
+    import { AvatarWithName } from "@kind0/ui-common";
     import PaymentRequestButton from "./PaymentRequestButton.svelte";
     import { user } from '$stores/session';
     import rejectEvent from './reject.js';

@@ -3,7 +3,7 @@
     import RelaysIcon from "$lib/icons/Relays.svelte";
     import ButtonWithBorderGradient2 from "../buttons/ButtonWithBorderGradient2.svelte";
     import { changeRelaySet, currentRelaySet } from "$lib/components/RelaySets/index";
-    import AvatarWithName from "../AvatarWithName.svelte";
+    import { AvatarWithName } from "@kind0/ui-common";
     import EventCardDropdown from "../events/EventCardDropdown.svelte";
 
     export let relaySet: NDKRelayList

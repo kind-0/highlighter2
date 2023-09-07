@@ -13,7 +13,7 @@
     import { onDestroy } from 'svelte';
     import NDKHighlight from '$lib/ndk-kinds/highlight';
     import MarkedContent from './MarkedContent.svelte';
-    import AvatarWithName from '../AvatarWithName.svelte';
+    import { AvatarWithName } from "@kind0/ui-common";
     import RightDrawerLayout from '$lib/layouts/RightDrawerLayout.svelte';
     import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
     import { user } from '$stores/session';

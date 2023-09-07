@@ -4,7 +4,7 @@
     import NDKList from '$lib/ndk-kinds/lists';
     import { page } from '$app/stores';
     import PageTitle from '$lib/components/PageTitle.svelte';
-    import Avatar from '$lib/components/Avatar.svelte';
+    import{ Avatar } from "@kind0/ui-common";
     import { Name } from '@nostr-dev-kit/ndk-svelte-components';
     import MainWithRightSidebar from '$lib/layouts/MainWithRightSidebar.svelte';
     import ListsWithSimilarItems from '$lib/components/lists/ListsWithSimilarItems.svelte';

@@ -12,7 +12,7 @@
     import type NDKList from '$lib/ndk-kinds/lists';
     import AddRelayListItem from '$lib/components/lists/AddRelayListItem.svelte';
     import NDKRelayList from '$lib/ndk-kinds/lists/relay-list';
-    import AvatarWithName from '$lib/components/AvatarWithName.svelte';
+    import { AvatarWithName } from "@kind0/ui-common";
     import { getSigner, type SignerStoreItem } from '$lib/stores/signer';
     import { saveEphemeralSigner } from '$lib/signers/ephemeral';
     import { getLists, processEvent } from '$lib/stores/list';

@@ -12,8 +12,8 @@
 
     import CardContent from './content.svelte';
 
-    import Avatar from "../Avatar.svelte";
-    import Name from "../Name.svelte";
+    import { Avatar } from "@kind0/ui-common";
+    import { Name } from "@kind0/ui-common";
 
     import tsToNicePassedTimeString from "$lib/utils/tsToNicePassedTimeString";
 

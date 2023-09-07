@@ -6,7 +6,7 @@
 
     import Time from "svelte-time";
     import EventCardActions from "./EventCardActions.svelte";
-    import Avatar from "../Avatar.svelte";
+    import { Avatar } from "@kind0/ui-common";
     import { Name } from "@nostr-dev-kit/ndk-svelte-components";
     import EventCardDropdown from "./EventCardDropdown.svelte";
 
