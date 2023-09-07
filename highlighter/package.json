@@ -1,5 +1,5 @@
 {
-  "name": "@highlighter/svelte-kit-lib",
+  "name": "@kind0/highlighter",
   "version": "0.0.0",
   "description": "",
   "license": "MIT",
@@ -10,8 +10,11 @@
       "svelte": "./dist/index.js"
     }
   },
-  "files": ["dist/**"],
+  "files": [
+    "dist/**"
+  ],
   "scripts": {
+    "dev": "pnpm build --watch",
     "build": "svelte-package",
     "lint": "prettier --check --ignore-path=../../.prettierignore . && eslint \".\"",
     "format": "prettier --write --ignore-path=../../.prettierignore .",
@@ -20,11 +23,13 @@
   "devDependencies": {
     "@kind0/eslint-config-custom": "*",
     "@kind0/tsconfig": "*",
-    "@sveltejs/kit": "^1.20.4",
     "@sveltejs/package": "^2.2.1",
     "postcss": "^8.4.20",
     "svelte-preprocess": "^5.0.4",
     "typescript": "^5.1.6"
+  },
+  "peerDependencies": {
+    "@sveltejs/kit": "^1.24.0"
   },
   "dependencies": {
     "@nostr-dev-kit/ndk": "workspace:*",
