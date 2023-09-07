@@ -11,18 +11,27 @@ Each <MarginNotePopup> component represents a single margin note.
 <script lang="ts">
 	import { rightDrawerContent } from '$lib/stores/right-drawer';
     import type { NDKEvent, NDKUser } from "@nostr-dev-kit/ndk";
-    import { onMount } from "svelte";
     import AvatarWithName from '$lib/components/AvatarWithName.svelte';
-    import ndk, { type NDKEventStore } from '$lib/stores/ndk';
     import LargeMarginNoteCard from "../events/margin-note/LargeMarginNoteCard.svelte";
+    import type { Readable } from 'svelte/motion';
+    import { derived } from 'svelte/store';
 
     export let markId = '';
     export let user: NDKUser;
+    export let marginNotes: Readable<NDKEvent[]>;
 
-    const marginNotes: NDKEventStore<NDKEvent> = $ndk.storeSubscribe({
-        kinds: [1],
-        "#q": [markId]
-    })
+    const ownMarginNotes = derived(marginNotes, $marginNotes => {
+            const ownMarginNotes = new Set<NDKEvent>();
+
+            for (const marginNote of $marginNotes) {
+                if (marginNote.tagValue("q") === markId) {
+                    ownMarginNotes.add(marginNote);
+                }
+            }
+
+            return ownMarginNotes;
+        }
+    );
 
     let verticalHeight: number | undefined = undefined;
     let referenceElement: HTMLElement | null = null;
@@ -55,6 +64,14 @@ Each <MarginNotePopup> component represents a single margin note.
     }
 </script>
 
+<!-- vertical = {verticalHeight}
+markId = {markId}
+
+{#if $marginNotes}
+    marginNotes = {$marginNotes.length}
+    ownMarginNotes = {$ownMarginNotes.size}
+{/if} -->
+
 {#if verticalHeight}
     <div
         class="md:absolute"
@@ -67,8 +84,8 @@ Each <MarginNotePopup> component represents a single margin note.
             </div>
         </div>
 
-        {#if $marginNotes?.length > 0}
-            {#each $marginNotes as marginNote}
+        {#if $ownMarginNotes?.size > 0}
+            {#each $ownMarginNotes as marginNote}
                 <!-- svelte-ignore a11y-no-static-element-interactions -->
                 <div
                     on:mouseenter={() => hover(true)}

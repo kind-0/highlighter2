@@ -26,7 +26,7 @@
 
         zaps = $ndk.storeSubscribe(
             { kinds: [ 9735 ], '#e': [event.id] },
-            { closeOnEose: false, groupableDelay: 2500 }
+            { closeOnEose: false, groupableDelay: 1000, subId: "zaps-button" }
         );
     }
 

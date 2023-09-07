@@ -11,7 +11,7 @@
 
     onMount(() => {
         if (!$user) {
-            goto(`/highlights/global`);
+            goto(`/highlights/local`);
             return;
         }
 

@@ -80,7 +80,6 @@ export async function prepareSession(): Promise<void> {
                 listsStore: userLists,
                 followHashtagsStore: userFollowHashtags,
                 waitUntilEoseToResolve: !alreadyKnowFollows,
-                extraKinds: [0],
             }
         ).then(() => {
             const $userFollows = getStore(userFollows);
@@ -209,7 +208,6 @@ async function fetchData(
 
     const processHighlight = (event: NDKEvent) => {
         const highlight = NDKHighlight.from(event);
-        console.log(`process highlight event.id`)
         opts.highlightStore!.update((highlights) => {
             highlights.set(highlight.id, highlight);
 
@@ -280,13 +278,6 @@ async function fetchData(
     return new Promise((resolve) => {
         const kinds = opts.extraKinds ?? [];
 
-        if (opts.highlightStore) {
-            kinds.push(9802 as number);      // highlight shelves
-        }
-
-        if (opts.followsStore)
-            kinds.push(3);        // follows
-
         if (opts.listsStore) {
             kinds.push(...opts.listsKinds!);
         }
@@ -296,11 +287,16 @@ async function fetchData(
             { "#k": ["9802"], authors }
         ];
 
+        if (opts.highlightStore) {
+            filters.push({ authors, kinds: [9802], limit: 1 });
+        }
+
+        if (opts.followsStore) {
+            filters.push({ kinds: [0, 3], authors });
+        }
+
         if (opts.followHashtagsStore) {
-            filters.push({
-                authors,
-                "#d": ["hashtags"]
-            });
+            filters.push({ authors, "#d": ["hashtags"] });
         }
 
         const userDataSubscription = $ndk.subscribe(

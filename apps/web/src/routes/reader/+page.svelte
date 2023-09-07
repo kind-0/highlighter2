@@ -12,10 +12,6 @@
     let newContentArticlesToRender: number;
     let newContentExpanded = false;
 
-    onMount(() => {
-        newContentEose();
-    })
-
     function newContentEose() {
         renderNewContent = renderNewContent || (
             newContentItems.length >= newContentArticlesToRender
@@ -25,6 +21,10 @@
             $loadingScreen = false;
         }
     }
+
+    onMount(() => {
+        newContentEose();
+    })
 </script>
 
 <div class="flex flex-col gap-8">

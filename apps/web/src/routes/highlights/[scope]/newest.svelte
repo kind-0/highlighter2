@@ -3,24 +3,28 @@
     import type NDKHighlight from '$lib/ndk-kinds/highlight';
     // import { highlights } from '$lib/stores/highlights';
     import { throttle } from 'throttle-debounce';
-    import { highlights, userFollows } from "$stores/session";
-    import { derived } from 'svelte/store';
+    import { userFollows } from "$stores/session";
+    import { derived, type Readable } from 'svelte/store';
+    import type { NDKEvent } from '@nostr-dev-kit/ndk';
+    import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
+
+    export let highlights: NDKEventStore<NDKHighlight> | Readable<NDKHighlight[]>;
 
     let renderedHighlights: NDKHighlight[] = [];
     let processedHighlightCount: number;
     let highlightsToShow = 10;
 
-    const scopedHighlights = derived(highlights, $highlights => {
-        let map = new Map();
+    // const scopedHighlights = derived(highlights, $highlights => {
+    //     let map = new Map();
 
-        for (let [key, h] of $highlights.entries()) {
-            if ($userFollows.has(h.pubkey)) {
-                map.set(key, h);
-            }
-        }
+    //     for (let [key, h] of $highlights.entries()) {
+    //         if ($userFollows.has(h.pubkey)) {
+    //             map.set(key, h);
+    //         }
+    //     }
 
-        return map;
-    });
+    //     return map;
+    // });
 
     // const throttledRenderHighlights = throttle(10, () => {
     //     const addedIds = new Set();
@@ -46,6 +50,6 @@
     // }
 </script>
 
-<HighlightList items={Array.from($scopedHighlights.values())} />
+<HighlightList items={Array.from($highlights.values())} />
 
 <!-- <button class="btn btn-neutral mt-8 btn-block" on:click={loadMore}>Load More</button> -->

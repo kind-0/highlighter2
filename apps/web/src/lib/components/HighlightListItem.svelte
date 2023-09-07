@@ -31,7 +31,10 @@
         quotePubkeys = $quotes.map((q: NDKEvent) => q.pubkey);
     }
 
-    quotes = $ndk.storeSubscribe({ kinds: [1], '#q': [highlight.id] }, { closeOnEose: true, groupableDelay: 500 });
+    quotes = $ndk.storeSubscribe(
+        { kinds: [1], '#q': [highlight.id] },
+        { closeOnEose: true, groupableDelay: 500, subId: "highlight-quotes" }
+    );
 
     function shouldDisplayQuote(highlight: NDKHighlight, quotes: NDKEvent[]) {
         if (!$quotes || $quotes.length === 0) {

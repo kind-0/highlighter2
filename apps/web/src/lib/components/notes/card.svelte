@@ -24,7 +24,7 @@
         if (!skipReplies) {
             replies = $ndk.storeSubscribe(
                 { kinds: [1, 4], '#e': [event.id] },
-                { closeOnEose: false }
+                { subId: "notes", groupable: true, groupableDelay: 250, closeOnEose: false }
             );
         }
     });

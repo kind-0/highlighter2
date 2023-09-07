@@ -13,7 +13,7 @@
 
     zaps = $ndk.storeSubscribe(
         { kinds: [ 9735 ], ...event.filter() },
-        { closeOnEose: false, groupableDelay: 2500 }
+        { closeOnEose: false, groupableDelay: 1500, subId: "zap-counter" }
     );
 
     onDestroy(() => {

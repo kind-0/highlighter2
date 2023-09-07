@@ -36,7 +36,7 @@
 
         {#each Array.from(jobResponses) as jobResponse (jobResponse.id)}
             {#if jobRequest(jobResponse)}
-                <MenuItem href="/highlights/network/newest">
+                <MenuItem href="/highlights/network">
                     <div class="flex flex-row gap-2 items-center">
                         <span class="truncate">
                             {jobRequest(jobResponse)?.tagValue("i")}

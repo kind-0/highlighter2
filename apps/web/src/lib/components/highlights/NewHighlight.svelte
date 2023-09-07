@@ -85,17 +85,22 @@
     }
 
     async function createMarginNote() {
+        const articleTag = highlight.getArticleTag();
         const marginNoteEvent = new NDKEvent($ndk, {
             kind: 1,
             content: `nostr:${highlight.encode()}\n${marginNote}`,
             tags: [
                 ['q', highlight.tagId(), 'quote'],
-                ['k', highlight.kind?.toString()]
+                ['k', highlight.kind?.toString()],
             ]
         } as NostrEvent)
 
+        if (articleTag) {
+            marginNoteEvent.tags.push(articleTag);
+        }
+
         for (const topic of topics) {
-            highlight.tags.push(['t', topic]);
+            marginNoteEvent.tags.push(['t', topic]);
         }
 
         await marginNoteEvent.publish();

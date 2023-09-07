@@ -82,7 +82,7 @@
         zaps = $ndk.storeSubscribe({
             kinds: [9735],
             "#e": events.map(e => e.tagId())
-        }, { closeOnEose: false });
+        }, { closeOnEose: false, groupableDelay: 250, subId: "jobStatus" });
     }
 
     function chooseEventWithAmount(events: NDKEvent[]): NDKEvent | undefined {

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { NDKEvent, type NDKFilter } from '@nostr-dev-kit/ndk';
+    import { NDKEvent, NDKKind, type NDKFilter } from '@nostr-dev-kit/ndk';
     import ndk from '$lib/stores/ndk';
     import NewHighlight from '$lib/components/highlights/NewHighlight.svelte';
     import { currentScope } from '$lib/store';
@@ -26,10 +26,11 @@
 
     let scope: string;
 
-    let highlightFilter: any;
     let needsFilterUpdate: boolean;
 
-    let highlights: NDKEventStore<NDKHighlight>;
+    let articleEvents: NDKEventStore<NDKEvent> | undefined;
+    let highlights: Readable<NDKHighlight[]>;
+    let marginNotes: Readable<NDKEvent[]>;
 
     // Set filter for current view
     $: if (scope !== $currentScope.label) {
@@ -39,14 +40,12 @@
         needsFilterUpdate = true;
     }
 
-    let deduppedHighlights: Readable<NDKHighlight[]> | undefined;
-
     // Apply filter when it's ready
     $: if (needsFilterUpdate) {
         needsFilterUpdate = false;
 
-        if (highlights) {
-            highlights.unsubscribe();
+        if (articleEvents) {
+            articleEvents.unsubscribe();
         }
 
         let articleFilter: NDKFilter;
@@ -57,29 +56,53 @@
             articleFilter = { "#r": [article.url ?? article] };
         }
 
-        highlights = $ndk.storeSubscribe({
-            kinds: [9802 as number],
-            ...articleFilter,
-        }, { closeOnEose: false }, NDKHighlight);
+        articleEvents = $ndk.storeSubscribe(
+            { ...articleFilter },
+            { closeOnEose: false, groupableDelay: 50 }
+        );
 
-        deduppedHighlights = derived(highlights, ($highlights) => {
-            const uniqueItems: NDKHighlight[] = [];
-            const seenContent = new Set();
+        highlights = derived(articleEvents, ($articleEvents) => {
+            const highlights = new Set<NDKHighlight>();
 
-            $highlights.forEach(item => {
-                let content = item.content.trim()+item.pubkey;
-                if (!seenContent.has(content)) {
-                    seenContent.add(content);
-                    uniqueItems.push(item);
+            $articleEvents.forEach(event => {
+                if (event.kind === NDKKind.Highlight) {
+                    highlights.add(NDKHighlight.from(event));
                 }
             });
 
-            return uniqueItems;
+            return Array.from(highlights);
         });
+
+        marginNotes = derived(articleEvents, ($articleEvents) => {
+            const marginNotes = new Set<NDKEvent>();
+
+            $articleEvents.forEach(event => {
+                if (event.kind === 1 && event.tagValue("k")) {
+                    marginNotes.add(event);
+                }
+            });
+
+            return Array.from(marginNotes);
+        });
+
+        // deduppedHighlights = derived(highlights, ($highlights) => {
+        //     const uniqueItems: NDKHighlight[] = [];
+        //     const seenContent = new Set();
+
+        //     $highlights.forEach(item => {
+        //         let content = item.content.trim()+item.pubkey;
+        //         if (!seenContent.has(content)) {
+        //             seenContent.add(content);
+        //             uniqueItems.push(item);
+        //         }
+        //     });
+
+        //     return uniqueItems;
+        // });
     }
 
     onDestroy(() => {
-        highlights?.unsubscribe();
+        articleEvents?.unsubscribe();
     });
 
     let newHighlightItem: NDKHighlight | undefined;
@@ -106,7 +129,6 @@
     }
 
     function onSelectionChange(e: Event) {
-        console.log('here')
         let {selection, sentence, paragraph } = e.detail;
         let context: string | undefined;
 
@@ -171,6 +193,12 @@
     <title>{articleTitle() || "Highlighter.com"}</title>
 </svelte:head>
 
+{#if $highlights}
+    highlights= {$highlights.length} length
+    articleEvents= {$articleEvents?.length} length
+    marginNotes= {$marginNotes?.length} length
+{/if}
+
 <RightDrawerLayout>
     <div class="flex flex-col md:flex-row w-full mx-auto md:px-6">
         <div class="card md:w-7/12 leading-loose flex flex-col gap-2 text-lg card-compact md:card-normal">
@@ -217,7 +245,7 @@
                                     {renderAsHtml}
                                     content={content??""}
                                     {unmarkedContent}
-                                    highlights={$highlights}
+                                    {highlights}
                                     tags={article.tags}
                                     addNewLines={true}
                                     on:highlight-clicked={highlightClicked}
@@ -257,13 +285,11 @@
                     transition duration-100
                     md:mb-96
                 ">
-                    {#if article && highlightFilter}
+                    {#if article}
                         <div class="flex flex-col gap-4">
-                            {#key highlightFilter}
-                                {#each $deduppedHighlights as highlight}
-                                    <MarginNotePopup markId={highlight.id} user={highlight.author} />
-                                {/each}
-                            {/key}
+                            {#each $highlights as highlight}
+                                <MarginNotePopup markId={highlight.id} user={highlight.author} {marginNotes} />
+                            {/each}
                         </div>
                     {/if}
                 </div>

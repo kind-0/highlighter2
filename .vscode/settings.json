@@ -1,0 +1,6 @@
+{
+    "search.useParentIgnoreFiles": true,
+    "files.exclude": {
+        "**/.svelte-kit": true
+    }
+}

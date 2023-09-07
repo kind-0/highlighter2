@@ -27,7 +27,10 @@
         }
 
         if (!skipReplies) {
-            replies = $ndk.storeSubscribe({ kinds: [1], '#e': [event.id] });
+            replies = $ndk.storeSubscribe(
+                { kinds: [1], '#e': [event.id] },
+                { closeOnEose: true, groupableDelay: 1500, subId: "ZapEventCard" }
+            );
         }
     });
 

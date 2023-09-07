@@ -32,7 +32,7 @@
     let replies: NDKEventStore<NDKEvent> = $ndk.storeSubscribe({
         kinds: [1],
         "#e": [event.id]
-    }, { closeOnEose: false, groupableDelay: 1000 });
+    }, { closeOnEose: false, groupableDelay: 250 });
 
     onDestroy(() => {
         replies.unsubscribe();
