@@ -11,7 +11,7 @@ Each <MarginNotePopup> component represents a single margin note.
 <script lang="ts">
     import type { NDKEvent, NDKUser } from "@nostr-dev-kit/ndk";
     import { AvatarWithName } from "@kind0/ui-common";
-    import MarginNoteCard from "./MarginNoteCard.svelte";
+    import ReaderMarginNoteCard from "./ReaderMarginNoteCard.svelte";
     import type { Readable } from 'svelte/store';
     import { derived } from 'svelte/store';
 
@@ -63,18 +63,10 @@ Each <MarginNotePopup> component represents a single margin note.
     }
 </script>
 
-<!-- vertical = {verticalHeight}
-markId = {markId}
-
-{#if $marginNotes}
-    marginNotes = {$marginNotes.length}
-    ownMarginNotes = {$ownMarginNotes.size}
-{/if} -->
-
 {#if verticalHeight}
     <div
-        class="md:absolute {$$props.class}"
-        style="top: {verticalHeight}px; z-index: 999999; left: 1"
+        class="absolute {$$props.class}"
+        style="top: {verticalHeight}px; z-index: 1; left: 1"
     >
         <div class="card card-compact bg-base-300 hidden">
             <div class="card-body text-xs">
@@ -88,7 +80,7 @@ markId = {markId}
                     on:mouseenter={() => hover(true)}
                     on:mouseleave={() => hover(false)}
                 >
-                    <MarginNoteCard
+                    <ReaderMarginNoteCard
                         event={marginNote}
                         skipHighlight={true}
                         class="cursor-pointer"

@@ -10,6 +10,7 @@
     import RightSidebar from './components/RightSidebar/RightSidebar.svelte';
     import ModeTab from './components/ModeTab.svelte';
     import { ndk } from '@kind0/lib-svelte-kit';
+    import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
 
     let topic: string
     let prevTopic: string
@@ -81,6 +82,8 @@
     }
 
 </script>
+
+topic
 
 <MainWithRightSidebar>
     {#if $pageTitle}

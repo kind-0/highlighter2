@@ -21,7 +21,7 @@
         if (author && authorHexpubkey === undefined) {
             try {
                 if (author.startsWith('npub')) {
-                    authorHexpubkey = (new NDKUser({npub: author})).hexpubkey();
+                    authorHexpubkey = (new NDKUser({npub: author})).hexpubkey;
                 } else {
                     authorHexpubkey = author;
                 }

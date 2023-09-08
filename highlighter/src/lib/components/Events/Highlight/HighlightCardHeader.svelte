@@ -1,8 +1,7 @@
 <script lang="ts">
     import { NDKHighlight } from "@nostr-dev-kit/ndk";
-    import { AvatarWithName } from "@kind0/ui-common";
-    import Favicon from "../Favicon.svelte";
-    import linkToArticle from './link-to-article';
+    import { AvatarWithName, Favicon } from "@kind0/ui-common";
+    import linkToArticle from './link-to-article.js';
     import { Avatar } from "@kind0/ui-common";
     import { NDKEvent, type NDKUser, NDKArticle } from "@nostr-dev-kit/ndk";
 

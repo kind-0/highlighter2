@@ -1,15 +1,12 @@
 <script lang="ts">
-    import MoreOptionsIcon from '$lib/icons/MoreOptions.svelte';
-
     import { user } from '$stores/session';
     import { ndk } from "@kind0/lib-svelte-kit";
 
     import Tags from './tags.svelte';
-    import type { NDKTag } from '@nostr-dev-kit/ndk';
+    import type { NDKList, NDKTag } from '@nostr-dev-kit/ndk';
     import FilterFeed from '$lib/components/FilterFeed.svelte';
     import { goto } from '$app/navigation';
     import AddListItem from '$lib/components/lists/AddListItem.svelte';
-    import type NDKList from '$lib/ndk-kinds/lists';
     import AddRelayListItem from '$lib/components/lists/AddRelayListItem.svelte';
     import NDKRelayList from '$lib/ndk-kinds/lists/relay-list';
     import { AvatarWithName } from "@kind0/ui-common";

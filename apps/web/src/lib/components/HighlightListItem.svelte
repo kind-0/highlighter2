@@ -6,9 +6,9 @@
     import NoteCard from '$lib/components/notes/card.svelte';
     import type { NDKHighlight } from "@nostr-dev-kit/ndk";
     import type { NDKEvent } from '@nostr-dev-kit/ndk';
-    import MarginNoteCard from './events/margin-note/MarginNoteCard.svelte';
     import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
     import { ndk } from '@kind0/lib-svelte-kit';
+    import { MarginNoteCard } from '@kind0/highlighter';
 
     export let highlight: NDKHighlight;
     export let skipTitle: boolean = false;
@@ -62,7 +62,6 @@
                 {skipTitle}
                 {disableClick}
             />
-
             {#if ($quotes||[]).length > 0}
                 {#if collapsedQuotes}
                     <div class="px-8 py-3">

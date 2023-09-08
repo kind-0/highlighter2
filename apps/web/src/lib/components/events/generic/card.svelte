@@ -15,9 +15,9 @@
     import ArticleIntroCard from '$lib/components/articles/cards/ArticleIntroCard.svelte';
     import NDKArticle from "@nostr-dev-kit/ndk";
     import { createDraggableEvent } from '$lib/utils/draggable';
-    import MarginNoteCard from '../margin-note/MarginNoteCard.svelte';
     import { isMarginNote } from './types';
     import { NDKListKinds } from '$lib/ndk-kinds';
+    import { MarginNoteCard } from '@kind0/highlighter';
 
     export let bech32: string | undefined = undefined;
     export let id: string | undefined = undefined;

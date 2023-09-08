@@ -61,7 +61,7 @@
                             Public (as
                             {#if delegatedName}
                                 {delegatedName}
-                            {:else}
+                            {:else if delegatedUser}
                                 <Name ndk={$ndk} user={delegatedUser} />
                             {/if})
                         </span>

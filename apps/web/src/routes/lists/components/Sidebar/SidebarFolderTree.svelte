@@ -42,15 +42,34 @@
 {#if renderedList}
 
     {#if renderedList.length > 0}
-        <slot name="title" />
-    {/if}
+        {#if $$slots.collapsableTitle}
+            <li class="menu-title flex flex-row items-center">
+                <details open={$$props.open} class="w-full">
+                    <summary class="flex flex-row items-center w-full">
+                        <slot name="collapsableTitle" />
+                    </summary>
 
-    {#each renderedList as item}
-        <SidebarFolderBranch
-            href={`/lists/${item.encode()}`}
-            {item}
-        />
-    {/each}
+                    {#each renderedList as item}
+                        <SidebarFolderBranch
+                            href={`/lists/${item.encode()}`}
+                            {item}
+                        />
+                    {/each}
+                </details>
+            </li>
+        {:else if $$slots.title}
+            <slot name="title" />
+        {/if}
+
+        {#if !$$slots.collapsableTitle}
+            {#each renderedList as item}
+                <SidebarFolderBranch
+                    href={`/lists/${item.encode()}`}
+                    {item}
+                />
+            {/each}
+        {/if}
+    {/if}
 {:else}
     <span class="loading loading-lg"></span>
 {/if}

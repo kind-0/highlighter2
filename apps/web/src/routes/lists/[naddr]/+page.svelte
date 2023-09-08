@@ -1,14 +1,12 @@
 <script lang="ts">
     import { idFromNaddr } from "$lib/utils";
     import List from "./list.svelte";
-    import { lists } from "$lib/stores/list";
     import { userLists } from "$stores/session";
-    import type NDKList from "$lib/ndk-kinds/lists";
     import { page } from "$app/stores";
     import { derived, type Readable } from "svelte/store";
     import {ndk} from "@kind0/lib-svelte-kit";
-    import { pageTitle, pageSubtitle } from "$lib/store";
     import { MainWithRightSidebar } from "@kind0/ui-common";
+    import type { NDKList } from "@nostr-dev-kit/ndk";
 
     let naddr: string;
     let prevNaddr: string;
@@ -17,17 +15,12 @@
 
     let list: Readable<NDKList | undefined>;
 
-    $: {
-        $pageTitle = undefined;
-        $pageSubtitle = undefined;
-    }
-
     $: if (naddr !== prevNaddr || !list) {
         prevNaddr = naddr;
 
         const id = idFromNaddr(naddr);
 
-        list = derived(lists, ($lists) => {
+        list = derived(userLists, ($userLists) => {
             const list = $userLists.get(id);
             if (!list) return undefined;
 

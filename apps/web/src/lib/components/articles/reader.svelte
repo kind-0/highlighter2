@@ -200,8 +200,6 @@
     marginNotes= {$marginNotes?.length} length
 {/if}
 
-<h1>here</h1>
-
 <RightDrawerLayout>
     <div class="flex flex-col md:flex-row w-full mx-auto md:px-6">
         <div class="card md:w-7/12 leading-loose flex flex-col gap-2 text-lg card-compact md:card-normal">

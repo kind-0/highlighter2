@@ -11,7 +11,7 @@
 
     if (npub.startsWith('npub')) {
         const user = $ndk.getUser({npub})
-        hexpubkey = user.hexpubkey();
+        hexpubkey = user.hexpubkey;
     } else {
         hexpubkey = npub;
         user = $ndk.getUser({hexpubkey});

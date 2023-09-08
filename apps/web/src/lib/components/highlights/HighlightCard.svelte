@@ -9,8 +9,8 @@
     import type { NDKArticle } from "@nostr-dev-kit/ndk";
     import { onDestroy, onMount } from 'svelte';
     import linkToArticle from './link-to-article';
-    import HighlightHeader from "./HighlightHeader.svelte";
     import type { NDKEventStore } from "@nostr-dev-kit/ndk-svelte";
+    import { HighlightCardHeader } from "@kind0/highlighter";
 
     export let highlight: NDKHighlight;
     export let article: NDKArticle | NDKEvent | undefined = undefined;
@@ -79,7 +79,7 @@
     >
         <div slot="header" class="w-full truncate">
             {#if !skipTitle}
-                <HighlightHeader {highlight} />
+                <HighlightCardHeader {highlight} />
             {/if}
         </div>
 

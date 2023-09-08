@@ -26,6 +26,11 @@
     })
 </script>
 
-<MainWithRightSidebar>
-    <HighlightList items={$sortedStore} />
-</MainWithRightSidebar>
++page
+
+{#if sortedStore && $sortedStore}
+{$sortedStore.length}
+    <MainWithRightSidebar>
+        <HighlightList items={$sortedStore} />
+    </MainWithRightSidebar>
+{/if}

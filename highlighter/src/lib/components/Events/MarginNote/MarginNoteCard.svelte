@@ -1,12 +1,12 @@
 <script lang="ts">
     import type { NDKEvent, NDKHighlight } from "@nostr-dev-kit/ndk";
-    import HighlightContent from "$lib/components/highlights/HighlightContent.svelte";
-    import EventCard from "../EventCard.svelte";
-    import HighlightHeader from "$lib/components/highlights/HighlightHeader.svelte";
-    import EventContent from '$lib/components/events/content.svelte';
-    // import { removeQuotedEvent, fetchQuotedHighlight } from './utils';
-    // import type NDKHighlight from "$lib/ndk-kinds/highlight";
-    import linkToArticle from "$lib/components/highlights/link-to-article";
+    import { ndk } from "@kind0/lib-svelte-kit";
+    import { fetchQuotedHighlight, removeQuotedEvent } from "../../Reader/utils";
+    import { EventCard } from "@kind0/ui-common";
+    import HighlightContent from "../Highlight/HighlightContent.svelte";
+    import { EventContent } from "@nostr-dev-kit/ndk-svelte-components";
+    import HighlightCardHeader from "../Highlight/HighlightCardHeader.svelte";
+    import linkToArticle from "../Highlight/link-to-article";
 
     /**
      * Event to render
@@ -18,10 +18,14 @@
 
     let highlight: NDKHighlight | null;
 
-    // fetchQuotedHighlight(event).then(h => highlight = h)
+    fetchQuotedHighlight(event).then(h => highlight = h)
 </script>
+here2
+
+highlight = {!!highlight}
 
 {#if highlight}
+sdsdsd
     <EventCard
         {event}
         authorAction="margin note by"
@@ -30,9 +34,10 @@
         on:mouseenter
         on:mouseleave
     >
+    sdsdgdfg
         <div slot="header">
             {#if !skipTitle}
-                <HighlightHeader {highlight} />
+                <HighlightCardHeader {highlight} />
             {/if}
         </div>
 
@@ -51,9 +56,9 @@
 
             <div class="text-base-100-content md:font-serif leading-[1.8rem]">
                 <EventContent
-                    note={removeQuotedEvent(event)}
-                    tags={event.tags}
-                    kind={event.kind}
+                    ndk={$ndk}
+                    {event}
+                    content={removeQuotedEvent(event)}
                 />
             </div>
         </a>

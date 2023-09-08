@@ -1,19 +1,19 @@
 <script lang="ts">
     import { page } from "$app/stores";
 
-    import Newest from './newest.svelte';
+    import Newest from '../newest.svelte';
     import { ndk } from "@kind0/lib-svelte-kit";
     import { NDKHighlight } from "@nostr-dev-kit/ndk";
     import type { NDKEventStore } from "@nostr-dev-kit/ndk-svelte";
     import { onDestroy } from "svelte";
     import { derived, type Readable } from "svelte/store";
-    import { highlights, userFollows } from "$stores/session";
+    import { user, highlights, userFollows } from "$stores/session";
 
-    let { scope, ordering } = $page.params;
+    let { scope } = $page.params;
 
     $: {
         scope = $page.params.scope;
-        ordering = $page.params.ordering;
+        console.log({scope});
     }
 
     /**
@@ -33,9 +33,26 @@
 
     let store: NDKEventStore<NDKHighlight> | Readable<NDKHighlight[]>;
 
-    $: switch (scope) {
+    $: {
+
+        console.log('updating', scope);
+        switch (scope) {
         case "local":
             store = localHighlights;
+            break;
+        case "me":
+            console.log(`User: ${$user.hexpubkey}`);
+            store = derived(highlights, $highlights => {
+                let map = new Map();
+
+                for (let [key, h] of $highlights.entries()) {
+                    if (h.pubkey === $user.hexpubkey) {
+                        map.set(key, h);
+                    }
+                }
+
+                return Array.from(map.values());
+            });
             break;
         case "":
             store = derived(highlights, $highlights => {
@@ -47,11 +64,15 @@
                     }
                 }
 
-                return map;
+                return Array.from(map.values());
             });
             break;
     }
+
+}
 </script>
+
+{scope}
 
 {#if store}
     <Newest highlights={store} />
