@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
+    import { onMount, setContext } from 'svelte';
     import { login } from '$lib/utils/login';
     import '../app.postcss';
     import { Modals, closeModal } from 'svelte-modals'
@@ -46,6 +46,12 @@
         } else {
             prepareSession();
         }
+    }
+
+    // Probably wrong
+    $: {
+        setContext('user', user);
+        console.log(`setting context`);
     }
 
     let shouldShowLoadingScreen = true;

@@ -2,7 +2,6 @@
 	import NoteCard from '$lib/components/notes/card.svelte';
 	import BoostButton from '$lib/components/events/buttons/boost.svelte';
 	import BookmarkButton from '$lib/components/events/buttons/bookmark.svelte';
-    import Zaps from "../events/buttons/zaps.svelte";
     import { Name } from "@kind0/ui-common";
     import { Avatar } from "@kind0/ui-common";
 
@@ -73,9 +72,9 @@
                     event={highlight}
                     class="duration-200 opacity-0 group-hover:opacity-100"
                 />
-                <Zaps {highlight} event={highlight}
+                <!-- <Zaps {highlight} event={highlight}
                     class="duration-200 opacity-0 group-hover:opacity-100"
-                />
+                /> -->
 
                 <a href={`/e/${highlight.encode()}`} class="
                     text-slate-500 hover:text-orange-500

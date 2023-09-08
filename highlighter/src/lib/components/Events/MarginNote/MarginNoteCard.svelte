@@ -20,12 +20,8 @@
 
     fetchQuotedHighlight(event).then(h => highlight = h)
 </script>
-here2
-
-highlight = {!!highlight}
 
 {#if highlight}
-sdsdsd
     <EventCard
         {event}
         authorAction="margin note by"
@@ -34,7 +30,6 @@ sdsdsd
         on:mouseenter
         on:mouseleave
     >
-    sdsdgdfg
         <div slot="header">
             {#if !skipTitle}
                 <HighlightCardHeader {highlight} />

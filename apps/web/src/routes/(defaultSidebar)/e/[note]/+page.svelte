@@ -22,7 +22,7 @@
 </svelte:head>
 
 {#key note}
-    <main class="max-w-xl mx-auto pb-32 flex flex-col gap-6">
+    <main class="w-main mx-auto pb-32 flex flex-col gap-6">
         <GenericEventCard
             bech32={note}
             skipTitle={false}

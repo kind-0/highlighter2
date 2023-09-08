@@ -6,7 +6,6 @@
 
     import HighlightButton from '$lib/components/events/buttons/HighlightButton.svelte';
     import BookmarkButton from '$lib/components/events/buttons/bookmark.svelte';
-    import ZapsButton from '$lib/components/events/buttons/zaps.svelte';
     import RepliesButton from '$lib/components/events/buttons/replies.svelte';
     import BoostButton from '$lib/components/events/buttons/boost.svelte';
 
@@ -153,7 +152,6 @@
                                     <div class="
                                         {zappedAmount === 0 ? "opacity-0 group-hover:opacity-100 transition duration-300" : ""}
                                     ">
-                                        <ZapsButton bind:zappedAmount {event} />
                                     </div>
 
                                     <div class="text-sm">
