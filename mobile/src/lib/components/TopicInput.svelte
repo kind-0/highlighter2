@@ -1,6 +1,6 @@
 <script lang="ts">
     import MenuItem from '$components/sidebars/MenuItem.svelte';
-    import Input from '$lib/components/Input.svelte';
+    import { Input } from "@kind0/ui-common";
     import { CaretDown, Hash } from 'phosphor-svelte';
 
     export let values: string[] = [];

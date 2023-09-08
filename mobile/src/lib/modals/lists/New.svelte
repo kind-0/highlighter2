@@ -6,7 +6,7 @@
     import type { NostrEvent } from '@nostr-dev-kit/ndk';
     import { goto } from '$app/navigation';
     import {ModalWrapper} from '@kind0/ui-common';
-    import Input from '$lib/components/Input.svelte';
+    import { Input } from "@kind0/ui-common";
     import { Textarea } from '@kind0/ui-common';
     import {  getLists } from "$lib/stores/list";
 

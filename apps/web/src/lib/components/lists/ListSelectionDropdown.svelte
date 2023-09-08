@@ -3,7 +3,7 @@
     import { sortedListWithKind } from '$lib/stores/list';
     import { NDKList } from '@nostr-dev-kit/ndk';
     import MenuItem from '../sidebars/MenuItem.svelte';
-    import Input from '../Input.svelte';
+    import { Input } from "@kind0/ui-common";
     import { Plus } from 'phosphor-svelte';
     import { ndk } from "@kind0/lib-svelte-kit";
 

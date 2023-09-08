@@ -2,7 +2,7 @@
     import ndk from '$lib/stores/ndk';
     import UserCard from '$lib/components/UserCard.svelte';
     import PillButton from '$lib/components/buttons/pill.svelte';
-    import Input from '$lib/components/Input.svelte';
+    import { Input } from "@kind0/ui-common";
     import CloseIcon from '$lib/icons/Close.svelte';
     import { NDKEvent } from '@nostr-dev-kit/ndk';
     import { requestProvider } from 'webln';

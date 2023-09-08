@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Input from "$lib/components/Input.svelte";
+    import { Input } from "@kind0/ui-common";
 
     export let title: string;
 </script>

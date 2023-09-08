@@ -5,7 +5,7 @@
 
     import { closeModal } from 'svelte-modals';
     import ModalWrapper from '$lib/components/ModalWrapper.svelte';
-    import Input from '$lib/components/Input.svelte';
+    import { Input } from "@kind0/ui-common";
     import { sortedListWithKind, sortedLists } from '$lib/stores/list';
     import type NDKList from '$lib/ndk-kinds/lists';
 
