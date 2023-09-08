@@ -26,10 +26,7 @@
     })
 </script>
 
-+page
-
 {#if sortedStore && $sortedStore}
-{$sortedStore.length}
     <MainWithRightSidebar>
         <HighlightList items={$sortedStore} />
     </MainWithRightSidebar>

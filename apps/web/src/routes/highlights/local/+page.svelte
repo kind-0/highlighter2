@@ -20,4 +20,6 @@
     });
 </script>
 
-<Newest highlights={store} />
+<main class="w-main pb-32 flex flex-col gap-6">
+    <Newest highlights={store} />
+</main>

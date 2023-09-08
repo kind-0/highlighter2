@@ -119,6 +119,9 @@ module.exports = {
                         "background-color": "#232323",
                         color: "#B3B3B3",
                     },
+                    ".btn-neutral": {
+                        "background-color": "#232323",
+                    },
                     ".card": {
                         background: "#111111",
                     },
