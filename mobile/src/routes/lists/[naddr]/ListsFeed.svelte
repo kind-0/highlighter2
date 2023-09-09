@@ -4,7 +4,7 @@
 
     export let name: string;
 
-    import ndk from '$lib/stores/ndk';
+    import { ndk } from "@kind0/lib-svelte-kit";
     import type { NDKSubscription } from '@nostr-dev-kit/ndk';
     import { onDestroy, onMount } from 'svelte';
     import Tags from './tags.svelte';

@@ -3,19 +3,24 @@
     import { fetchArticle } from '$lib/article';
     import Navbar from '$lib/components/Navbar/Navbar.svelte';
     import Reader from '$lib/components/articles/reader.svelte';
-    import { NDKUser } from '@nostr-dev-kit/ndk';
+    import { NDKUser, type Hexpubkey } from '@nostr-dev-kit/ndk';
 
     export let data;
     const { text, contentType } = data;
 
-    let url = $page.url.searchParams.get('url') || '';
-    let author = $page.url.searchParams.get('author') || '';
+    let url: string;
+    let author: string;
 
-    if (url.startsWith('https://highlighter.com/load?url=')) {
-        url = decodeURIComponent(url.replace('https://highlighter.com/load?url=', '') || '');
+    $: {
+        url = $page.url.searchParams.get('url') || '';
+        author = $page.url.searchParams.get('author') || '';
+
+        if (url.startsWith('https://highlighter.com/load?url=')) {
+            url = decodeURIComponent(url.replace('https://highlighter.com/load?url=', '') || '');
+        }
     }
 
-    let authorHexpubkey: string;
+    let authorHexpubkey: Hexpubkey | undefined;
 
     $: {
         if (author && authorHexpubkey === undefined) {

@@ -1,14 +1,14 @@
 <script lang="ts">
     import ArticleContentCard from "$components/ContentCards/ArticleContentCard.svelte";
     import { NDKArticle, NDKEvent } from "@nostr-dev-kit/ndk";
-    import ndk from '$lib/stores/ndk';
+    import { ndk } from "@kind0/lib-svelte-kit";
     import { onMount } from "svelte";
     import type { NDKEventStore } from "@nostr-dev-kit/ndk-svelte";
     import Navbar from "$components/Navbar/Navbar.svelte";
 
     let events: NDKEventStore<NDKEvent>
     let articles: NDKArticle[]
-    
+
     onMount(() => {
         console.log("Pulling Long-form content from relays...")
         events = $ndk.storeSubscribe(

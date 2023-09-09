@@ -1,5 +1,5 @@
 <script lang="ts">
-    import ndk from "$stores/ndk";
+    import { ndk } from "@kind0/lib-svelte-kit";
     import type { NDKFilter } from "@nostr-dev-kit/ndk";
     import CurationCard from "./CurationCard.svelte";
 

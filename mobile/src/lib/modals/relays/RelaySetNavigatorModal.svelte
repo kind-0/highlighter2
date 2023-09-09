@@ -4,11 +4,11 @@
     import { NDKKind } from '$lib/ndk-kinds';
     import RelaySetNavigatorCard from '$lib/components/Sidebar/RelaySetNavigatorCard.svelte';
     import NDKRelayList from '$lib/ndk-kinds/lists/relay-list';
-    import ndk, { defaultRelays } from '$lib/stores/ndk';
     import { currentRelaySet } from '$lib/components/RelaySets';
     import { onDestroy } from 'svelte';
     import type { NDKSubscription } from '@nostr-dev-kit/ndk';
     import { user } from '$stores/session';
+    import { defaultRelays, ndk } from '@kind0/lib-svelte-kit';
 
     const relaySetLists = sortedListWithKind(NDKKind.RelayList);
 

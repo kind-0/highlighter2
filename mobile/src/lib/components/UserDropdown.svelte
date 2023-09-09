@@ -1,13 +1,12 @@
 <script lang="ts">
     import CollapsableDropdown from '$lib/components/CollapsableDropdown.svelte';
-    import { Avatar } from "@kind0/ui-common";
     import { user } from '$stores/session';
-    import ndk from '$lib/stores/ndk';
+    import { ndk } from "@kind0/lib-svelte-kit";
     import GearIcon from '$lib/icons/Gear.svelte';
     import { logout } from '$lib/currentUser';
     import Notification from './Notification.svelte';
     import { Name } from '@nostr-dev-kit/ndk-svelte-components';
-    import SubtleButton from './buttons/SubtleButton.svelte';
+    import { Avatar, SubtleButton } from '@kind0/ui-common';
 </script>
 
 <CollapsableDropdown>
@@ -52,7 +51,7 @@
             </div>
             <div class="p-[22px]">
                 <SubtleButton on:click={logout} class="w-full">
-                    <span slot="btn-content">Log Out</span>
+                    <span>Log Out</span>
                 </SubtleButton>
             </div>
         </ul>

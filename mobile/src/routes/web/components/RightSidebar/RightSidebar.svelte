@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { NDKDVMJobResult, NDKDVMRequest, NDKEvent, NDKKind } from '@nostr-dev-kit/ndk';
     import MenuItem from "$components/sidebars/MenuItem.svelte";
-    import ndk from "$lib/stores/ndk";
+    import {ndk} from "@kind0/lib-svelte-kit";
     import { onMount } from 'svelte';
 
     let requests: Map<string, NDKEvent>;
@@ -36,7 +36,7 @@
 
         {#each Array.from(jobResponses) as jobResponse (jobResponse.id)}
             {#if jobRequest(jobResponse)}
-                <MenuItem href="/highlights/network/newest">
+                <MenuItem href="/highlights/network">
                     <div class="flex flex-row gap-2 items-center">
                         <span class="truncate">
                             {jobRequest(jobResponse)?.tagValue("i")}

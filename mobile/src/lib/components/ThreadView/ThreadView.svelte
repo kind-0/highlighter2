@@ -1,7 +1,7 @@
 <script lang="ts">
 	import GenericEventCard from '$lib/components/events/generic/card.svelte';
     import type { NDKEvent } from "@nostr-dev-kit/ndk";
-    import ndk from '$lib/stores/ndk';
+    import { ndk } from "@kind0/lib-svelte-kit";
     import { derived } from 'svelte/store';
     import { fade } from 'svelte/transition';
 

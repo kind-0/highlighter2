@@ -1,6 +1,6 @@
 <script lang="ts">
     import {Avatar, Name} from '@nostr-dev-kit/ndk-svelte-components';
-    import ndk from '$lib/stores/ndk';
+    import { ndk } from "@kind0/lib-svelte-kit";
     import type { NDKUser } from '@nostr-dev-kit/ndk';
     import { Books, HighlighterCircle, Newspaper } from 'phosphor-svelte';
     import { page } from '$app/stores';

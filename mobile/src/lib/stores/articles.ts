@@ -1,7 +1,7 @@
 import { NDKKind, NDKArticle, type NDKFilter } from "@nostr-dev-kit/ndk";
 import type { NDKEventStore } from "@nostr-dev-kit/ndk-svelte";
 import { get } from "svelte/store";
-import ndk from "./ndk";
+import { ndk } from "@kind0/lib-svelte-kit";
 
 const baseFilters: NDKFilter[] = [ { kinds: [NDKKind.Article as number], limit: 10 } ];
 

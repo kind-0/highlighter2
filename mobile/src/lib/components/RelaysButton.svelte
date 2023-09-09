@@ -1,6 +1,6 @@
 <script lang="ts">
     import {RelayList} from '@nostr-dev-kit/ndk-svelte-components';
-    import ndk from '$lib/stores/ndk';
+    import { ndk } from "@kind0/lib-svelte-kit";
     import { PlugsConnected } from 'phosphor-svelte';
 
     export let iconOnly = false;
@@ -31,7 +31,7 @@
     <div tabindex="0" class="dropdown-content z-20 card card-compact w-96 shadow bg-primary text-primary-content">
         <div class="card-body">
             <div class="flex flex-col gap-4">
-                <RelayList ndk={$ndk} />
+                <!-- <RelayList ndk={$ndk} /> -->
             </div>
         </div>
     </div>

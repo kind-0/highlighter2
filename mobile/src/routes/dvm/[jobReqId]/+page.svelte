@@ -3,7 +3,7 @@
     import JobRequestTranscription from "$lib/components/jobs/request/JobRequestTranscription.svelte";
     import JobRequestEventsFeed from "$lib/components/jobs/request/event-feed/JobRequestEventsFeed.svelte";
     import Stars from "$lib/icons/Stars.svelte";
-    import ndk from "$lib/stores/ndk";
+    import {ndk} from "@kind0/lib-svelte-kit";
     import { NDKEvent, NDKTranscriptionDVM } from "@nostr-dev-kit/ndk";
 
     let jobReqId: string;

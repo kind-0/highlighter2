@@ -1,4 +1,5 @@
 <script>
+	import { sortedLists } from '$lib/stores/list';
     import Highlight from "$lib/icons/Highlight.svelte";
     import Relays from "$lib/icons/Relays.svelte";
     import { NDKKind } from "$lib/ndk-kinds";
@@ -28,30 +29,24 @@
             </div>
         </SidebarFolderTree>
 
-        <SidebarFolderTree kinds={[NDKKind.GenericList]}>
-            <div slot="title" class="mt-2">
-                <li class="menu-title flex flex-row items-center">
-                    <BookBookmark class="w-4 h-4 mr-2" />
-                    GENERIC
-                </li>
+        <SidebarFolderTree kinds={[NDKKind.GenericList]} open={false}>
+            <div slot="collapsableTitle" class="flex flex-row gap-2 items-center w-full">
+                <BookBookmark class="w-4 h-4 mr-2" />
+                GENERIC
             </div>
         </SidebarFolderTree>
 
         <SidebarFolderTree kinds={[NDKKind.UserList]}>
-            <div slot="title" class="mt-2">
-                <li class="menu-title flex flex-row items-center">
-                    <Users class="w-4 h-4 mr-2" />
-                    PROFILES
-                </li>
+            <div slot="collapsableTitle" class="flex flex-row gap-2 items-center w-full">
+                <Users class="w-4 h-4 mr-2" />
+                PROFILES
             </div>
         </SidebarFolderTree>
 
         <SidebarFolderTree kinds={[NDKKind.RelayList]}>
-            <div slot="title" class="mt-2">
-                <li class="menu-title flex flex-row items-center">
-                    <Relays class="w-4 h-4 mr-2" />
-                    RELAY SETS
-                </li>
+            <div slot="collapsableTitle" class="flex flex-row gap-2 items-center w-full">
+                <Relays class="w-4 h-4 mr-2" />
+                RELAY SETS
             </div>
         </SidebarFolderTree>
     </ul>

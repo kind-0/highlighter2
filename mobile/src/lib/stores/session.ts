@@ -1,5 +1,5 @@
 import { writable, get as getStore, type Writable, readable, derived } from 'svelte/store';
-import ndk from './ndk';
+import { ndk } from "@kind0/lib-svelte-kit";
 import { NDKEvent, NDKList, NDKSubscriptionCacheUsage, type NDKFilter, type NDKTag, type NDKUser } from '@nostr-dev-kit/ndk';
 import type NDKSvelte from '@nostr-dev-kit/ndk-svelte';
 import { NDKListKinds } from '$lib/ndk-kinds';
@@ -80,7 +80,6 @@ export async function prepareSession(): Promise<void> {
                 listsStore: userLists,
                 followHashtagsStore: userFollowHashtags,
                 waitUntilEoseToResolve: !alreadyKnowFollows,
-                extraKinds: [0],
             }
         ).then(() => {
             const $userFollows = getStore(userFollows);
@@ -279,13 +278,6 @@ async function fetchData(
     return new Promise((resolve) => {
         const kinds = opts.extraKinds ?? [];
 
-        if (opts.highlightStore) {
-            kinds.push(9802 as number);      // highlight shelves
-        }
-
-        if (opts.followsStore)
-            kinds.push(3);        // follows
-
         if (opts.listsStore) {
             kinds.push(...opts.listsKinds!);
         }
@@ -295,11 +287,16 @@ async function fetchData(
             { "#k": ["9802"], authors }
         ];
 
+        if (opts.highlightStore) {
+            filters.push({ authors, kinds: [9802], limit: 1 });
+        }
+
+        if (opts.followsStore) {
+            filters.push({ kinds: [0, 3], authors });
+        }
+
         if (opts.followHashtagsStore) {
-            filters.push({
-                authors,
-                "#d": ["hashtags"]
-            });
+            filters.push({ authors, "#d": ["hashtags"] });
         }
 
         const userDataSubscription = $ndk.subscribe(

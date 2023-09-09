@@ -91,7 +91,7 @@
                     class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-2/3 md:translate-y-1/4 lg:translate-y-3/4"
                     innerClass="text-xl md:text-2xl px-10 py-4"
                     style="z-index: 9999"
-                    href="/highlights/global/newest"
+                    href="/highlights/local"
                 >
                     Get Started
                 </ButtonWithBorderGradient2>

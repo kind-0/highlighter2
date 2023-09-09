@@ -1,5 +1,5 @@
 import { get as getStore } from 'svelte/store';
-import ndk from '$lib/stores/ndk';
+import { ndk } from "@kind0/lib-svelte-kit";
 import { NDKEvent, type NostrEvent } from '@nostr-dev-kit/ndk';
 
 export default async function rejectEvent(event: NDKEvent, reason?: string): Promise<NDKEvent> {

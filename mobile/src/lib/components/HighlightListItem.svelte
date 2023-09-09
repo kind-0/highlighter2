@@ -3,11 +3,12 @@
 
     import{ Avatar } from "@kind0/ui-common";
 
-    import ndk, { type NDKEventStore } from '$lib/stores/ndk';
     import NoteCard from '$lib/components/notes/card.svelte';
     import type { NDKHighlight } from "@nostr-dev-kit/ndk";
     import type { NDKEvent } from '@nostr-dev-kit/ndk';
-    import MarginNoteCard from './events/margin-note/MarginNoteCard.svelte';
+    import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
+    import { ndk } from '@kind0/lib-svelte-kit';
+    import { MarginNoteCard } from '@kind0/highlighter';
 
     export let highlight: NDKHighlight;
     export let skipTitle: boolean = false;
@@ -27,11 +28,14 @@
     let quotePubkeys: string[] = [];
 
     // Set the quote pubkeys
-    $: if ($quotes && $quotes.length > 0 && quotes.length != quotePubkeys.length) {
+    $: if ($quotes && $quotes.length > 0 && $quotes.length != quotePubkeys.length) {
         quotePubkeys = $quotes.map((q: NDKEvent) => q.pubkey);
     }
 
-    quotes = $ndk.storeSubscribe({ kinds: [1], '#q': [highlight.id] }, { closeOnEose: true, groupableDelay: 500 });
+    quotes = $ndk.storeSubscribe(
+        { kinds: [1], '#q': [highlight.id] },
+        { closeOnEose: true, groupableDelay: 500, subId: "highlight-quotes" }
+    );
 
     function shouldDisplayQuote(highlight: NDKHighlight, quotes: NDKEvent[]) {
         if (!$quotes || $quotes.length === 0) {
@@ -58,7 +62,6 @@
                 {skipTitle}
                 {disableClick}
             />
-
             {#if ($quotes||[]).length > 0}
                 {#if collapsedQuotes}
                     <div class="px-8 py-3">

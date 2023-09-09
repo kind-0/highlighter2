@@ -1,7 +1,7 @@
 import { goto } from "$app/navigation";
 import { NDKDVMJobResult, NDKEvent, type NostrEvent } from '@nostr-dev-kit/ndk';
 import { pay } from '$lib/utils/pay';
-import ndk from '$lib/stores/ndk';
+import { ndk } from "@kind0/lib-svelte-kit";
 import { get as getStore } from 'svelte/store';
 
 export default async function chooseResult(pendingAmount: number, event: NDKDVMJobResult) {

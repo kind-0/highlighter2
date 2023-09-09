@@ -3,7 +3,7 @@
     import HighlightCard from '$lib/components/highlights/HighlightCard.svelte';
     import NoteCard from '$lib/components/notes/card.svelte';
     import { getContext } from 'svelte';
-    import ndk from '$lib/stores/ndk';
+    import { ndk } from "@kind0/lib-svelte-kit";
     import { createEventDispatcher } from 'svelte';
     import type { NDKEvent, NDKFilter } from '@nostr-dev-kit/ndk';
     import { user } from '$stores/session';
@@ -15,9 +15,9 @@
     import ArticleIntroCard from '$lib/components/articles/cards/ArticleIntroCard.svelte';
     import NDKArticle from "@nostr-dev-kit/ndk";
     import { createDraggableEvent } from '$lib/utils/draggable';
-    import MarginNoteCard from '../margin-note/MarginNoteCard.svelte';
     import { isMarginNote } from './types';
     import { NDKListKinds } from '$lib/ndk-kinds';
+    import { MarginNoteCard } from '@kind0/highlighter';
 
     export let bech32: string | undefined = undefined;
     export let id: string | undefined = undefined;

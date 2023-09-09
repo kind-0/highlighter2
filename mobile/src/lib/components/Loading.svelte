@@ -1,8 +1,4 @@
 <script lang="ts">
-    import { user } from '$stores/session';
-    import ndk from '$stores/ndk';
-    import { type NDKEvent } from '@nostr-dev-kit/ndk';
-
     let showText = false;
 
     function handleVideoEnd() {

@@ -18,11 +18,11 @@
 </script>
 
 <ul class="flex flex-col gap-2 text-lg w-full items-end text-base-300-content">
-    <Link href="/highlights/global/newest">
-        Global
+    <Link href="/highlights/local">
+        Local
     </Link>
-    <Link href="/highlights/network/newest">My Network</Link>
-    <Link href="/highlights/personal/newest">My Network</Link>
+    <Link href="/highlights/network">My Network</Link>
+    <Link href="/highlights/personal">Just Me</Link>
     <Link href="/highlights/explore">Explore</Link>
 </ul>
 

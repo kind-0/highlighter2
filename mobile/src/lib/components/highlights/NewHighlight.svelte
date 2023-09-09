@@ -1,12 +1,11 @@
 <script lang="ts">
-    import ndk from '$lib/stores/ndk';
+    import { ndk } from "@kind0/lib-svelte-kit";
     import { NDKEvent, NDKList, type NostrEvent } from '@nostr-dev-kit/ndk';
     import { createEventDispatcher } from 'svelte';
     import type { NDKHighlight } from "@nostr-dev-kit/ndk";
-    import TopicInput from '../TopicInput.svelte';
     import MainCtaInSecondaryActionButton from '../buttons/MainCTAInSecondaryActionButton.svelte';
     import { CaretDown, Folder, Pen } from 'phosphor-svelte';
-    import { Textarea } from '@kind0/ui-common';
+    import { Textarea, TopicInput } from '@kind0/ui-common';
     import HighlightContentBox from './HighlightContentBox.svelte';
     import ListSelectionDropdown from '$lib/components/lists/ListSelectionDropdown.svelte';
     import { NDKKind } from '$lib/ndk-kinds';
@@ -85,17 +84,22 @@
     }
 
     async function createMarginNote() {
+        const articleTag = highlight.getArticleTag();
         const marginNoteEvent = new NDKEvent($ndk, {
             kind: 1,
             content: `nostr:${highlight.encode()}\n${marginNote}`,
             tags: [
                 ['q', highlight.tagId(), 'quote'],
-                ['k', highlight.kind?.toString()]
+                ['k', highlight.kind?.toString()],
             ]
         } as NostrEvent)
 
+        if (articleTag) {
+            marginNoteEvent.tags.push(articleTag);
+        }
+
         for (const topic of topics) {
-            highlight.tags.push(['t', topic]);
+            marginNoteEvent.tags.push(['t', topic]);
         }
 
         await marginNoteEvent.publish();

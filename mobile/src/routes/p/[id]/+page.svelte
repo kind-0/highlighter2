@@ -2,7 +2,7 @@
     import { goto } from '$app/navigation';
     import { page } from '$app/stores';
     import UserInterface from '$lib/interfaces/users';
-    import ndk from "$lib/stores/ndk";
+    import {ndk} from "@kind0/lib-svelte-kit";
     import type { NDKUser } from '@nostr-dev-kit/ndk';
 
     let { npub } = $page.data;

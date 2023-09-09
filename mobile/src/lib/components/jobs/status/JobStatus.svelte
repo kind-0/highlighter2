@@ -2,7 +2,7 @@
     import { zapInvoiceFromEvent, type NDKEvent, NDKKind, NDKDVMJobResult } from "@nostr-dev-kit/ndk";
     import AcceptResultButtons from "./AcceptResultButtons.svelte";
     import { onDestroy } from "svelte";
-    import ndk from '$lib/stores/ndk';
+    import { ndk } from "@kind0/lib-svelte-kit";
     import { AvatarWithName } from "@kind0/ui-common";
     import PaymentRequestButton from "./PaymentRequestButton.svelte";
     import { user } from '$stores/session';
@@ -82,7 +82,7 @@
         zaps = $ndk.storeSubscribe({
             kinds: [9735],
             "#e": events.map(e => e.tagId())
-        }, { closeOnEose: false });
+        }, { closeOnEose: false, groupableDelay: 250, subId: "jobStatus" });
     }
 
     function chooseEventWithAmount(events: NDKEvent[]): NDKEvent | undefined {

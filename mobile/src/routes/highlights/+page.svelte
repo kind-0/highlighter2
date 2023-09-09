@@ -11,7 +11,7 @@
 
     onMount(() => {
         if (!$user) {
-            goto(`/highlights/global`);
+            goto(`/highlights/local`);
             return;
         }
 
@@ -26,6 +26,8 @@
     })
 </script>
 
-<MainWithRightSidebar>
-    <HighlightList items={$sortedStore} />
-</MainWithRightSidebar>
+{#if sortedStore && $sortedStore}
+    <MainWithRightSidebar>
+        <HighlightList items={$sortedStore} />
+    </MainWithRightSidebar>
+{/if}

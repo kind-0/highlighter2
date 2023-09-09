@@ -2,7 +2,7 @@
     import { goto } from "$app/navigation";
     import { addLongForm } from "$lib/stores/long-form";
 
-    import ndk from "$lib/stores/ndk";
+    import {ndk} from "@kind0/lib-svelte-kit";
     import { user } from "$stores/session";
     import type { NostrEvent } from "@nostr-dev-kit/ndk";
     import { NDKArticle } from "@nostr-dev-kit/ndk";

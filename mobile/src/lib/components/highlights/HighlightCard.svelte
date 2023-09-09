@@ -2,15 +2,15 @@
     import EventCard from "$lib/components/events/EventCard.svelte";
     import HighlightContent from '$lib/components/highlights/HighlightContent.svelte';
 
-    import ndk from '$lib/stores/ndk';
+    import { ndk } from "@kind0/lib-svelte-kit";
 
     import type { NDKEvent } from '@nostr-dev-kit/ndk';
     import type { NDKHighlight } from "@nostr-dev-kit/ndk";
     import type { NDKArticle } from "@nostr-dev-kit/ndk";
     import { onDestroy, onMount } from 'svelte';
     import linkToArticle from './link-to-article';
-    import HighlightHeader from "./HighlightHeader.svelte";
     import type { NDKEventStore } from "@nostr-dev-kit/ndk-svelte";
+    import { HighlightCardHeader } from "@kind0/highlighter";
 
     export let highlight: NDKHighlight;
     export let article: NDKArticle | NDKEvent | undefined = undefined;
@@ -79,7 +79,7 @@
     >
         <div slot="header" class="w-full truncate">
             {#if !skipTitle}
-                <HighlightHeader {highlight} />
+                <HighlightCardHeader {highlight} />
             {/if}
         </div>
 

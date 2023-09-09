@@ -1,5 +1,4 @@
 <script lang="ts">
-	import ZapsButton from '$lib/components/events/buttons/zaps.svelte';
 	import RepliesButton from '$lib/components/events/buttons/replies.svelte';
 	import BoostButton from '$lib/components/events/buttons/boost.svelte';
 	import BookmarkButton from '$lib/components/events/buttons/bookmark.svelte';
@@ -61,6 +60,6 @@
     <div class="
         {zappedAmount === 0 ? "md:opacity-0 group-hover:opacity-100 transition duration-300" : ""}
     ">
-        <ZapsButton bind:zappedAmount {event} class="btn bg-base-100 hover:bg-base-200 btn-circle btn-xs w-6 h-6 p-1" />
+        <!-- <ZapsButton bind:zappedAmount {event} class="btn bg-base-100 hover:bg-base-200 btn-circle btn-xs w-6 h-6 p-1" /> -->
     </div>
 </div>

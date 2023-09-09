@@ -1,5 +1,5 @@
 <script lang="ts">
-    import ndk from '$lib/stores/ndk';
+    import { ndk } from "@kind0/lib-svelte-kit";
     import CloseIcon from '$lib/icons/Close.svelte';
     import { NDKEvent, type NostrEvent } from '@nostr-dev-kit/ndk';
 
@@ -75,7 +75,9 @@
         </ul>
 
         <div class="join join-vertical md:join-horizontal">
-            <Input type="text" class="join-item" placeholder="New List" bind:value={newListName} />
+            <Input type="text" klass="
+                join-item
+            " placeholder="New List" bind:value={newListName} />
 
             <button class="
                 btn btn-primary
