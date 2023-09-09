@@ -1,6 +1,6 @@
 import { writable, get as getStore, type Writable, readable, derived } from 'svelte/store';
 import { ndk } from "@kind0/lib-svelte-kit";
-import { NDKEvent, NDKList, NDKSubscriptionCacheUsage, type NDKFilter, type NDKTag, type NDKUser } from '@nostr-dev-kit/ndk';
+import { NDKEvent, NDKList, NDKSubscriptionCacheUsage, type NDKFilter, type NDKTag, type NDKUser, NDKKind } from '@nostr-dev-kit/ndk';
 import type NDKSvelte from '@nostr-dev-kit/ndk-svelte';
 import { NDKListKinds } from '$lib/ndk-kinds';
 import { NDKHighlight } from "@nostr-dev-kit/ndk";
@@ -30,6 +30,11 @@ export const userFollows = persist(
  * Current user's lists
  */
 export const userLists = writable<Map<string, NDKList>>(new Map());
+
+/**
+ * Current user labels
+ */
+export const userLabels = writable<Set<string>>(new Set());
 
 export const highlights = writable<Map<string, NDKHighlight>>(new Map());
 
@@ -77,6 +82,7 @@ export async function prepareSession(): Promise<void> {
             {
                 highlightStore: highlights,
                 followsStore: userFollows,
+                labelsStore: userLabels,
                 listsStore: userLists,
                 followHashtagsStore: userFollowHashtags,
                 waitUntilEoseToResolve: !alreadyKnowFollows,
@@ -149,6 +155,7 @@ function isHashtagListEvent(event: NDKEvent) {
 interface IFetchDataOptions {
     highlightStore? : Writable<Map<string, NDKEvent>>;
     followsStore?: Writable<Set<string>>;
+    labelsStore?: Writable<Set<string>>;
     listsStore?: Writable<Map<string, NDKList>>;
     listsKinds?: number[];
     extraKinds?: number[];
@@ -201,6 +208,8 @@ async function fetchData(
             processHighlight(event);
         } else if (isHashtagListEvent(event) && opts.followHashtagsStore) {
             processHashtagList(event);
+        } else if (event.kind === NDKKind.Label) {
+            processLabel(event);
         } else if (NDKListKinds.includes(event.kind!) && opts.listsStore) {
             processList(event);
         }
@@ -212,6 +221,16 @@ async function fetchData(
             highlights.set(highlight.id, highlight);
 
             return highlights;
+        });
+    };
+
+    const processLabel = (event: NDKEvent) => {
+        opts.labelsStore!.update((labels) => {
+            for (const tag of event.getMatchingTags("l")) {
+                if (tag[2] === "#t") labels.add(tag[1]);
+            }
+
+            return labels;
         });
     };
 
@@ -288,7 +307,11 @@ async function fetchData(
         ];
 
         if (opts.highlightStore) {
-            filters.push({ authors, kinds: [9802], limit: 1 });
+            filters.push({ authors, kinds: [9802], limit: 100 });
+        }
+
+        if (opts.labelsStore) {
+            filters.push({ authors, kinds: [1985], "#L": ["#t"] });
         }
 
         if (opts.followsStore) {

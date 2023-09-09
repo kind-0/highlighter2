@@ -1,18 +1,21 @@
 <script lang="ts">
+	import { userLabels } from '$stores/session';
     import { ndk } from "@kind0/lib-svelte-kit";
-    import { NDKEvent, NDKList, type NostrEvent } from '@nostr-dev-kit/ndk';
+    import { NDKEvent, NDKKind, NDKList, type NostrEvent } from '@nostr-dev-kit/ndk';
     import { createEventDispatcher } from 'svelte';
     import type { NDKHighlight } from "@nostr-dev-kit/ndk";
     import MainCtaInSecondaryActionButton from '../buttons/MainCTAInSecondaryActionButton.svelte';
-    import { CaretDown, Folder, Pen } from 'phosphor-svelte';
     import { Textarea, TopicInput } from '@kind0/ui-common';
     import HighlightContentBox from './HighlightContentBox.svelte';
-    import ListSelectionDropdown from '$lib/components/lists/ListSelectionDropdown.svelte';
-    import { NDKKind } from '$lib/ndk-kinds';
     import HighlightCard from './HighlightCard.svelte';
 
     export let highlight: NDKHighlight;
     export let topics: string[] = [];
+
+    export let availableTopics: string[] = topics;
+    export let suggestedTopics: string[] = [];
+
+    availableTopics = $userLabels ? Array.from($userLabels) : [];
 
     const autofocus = !!('ontouchstart' in window || navigator.maxTouchPoints);
 
@@ -56,6 +59,24 @@
         await repost.publish();
     }
 
+    async function createLabelEvent() {
+        const labelEvent = new NDKEvent($ndk, {
+            kind: NDKKind.Label,
+            tags: [
+                ['L', '#t'],
+            ]
+        } as NostrEvent)
+
+        labelEvent.tags.push(highlight.tagReference());
+
+        for (const topic of topics) {
+            labelEvent.tags.push(['l', topic, '#t']);
+        }
+
+        await labelEvent.sign();
+        await labelEvent.publish();
+    }
+
     async function save() {
         saving = true;
 
@@ -63,6 +84,11 @@
             await saveHighlight();
         } else {
             await repostHighlight();
+        }
+
+        // create NIP-32 label if we have topics
+        if (topics.length > 0) {
+            createLabelEvent();
         }
 
         let marginNoteEvent;
@@ -129,9 +155,7 @@
     }
 </script>
 
-<div
-        class="backdrop z-10 fixed md:hidden"
-        ></div>
+<div class="backdrop z-10 fixed md:hidden"></div>
 
 <style>
     .backdrop {
@@ -144,8 +168,8 @@
     }
 </style>
 
-<div class="flex flex-col gap-4 absolute md:static top-0 w-screen md:w-auto hs-[80vh] md:h-auto z-50">
-    <div class="
+<div class="flex flex-col gap-4 absolute md:static top-0 md:w-auto hs-[80vh] md:h-auto z-50 w-full">
+    <div class="w-full
         card card-compact card-bordered
         rounded-md
         flex flex-col h-full gap-2
@@ -204,15 +228,17 @@
                 py-4 pb-0
             ">
                 <div class="flex flex-row md:flex-col gap-0 md:gap-4 items-center md:items-start whitespace-nowrap">
-                        <TopicInput
-                            class="btn-outline btn-neutral !rounded-full"
-                            bind:values={topics}
-                        />
-                        <ListSelectionDropdown
+                    <TopicInput
+                        class="btn-outline btn-neutral !rounded-full font-normal"
+                        bind:selectedTopics={topics}
+                        bind:availableTopics
+                        bind:suggestedTopics
+                    />
+                        <!-- <ListSelectionDropdown
                             kinds={[NDKKind.GenericList, NDKKind.HighlightList]}
                             newListKind={NDKKind.HighlightList}
                             bind:selectedLists
-                            class="btn-outline btn-neutral !rounded-full"
+                            class="btn border-0 btn-neutral !rounded-full"
                             dropdownClass=""
                         >
                             <div class="flex flex-row items-center gap-2 font-normal whitespace-nowrap">
@@ -233,23 +259,22 @@
                                     <CaretDown class="w-4 h-4" />
                                 {/if}
                             </div>
-                        </ListSelectionDropdown>
+                        </ListSelectionDropdown> -->
                 </div>
 
                 <div class="
                     flex flex-row gap-4 items-center
                 ">
                     <!-- Cancel Button -->
-                    <button class="btn btn-ghost" on:click={close}>
+                    <button class="btn btn-ghost !rounded-full font-normal" on:click={close}>
                         Cancel
                     </button>
 
                     <!-- Save Button -->
                     <MainCtaInSecondaryActionButton
-                        class="btn-lg"
+                        class="px-10 text-base font-normal"
                         on:click={save} disabled={saving}
                     >
-                        <Pen class="w-4 h-4 mr-2" />
                         <div class="text-base-100-content">Save</div>
                     </MainCtaInSecondaryActionButton>
                 </div>

@@ -6,7 +6,6 @@
     import { onDestroy, onMount } from 'svelte';
     import { Avatar } from "@kind0/ui-common";
     import { Name } from '@nostr-dev-kit/ndk-svelte-components';
-    import EventCardActions from '../events/EventCardActions.svelte';
     import { ndk } from "@kind0/lib-svelte-kit";
     import type { NDKEventStore } from "@nostr-dev-kit/ndk-svelte";
 
@@ -61,7 +60,6 @@
         {/if}
         <div class="flex flex-row items-center justify-end">
             <div>
-                <EventCardActions {event} />
             </div>
         </div>
     </div>

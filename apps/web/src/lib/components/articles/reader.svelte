@@ -194,12 +194,6 @@
     <title>{articleTitle() || "Highlighter.com"}</title>
 </svelte:head>
 
-{#if $highlights}
-    highlights= {$highlights.length} length
-    articleEvents= {$articleEvents?.length} length
-    marginNotes= {$marginNotes?.length} length
-{/if}
-
 <RightDrawerLayout>
     <div class="flex flex-col md:flex-row w-full mx-auto md:px-6">
         <div class="card md:w-7/12 leading-loose flex flex-col gap-2 text-lg card-compact md:card-normal">
@@ -272,7 +266,7 @@
                 {/if}
 
                 {#if openedHighlight}
-                    <div class="z-50 fixed top-20" transition:fade>
+                    <div class="z-50 fixed top-20 w-full" transition:fade>
                         <NewHighlight
                             highlight={openedHighlight}
                             on:close={onNewHighlightClose}

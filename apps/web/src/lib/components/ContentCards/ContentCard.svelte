@@ -59,7 +59,7 @@
             <div class="hidden group-hover:flex flex-col flex-grow justify-between pt-2 gap-2.5 transition-all duration-300">
                 <div>
                     {#if summary}
-                    <p class="summary text-xs font-normal leading-[18px]">{summary}</p>
+                    <p class="summary text-xs font-normal leading-[18px] whitespace-normal">{summary}</p>
                     {/if}
                 </div>
                 <ZapCounter {event} />

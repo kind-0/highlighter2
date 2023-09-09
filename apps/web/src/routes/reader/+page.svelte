@@ -14,7 +14,7 @@
 
     function newContentEose() {
         renderNewContent = renderNewContent || (
-            newContentItems.length >= newContentArticlesToRender
+            newContentItems?.length >= newContentArticlesToRender
         );
 
         if (renderNewContent) {

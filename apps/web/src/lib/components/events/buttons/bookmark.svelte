@@ -1,7 +1,6 @@
 <script lang="ts">
     import { openModal } from 'svelte-modals'
 
-    import BookmarkIcon from '$lib/icons/Bookmark.svelte';
     import BookmarkModal from '$lib/modals/Bookmark.svelte';
 
     import type { NDKEvent } from '@nostr-dev-kit/ndk';
@@ -17,5 +16,5 @@
         class="{$$props.class}"
         class:cursor-not-allowed={!$user}
         on:click={() => { openModal(BookmarkModal, { event }) }}
-    ><BookmarkIcon class="w-4 h-4" /></button>
+    ></button>
 </div>

@@ -9,8 +9,9 @@
     import Loading from '$lib/components/Loading.svelte';
     import { page } from '$app/stores';
     import { goto } from '$app/navigation';
+    import { user as uiCommonUser, userLabels as uiCommonUserLabels } from '@kind0/ui-common';
 
-    import { user, prepareSession, loadingScreen, userFollows, networkFollows } from '$stores/session';
+    import { user, userLabels, prepareSession, loadingScreen, userFollows, networkFollows } from '$stores/session';
     import { bunkerNDK, ndk } from '@kind0/lib-svelte-kit';
 
     $: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : ''
@@ -23,10 +24,12 @@
             $ndk.connect();
             login($ndk, $bunkerNDK).then((user) => {
                 $user = user;
+                $uiCommonUser = user!;
+                console.log(`setting user2`);
             })
             mounted = true;
         } catch (e) {
-            console.error(`layout error`, e);
+            console.error(`layout error2`, e);
             mounted = true;
         }
     });
@@ -48,10 +51,15 @@
         }
     }
 
+    $: if (!$uiCommonUser && $user) {
+        $uiCommonUser = $user;
+    }
+
+    $: $uiCommonUserLabels = $userLabels;
+
     // Probably wrong
     $: {
-        setContext('user', user);
-        console.log(`setting context`);
+        console.log(`setting user 2`);
     }
 
     let shouldShowLoadingScreen = true;
