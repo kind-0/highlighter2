@@ -10,7 +10,7 @@
     import { onDestroy, onMount } from 'svelte';
     import linkToArticle from './link-to-article';
     import type { NDKEventStore } from "@nostr-dev-kit/ndk-svelte";
-    import { HighlightCardHeader } from "@kind0/highlighter";
+    import { HighlightCardHeader } from "@highlighter/svelte-kit-lib";
 
     export let highlight: NDKHighlight;
     export let article: NDKArticle | NDKEvent | undefined = undefined;

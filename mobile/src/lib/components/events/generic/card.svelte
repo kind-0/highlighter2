@@ -17,7 +17,7 @@
     import { createDraggableEvent } from '$lib/utils/draggable';
     import { isMarginNote } from './types';
     import { NDKListKinds } from '$lib/ndk-kinds';
-    import { MarginNoteCard } from '@kind0/highlighter';
+    import { MarginNoteCard } from '@highlighter/svelte-kit-lib';
 
     export let bech32: string | undefined = undefined;
     export let id: string | undefined = undefined;

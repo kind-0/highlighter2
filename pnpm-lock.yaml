@@ -162,7 +162,7 @@ importers:
       '@grail-ui/svelte':
         specifier: ^0.10.1
         version: 0.10.1(svelte@4.2.0)
-      '@kind0/highlighter':
+      '@highlighter/svelte-kit-lib':
         specifier: workspace:*
         version: link:../../highlighter
       '@kind0/tsconfig':
@@ -318,7 +318,7 @@ importers:
         version: 8.4.28
       svelte-preprocess:
         specifier: ^5.0.4
-        version: 5.0.4(@babel/core@7.22.11)(postcss@8.4.28)(svelte@4.2.0)(typescript@5.1.6)
+        version: 5.0.4(@babel/core@7.22.15)(postcss@8.4.28)(svelte@4.2.0)(typescript@5.1.6)
       typescript:
         specifier: ^5.1.6
         version: 5.1.6
@@ -464,7 +464,7 @@ importers:
       '@grail-ui/svelte':
         specifier: ^0.10.1
         version: 0.10.1(svelte@4.2.0)
-      '@kind0/highlighter':
+      '@highlighter/svelte-kit-lib':
         specifier: workspace:*
         version: link:../highlighter
       '@kind0/tsconfig':
@@ -626,7 +626,7 @@ importers:
         version: 8.4.28
       svelte-preprocess:
         specifier: ^5.0.4
-        version: 5.0.4(@babel/core@7.22.11)(postcss@8.4.28)(svelte@4.2.0)(typescript@5.1.6)
+        version: 5.0.4(@babel/core@7.22.15)(postcss@8.4.28)(svelte@4.2.0)(typescript@5.1.6)
       typescript:
         specifier: ^5.1.6
         version: 5.1.6
@@ -15606,6 +15606,7 @@ packages:
       strip-indent: 3.0.0
       svelte: 4.2.0
       typescript: 5.1.6
+    dev: false
 
   /svelte-preprocess@5.0.4(@babel/core@7.22.11)(postcss@8.4.28)(svelte@4.2.0)(typescript@5.2.2):
     resolution: {integrity: sha512-ABia2QegosxOGsVlsSBJvoWeXy1wUKSfF7SWJdTjLAbx/Y3SrVevvvbFNQqrSJw89+lNSsM58SipmZJ5SRi5iw==}
@@ -15703,7 +15704,6 @@ packages:
       strip-indent: 3.0.0
       svelte: 4.2.0
       typescript: 5.1.6
-    dev: false
 
   /svelte-preprocess@5.0.4(@babel/core@7.22.15)(postcss@8.4.29)(svelte@4.2.0)(typescript@5.2.2):
     resolution: {integrity: sha512-ABia2QegosxOGsVlsSBJvoWeXy1wUKSfF7SWJdTjLAbx/Y3SrVevvvbFNQqrSJw89+lNSsM58SipmZJ5SRi5iw==}

@@ -5,7 +5,7 @@
     import { currentScope } from '$lib/store';
     import { fade } from 'svelte/transition';
     import { derived, type Readable } from 'svelte/store';
-    import { ReaderMarginNotePopup } from "@kind0/highlighter";
+    import { ReaderMarginNotePopup } from "@highlighter/svelte-kit-lib";
 
     import HighlightWrapper from '../HighlightWrapper.svelte';
     import Article from '../Article.svelte';
