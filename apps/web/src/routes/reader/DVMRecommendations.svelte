@@ -6,6 +6,7 @@
     import { contentDiscoveryApps } from "$stores/nip89";
     import { Avatar, RelativeTime } from "@kind0/ui-common";
     import DvmRecommendationResult from "./DVMRecommendationResult.svelte";
+    import { slide } from "svelte/transition";
 
     const highlighterRecommendationsDVM = new NDKUser({npub: "npub1w0rthyjyp2f5gful0gm2500pwyxfrx93a85289xdz0sd6hyef33sh2cu4x"});
 
@@ -86,6 +87,8 @@
                 .find((e: NDKDVMJobResult) => e.pubkey === selectedDVM?.pubkey);
         }
     }
+
+    let expanded = false;
 </script>
 
 <!-- <pre>
@@ -98,65 +101,69 @@
     {/key}
 </pre> -->
 
-{#if selectedDVM}
-    <Section
-        title="Suggested Content"
-    >
-        <div slot="actions">
-            <!-- svelte-ignore a11y-label-has-associated-control -->
-            <div class="dropdown">
-                <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-                <label tabindex="0" class="btn !rounded-full px-6">
-                    {#if !selectedDVM}
-                        Choose
-                        <span class="font-semibold text-base-100-content">
-                            Recommendation Provider
-                        </span>
-                    {:else}
-                        {#await selectedDVM.fetchProfile() then profile}
-                            From
+{#if selectedDVM && fallbackRecommendationEvents}
+    <div transition:slide={{ axis: 'y'}}>
+        <Section
+            title="Suggested Content"
+            on:click={() => { expanded = true; }}
+            {expanded}
+        >
+            <div slot="actions">
+                <!-- svelte-ignore a11y-label-has-associated-control -->
+                <div class="dropdown">
+                    <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+                    <label tabindex="0" class="btn !rounded-full px-6">
+                        {#if !selectedDVM}
+                            Choose
                             <span class="font-semibold text-base-100-content">
-                                {profile.name}
+                                Recommendation Provider
                             </span>
-                        {/await}
-                    {/if}
-                </label>
-                <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-                <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-fit">
-                    {#each $contentDiscoveryApps as contentDiscoveryApp}
-                        {#await contentDiscoveryApp.fetchProfile() then profile}
-                            <li>
-                                <button
-                                    on:click={() => requestRecommendation(contentDiscoveryApp)}
-                                    disabled={!$user}
-                                >
-                                    <div
-                                        class="flex flex-row gap-4"
-                                        class:cursor-not-allowed={!$user}
-                                        class:tooltip={!$user}
-                                        data-tip="You need to be logged in"
+                        {:else}
+                            {#await selectedDVM.fetchProfile() then profile}
+                                From
+                                <span class="font-semibold text-base-100-content">
+                                    {profile.name}
+                                </span>
+                            {/await}
+                        {/if}
+                    </label>
+                    <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+                    <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-fit">
+                        {#each $contentDiscoveryApps as contentDiscoveryApp}
+                            {#await contentDiscoveryApp.fetchProfile() then profile}
+                                <li>
+                                    <button
+                                        on:click={() => requestRecommendation(contentDiscoveryApp)}
+                                        disabled={!$user}
                                     >
-                                        <Avatar ndk={$ndk} userProfile={profile} type="circle" class="w-12 h-12" />
-                                        <div class="flex flex-col gap-2">
-                                            <div class="text-base whitespace-nowrap truncate text-base-100-content">{profile.name}</div>
+                                        <div
+                                            class="flex flex-row gap-4"
+                                            class:cursor-not-allowed={!$user}
+                                            class:tooltip={!$user}
+                                            data-tip="You need to be logged in"
+                                        >
+                                            <Avatar ndk={$ndk} userProfile={profile} type="circle" class="w-12 h-12" />
+                                            <div class="flex flex-col gap-2">
+                                                <div class="text-base whitespace-nowrap truncate text-base-100-content">{profile.name}</div>
 
-                                            <div class="text-xs text-left">
-                                                {profile.about}
+                                                <div class="text-xs text-left">
+                                                    {profile.about}
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </button>
-                            </li>
-                        {/await}
-                    {/each}
-                </ul>
+                                    </button>
+                                </li>
+                            {/await}
+                        {/each}
+                    </ul>
+                </div>
             </div>
-        </div>
 
-        {#if recommendation}
-            <DvmRecommendationResult jobResult={recommendation} />
-        {:else if fallbackRecommendationEvents?.length > 0}
-            <DvmRecommendationResult jobResult={fallbackRecommendationEvents[0]} />
-        {/if}
-    </Section>
+            {#if recommendation}
+                <DvmRecommendationResult jobResult={recommendation} />
+            {:else if fallbackRecommendationEvents?.length > 0}
+                <DvmRecommendationResult jobResult={fallbackRecommendationEvents[0]} />
+            {/if}
+        </Section>
+    </div>
 {/if}

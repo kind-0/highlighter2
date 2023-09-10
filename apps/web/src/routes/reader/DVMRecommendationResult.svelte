@@ -20,9 +20,7 @@
 </script>
 
 {#if decodedContent}
-    <div class="grid grid-flow-col auto-cols-max gap-4">
-        {#each decodedContent as tag}
-            <TagContentCard tag={tag} />
-        {/each}
-    </div>
+    {#each decodedContent as tag}
+        <TagContentCard tag={tag} />
+    {/each}
 {/if}

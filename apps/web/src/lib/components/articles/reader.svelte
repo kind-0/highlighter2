@@ -253,7 +253,7 @@
         </div>
 
         <!-- Sidebar -->
-        <div class="relative flex-grow" id="sidebarContainer">
+        <div class="relative md:w-5/12 flex-grow" id="sidebarContainer">
             <div class="px-4 md:h-screen h-screen">
                 {#if newHighlightItem}
                     <div class="z-50 fixed top-20" transition:fade>
@@ -266,7 +266,7 @@
                 {/if}
 
                 {#if openedHighlight}
-                    <div class="z-50 fixed top-20 w-full" transition:fade>
+                    <div class="z-50 fixed top-20" transition:fade>
                         <NewHighlight
                             highlight={openedHighlight}
                             on:close={onNewHighlightClose}

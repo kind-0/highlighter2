@@ -297,8 +297,6 @@ async function fetchData(
                 existingResults.set(jobRequestId, []);
             }
 
-            console.log('adding dvm result', jobRequestId, dvmResults.id);
-
             existingResults.get(jobRequestId)!.push(dvmResults);
 
             return existingResults;
