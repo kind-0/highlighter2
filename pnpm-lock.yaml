@@ -128,6 +128,9 @@ importers:
       sanitize-html:
         specifier: ^2.10.0
         version: 2.10.0
+      svelte-link-preview:
+        specifier: ^0.3.3
+        version: 0.3.3
       svelte-modals:
         specifier: ^1.3.0
         version: 1.3.0(svelte@4.2.0)
@@ -220,8 +223,8 @@ importers:
         specifier: ^10.4.13
         version: 10.4.15(postcss@8.4.28)
       daisyui:
-        specifier: ^3.3.1
-        version: 3.6.4
+        specifier: ^3.7.3
+        version: 3.7.3
       dayjs:
         specifier: ^1.11.9
         version: 1.11.9
@@ -333,7 +336,7 @@ importers:
         version: 8.4.28
       svelte-preprocess:
         specifier: ^5.0.4
-        version: 5.0.4(@babel/core@7.22.15)(postcss@8.4.28)(svelte@4.2.0)(typescript@5.1.6)
+        version: 5.0.4(@babel/core@7.22.11)(postcss@8.4.28)(svelte@4.2.0)(typescript@5.1.6)
       typescript:
         specifier: ^5.1.6
         version: 5.1.6
@@ -537,8 +540,8 @@ importers:
         specifier: ^10.4.13
         version: 10.4.15(postcss@8.4.29)
       daisyui:
-        specifier: ^3.3.1
-        version: 3.6.4
+        specifier: ^3.7.3
+        version: 3.7.3
       dayjs:
         specifier: ^1.11.9
         version: 1.11.9
@@ -641,7 +644,7 @@ importers:
         version: 8.4.28
       svelte-preprocess:
         specifier: ^5.0.4
-        version: 5.0.4(@babel/core@7.22.15)(postcss@8.4.28)(svelte@4.2.0)(typescript@5.1.6)
+        version: 5.0.4(@babel/core@7.22.11)(postcss@8.4.28)(svelte@4.2.0)(typescript@5.1.6)
       typescript:
         specifier: ^5.1.6
         version: 5.1.6
@@ -1053,8 +1056,8 @@ importers:
         specifier: ^0.5.9
         version: 0.5.9(tailwindcss@3.3.3)
       daisyui:
-        specifier: ^3.5.1
-        version: 3.6.4
+        specifier: ^3.7.3
+        version: 3.7.3
       tailwindcss:
         specifier: ^3.3.3
         version: 3.3.3
@@ -1083,8 +1086,8 @@ importers:
         specifier: ^0.5.9
         version: 0.5.9(tailwindcss@3.3.3)
       daisyui:
-        specifier: ^3.5.1
-        version: 3.6.4
+        specifier: ^3.7.3
+        version: 3.7.3
       tailwindcss:
         specifier: ^3.2.4
         version: 3.3.3
@@ -1114,6 +1117,9 @@ importers:
       '@nostr-dev-kit/ndk-svelte-components':
         specifier: workspace:*
         version: link:../ndk/ndk-svelte-components
+      '@sveltejs/kit':
+        specifier: ^1.24.0
+        version: 1.24.0(svelte@4.2.0)(vite@4.4.9)
       phosphor-svelte:
         specifier: ^1.3.0
         version: 1.3.0(svelte@4.2.0)
@@ -1134,8 +1140,8 @@ importers:
         specifier: workspace:*
         version: link:../tailwind-config
       daisyui:
-        specifier: ^3.6.4
-        version: 3.6.4
+        specifier: ^3.7.3
+        version: 3.7.3
       postcss:
         specifier: ^8.4.28
         version: 8.4.28
@@ -9057,19 +9063,6 @@ packages:
       type: 1.2.0
     dev: false
 
-  /daisyui@3.6.4:
-    resolution: {integrity: sha512-8cFEkA2CaTKLUBvEU+9cTx6uvLSN2ZUq9fXxMkdiRS7QM79jBFv3klNkbUaPslmVh0eoeeCk0o98sjmfQ7/Cgg==}
-    engines: {node: '>=16.9.0'}
-    dependencies:
-      colord: 2.9.3
-      css-selector-tokenizer: 0.8.0
-      postcss: 8.4.29
-      postcss-js: 4.0.1(postcss@8.4.29)
-      tailwindcss: 3.3.3
-    transitivePeerDependencies:
-      - ts-node
-    dev: true
-
   /daisyui@3.7.3:
     resolution: {integrity: sha512-gKlz3RwfaukZxf8nQZsDAZ7quUSi7F8HjGGB34tkHruvfQB9cgVDQsmqUqSQtkAJYvzbrg/3dLUa9+5jF4iC1A==}
     engines: {node: '>=16.9.0'}
@@ -9081,7 +9074,6 @@ packages:
       tailwindcss: 3.3.3
     transitivePeerDependencies:
       - ts-node
-    dev: false
 
   /damerau-levenshtein@1.0.8:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}
@@ -15581,6 +15573,10 @@ packages:
     dependencies:
       svelte: 4.2.0
 
+  /svelte-link-preview@0.3.3:
+    resolution: {integrity: sha512-QF6w6AsYO25UxNJOwgyVXbwY7fdx0B4FcZEeauqODlf2SlEuzrYI88UeSQ6Spq2Qf+4OCzb+YKXmNd4nCHwifQ==}
+    dev: false
+
   /svelte-modals@1.3.0(svelte@4.2.0):
     resolution: {integrity: sha512-b1Ylnyv9O6b7VYeWGJVToaVU2lw7GtErVwiEdojyfnOuZcrhNlQ5eDqbTrL3xyKz8j2VTy/QiGUl1lm/6SnQ2A==}
     peerDependencies:
@@ -15636,7 +15632,6 @@ packages:
       strip-indent: 3.0.0
       svelte: 4.2.0
       typescript: 5.1.6
-    dev: false
 
   /svelte-preprocess@5.0.4(@babel/core@7.22.11)(postcss@8.4.28)(svelte@4.2.0)(typescript@5.2.2):
     resolution: {integrity: sha512-ABia2QegosxOGsVlsSBJvoWeXy1wUKSfF7SWJdTjLAbx/Y3SrVevvvbFNQqrSJw89+lNSsM58SipmZJ5SRi5iw==}
@@ -15734,6 +15729,7 @@ packages:
       strip-indent: 3.0.0
       svelte: 4.2.0
       typescript: 5.1.6
+    dev: false
 
   /svelte-preprocess@5.0.4(@babel/core@7.22.15)(postcss@8.4.29)(svelte@4.2.0)(typescript@5.2.2):
     resolution: {integrity: sha512-ABia2QegosxOGsVlsSBJvoWeXy1wUKSfF7SWJdTjLAbx/Y3SrVevvvbFNQqrSJw89+lNSsM58SipmZJ5SRi5iw==}

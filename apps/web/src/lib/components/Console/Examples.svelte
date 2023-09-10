@@ -1,6 +1,6 @@
 <script lang="ts">
     import Hashtag from "$lib/icons/Hashtag.svelte";
-    import LongForm from "$lib/icons/LongForm.svelte";
+    import { LongFormIcon } from "@kind0/ui-common";
     import MicIcon from "$lib/icons/MicIcon.svelte";
     import NostrIcon from "$lib/icons/NostrIcon.svelte";
     import WebIcon from "$lib/icons/WebIcon.svelte";
@@ -96,7 +96,7 @@
 
                 <div class="md:flex flex-row gap-2 items-center hidden">
                     <span class="text-base-300-content flex flex-col items-end"> naddr1qqxnzd3exqcnzvehxqung... </span>
-                    <LongForm class="w-12 h-12 bg-base-300 p-2 rounded-lg" />
+                    <LongFormIcon class="w-12 h-12 bg-base-300 p-2 rounded-lg" />
                 </div>
             </a>
         </li>

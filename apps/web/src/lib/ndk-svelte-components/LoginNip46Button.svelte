@@ -14,5 +14,5 @@
 </script>
 
 <SubtleButton on:click={openNip46Modal} class="w-full">
-    <span slot="btn-content">nsecBunker</span>
+    <span>nsecBunker</span>
 </SubtleButton>

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { userDVMRequests, userFollowHashtags, userLists } from './../lib/stores/session.ts';
     import { onMount, setContext } from 'svelte';
     import { login } from '$lib/utils/login';
     import '../app.postcss';
@@ -10,8 +11,12 @@
     import { page } from '$app/stores';
     import { goto } from '$app/navigation';
     import { user as uiCommonUser, userLabels as uiCommonUserLabels } from '@kind0/ui-common';
+    import { appHandlers } from '$stores/nip89';
 
-    import { user, userLabels, prepareSession, loadingScreen, userFollows, networkFollows } from '$stores/session';
+    // NOOP To make sure the import is not tree-shaken
+    $appHandlers;
+
+    import { user, userLabels, prepareSession, loadingScreen, userFollows, networkFollows, userAppHandlers, userDVMResults } from '$stores/session';
     import { bunkerNDK, ndk } from '@kind0/lib-svelte-kit';
 
     $: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : ''
@@ -37,14 +42,18 @@
     $: if (mounted && !!$user && !sessionPreparationStarted) {
         sessionPreparationStarted = true;
         if ($userFollows.size === 0) {
+            let finishLoading = false;
             $loadingScreen = true;
+            $loadingScreen = false;
 
             if ($page.url.pathname === '/') {
                 goto('/reader');
+            } else if ($page.url.pathname !== '/reader') {
+                finishLoading = true;
             }
 
             prepareSession().then(() => {
-                $loadingScreen = false;
+                if (finishLoading) $loadingScreen = false;
             })
         } else {
             prepareSession();
@@ -56,11 +65,6 @@
     }
 
     $: $uiCommonUserLabels = $userLabels;
-
-    // Probably wrong
-    $: {
-        console.log(`setting user 2`);
-    }
 
     let shouldShowLoadingScreen = true;
 
@@ -76,12 +80,30 @@
     <div transition:fade>
         <Loading on:loaded={() => $loadingScreen = false } />
     </div>
-{:else if mounted}
+{/if}
+
+{#if mounted}
     <div transition:fade>
         <slot />
     </div>
-{:else}
 {/if}
+
+<!-- <div class="sticky bottom-0 left-0 right-0 text-base-100-content">
+    <pre>
+        user = {!!$user}
+        userFollows = {$userFollows?.size}
+        userAppHandlers = {$userAppHandlers?.size}
+        appHandlers = {$appHandlers?.length}
+        userDVMResults = {$userDVMResults?.size}
+        userDVMRequests = {$userDVMRequests?.size}
+        userLists = {$userLists?.size}
+        userFollowHashtags = {$userFollowHashtags?.length}
+        networkFollows = {$networkFollows?.size}
+        <hr>
+        mounted = {mounted}
+        $page.url.pathname = {$page.url.pathname}
+    </pre>
+</div> -->
 
 <Modals>
     <div

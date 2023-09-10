@@ -2,10 +2,20 @@
     import RecentlyCurated from "$components/Curations/RecentlyCurated.svelte";
     import NewContent from "$components/Curations/NewContent.svelte";
     import Section from "$components/Section.svelte";
-    import type { NDKArticle } from "@nostr-dev-kit/ndk";
+    import { NDKDVMRequest, type NDKArticle, NDKUser, NDKKind } from "@nostr-dev-kit/ndk";
     import { fade } from "svelte/transition";
-    import { loadingScreen } from "$stores/session";
+    import { loadingScreen, networkFollows } from "$stores/session";
     import { onMount } from "svelte";
+    import { ndk } from "@kind0/lib-svelte-kit";
+    import DvmRecommendations from "./DVMRecommendations.svelte";
+    import { setNewArticlesFilters } from "$stores/articles";
+
+    const userInterests = ['philosophy', 'seneca', 'stoicism', 'nostr'];
+
+    setNewArticlesFilters(
+        {},
+        [{ kinds: [NDKKind.Article], "#t": userInterests }]
+    );
 
     let renderNewContent = false;
     let newContentItems: NDKArticle[];
@@ -28,7 +38,9 @@
 </script>
 
 <div class="flex flex-col gap-8">
-    <div class:hidden={!renderNewContent} transition:fade>
+    <DvmRecommendations />
+
+    <div transition:fade>
         <Section
             title="Highlighter Fresh"
         >
@@ -47,7 +59,6 @@
                     {/if}
                 </button>
             </div>
-            {newContentArticlesToRender}
             <NewContent
                 bind:items={newContentItems}
                 bind:articlesToRender={newContentArticlesToRender}
@@ -56,7 +67,7 @@
             />
         </Section>
     </div>
-
+<!--
     <Section
         title="Recently Curated"
     >
@@ -67,5 +78,5 @@
         title="Popular Content"
     >
         <RecentlyCurated />
-    </Section>
+    </Section> -->
 </div>

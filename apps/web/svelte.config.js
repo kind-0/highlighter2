@@ -14,17 +14,17 @@ const config = {
         },
     },
     preprocess: vitePreprocess(),
-    onwarn: (warning, handler) => {
-        if (warning.code.startsWith("a11y-")) {
-            return;
-        }
-        handler(warning);
-    },
     vitePlugin: {
         inspector: {
             holdMode: true,
             toggleKeyCombo: "control-shift",
         },
+    },
+    onwarn: (warning, handler) => {
+        if (warning.code.startsWith("a11y-")) {
+            return;
+        }
+        handler(warning);
     },
 };
 

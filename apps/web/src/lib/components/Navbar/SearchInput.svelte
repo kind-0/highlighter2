@@ -7,7 +7,7 @@
     import { searchQuery, processingInstructions } from '$lib/stores/search';
     import NostrIcon from '$lib/icons/NostrIcon.svelte';
     import MicIcon from '$lib/icons/MicIcon.svelte';
-    import LongForm from '$lib/icons/LongForm.svelte';
+    import { LongFormIcon } from "@kind0/ui-common";
     import Hashtag from '$lib/icons/Hashtag.svelte';
     import WebIcon from '$lib/icons/WebIcon.svelte';
     import Web3DIcon from '$lib/icons/Web3DIcon.svelte';
@@ -184,7 +184,7 @@
                     <div class="w-0 ml-10 flex flex-grow justify-end">
                         <p class="text-base-300-content text-xs truncate"> naddr1qqxnzd3exqcnzvehxqungdfhqgsph3c2q9yt8uckmgelu0yf7glruudvfluesqn7cuftjpwdynm2gygrqsqqqa28mesjl6</p>
                     </div>
-                    <LongForm class="w-12 h-12 bg-base-300 text-zinc-400 rounded-lg" />
+                    <LongFormIcon class="w-12 h-12 bg-base-300 text-zinc-400 rounded-lg" />
                 </div>
             </a>
         </li>

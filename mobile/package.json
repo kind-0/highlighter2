@@ -77,7 +77,7 @@
 		"@vite-pwa/assets-generator": "^0.0.4",
 		"@vite-pwa/sveltekit": "^0.2.5",
 		"autoprefixer": "^10.4.13",
-		"daisyui": "^3.3.1",
+		"daisyui": "^3.7.3",
 		"dayjs": "^1.11.9",
 		"eslint": "^8.45.0",
 		"eslint-config-prettier": "^9.0.0",

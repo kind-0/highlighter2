@@ -7,6 +7,8 @@
     import { getLongForms } from '$lib/stores/long-form';
     import { onDestroy } from 'svelte';
     import type { NDKSubscription } from '@nostr-dev-kit/ndk';
+    import { ThreeColumnsLayout } from '@kind0/ui-common';
+    import Navbar from '$components/Navbar/Navbar.svelte';
 
     let readyToRender = true;
 
@@ -38,12 +40,13 @@
     });
 </script>
 
-<WithLeftSidebar
-    {forceHideSidebar}
-    containerClass={!forceHideSidebar ? 'max-w-7xl' : ''}
->
-    <div class="flex-1" slot="sidebar">
-        <Sidebar isHiddenSidebar={forceHideSidebar} />
+<ThreeColumnsLayout>
+    <div slot="navbar">
+        <Navbar />
+    </div>
+
+    <div slot="sidebar">
+        <Sidebar />
     </div>
 
     {#if readyToRender}
@@ -51,4 +54,4 @@
     {:else}
         Loading
     {/if}
-</WithLeftSidebar>
+</ThreeColumnsLayout>

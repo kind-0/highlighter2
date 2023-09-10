@@ -9,12 +9,12 @@
     $: noNip07extenion = !window.nostr;
 
     async function loginNip07() {
-        const user = await login($ndk, undefined, 'nip07');
+        const _user = await login($ndk, undefined, 'nip07');
 
-        if (!user) {
+        if (!_user) {
             alert('Login failed');
         } else {
-            $user = user;
+            $user = _user;
             localStorage.setItem('nostr-key-method', 'nip07');
             localStorage.setItem('nostr-target-npub', $user.npub);
         }
@@ -38,6 +38,6 @@
     </div>
 {:else}
     <SubtleButton on:click={loginNip07} class="w-full">
-        <span slot="btn-content">Use Browser Extension</span>
+        <span>Use Browser Extension</span>
     </SubtleButton>
 {/if}

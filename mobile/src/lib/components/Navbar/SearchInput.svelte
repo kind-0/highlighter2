@@ -7,7 +7,7 @@
     import { searchQuery, processingInstructions } from '$lib/stores/search';
     import NostrIcon from '$lib/icons/NostrIcon.svelte';
     import MicIcon from '$lib/icons/MicIcon.svelte';
-    import LongForm from '$lib/icons/LongForm.svelte';
+    import LongForm from '$icons/LongFormIcon.svelte';
     import Hashtag from '$lib/icons/Hashtag.svelte';
     import WebIcon from '$lib/icons/WebIcon.svelte';
     import Web3DIcon from '$lib/icons/Web3DIcon.svelte';

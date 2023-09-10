@@ -15,7 +15,7 @@ export const newArticles: NDKEventStore<NDKArticle> = get(ndk).storeSubscribe(
     NDKArticle
 );
 
-export function setNewArticlesFilters(extraFilter: NDKFilter = {}) {
+export function setNewArticlesFilters(extraFilter: NDKFilter = {}, extraFilters?: NDKFilter[]) {
     const f = [
         ...baseFilters,
     ].map((filter) => {
@@ -24,6 +24,10 @@ export function setNewArticlesFilters(extraFilter: NDKFilter = {}) {
             ...extraFilter
         };
     });
+
+    if (extraFilters) {
+        f.push(...extraFilters);
+    }
 
     newArticles.changeFilters(f);
 }

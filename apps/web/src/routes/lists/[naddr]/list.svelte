@@ -268,7 +268,7 @@
                             {dropZoneActive ? 'bg-zinc-300' : ''}
                             rounded-xl
                             transition duration-200 ease-in-out
-                            p-2 py-2 -mx-6
+                            py-2
                         "
                     >
                         <Tags {list} tags={list.tags} {currentUserPubkeys} />

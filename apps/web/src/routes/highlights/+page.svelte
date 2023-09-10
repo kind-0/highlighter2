@@ -1,5 +1,4 @@
 <script lang="ts">
-    import MainWithRightSidebar from "$lib/layouts/MainWithRightSidebar.svelte";
     import { user, userFollows, highlights } from "$stores/session";
     import { NDKHighlight } from "@nostr-dev-kit/ndk";
     import { onMount } from "svelte";
@@ -27,7 +26,5 @@
 </script>
 
 {#if sortedStore && $sortedStore}
-    <MainWithRightSidebar>
-        <HighlightList items={$sortedStore} />
-    </MainWithRightSidebar>
+    <HighlightList items={$sortedStore} />
 {/if}
