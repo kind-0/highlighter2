@@ -6,7 +6,7 @@
     export let summary: string | undefined;
     export let image: string | undefined;
     export let url: string = "#";
-    export let event: NDKEvent;
+    export let event: NDKEvent | undefined = undefined;
 
     let aspectRatio: number;
     let imgLoaded: boolean = false;
@@ -54,15 +54,17 @@
 
         <div class="w-full mx-0 h-[90px] group-hover:h-full flex flex-col p-4 bg-base-300 bg-opacity-70 backdrop-blur-[22px] transition-all duration-300 rounded-b-xl group-hover:rounded-xl">
             <div class="max-h-14">
-                <p class="title text-base-100-content text-xs font-medium leading-[18px]">{title}</p>
+                <p class="title text-base-100-content text-xs whitespace-normal font-medium leading-[18px]">{title}</p>
             </div>
             <div class="hidden group-hover:flex flex-col flex-grow justify-between pt-2 gap-2.5 transition-all duration-300">
                 <div>
                     {#if summary}
-                    <p class="summary text-xs font-normal leading-[18px]">{summary}</p>
+                    <p class="summary text-xs font-normal leading-[18px] whitespace-normal">{summary}</p>
                     {/if}
                 </div>
-                <ZapCounter {event} />
+                {#if event}
+                    <ZapCounter {event} />
+                {/if}
             </div>
         </div>
     </div>

@@ -10,12 +10,11 @@
 
     export let isHiddenSidebar = false;
     export let isHiddenDrawerBtn = false;
-    export let isHiddenRelayBtn = false;
 
     let homeLink = '/';
     let navbarOpened = false;
 
-    $: homeLink = $user ? `/highlights` : '/';
+    $: homeLink = $user ? `/reader` : '/';
 
     let currentRoute: string;
     let logoToUse = FullLogo;
@@ -29,7 +28,7 @@
 </script>
 
 <nav class="navbar bg-base-100 shrink-0 sticky top-0 z-20 py-4 bg-base-100/80 backdrop-blur-sm justify-center gap-4">
-    <div class="max-w-7xl mx-auto w-full">
+    <div class="w-full gap-32">
         <div class="
             {navbarOpened ? 'hidden lg:flex' : 'flex'}
             flex-row items-center sm:gap-4 navbar-start
@@ -57,7 +56,7 @@
 
         <div class="
             navbar-center transition-all duration-100 ease-in-out
-            flex-grow
+            flex-grow w-main
             {navbarOpened ? 'w-full md:w-[700px]' : ''}
         ">
             <SearchInput bind:hasFocus={navbarOpened} />
@@ -69,7 +68,7 @@
             {navbarOpened ? 'hidden lg:flex' : 'flex'}
         ">
             <div class="flex items-center md:order-2 gap-4">
-                <div class="hidden {isHiddenRelayBtn ? '' : 'md:block'}">
+                <div class="hidden">
                     <RelaysButton iconOnly={true} />
                 </div>
                 <CurrentUser />

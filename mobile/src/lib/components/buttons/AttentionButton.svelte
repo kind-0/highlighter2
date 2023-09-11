@@ -1,5 +1,5 @@
 <button on:click class="attention-btn btn w-full h-11 bg-base-100 rounded-full btn-rounded-full border-2 border-accent2 text-base-100-content text-xs font-medium normal-case hover:bg-accent2 hover:bg-opacity-20 hover:border-accent2 {$$props.class??""}">
-    <slot name="btn-content">Attention Grab Button</slot>
+    <slot />
 </button>
 
 <style>

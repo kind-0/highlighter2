@@ -1,15 +1,18 @@
 <script lang="ts">
     import Sidebar from "./components/Sidebar/Sidebar.svelte";
     import WithLeftSidebar from "$lib/layouts/WithLeftSidebar.svelte";
+    import { ThreeColumnsLayout } from "@kind0/ui-common";
+    import Navbar from "$components/Navbar/Navbar.svelte";
 </script>
 
-<WithLeftSidebar
-    containerClass="max-w-7xl"
-    insideContainerClass=""
->
-    <div class="flex-1" slot="sidebar">
+<ThreeColumnsLayout>
+    <div slot="navbar">
+        <Navbar />
+    </div>
+
+    <div slot="sidebar">
         <Sidebar />
     </div>
 
     <slot />
-</WithLeftSidebar>
+</ThreeColumnsLayout>

@@ -4690,7 +4690,7 @@ zoo`.split('\n');
     	    }
     	}
     	exports.randomBytes = randomBytes;
-    	
+
     } (utils$2));
 
     (function (exports) {
@@ -4773,7 +4773,7 @@ zoo`.split('\n');
     	const hmac = (hash, key, message) => new HMAC(hash, key).update(message).digest();
     	exports.hmac = hmac;
     	exports.hmac.create = (hash, key) => new HMAC(hash, key);
-    	
+
     } (hmac$1));
 
     Object.defineProperty(pbkdf2$1, "__esModule", { value: true });
@@ -5184,7 +5184,7 @@ zoo`.split('\n');
     	    add, add3L, add3H, add4L, add4H, add5H, add5L,
     	};
     	exports.default = u64;
-    	
+
     } (_u64));
 
     Object.defineProperty(sha512$1, "__esModule", { value: true });
@@ -8321,7 +8321,7 @@ zoo`.split('\n');
     	    return ForOfAdaptor;
     	}());
     	ForOfAdaptor.ForOfAdaptor = ForOfAdaptor$1;
-    	
+
     	return ForOfAdaptor;
     }
 
@@ -8406,7 +8406,7 @@ zoo`.split('\n');
     	    return Container;
     	}());
     	Container$1.Container = Container;
-    	
+
     	return Container$1;
     }
 
@@ -8485,7 +8485,7 @@ zoo`.split('\n');
     	    return NativeArrayIterator;
     	}());
     	NativeArrayIterator.NativeArrayIterator = NativeArrayIterator$1;
-    	
+
     	return NativeArrayIterator;
     }
 
@@ -8643,7 +8643,7 @@ zoo`.split('\n');
     	    return SetContainer;
     	}(Container_1.Container));
     	SetContainer.SetContainer = SetContainer$1;
-    	
+
     	return SetContainer;
     }
 
@@ -8747,7 +8747,7 @@ zoo`.split('\n');
     	    return Exception;
     	}(Error));
     	Exception.Exception = Exception$1;
-    	
+
     	return Exception;
     }
 
@@ -8798,7 +8798,7 @@ zoo`.split('\n');
     	    return LogicError;
     	}(Exception_1.Exception));
     	LogicError.LogicError = LogicError$1;
-    	
+
     	return LogicError;
     }
 
@@ -8849,7 +8849,7 @@ zoo`.split('\n');
     	    return InvalidArgument;
     	}(LogicError_1.LogicError));
     	InvalidArgument.InvalidArgument = InvalidArgument$1;
-    	
+
     	return InvalidArgument;
     }
 
@@ -8902,7 +8902,7 @@ zoo`.split('\n');
     	    return OutOfRange;
     	}(LogicError_1.LogicError));
     	OutOfRange.OutOfRange = OutOfRange$1;
-    	
+
     	return OutOfRange;
     }
 
@@ -8973,7 +8973,7 @@ zoo`.split('\n');
     		    }
     		    ErrorGenerator.key_nout_found = key_nout_found;
     		})(exports.ErrorGenerator || (exports.ErrorGenerator = {}));
-    		
+
     } (ErrorGenerator));
     	return ErrorGenerator;
     }
@@ -9113,7 +9113,7 @@ zoo`.split('\n');
     	    return UniqueSet;
     	}(SetContainer_1.SetContainer));
     	UniqueSet.UniqueSet = UniqueSet$1;
-    	
+
     	return UniqueSet;
     }
 
@@ -9193,7 +9193,7 @@ zoo`.split('\n');
     		    }
     		    IAssociativeContainer.construct = construct;
     		})(exports.IAssociativeContainer || (exports.IAssociativeContainer = {}));
-    		
+
     } (IAssociativeContainer));
     	return IAssociativeContainer;
     }
@@ -9234,7 +9234,7 @@ zoo`.split('\n');
     	 * @internal
     	 */
     	var __s_pRoot = null;
-    	
+
     	return Global;
     }
 
@@ -9279,7 +9279,7 @@ zoo`.split('\n');
     	        return 0;
     	}
     	uid.get_uid = get_uid;
-    	
+
     	return uid;
     }
 
@@ -9390,7 +9390,7 @@ zoo`.split('\n');
     	--------------------------------------------------------- */
     	var INIT_VALUE = 2166136261;
     	var MULTIPLIER = 16777619;
-    	
+
     	return hash;
     }
 
@@ -9489,7 +9489,7 @@ zoo`.split('\n');
     	    return !less(x, y);
     	}
     	comparators.greater_equal = greater_equal;
-    	
+
     	return comparators;
     }
 
@@ -9583,7 +9583,7 @@ zoo`.split('\n');
     		    }
     		    IHashContainer.construct = construct;
     		})(exports.IHashContainer || (exports.IHashContainer = {}));
-    		
+
     } (IHashContainer));
     	return IHashContainer;
     }
@@ -9668,7 +9668,7 @@ zoo`.split('\n');
     	    return ListIterator;
     	}());
     	ListIterator.ListIterator = ListIterator$1;
-    	
+
     	return ListIterator;
     }
 
@@ -9715,7 +9715,7 @@ zoo`.split('\n');
     	    return Repeater;
     	}());
     	Repeater.Repeater = Repeater$1;
-    	
+
     	return Repeater;
     }
 
@@ -9829,7 +9829,7 @@ zoo`.split('\n');
     	        return advance(it, n);
     	}
     	global$1.next = next;
-    	
+
     	return global$1;
     }
 
@@ -10087,7 +10087,7 @@ zoo`.split('\n');
     	    return ListContainer;
     	}(Container_1.Container));
     	ListContainer.ListContainer = ListContainer$1;
-    	
+
     	return ListContainer;
     }
 
@@ -10173,7 +10173,7 @@ zoo`.split('\n');
     	    return ReverseIterator;
     	}());
     	ReverseIterator.ReverseIterator = ReverseIterator$1;
-    	
+
     	return ReverseIterator;
     }
 
@@ -10332,7 +10332,7 @@ zoo`.split('\n');
     		    SetElementList.ReverseIterator = ReverseIterator;
     		})(SetElementList = exports.SetElementList || (exports.SetElementList = {}));
     		exports.SetElementList = SetElementList;
-    		
+
     } (SetElementList));
     	return SetElementList;
     }
@@ -10484,7 +10484,7 @@ zoo`.split('\n');
     	HashBuckets.HashBuckets = HashBuckets$1;
     	var MIN_BUCKET_COUNT = 10;
     	var DEFAULT_MAX_FACTOR = 1.0;
-    	
+
     	return HashBuckets;
     }
 
@@ -10606,7 +10606,7 @@ zoo`.split('\n');
     	function fetcher(elem) {
     	    return elem.value;
     	}
-    	
+
     	return SetHashBuckets;
     }
 
@@ -10680,7 +10680,7 @@ zoo`.split('\n');
     	    return new Pair$1(first, second);
     	}
     	Pair.make_pair = make_pair;
-    	
+
     	return Pair;
     }
 
@@ -10931,7 +10931,7 @@ zoo`.split('\n');
     		    HashSet.ReverseIterator = SetElementList_1.SetElementList.ReverseIterator;
     		})(HashSet = exports.HashSet || (exports.HashSet = {}));
     		exports.HashSet = HashSet;
-    		
+
     } (HashSet));
     	return HashSet;
     }
@@ -11095,7 +11095,7 @@ zoo`.split('\n');
     	    return MapContainer;
     	}(Container_1.Container));
     	MapContainer.MapContainer = MapContainer$1;
-    	
+
     	return MapContainer;
     }
 
@@ -11296,7 +11296,7 @@ zoo`.split('\n');
     	    return UniqueMap;
     	}(MapContainer_1.MapContainer));
     	UniqueMap.UniqueMap = UniqueMap$1;
-    	
+
     	return UniqueMap;
     }
 
@@ -11524,7 +11524,7 @@ zoo`.split('\n');
     		    MapElementList.ReverseIterator = ReverseIterator;
     		})(MapElementList = exports.MapElementList || (exports.MapElementList = {}));
     		exports.MapElementList = MapElementList;
-    		
+
     } (MapElementList));
     	return MapElementList;
     }
@@ -11649,7 +11649,7 @@ zoo`.split('\n');
     	function fetcher(elem) {
     	    return elem.first;
     	}
-    	
+
     	return MapHashBuckets;
     }
 
@@ -11701,7 +11701,7 @@ zoo`.split('\n');
     	    return Entry;
     	}());
     	Entry.Entry = Entry$1;
-    	
+
     	return Entry;
     }
 
@@ -11958,7 +11958,7 @@ zoo`.split('\n');
     		    HashMap.ReverseIterator = MapElementList_1.MapElementList.ReverseIterator;
     		})(HashMap = exports.HashMap || (exports.HashMap = {}));
     		exports.HashMap = HashMap;
-    		
+
     } (HashMap));
     	return HashMap;
     }
@@ -12027,7 +12027,7 @@ zoo`.split('\n');
     	    return EventTarget;
     	}());
     	EventTarget.EventTarget = EventTarget$1;
-    	
+
     	return EventTarget;
     }
 
@@ -12048,7 +12048,7 @@ zoo`.split('\n');
     	    return Event;
     	}());
     	Event.Event = Event$1;
-    	
+
     	return Event;
     }
 
@@ -12082,7 +12082,7 @@ zoo`.split('\n');
     	    return CloseEvent;
     	}(Event_1.Event));
     	CloseEvent.CloseEvent = CloseEvent$1;
-    	
+
     	return CloseEvent;
     }
 
@@ -12116,7 +12116,7 @@ zoo`.split('\n');
     	    return MessageEvent;
     	}(Event_1.Event));
     	MessageEvent.MessageEvent = MessageEvent$1;
-    	
+
     	return MessageEvent;
     }
 
@@ -12150,7 +12150,7 @@ zoo`.split('\n');
     	    return ErrorEvent;
     	}(Event_1.Event));
     	ErrorEvent.ErrorEvent = ErrorEvent$1;
-    	
+
     	return ErrorEvent;
     }
 
@@ -12400,7 +12400,7 @@ zoo`.split('\n');
     		    bubbles: false,
     		    cancelable: false
     		};
-    		
+
     } (WebSocket$1));
     	return WebSocket$1;
     }
@@ -13170,7 +13170,7 @@ zoo`.split('\n');
         super();
         this.ndk = args.ndk;
         this.zappedEvent = args.zappedEvent;
-        this.zappedUser = args.zappedUser || this.ndk.getUser({ hexpubkey: this.zappedEvent.pubkey });
+        this.zappedUser = args.zappedUser || this.ndk.getUser({.hexpubkey: this.zappedEvent.pubkey });
       }
       async getZapEndpoint() {
         let lud06;
@@ -13772,7 +13772,7 @@ zoo`.split('\n');
           event.tags.forEach((tag) => {
             if (tag[0] === "p") {
               try {
-                const user = new NDKUser({ hexpubkey: tag[1] });
+                const user = new NDKUser({.hexpubkey: tag[1] });
                 user.ndk = this.ndk;
                 contactList.add(user);
               } catch (e) {
@@ -13805,12 +13805,12 @@ zoo`.split('\n');
         const profile = await nip05_exports.queryProfile(nip05Id);
         if (profile) {
           return new NDKUser({
-            hexpubkey: profile.pubkey,
+           .hexpubkey: profile.pubkey,
             relayUrls: profile.relays
           });
         }
       }
-      hexpubkey() {
+     .hexpubkey() {
         return nip19_exports.decode(this.npub).data;
       }
       async fetchProfile(opts) {
@@ -14210,7 +14210,7 @@ zoo`.split('\n');
         if (!pubkey) {
           throw new Error("User rejected access");
         }
-        return new NDKUser({ hexpubkey: pubkey });
+        return new NDKUser({.hexpubkey: pubkey });
       }
       /**
        * Getter for the user property.
@@ -14239,15 +14239,15 @@ zoo`.split('\n');
         if (!window.nostr) {
           throw new Error("NIP-07 extension not available");
         }
-        const recipientHexPubKey = recipient.hexpubkey();
-        return window.nostr.nip04.encrypt(recipientHexPubKey, value);
+        const recipien.hexpubkey = recipient.hexpubkey();
+        return window.nostr.nip04.encrypt(recipien.hexpubkey, value);
       }
       async decrypt(sender, value) {
         if (!window.nostr) {
           throw new Error("NIP-07 extension not available");
         }
-        const senderHexPubKey = sender.hexpubkey();
-        return window.nostr.nip04.decrypt(senderHexPubKey, value);
+        const sende.hexpubkey = sender.hexpubkey();
+        return window.nostr.nip04.decrypt(sende.hexpubkey, value);
       }
     };
 
@@ -14354,7 +14354,7 @@ zoo`.split('\n');
      *
      * Apache License Version 2.0, January 2004, http://www.apache.org/licenses/
      */
-     
+
     const _global = typeof globalThis !== 'undefined' ? globalThis :
         typeof self !== 'undefined' ? self :
             typeof window !== 'undefined' ? window :
@@ -23734,7 +23734,7 @@ zoo`.split('\n');
     	let $ndk;
     	component_subscribe($$self, ndk, $$value => $$invalidate(1, $ndk = $$value));
     	let { url = void 0 } = $$props;
-    	let { explicitAuthorHexpubkey = void 0 } = $$props;
+    	let { explicitAutho.hexpubkey = void 0 } = $$props;
     	let prevUrl;
     	let probablyReaderable;
     	let isNaddr;
@@ -23769,8 +23769,8 @@ zoo`.split('\n');
     			const id = `${decode.kind}:${decode.pubkey}:${decode.identifier}`;
     			tags.push(["a", id]);
     			tags.push(["p", decode.pubkey]);
-    		} else if (explicitAuthorHexpubkey) {
-    			tags.push(["p", explicitAuthorHexpubkey]);
+    		} else if (explicitAutho.hexpubkey) {
+    			tags.push(["p", explicitAutho.hexpubkey]);
     		}
 
     		const event = new NDKEvent($ndk,
@@ -23844,7 +23844,7 @@ zoo`.split('\n');
 
     	$$self.$$set = $$props => {
     		if ('url' in $$props) $$invalidate(4, url = $$props.url);
-    		if ('explicitAuthorHexpubkey' in $$props) $$invalidate(5, explicitAuthorHexpubkey = $$props.explicitAuthorHexpubkey);
+    		if ('explicitAutho.hexpubkey' in $$props) $$invalidate(5, explicitAutho.hexpubkey = $$props.explicitAutho.hexpubkey);
     	};
 
     	$$self.$$.update = () => {
@@ -23867,7 +23867,7 @@ zoo`.split('\n');
     		highlightText,
     		publishNip23,
     		url,
-    		explicitAuthorHexpubkey,
+    		explicitAutho.hexpubkey,
     		prevUrl
     	];
     }
@@ -23875,7 +23875,7 @@ zoo`.split('\n');
     class Container extends SvelteComponent {
     	constructor(options) {
     		super();
-    		init(this, options, instance$1, create_fragment$1, safe_not_equal, { url: 4, explicitAuthorHexpubkey: 5 });
+    		init(this, options, instance$1, create_fragment$1, safe_not_equal, { url: 4, explicitAutho.hexpubkey: 5 });
     	}
     }
 
@@ -36385,7 +36385,7 @@ zoo`.split('\n');
     	container = new Container({
     			props: {
     				url: /*url*/ ctx[0],
-    				explicitAuthorHexpubkey: /*explicitAuthorHexpubkey*/ ctx[2]
+    				explicitAutho.hexpubkey: /*explicitAutho.hexpubkey*/ ctx[2]
     			}
     		});
 
@@ -36400,7 +36400,7 @@ zoo`.split('\n');
     		p(ctx, dirty) {
     			const container_changes = {};
     			if (dirty & /*url*/ 1) container_changes.url = /*url*/ ctx[0];
-    			if (dirty & /*explicitAuthorHexpubkey*/ 4) container_changes.explicitAuthorHexpubkey = /*explicitAuthorHexpubkey*/ ctx[2];
+    			if (dirty & /*explicitAutho.hexpubkey*/ 4) container_changes.explicitAutho.hexpubkey = /*explicitAutho.hexpubkey*/ ctx[2];
     			container.$set(container_changes);
     		},
     		i(local) {
@@ -36525,7 +36525,7 @@ zoo`.split('\n');
     	let { url = void 0 } = $$props;
     	let { loadHighlights = true } = $$props;
     	let { position = "top-5 right-5 flex-col" } = $$props;
-    	let { explicitAuthorHexpubkey = void 0 } = $$props;
+    	let { explicitAutho.hexpubkey = void 0 } = $$props;
     	let replacedHighlights = {};
     	let highlights;
     	let _highlights = [];
@@ -36573,7 +36573,7 @@ zoo`.split('\n');
     		if ('url' in $$props) $$invalidate(0, url = $$props.url);
     		if ('loadHighlights' in $$props) $$invalidate(6, loadHighlights = $$props.loadHighlights);
     		if ('position' in $$props) $$invalidate(1, position = $$props.position);
-    		if ('explicitAuthorHexpubkey' in $$props) $$invalidate(2, explicitAuthorHexpubkey = $$props.explicitAuthorHexpubkey);
+    		if ('explicitAutho.hexpubkey' in $$props) $$invalidate(2, explicitAutho.hexpubkey = $$props.explicitAutho.hexpubkey);
     	};
 
     	$$self.$$.update = () => {
@@ -36602,7 +36602,7 @@ zoo`.split('\n');
     	return [
     		url,
     		position,
-    		explicitAuthorHexpubkey,
+    		explicitAutho.hexpubkey,
     		minimizeWidget,
     		highlights,
     		toggleWidget,
@@ -36620,7 +36620,7 @@ zoo`.split('\n');
     			url: 0,
     			loadHighlights: 6,
     			position: 1,
-    			explicitAuthorHexpubkey: 2
+    			explicitAutho.hexpubkey: 2
     		});
     	}
     }

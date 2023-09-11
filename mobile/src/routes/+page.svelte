@@ -1,7 +1,20 @@
 <script lang="ts">
+    import { goto } from '$app/navigation';
     import Navbar from '$lib/components/Navbar/Navbar.svelte';
     import ButtonWithBorderGradient2 from '$lib/components/buttons/ButtonWithBorderGradient2.svelte';
     import GenericEventCard from '$lib/components/events/generic/card.svelte';
+    import { user } from '$stores/session';
+
+    function getStarted() {
+        if ($user) {
+            goto('/reader');
+            return;
+        }
+
+        if (window.nostr) {
+
+        }
+    }
 </script>
 
 <svelte:head>
@@ -9,7 +22,7 @@
     <meta name="description" content="Highlighter" />
 </svelte:head>
 
-<div class="flex flex-col h-screen overflow-x-hidden">
+<div class="flex flex-col min-h-screen overflow-x-hidden">
     <Navbar isHiddenDrawerBtn={true} isHiddenRelayBtn={true} />
     <div class="hero flex flex-column justify-center">
         <div class="w-full md:max-w-2xl lg:max-w-3xl mx-auto flex flex-col gap-5 md:gap-12">
@@ -41,11 +54,14 @@
                 </div>
                 <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-transparent to-base-100" />
                 <div
-                    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/3 text-white text-4xl md:text-6xl z-1 text-center font-bold w-full"
+                    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/3 text-4xl md:text-6xl z-1 text-center font-bold w-full"
                 >
                     <!-- TODO UPDATE GRADIENT COLOR FOR LIGHT AND DARK MODE -->
-                    <span class="bg-clip-text text-transparent bg-gradient-to-tr from-gradient4 to-gradient3">
-                        Make the most of <br />what you read
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-gradient3 to-gradient4 dark:from-white dark:to-gradient4">
+                        Elevate
+                        Information
+                        <br/>
+                        to Wisdom
                     </span>
                 </div>
             </div>
@@ -83,17 +99,18 @@
                     class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-3/4 text-white text-4xl md:text-6xl z-1 text-center font-bold w-full"
                 >
                     <span class="bg-clip-text text-transparent bg-gradient-to-tr from-gradient4 to-gradient3">
-                        Highlight Anything, <br />Anywhere</span
-                    >
+                        What will you discover?
+                    </span>
                 </div>
 
                 <ButtonWithBorderGradient2
                     class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-2/3 md:translate-y-1/4 lg:translate-y-3/4"
-                    innerClass="text-xl md:text-2xl px-10 py-4"
+                    innerClass="text-xl md:text-2xl font-thin px-10 py-4"
                     style="z-index: 9999"
-                    href="/highlights/local"
+                    on:click={getStarted}
                 >
-                    Get Started
+                    I enjoy reading about
+                    Philosophy
                 </ButtonWithBorderGradient2>
             </div>
         </div>

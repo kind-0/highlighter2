@@ -5,7 +5,6 @@
     import { ndk } from "@kind0/lib-svelte-kit";
 
     import Time from "svelte-time";
-    import EventCardActions from "./EventCardActions.svelte";
     import { Avatar } from "@kind0/ui-common";
     import { Name } from "@nostr-dev-kit/ndk-svelte-components";
     import EventCardDropdown from "./EventCardDropdown.svelte";
@@ -102,9 +101,6 @@
                     </a>
 
 
-                    <div>
-                        <EventCardActions {event} />
-                    </div>
                 </div>
             {:else if !skipFooter}
                 <slot name="footer" />

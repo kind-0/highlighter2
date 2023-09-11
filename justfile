@@ -3,6 +3,9 @@ LOCKFILE := "pnpm-lock.yaml"
 build:
     turbo build
 
+copy-mobile:
+    ./mobile_cp.sh
+
 clean:
     find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' \; \
     && pnpm install

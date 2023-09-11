@@ -1,96 +1,126 @@
 <script lang="ts">
-    import { login } from '$lib/utils/login';
-    import { onMount, setContext } from 'svelte';
-    import { Modals, closeModal } from 'svelte-modals';
-    import { fade } from 'svelte/transition';
-    import '../app.postcss';
-//import { pwaInfo } from 'virtual:pwa-info';
-    import { goto } from '$app/navigation';
-    import { page } from '$app/stores';
-    import Loading from '$lib/components/Loading.svelte';
-    import "@fontsource/lora";
+import { userDVMRequests, userFollowHashtags, userLists } from './../lib/stores/session.ts';
+import { onMount, setContext } from 'svelte';
+import { login } from '$lib/utils/login';
+import '../app.postcss';
+import { Modals, closeModal } from 'svelte-modals'
+import { fade } from 'svelte/transition'
+// import { pwaInfo } from 'virtual:pwa-info';
+import "@fontsource/lora";
+import Loading from '$lib/components/Loading.svelte';
+import { page } from '$app/stores';
+import { goto } from '$app/navigation';
+import { user as uiCommonUser, userLabels as uiCommonUserLabels } from '@kind0/ui-common';
+import { appHandlers } from '$stores/nip89';
 
-    import { loadingScreen, prepareSession, user, userFollows } from '$stores/session';
-    import { bunkerNDK, ndk } from '@kind0/lib-svelte-kit';
+// NOOP To make sure the import is not tree-shaken
+$appHandlers;
 
-    $: webManifestLink = `pwa web manifest` //pwaInfo ? pwaInfo.webManifest.linkTag : ''
+import { user, userLabels, prepareSession, loadingScreen, userFollows, networkFollows, userAppHandlers, userDVMResults } from '$stores/session';
+import { bunkerNDK, ndk } from '@kind0/lib-svelte-kit';
 
-    let sessionPreparationStarted = false;
-    let mounted = false;
+$: webManifestLink = ''
 
-    onMount(async () => {
-        try {
-            $ndk.connect();
-            login($ndk, $bunkerNDK).then((user) => {
-                $user = user;
-            })
-            mounted = true;
-        } catch (e) {
-            console.error(`layout error`, e);
-            mounted = true;
-        }
-    });
+let sessionPreparationStarted = false;
+let mounted = false;
 
-    $: if (mounted && !!$user && !sessionPreparationStarted) {
-        sessionPreparationStarted = true;
-        if ($userFollows.size === 0) {
-            $loadingScreen = true;
+onMount(async () => {
+try {
+$ndk.connect();
+login($ndk, $bunkerNDK).then((user) => {
+$user = user;
+$uiCommonUser = user!;
+console.log(`setting user2`);
+})
+mounted = true;
+} catch (e) {
+console.error(`layout error2`, e);
+mounted = true;
+}
+});
 
-            if ($page.url.pathname === '/') {
-                goto('/reader');
-            }
+$: if (mounted && !!$user && !sessionPreparationStarted) {
+sessionPreparationStarted = true;
+if ($userFollows.size === 0) {
+let finishLoading = false;
+$loadingScreen = true;
+$loadingScreen = false;
 
-            prepareSession().then(() => {
-                $loadingScreen = false;
-            })
-        } else {
-            prepareSession();
-        }
-    }
+if ($page.url.pathname === '/') {
+goto('/reader');
+} else if ($page.url.pathname !== '/reader') {
+finishLoading = true;
+}
 
-    // Probably wrong
-    $: {
-        setContext('user', user);
-        console.log(`setting context`);
-    }
+prepareSession().then(() => {
+if (finishLoading) $loadingScreen = false;
+})
+} else {
+prepareSession();
+}
+}
 
-    let shouldShowLoadingScreen = true;
+$: if (!$uiCommonUser && $user) {
+$uiCommonUser = $user;
+}
 
-    $: shouldShowLoadingScreen = $page.url.pathname !== '/';
+$: $uiCommonUserLabels = $userLabels;
+
+let shouldShowLoadingScreen = true;
+
+$: shouldShowLoadingScreen = $page.url.pathname !== '/';
 </script>
 
 <svelte:head>
-    <title>Highlighter</title>
-    {@html webManifestLink}
+<title>Highlighter</title>
+{@html webManifestLink}
 </svelte:head>
 
 {#if $loadingScreen && shouldShowLoadingScreen}
-    <div transition:fade>
-        <Loading on:loaded={() => $loadingScreen = false } />
-    </div>
-{:else if mounted}
-    <div transition:fade>
-        <slot />
-    </div>
-{:else}
+<div transition:fade>
+<Loading on:loaded={() => $loadingScreen = false } />
+</div>
 {/if}
 
+{#if mounted}
+<div transition:fade>
+<slot />
+</div>
+{/if}
+
+<!-- <div class="sticky bottom-0 left-0 right-0 text-base-100-content">
+<pre>
+user = {!!$user}
+userFollows = {$userFollows?.size}
+userAppHandlers = {$userAppHandlers?.size}
+appHandlers = {$appHandlers?.length}
+userDVMResults = {$userDVMResults?.size}
+userDVMRequests = {$userDVMRequests?.size}
+userLists = {$userLists?.size}
+userFollowHashtags = {$userFollowHashtags?.length}
+networkFollows = {$networkFollows?.size}
+<hr>
+mounted = {mounted}
+$page.url.pathname = {$page.url.pathname}
+</pre>
+</div> -->
+
 <Modals>
-    <div
-        slot="backdrop"
-        class="backdrop z-10 fixed"
-        on:click={closeModal}
-        transition:fade={{ duration: 100 }}></div>
+<div
+slot="backdrop"
+class="backdrop z-10 fixed"
+on:click={closeModal}
+transition:fade={{ duration: 100 }}></div>
 </Modals>
 
 <style>
-    .backdrop {
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        right: 0;
-        backdrop-filter: blur(0.15rem);
-        left: 0;
-        background: rgba(0,0,0,0.50)
-    }
+.backdrop {
+position: fixed;
+top: 0;
+bottom: 0;
+right: 0;
+backdrop-filter: blur(0.15rem);
+left: 0;
+background: rgba(0,0,0,0.50)
+}
 </style>
