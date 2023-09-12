@@ -88,7 +88,7 @@
 
         // create NIP-32 label if we have topics
         if (topics.length > 0) {
-            createLabelEvent();
+            await createLabelEvent();
         }
 
         let marginNoteEvent;
@@ -195,6 +195,7 @@
                 <Textarea
                     autofocus
                     bind:value={marginNote}
+                    on:submit={save}
                     placeholder="Add your thoughts"
                     class="
                         mt-4
@@ -208,6 +209,7 @@
                 <Textarea
                     bind:value={marginNote}
                     placeholder="Add your thoughts"
+                    on:submit={save}
                     class="
                         mt-4
                         border:base-300 border-opacity-50

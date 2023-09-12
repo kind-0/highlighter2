@@ -5,6 +5,7 @@
     import { fade } from "svelte/transition";
     import DvmRecommendations from "./DVMRecommendations.svelte";
     import { setNewArticlesFilters } from "$stores/articles";
+    import RecentlyHighlighted from "./RecentlyHighlighted.svelte";
 
     const userInterests = ['philosophy', 'seneca', 'stoicism', 'nostr'];
 
@@ -19,6 +20,8 @@
 
 <div class="flex flex-col gap-8">
     <DvmRecommendations />
+
+    <RecentlyHighlighted />
 
     <div transition:fade>
         <Section

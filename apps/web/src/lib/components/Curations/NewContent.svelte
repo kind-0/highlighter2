@@ -48,8 +48,6 @@
     });
 </script>
 
-newArticles = {$newArticles?.length}
-
 {#if $items}
     {#each $items as article (article.id)}
         <div class="flex items-center justify-center">

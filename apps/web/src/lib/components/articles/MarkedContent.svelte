@@ -16,6 +16,7 @@
     export let renderAsHtml = false;
 
     function markText(highlight: NDKHighlight, htmlText: string) {
+        console.log(`markText running`);
         const hContent = highlight.content.trim();
 
         // Split the plain text into words
@@ -58,7 +59,7 @@
             } else {
                 // highlight is not in the content, try to find it
                 console.log('could not find highlight 1', highlight.content, highlight.rawEvent());
-                markedContent = markText(highlight, markedContent);
+                // markedContent = markText(highlight, markedContent);
             }
 
             // check if highlight id is in the content
@@ -98,7 +99,8 @@
 
     $: if ($highlights.length !== markedHighlightCount) {
         console.log(`running markContent`);
-        debouncedMarkContent();
+        // debouncedMarkContent();
+        markContent();
     }
 
     function clickHandler(e: MouseEvent) {

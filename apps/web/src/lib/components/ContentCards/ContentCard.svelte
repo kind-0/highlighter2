@@ -8,6 +8,21 @@
     export let url: string = "#";
     export let event: NDKEvent | undefined = undefined;
 
+    function chooseRandomImage() {
+        const images = [
+            "https://cdn.satellite.earth/aaf65dd621667c75162ce3ee845a8202bdf2aee8d70ec0f1d25fe92ecd881675.png",
+            "https://cdn.satellite.earth/c50267d41d5874cb4e949e7bd472c2d06e1b297ffffac19b2f53c291a3e052d2.png",
+            "https://cdn.satellite.earth/011dc8958f86dc12c5c3a477de3551c3077fb8e71a730b7cec4a678f5c021550.png",
+            "https://cdn.satellite.earth/797f48e7f20d24fca9ac385c36778e644b3a1b5b9b64c65266a5e2f7aa0e5d50.png",
+        ];
+
+        return images[Math.floor(Math.random() * images.length)];
+    }
+
+    if (!image) {
+        image = chooseRandomImage();
+    }
+
     let aspectRatio: number;
     let imgLoaded: boolean = false;
 
