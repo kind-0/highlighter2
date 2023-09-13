@@ -4,7 +4,7 @@
     import { goto } from "$app/navigation";
     import type { NDKArticle } from "@nostr-dev-kit/ndk";
     import { onDestroy, onMount } from "svelte";
-    import {ndk} from "@kind0/lib-svelte-kit";
+    import { ndk } from "@kind0/ui-common";
     import { Textarea } from '@kind0/ui-common';
     import { addLongForm, removeLongForm, isSaved as isLongFormSaved } from "$lib/stores/long-form";
     import type { NDKList } from "@nostr-dev-kit/ndk";

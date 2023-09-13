@@ -1,7 +1,7 @@
 import { findEphemeralSigner } from '$lib/signers/ephemeral';
 import { NDKPrivateKeySigner, type NDKSigner, type NDKUser } from '@nostr-dev-kit/ndk';
 import { writable, get as getStore, derived } from 'svelte/store';
-import { ndk as ndkStore } from '@kind0/lib-svelte-kit';
+import { ndk as ndkStore } from '@kind0/ui-common';
 import { user as userStore } from '$stores/session';
 import type NDKList from '$lib/ndk-kinds/lists';
 

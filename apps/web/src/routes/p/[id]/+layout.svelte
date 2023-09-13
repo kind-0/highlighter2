@@ -3,7 +3,7 @@
     import WithLeftSidebar from "$lib/layouts/WithLeftSidebar.svelte";
     import type { NDKUser } from "@nostr-dev-kit/ndk";
     import Sidebar from './Sidebar/Sidebar.svelte';
-    import { ndk } from "@kind0/lib-svelte-kit";
+    import { ndk } from "@kind0/ui-common";
 
     let npub: string;
     let prevNPub: string;

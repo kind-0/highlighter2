@@ -2,7 +2,7 @@
 	import { rightDrawerContent } from '$lib/stores/right-drawer';
     import type { NDKEvent } from "@nostr-dev-kit/ndk";
 
-    import { ndk } from "@kind0/lib-svelte-kit";
+    import { ndk } from "@kind0/ui-common";
 
     import Time from "svelte-time";
     import { Avatar } from "@kind0/ui-common";

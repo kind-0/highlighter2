@@ -1,10 +1,11 @@
 <script lang="ts">
-    import {ndk} from "@kind0/lib-svelte-kit";
+    import { ndk } from "@kind0/ui-common";
     import { type NDKFilter, NDKDVMRequest } from "@nostr-dev-kit/ndk";
     import { onMount } from "svelte";
     import SidebarJobRequestItem from "./SidebarJobRequestItem.svelte";
     import { derived, type Readable } from "svelte/store";
     import type { NDKEventStore } from "@nostr-dev-kit/ndk-svelte";
+    import { user } from "$stores/session";
 
     let previousJobs: NDKEventStore<NDKDVMRequest>;
     let sortedJobs: Readable<NDKDVMRequest[]>;

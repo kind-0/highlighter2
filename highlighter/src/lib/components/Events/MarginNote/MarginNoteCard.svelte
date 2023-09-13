@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { NDKEvent, NDKHighlight } from "@nostr-dev-kit/ndk";
-    import { ndk } from "@kind0/lib-svelte-kit";
+    import { ndk } from "@kind0/ui-common";
     import { fetchQuotedHighlight, removeQuotedEvent } from "../../Reader/utils";
     import { EventCard } from "@kind0/ui-common";
     import HighlightContent from "../Highlight/HighlightContent.svelte";

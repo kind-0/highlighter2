@@ -6,7 +6,7 @@
 
     import ModalWrapper from '$lib/components/ModalWrapper.svelte';
     import { Textarea } from '@kind0/ui-common';
-    import { bunkerNDK, ndk } from '@kind0/lib-svelte-kit';
+    import { bunkerNDK, ndk } from '@kind0/ui-common';
 
     let nip46ConnectionString = '';
     let nip46ConnectionStatus: string | undefined = undefined;

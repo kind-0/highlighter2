@@ -1,6 +1,6 @@
 <script lang="ts">
     import { NDKEvent, NDKKind, type NDKFilter } from '@nostr-dev-kit/ndk';
-    import { ndk } from "@kind0/lib-svelte-kit";
+    import { ndk } from "@kind0/ui-common";
     import NewHighlight from '$lib/components/highlights/NewHighlight.svelte';
     import { currentScope } from '$lib/store';
     import { fade } from 'svelte/transition';
@@ -195,8 +195,8 @@
 </svelte:head>
 
 <RightDrawerLayout>
-    <div class="flex flex-col md:flex-row w-full mx-auto md:px-6">
-        <div class="card md:w-7/12 leading-loose flex flex-col gap-2 text-lg card-compact md:card-normal">
+    <div class="flex flex-col xl:flex-row w-full mx-auto md:px-6">
+        <div class="card xl:w-7/12 leading-loose flex flex-col gap-2 text-lg card-compact md:card-normal">
             <div class="card-body">
                 <!-- Title -->
                 {#if articleTitle()}
@@ -253,7 +253,7 @@
         </div>
 
         <!-- Sidebar -->
-        <div class="relative md:w-5/12 flex-grow" id="sidebarContainer">
+        <div class="relative xl:w-5/12 flex-grow" id="sidebarContainer">
             <div class="px-4 md:h-screen h-screen">
                 {#if newHighlightItem}
                     <div class="z-50 fixed top-20" transition:fade>

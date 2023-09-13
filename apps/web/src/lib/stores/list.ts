@@ -2,7 +2,7 @@ import NDKList from '../ndk-kinds/lists';
 import { NDKListKinds } from '../ndk-kinds/index.js';
 import { NDKKind, type NDKEvent, type NDKUser, NDKSubscriptionCacheUsage, type NDKFilter, NDKSubscription } from '@nostr-dev-kit/ndk';
 import { writable, derived, get as getStore } from 'svelte/store';
-import { ndk } from "@kind0/lib-svelte-kit";
+import { ndk } from "@kind0/ui-common";
 import { db } from '@nostr-dev-kit/ndk-cache-dexie';
 
 

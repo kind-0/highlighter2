@@ -7,7 +7,7 @@
     import type { NDKHighlight } from "@nostr-dev-kit/ndk";
     import type { NDKEvent } from '@nostr-dev-kit/ndk';
     import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
-    import { ndk } from '@kind0/lib-svelte-kit';
+    import { ndk } from "@kind0/ui-common";
     import { MarginNoteCard } from '@highlighter/svelte-kit-lib';
 
     export let highlight: NDKHighlight;

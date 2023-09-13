@@ -5,7 +5,7 @@
     import { page } from '$app/stores';
     import MarkdownIt from 'markdown-it';
     import type { NDKEvent } from '@nostr-dev-kit/ndk';
-    import { ndk } from "@kind0/lib-svelte-kit";
+    import { ndk } from "@kind0/ui-common";
     import {NDKArticle} from "@nostr-dev-kit/ndk";
     import { Card, Skeleton, TestimonialPlaceholder } from 'flowbite-svelte';
     import ReaderDVMTranscriptionHeader from '$lib/components/articles/dvm/ReaderDVMTranscriptionHeader.svelte';

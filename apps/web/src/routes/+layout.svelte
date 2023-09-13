@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { userDVMRequests, userFollowHashtags, userLists } from './../lib/stores/session.ts';
     import { onMount, setContext } from 'svelte';
     import { login } from '$lib/utils/login';
     import '../app.postcss';
@@ -11,13 +10,13 @@
     import { page } from '$app/stores';
     import { goto } from '$app/navigation';
     import { user as uiCommonUser, userLabels as uiCommonUserLabels } from '@kind0/ui-common';
-    import { appHandlers } from '$stores/nip89';
+    import { appHandlers } from "@kind0/ui-common";
 
     // NOOP To make sure the import is not tree-shaken
     $appHandlers;
 
     import { user, userLabels, prepareSession, loadingScreen, userFollows, networkFollows, userAppHandlers, userDVMResults } from '$stores/session';
-    import { bunkerNDK, ndk } from '@kind0/lib-svelte-kit';
+    import { bunkerNDK, ndk } from '@kind0/ui-common';
 
     $: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : ''
 

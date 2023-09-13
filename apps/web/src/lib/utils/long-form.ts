@@ -1,5 +1,4 @@
 import type NDK from '@nostr-dev-kit/ndk';
-import { filterFromNaddr, idFromNaddr } from '.';
 import type { NDKEvent, NDKPrivateKeySigner } from '@nostr-dev-kit/ndk';
 import { findEphemeralSigner } from '$lib/signers/ephemeral';
 
@@ -35,8 +34,7 @@ export class EncryptedLongForm {
 }
 
 export async function loadEncryptedLongForm(ndk: NDK, naddr: string): Promise<EncryptedLongForm | undefined> {
-    const filter = filterFromNaddr(naddr);
-    const event = await ndk.fetchEvent(filter);
+    const event = await ndk.fetchEvent(naddr);
 
     console.log(`received`, event);
 

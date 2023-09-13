@@ -2,7 +2,7 @@
     import { page } from '$app/stores';
     import Sidebar from "../lists/components/Sidebar/Sidebar.svelte";
     import WithLeftSidebar from "$lib/layouts/WithLeftSidebar.svelte";
-    import { ndk } from "@kind0/lib-svelte-kit";
+    import { ndk } from "@kind0/ui-common";
     import { user } from '$stores/session';
     import { getLongForms } from '$lib/stores/long-form';
     import { onDestroy } from 'svelte';

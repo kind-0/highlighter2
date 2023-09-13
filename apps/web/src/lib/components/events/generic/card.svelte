@@ -3,13 +3,13 @@
     import HighlightCard from '$lib/components/highlights/HighlightCard.svelte';
     import NoteCard from '$lib/components/notes/card.svelte';
     import { getContext } from 'svelte';
-    import { ndk } from "@kind0/lib-svelte-kit";
+    import { ndk } from "@kind0/ui-common";
     import { createEventDispatcher } from 'svelte';
-    import type { NDKEvent, NDKFilter } from '@nostr-dev-kit/ndk';
+    import type { NDKEvent } from '@nostr-dev-kit/ndk';
     import { user } from '$stores/session';
     import NDKList from '$lib/ndk-kinds/lists';
     import { NDKHighlight } from "@nostr-dev-kit/ndk";
-    import { filterForId, filterFromNaddr, naddrFromTagValue } from '$lib/utils';
+    import { naddrFromTagValue } from '$lib/utils';
     import ZapEventCard from '$lib/components/zaps/ZapEventCard.svelte';
     import ListCard from '$lib/components/lists/ListCard.svelte';
     import ArticleIntroCard from '$lib/components/articles/cards/ArticleIntroCard.svelte';
@@ -45,15 +45,7 @@
                 throw new Error(`no id or bech32`);
             }
 
-            let filter: NDKFilter;
-
-            if (id) {
-                filter = filterForId(id);
-            } else if (bech32) {
-                filter = filterFromNaddr(bech32);
-            }
-
-            $ndk.fetchEvent(filter).then(async (e) => {
+            $ndk.fetchEvent(id??bech32!).then(async (e) => {
                 if (!e) return reject(`no event ${id}`);
 
                 if (e.kind === 4) {

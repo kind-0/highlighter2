@@ -1,7 +1,7 @@
 <script lang="ts">
     import CollapsableDropdown from '$lib/components/CollapsableDropdown.svelte';
     import { user } from '$stores/session';
-    import { ndk } from "@kind0/lib-svelte-kit";
+    import { ndk } from "@kind0/ui-common";
     import GearIcon from '$lib/icons/Gear.svelte';
     import { logout } from '$lib/currentUser';
     import Notification from './Notification.svelte';

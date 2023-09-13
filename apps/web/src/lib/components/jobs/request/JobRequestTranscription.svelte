@@ -1,11 +1,14 @@
 <script lang="ts">
-    import { ndk } from "@kind0/lib-svelte-kit";
+    import { ndk } from "@kind0/ui-common";
     import { createEventDispatcher } from "svelte";
     import type { ProcessableTypes } from './types';
     import TranscriptionTimeRange from './TranscriptionTimeRange.svelte';
     import Stars from '$lib/icons/Stars.svelte';
     import ButtonWithBorderGradient2 from '$lib/components/buttons/ButtonWithBorderGradient2.svelte';
     import { NDKTranscriptionDVM } from '@nostr-dev-kit/ndk';
+    import { AttentionButton } from "@kind0/ui-common";
+    import { slide } from "svelte/transition";
+    import { CaretCircleDoubleDown, CaretDoubleDown, CaretDown } from "phosphor-svelte";
 
     const dispatch = createEventDispatcher();
 
@@ -71,6 +74,8 @@
     }
 
     let processBid = 1000;
+
+    let showAdvanced = false;
 </script>
 
         <div class="flex flex-row gap-4 w-full">
@@ -105,29 +110,49 @@
             </audio>
         {/if}
 
-        <TranscriptionTimeRange {type} {url} bind:startTime bind:endTime />
-        <p class="mb-4">Choose how much you are willing to pay for this transcription</p>
+        <div class="flex flex-row items-center gap-4 w-full justify-between">
+            <TranscriptionTimeRange {type} {url} bind:startTime bind:endTime />
 
-        <div class="flex flex-row gap-4 w-full">
-            <div class="flex-grow">
-                <input bind:value={processBid} type="range" min="100" max="10000" class="range range-neutral range-sm" />
-                <p>{processBid} sats</p>
-            </div>
-
-            <div class="flex flex-row gap-2 self-end">
             {#if !jobRequest}
-                    <ButtonWithBorderGradient2 on:click={requestService} disabled={!!jobRequest}>
-                        Request
-                    </ButtonWithBorderGradient2>
+                <AttentionButton on:click={requestService} disabled={!!jobRequest} class="!text-lg !font-normal !px-6">
+                    Request
+                </AttentionButton>
             {:else}
-                <span class="loading loading-spinner" />
-                <button class="btn bg-base-300 flex flex-row gap-2 whitespace-nowrap" on:click={cancelJobRequest}>
-                    Cancel
-                </button>
+                <div>
+                    <span class="loading loading-spinner" />
+                    <button class="btn bg-base-300 flex flex-row gap-2 whitespace-nowrap" on:click={cancelJobRequest}>
+                        Cancel
+                    </button>
+                </div>
             {/if}
-            </div>
         </div>
 
+
+        {#if !jobRequest}
+            <div transition:slide>
+                <div class="divider mt-0"></div>
+                <button class="self-start text-sm font-medium flex flex-row justify-between items-center gap-4" on:click={() => { showAdvanced = !showAdvanced }}>
+                    Advanced
+                    <CaretDown class="w-4 h-4 inline-block" />
+                </button>
+                {#if showAdvanced}
+                    <div transition:slide>
+                        <p class="mb-4">Choose how much you are willing to pay for this transcription</p>
+
+                        <div class="flex flex-row gap-4 w-full">
+                            <div class="flex-grow">
+                                <input bind:value={processBid} type="range" min="100" max="10000" class="range range-neutral range-sm" />
+                                <p>{processBid} sats</p>
+                            </div>
+
+                            <div class="flex flex-row gap-2 self-end">
+
+                            </div>
+                        </div>
+                    </div>
+                {/if}
+            </div>
+        {/if}
 <style>
     .star-icon {
         border-radius: 1.375rem;

@@ -1,6 +1,6 @@
 import { get as getStore } from 'svelte/store';
 import { user as userStore } from '$stores/session';
-import {ndk} from "@kind0/lib-svelte-kit";
+import { ndk } from "@kind0/ui-common";
 import type { NDKUser } from '@nostr-dev-kit/ndk';
 
 export function logout(): void {

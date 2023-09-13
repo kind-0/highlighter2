@@ -1,6 +1,6 @@
 <script lang="ts">
     import { user } from '$stores/session';
-    import { ndk } from "@kind0/lib-svelte-kit";
+    import { ndk } from "@kind0/ui-common";
 
     import Tags from './tags.svelte';
     import type { NDKList, NDKTag } from '@nostr-dev-kit/ndk';

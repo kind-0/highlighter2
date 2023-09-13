@@ -5,7 +5,7 @@
     import MenuItem from '../sidebars/MenuItem.svelte';
     import { Input } from "@kind0/ui-common";
     import { Plus } from 'phosphor-svelte';
-    import { ndk } from "@kind0/lib-svelte-kit";
+    import { ndk } from "@kind0/ui-common";
 
     export let kinds: number[] = NDKListKinds;
     export let newListKind: number;

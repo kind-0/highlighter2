@@ -2,7 +2,7 @@
     import JobStatus from '$lib/components/jobs/status/JobStatus.svelte';
     import { onDestroy } from "svelte";
     import type { NDKEvent, NDKDVMRequest } from "@nostr-dev-kit/ndk";
-    import { ndk } from '@kind0/lib-svelte-kit';
+    import { ndk } from "@kind0/ui-common";
     import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
 
     export let jobRequest: NDKDVMRequest;
@@ -10,7 +10,7 @@
     let subscribedToJobId: string | undefined;
 
     let jobEvents: NDKEventStore<NDKEvent>;
-    let pubkeyGroupedJobEvents: Record<string, NDKEvent[]>;
+    let dvms: Record<string, NDKEventStore<NDKEvent>>;
 
     function subscribeToJob() {
         if (jobEvents) unsubscribeFromJob();

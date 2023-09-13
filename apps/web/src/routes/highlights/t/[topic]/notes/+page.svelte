@@ -3,7 +3,7 @@
     import { page } from "$app/stores";
     // import HighlightFilter from "../../../HighlightFilter.svelte";
 
-    import { ndk } from "@kind0/lib-svelte-kit";
+    import { ndk } from "@kind0/ui-common";
     import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
     import type { NDKEvent } from '@nostr-dev-kit/ndk';
 

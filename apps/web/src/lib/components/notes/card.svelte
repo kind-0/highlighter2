@@ -6,7 +6,7 @@
     import { onDestroy, onMount } from 'svelte';
     import { Avatar } from "@kind0/ui-common";
     import { Name } from '@nostr-dev-kit/ndk-svelte-components';
-    import { ndk } from "@kind0/lib-svelte-kit";
+    import { ndk } from "@kind0/ui-common";
     import type { NDKEventStore } from "@nostr-dev-kit/ndk-svelte";
 
     export let event: NDKEvent;

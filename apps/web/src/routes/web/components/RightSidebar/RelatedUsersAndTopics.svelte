@@ -1,6 +1,7 @@
 <script lang="ts">
     import { Avatar, Name } from '@nostr-dev-kit/ndk-svelte-components';
     import { ndk } from "@kind0/ui-common";
+    import { AvatarWithName } from '@kind0/ui-common';
 
     export let users: Set<string>;
     export let otherTopics: Set<string>;
@@ -14,8 +15,7 @@
         {#each Array.from(users) as npub}
             <li>
                 <a href="/p/{npub}/highlights" class="flex flex-row items-center gap-2">
-                    <Avatar {npub} ndk={$ndk} class="rounded-lg w-8" />
-                    <Name {npub} ndk={$ndk} class="text-sm" on:click />
+                    <AvatarWithName {npub} ndk={$ndk} class="flex flex-row items-center gap-2" />
                 </a>
             </li>
         {/each}

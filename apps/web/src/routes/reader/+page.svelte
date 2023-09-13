@@ -6,16 +6,14 @@
     import DvmRecommendations from "./DVMRecommendations.svelte";
     import { setNewArticlesFilters } from "$stores/articles";
     import RecentlyHighlighted from "./RecentlyHighlighted.svelte";
+    import { userFollowHashtags } from "$stores/session";
 
-    const userInterests = ['philosophy', 'seneca', 'stoicism', 'nostr'];
+    const userInterests = $userFollowHashtags;
 
     setNewArticlesFilters(
         {},
         [{ kinds: [NDKKind.Article], "#t": userInterests }]
     );
-
-    let newContentArticlesToRender: number;
-    let newContentExpanded = false;
 </script>
 
 <div class="flex flex-col gap-8">
@@ -23,7 +21,7 @@
 
     <RecentlyHighlighted />
 
-    <div transition:fade>
+    <!-- <div transition:fade>
         <Section
             title="Highlighter Fresh"
             on:click={() => {
@@ -52,7 +50,7 @@
                 expanded={newContentExpanded}
             />
         </Section>
-    </div>
+    </div> -->
 <!--
     <Section
         title="Recently Curated"

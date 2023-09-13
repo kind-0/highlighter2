@@ -1,6 +1,6 @@
 <script lang="ts">
     import { NDKDVMRequest, type NDKDVMJobResult, type NDKTag } from "@nostr-dev-kit/ndk";
-    import {ndk} from "@kind0/lib-svelte-kit";
+    import { ndk } from "@kind0/ui-common";
 
     export let jobResult: NDKDVMJobResult
 

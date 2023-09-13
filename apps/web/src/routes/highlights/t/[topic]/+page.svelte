@@ -1,15 +1,16 @@
 <script lang="ts">
 	import { pageTitle, pageSubtitle } from '$lib/store.js';
+    import Navbar from '$lib/components/Navbar/Navbar.svelte';
+    import Sidebar from "$components/sidebars/HighlightsSidebar.svelte";
+    import {PageTitle, ThreeColumnsLayout} from "@kind0/ui-common";
     import HighlightList from '$lib/components/HighlightList.svelte';
     import { page } from "$app/stores";
-    import PageTitle from '$lib/components/PageTitle.svelte';
     import { onDestroy } from 'svelte';
     import { NDKKind } from '$lib/ndk-kinds';
     import { NDKHighlight } from "@nostr-dev-kit/ndk";
-    import MainWithRightSidebar from "$lib/layouts/MainWithRightSidebar.svelte";
     import RightSidebar from './components/RightSidebar/RightSidebar.svelte';
     import ModeTab from './components/ModeTab.svelte';
-    import { ndk } from '@kind0/lib-svelte-kit';
+    import { ndk } from "@kind0/ui-common";
     import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
 
     let topic: string
@@ -83,9 +84,15 @@
 
 </script>
 
-topic
+<ThreeColumnsLayout>
+    <div slot="navbar">
+        <Navbar />
+    </div>
 
-<MainWithRightSidebar>
+    <div slot="sidebar">
+        <Sidebar />
+    </div>
+
     {#if $pageTitle}
         <PageTitle title={$pageTitle} subtitle={$pageSubtitle}>
             <div class="flex flex-col items-end justify-between h-full">
@@ -100,7 +107,7 @@ topic
         <HighlightList items={$highlights} />
     {/if}
 
-    <div slot="right-sidebar" class="flex flex-col gap-4">
+    <div slot="rightSidebar" class="flex flex-col gap-4">
         <RightSidebar {users} {otherTopics} {sortedOtherTopics} />
     </div>
-</MainWithRightSidebar>
+</ThreeColumnsLayout>

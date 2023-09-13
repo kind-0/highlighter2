@@ -55,7 +55,9 @@
 
 </script>
 
-<a href={url} class="flex flex-col gap-4 w-[174px] {$$props.class??""}">
+
+
+<a href={url} class="flex flex-col gap-4 w-[166px] {$$props.class??""}">
     <div class="relative group overflow-hidden flex flex-col justify-end h-[244px] w-full shadow rounded-xl">
         <div class="absolute top-0 left-0 h-full w-full rounded-xl {!imgLoaded ? 'grad-blue' : ''}">
         {#if image}

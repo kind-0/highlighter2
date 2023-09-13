@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onDestroy, onMount } from "svelte";
     import { NDKDVMRequest, NDKDVMJobResult, NDKKind } from "@nostr-dev-kit/ndk";
-    import { ndk } from "@kind0/lib-svelte-kit";
+    import { ndk } from "@kind0/ui-common";
     import type { NDKEventStore } from "@nostr-dev-kit/ndk-svelte";
 
     export let jobRequest: NDKDVMRequest;
@@ -32,7 +32,7 @@
 <li class="overflow-hidden w-fit">
     <a href="/dvm/{jobRequest.encode()}" class="overflow-hidden flex items-start justify-start text-left">
         {#if image}
-            <img src={image} alt="image" class="w-10 h-10 object-cover rounded-circle me-2" />
+            <img src={image} alt="image" class="w-10 h-10 object-cover !rounded-lg me-2" />
         {/if}
         <span class="truncate">{title}</span>
         <span class="badge badge-neutral badge-xs">

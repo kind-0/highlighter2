@@ -8,7 +8,7 @@
     import { onDestroy } from 'svelte';
     import type { NDKSubscription } from '@nostr-dev-kit/ndk';
     import { user } from '$stores/session';
-    import { defaultRelays, ndk } from '@kind0/lib-svelte-kit';
+    import { defaultRelays, ndk } from '@kind0/ui-common';
 
     const relaySetLists = sortedListWithKind(NDKKind.RelayList);
 

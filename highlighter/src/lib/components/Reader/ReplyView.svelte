@@ -1,6 +1,6 @@
 <script lang="ts">
     import { NDKEvent, type NostrEvent } from "@nostr-dev-kit/ndk";
-    import { ndk } from "@kind0/lib-svelte-kit";
+    import { ndk } from "@kind0/ui-common";
 
     import { Pen } from "phosphor-svelte";
     import { createEventDispatcher } from "svelte";

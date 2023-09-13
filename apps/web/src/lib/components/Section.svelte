@@ -3,6 +3,7 @@
 
     export let title: string;
     export let expanded: boolean = false;
+    export let flow: 'grid' | 'column' = 'grid';
 </script>
 
 <div class="flex flex-col gap-4">
@@ -15,7 +16,11 @@
 
     <div class="relative">
         <div class="overflow-x-auto pb-4">
-            <div class="{expanded ? "grid grid-flow-row grid-cols-2 md:grid-cols-4 gap-4" : "grid grid-flow-col auto-cols-max"} gap-4" transition:slide={{axis:'y'}}>
+            <div class="
+                {flow === 'grid' ?
+                    expanded ? "grid grid-flow-row grid-cols-2 md:grid-cols-4 gap-4" : "grid grid-flow-col auto-cols-max"
+                : "flex flex-col"
+            } gap-4" transition:slide={{axis:'y'}}>
                 <slot />
             </div>
         </div>

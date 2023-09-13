@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { userLabels } from '$stores/session';
-    import { ndk } from "@kind0/lib-svelte-kit";
+    import { ndk } from "@kind0/ui-common";
     import { NDKEvent, NDKKind, NDKList, type NostrEvent } from '@nostr-dev-kit/ndk';
     import { createEventDispatcher } from 'svelte';
     import type { NDKHighlight } from "@nostr-dev-kit/ndk";

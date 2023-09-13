@@ -1,5 +1,5 @@
 import { writable, derived, get as getStore } from 'svelte/store';
-import { ndk } from "@kind0/lib-svelte-kit";
+import { ndk } from "@kind0/ui-common";
 import NDK, { NDKSubscriptionCacheUsage, type NDKSubscription, type NDKUser, NDKEvent, NDKArticle } from '@nostr-dev-kit/ndk';
 import {NDKKind} from '../ndk-kinds/index.js';
 import debug from 'debug';

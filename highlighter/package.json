@@ -19,7 +19,7 @@
     "!dist/**/*.spec.*"
   ],
   "scripts": {
-    "dev": "vite build --watch",
+    "dev": "svelte-package -w",
     "build": "pnpm run sync && vite build && pnpm run package",
     "sync": "svelte-kit sync",
     "package": "svelte-kit sync && svelte-package && publint",
@@ -29,9 +29,8 @@
   },
   "devDependencies": {
     "@kind0/eslint-config-custom": "workspace:*",
-    "@kind0/lib-svelte-kit": "workspace:*",
-    "@kind0/tsconfig": "workspace:*",
     "@kind0/ui-common": "workspace:*",
+    "@kind0/tsconfig": "workspace:*",
     "@sveltejs/package": "^2.2.1",
     "@types/sanitize-html": "^2.9.0",
     "postcss": "^8.4.20",

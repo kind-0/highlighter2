@@ -41,6 +41,16 @@ export function tryToLoadTopic(data: string): MediaType | undefined {
     }
 }
 
+export function tryToLoadSearch(data: string): MediaType | undefined {
+    try {
+        new URL(data);
+        return undefined;
+    } catch (e) {}
+
+    goto(`/search?q=${encodeURIComponent(data)}`);
+    return 'search';
+}
+
 export function tryToLoadDVM(data: string): MediaType | undefined {
     return (
         tryToLoadVideo(data) ||

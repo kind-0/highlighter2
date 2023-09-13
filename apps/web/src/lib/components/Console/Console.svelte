@@ -3,7 +3,7 @@
     import JobRequestEventsFeed from '$lib/components/jobs/request/event-feed/JobRequestEventsFeed.svelte';
     import JobRequestTranscription from '$lib/components/jobs/request/JobRequestTranscription.svelte';
     import { searchQuery, processingInstructions } from '$lib/stores/search';
-    import { ndk } from '@kind0/lib-svelte-kit';
+    import { ndk } from "@kind0/ui-common";
     import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
 
     let prevSearchQuery: string | undefined = undefined;

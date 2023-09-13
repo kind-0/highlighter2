@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { ndk } from "@kind0/lib-svelte-kit";
+    import { ndk } from "@kind0/ui-common";
     import { login } from '$lib/utils/login';
     import { user } from '$stores/session';
     import { SubtleButton } from "@kind0/ui-common";

@@ -2,7 +2,7 @@
     import EventCard from "$lib/components/events/EventCard.svelte";
     import HighlightContent from '$lib/components/highlights/HighlightContent.svelte';
 
-    import { ndk } from "@kind0/lib-svelte-kit";
+    import { ndk } from "@kind0/ui-common";
 
     import type { NDKEvent } from '@nostr-dev-kit/ndk';
     import type { NDKHighlight } from "@nostr-dev-kit/ndk";

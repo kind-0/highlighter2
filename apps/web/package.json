@@ -10,8 +10,8 @@
     },
     "devDependencies": {
         "@grail-ui/svelte": "^0.10.1",
-        "@kind0/tsconfig": "workspace:*",
         "@highlighter/svelte-kit-lib": "workspace:*",
+        "@kind0/tsconfig": "workspace:*",
         "@rgossiaux/svelte-headlessui": "^1.0.2",
         "@rollup/plugin-alias": "^5.0.0",
         "@rollup/plugin-node-resolve": "^15.0.2",
@@ -51,7 +51,6 @@
     "license": "MIT+CC",
     "dependencies": {
         "@fontsource/lora": "^5.0.8",
-        "@kind0/lib-svelte-kit": "workspace:*",
         "@kind0/ui-common": "workspace:*",
         "@macfja/svelte-persistent-store": "^2.3.2",
         "@mozilla/readability": "^0.4.4",
@@ -83,6 +82,7 @@
         "markdown-it-footnote": "^3.0.3",
         "markdown-it-task-list-plus": "^2.1.3",
         "nostr-tools": "^1.14.0",
+        "pdf2html": "^3.1.0",
         "sanitize-html": "^2.10.0",
         "svelte-link-preview": "^0.3.3",
         "svelte-modals": "^1.3.0",

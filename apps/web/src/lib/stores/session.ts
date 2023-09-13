@@ -1,5 +1,5 @@
 import { writable, get as getStore, type Writable, readable, derived } from 'svelte/store';
-import { ndk } from "@kind0/lib-svelte-kit";
+import { ndk } from "@kind0/ui-common";
 import NDK, { NDKEvent, NDKList, NDKSubscriptionCacheUsage, type NDKFilter, type NDKTag, type NDKUser, NDKKind, type NDKEventId, NDKDVMJobResult, NDKDVMRequest } from '@nostr-dev-kit/ndk';
 import type NDKSvelte from '@nostr-dev-kit/ndk-svelte';
 import { NDKListKinds } from '$lib/ndk-kinds';
@@ -407,7 +407,7 @@ async function fetchData(
 
         if (opts.dvmRequestsStore) {
             const oneHourAgo = Math.floor(Date.now() / 1000) - 3600;
-            filters.push({ authors, kinds: [65002, 65008], limit: 10, since: oneHourAgo });
+            filters.push({ authors, kinds: [65002, 65008], limit: 10 });
         }
 
         if (opts.followsStore) {

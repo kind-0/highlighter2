@@ -2,7 +2,7 @@ import { NDKKind } from "../ndk-kinds";
 import { type NDKFilter, NDKSubscriptionCacheUsage, NDKEvent, type NDKTag, NDKSubscription } from "@nostr-dev-kit/ndk";
 import NDKHighlight from "../ndk-kinds/highlight";
 import { writable, derived, get as getStore } from 'svelte/store';
-import { ndk } from "@kind0/lib-svelte-kit";
+import { ndk } from "@kind0/ui-common";
 
 type ArticleId = NDKTag;
 

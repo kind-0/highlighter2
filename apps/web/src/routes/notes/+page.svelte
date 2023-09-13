@@ -3,7 +3,7 @@
 
     import type { NDKEvent } from '@nostr-dev-kit/ndk';
     import { user } from '$stores/session';
-    import {ndk} from "@kind0/lib-svelte-kit";
+    import { ndk } from "@kind0/ui-common";
     import NDKArticle from "@nostr-dev-kit/ndk";
 
     import { onMount } from 'svelte';
