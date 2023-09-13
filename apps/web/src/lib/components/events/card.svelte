@@ -4,7 +4,6 @@
 
     import NoteCard from '$lib/components/notes/card.svelte';
 
-    import HighlightButton from '$lib/components/events/buttons/HighlightButton.svelte';
     import RepliesButton from '$lib/components/events/buttons/replies.svelte';
     import BoostButton from '$lib/components/events/buttons/boost.svelte';
 
@@ -121,12 +120,6 @@
                                 z-10
                             ">
                                 {#if !skipButtons}
-                                    {#if event.kind !== 9802}
-                                        <div class="opacity-0 group-hover:opacity-100 transition duration-300">
-                                            <HighlightButton {event} />
-                                        </div>
-                                    {/if}
-
                                     <div class="opacity-0 group-hover:opacity-100 transition duration-300">
                                         <BoostButton {event} />
                                     </div>
