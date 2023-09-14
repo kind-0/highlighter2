@@ -1,8 +1,7 @@
 <script lang="ts">
     import { page } from "$app/stores";
     import MainWithRightSidebar from "$lib/layouts/MainWithRightSidebar.svelte";
-    import { ndk } from "@kind0/ui-common";
-    import PageTitle from "$lib/components/PageTitle.svelte";
+    import { PageTitle, ndk } from "@kind0/ui-common";
     import { NDKList } from "@nostr-dev-kit/ndk";
     import Tags from '../../../../lists/[naddr]/tags.svelte';
     import ListsWithSimilarItems from "$lib/components/lists/ListsWithSimilarItems.svelte";

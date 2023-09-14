@@ -7,11 +7,11 @@
     import { lists } from "$lib/stores/list";
 
     import { derived } from 'svelte/store';
-    import PageTitle from '$lib/components/PageTitle.svelte';
     import ButtonWithBorderGradient2 from '$lib/components/buttons/ButtonWithBorderGradient2.svelte';
     import { ListPlus } from 'phosphor-svelte';
     import MainWithRightSidebar from '$lib/layouts/MainWithRightSidebar.svelte';
     import type { NDKList } from '@nostr-dev-kit/ndk';
+    import { PageTitle } from '@kind0/ui-common';
 
     const namedLists = derived(lists, ($lists) => {
         const namedLists: NDKList[] = [];

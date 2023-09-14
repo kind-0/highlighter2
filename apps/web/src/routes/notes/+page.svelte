@@ -3,7 +3,7 @@
 
     import type { NDKEvent } from '@nostr-dev-kit/ndk';
     import { user } from '$stores/session';
-    import { ndk } from "@kind0/ui-common";
+    import { PageTitle, ndk } from "@kind0/ui-common";
     import NDKArticle from "@nostr-dev-kit/ndk";
 
     import { onMount } from 'svelte';
@@ -11,7 +11,6 @@
 
     import { longFormStore } from '$lib/stores/long-form';
     import { derived } from 'svelte/store';
-    import PageTitle from '$lib/components/PageTitle.svelte';
     import { Plus, Scroll } from 'phosphor-svelte';
 
 
