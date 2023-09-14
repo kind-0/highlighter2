@@ -259,6 +259,7 @@
                     <div class="z-50 fixed top-20" transition:fade>
                         <NewHighlight
                             highlight={newHighlightItem}
+                            title={article?.url ? article.title : undefined}
                             on:close={onNewHighlightClose}
                             bind:topics
                         />

@@ -8,11 +8,18 @@
     export let highlight: NDKHighlight;
 
     let author: NDKUser;
+    let title: string | undefined = highlight.tagValue('title');
+
+    if (!title && highlight.url) {
+        try {
+            title = new URL(highlight.url).hostname;
+        } catch (e) {}
+    }
 
     const getArticle = new Promise((resolve, reject) => {
         highlight.getArticle().then(a => {
-            if (a instanceof NDKEvent)
-                author = a.author;
+            if (a instanceof NDKEvent) author = a.author;
+            if (a instanceof NDKArticle) title ??= a?.title;
             resolve(a);
         }).catch(e => {
             reject(e);
@@ -25,15 +32,15 @@
         {#if article instanceof NDKArticle && article.title}
             <div class="flex flex-row items-center gap-2">
                 <Avatar user={author} size="small" type="square" />
-                <a href={linkToArticle(highlight)}>{article.title}</a>
+                <a href={linkToArticle(highlight)}>{title}</a>
             </div>
         {:else if highlight?.url && highlight.url.match(/^http(s)?:\/\//)}
             <div class="flex flex-row items-center gap-2">
                 <Favicon url={highlight.url} class="w-8 h-8 rounded-md" />
-                <a href={linkToArticle(highlight)}>{new URL(highlight.url).hostname}</a>
+                <a href={linkToArticle(highlight)}>{title}</a>
             </div>
         {:else if author}
-            <a href={linkToArticle(highlight)}>Note <AvatarWithName pubkey={author.hexpubkey} avatarClass="w-10 h-10" /></a>
+            <a href={linkToArticle(highlight)} class="flex flex-row gap-2 items-center">Note <AvatarWithName pubkey={author.hexpubkey} avatarClass="w-10 h-10" /></a>
         {:else if typeof article === 'string'}
             <a class="" href={linkToArticle(highlight)}>{article}</a>
         {:else if !article}

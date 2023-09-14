@@ -11,6 +11,7 @@
 
     export let highlight: NDKHighlight;
     export let topics: string[] = [];
+    export let title: string | undefined = undefined;
 
     export let availableTopics: string[] = topics;
     export let suggestedTopics: string[] = [];
@@ -40,6 +41,8 @@
         for (const topic of topics) {
             highlight.tags.push(['t', topic]);
         }
+
+        if (title) highlight.tags.push(["title", title]);
 
         // NIP-31
         highlight.tags.push(altTag(highlight));
