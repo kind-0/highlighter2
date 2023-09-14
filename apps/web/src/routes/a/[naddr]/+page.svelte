@@ -72,14 +72,6 @@
                     Loading article...
                 </h1>
             </Card>
-
-            <div  class="flex flex-col items-start">
-                <TestimonialPlaceholder />
-            </div>
-
-            <Skeleton size='xxl' class='mt-8'/>
-            <Skeleton size='xxl' class='mt-8'/>
-            <Skeleton size='xxl' class='mt-8'/>
         </div>
     </div>
 {:then article}

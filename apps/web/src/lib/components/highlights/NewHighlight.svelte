@@ -1,11 +1,12 @@
 <script lang="ts">
-	import { userLabels } from '$stores/session';
+	import { slide } from 'svelte/transition';
+	import { user, userLabels } from '$stores/session';
     import { ndk } from "@kind0/ui-common";
     import { NDKEvent, NDKKind, NDKList, type NostrEvent } from '@nostr-dev-kit/ndk';
     import { createEventDispatcher } from 'svelte';
     import type { NDKHighlight } from "@nostr-dev-kit/ndk";
     import MainCtaInSecondaryActionButton from '../buttons/MainCTAInSecondaryActionButton.svelte';
-    import { Textarea, TopicInput } from '@kind0/ui-common';
+    import { Textarea, TopicInput, AttentionButton } from '@kind0/ui-common';
     import HighlightContentBox from './HighlightContentBox.svelte';
     import HighlightCard from './HighlightCard.svelte';
 
@@ -47,6 +48,12 @@
         // NIP-31
         highlight.tags.push(altTag(highlight));
 
+        // Zap splits
+        if (highlight.article instanceof NDKEvent) {
+            highlight.tags.push(['zap', highlight.article.pubkey, "2" ]);
+            highlight.tags.push(['zap', $user!.hexpubkey, "1" ]);
+        }
+
         await highlight.publish();
     }
 
@@ -83,10 +90,16 @@
     async function save() {
         saving = true;
 
-        if (isHighlightNew()) {
-            await saveHighlight();
-        } else {
-            await repostHighlight();
+        try {
+            if (isHighlightNew()) {
+                await saveHighlight();
+            } else {
+                await repostHighlight();
+            }
+        } catch (e) {
+            console.error(e);
+            saving = false;
+            return;
         }
 
         // create NIP-32 label if we have topics
@@ -171,7 +184,11 @@
     }
 </style>
 
-<div class="flex flex-col gap-4 absolute md:static top-0 md:w-auto hs-[80vh] md:h-auto z-50 w-full">
+<div
+    class="flex flex-col gap-4 absolute md:static top-0 md:w-auto hs-[80vh] md:h-auto z-50 w-full"
+    class:hidden={saving}
+transition:slide
+>
     <div class="w-full
         card card-compact card-bordered
         rounded-md
@@ -276,12 +293,13 @@
                     </button>
 
                     <!-- Save Button -->
-                    <MainCtaInSecondaryActionButton
-                        class="px-10 text-base font-normal"
+                    <AttentionButton
+                        color="accent"
+                        class="!px-10 text-base font-normal"
                         on:click={save} disabled={saving}
                     >
                         <div class="text-base-100-content">Save</div>
-                    </MainCtaInSecondaryActionButton>
+                    </AttentionButton>
                 </div>
             </div>
         </div>

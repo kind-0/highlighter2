@@ -1,10 +1,9 @@
 <script lang="ts">
-    import EventCard from "$lib/components/events/EventCard.svelte";
     import NoteContent from '$lib/components/events/content.svelte';
 
     import type { NDKEvent } from '@nostr-dev-kit/ndk';
     import { onDestroy, onMount } from 'svelte';
-    import { Avatar } from "@kind0/ui-common";
+    import { Avatar, EventCard } from "@kind0/ui-common";
     import { Name } from '@nostr-dev-kit/ndk-svelte-components';
     import { ndk } from "@kind0/ui-common";
     import type { NDKEventStore } from "@nostr-dev-kit/ndk-svelte";

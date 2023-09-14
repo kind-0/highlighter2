@@ -6,6 +6,7 @@
     import { ndk } from "@kind0/ui-common";
     import { createEventDispatcher } from 'svelte';
     import type { NDKEvent } from '@nostr-dev-kit/ndk';
+    import { NDKListKinds } from "@nostr-dev-kit/ndk";
     import { user } from '$stores/session';
     import { NDKHighlight, NDKList } from "@nostr-dev-kit/ndk";
     import { naddrFromTagValue } from '$lib/utils';
@@ -15,7 +16,6 @@
     import NDKArticle from "@nostr-dev-kit/ndk";
     import { createDraggableEvent } from '$lib/utils/draggable';
     import { isMarginNote } from './types';
-    import { NDKListKinds } from '$lib/ndk-kinds';
     import { MarginNoteCard } from '@highlighter/svelte-kit-lib';
 
     export let bech32: string | undefined = undefined;

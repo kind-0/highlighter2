@@ -1,8 +1,7 @@
 <script lang="ts">
     import { user, userFollows } from '$stores/session';
-    import { loginAsGuest } from '@kind0/ui-common';
+    import { loginAsGuest, AttentionButton } from '@kind0/ui-common';
     import KeyIcon from '$lib/icons/Key.svelte';
-    import AttentionButton from '$lib/components/buttons/AttentionButton.svelte';
 
     const names = [
         "Curious Reader",
