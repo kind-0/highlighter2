@@ -28,7 +28,7 @@
 
         {#each sortedOtherTopics as { topic, count }}
             <li>
-                <a href="/highlights/t/{topic}" class="flex flex-row items-center justify-between gap-2">
+                <a href="/t/{topic}" class="flex flex-row items-center justify-between gap-2">
                     <span>#{topic}</span>
                     <div class="badge badge-neutral">{count}</div>
                 </a>

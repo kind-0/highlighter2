@@ -17,10 +17,12 @@
     async function getStarted() {
         if ($user) {
             const followedHashtags = new NDKEvent($ndk, {
-                kind: 30000,
+                kind: 30015,
                 tags: [
-                    ["d", "hashtags"],
+                    ["d", "education"],
+                    ["title", "Education"],
                     ...selectedTopics.map((t) => ["t", t]),
+                    ["p", "fa984bd7dbb282f07e16e7ae87b26a2a7b9b90b7246a44771f0cf5ae58018f52", "pablof7z" ]
                 ]
             } as NostrEvent);
 

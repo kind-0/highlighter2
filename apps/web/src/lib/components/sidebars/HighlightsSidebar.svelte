@@ -68,7 +68,7 @@
                 <li class="menu-title">TOPICS</li>
                 {#each $userFollowHashtags as hashtag}
                     <MenuItem
-                        href="/highlights/t/{hashtag}"
+                        href="/t/{hashtag}"
                         activeClass="border-l-accent"
                         innerClass="flex flex-row gap-2"
                     >

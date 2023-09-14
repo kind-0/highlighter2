@@ -2,7 +2,7 @@
     import type { NDKEvent } from "@nostr-dev-kit/ndk";
 
     export let event: NDKEvent;
-    export let urlPrefix: string = '/highlights/t/'
+    export let urlPrefix: string = '/t/'
 
     let tags = event.getMatchingTags('t').map(t => t[1]);
 </script>

@@ -36,16 +36,16 @@
             <ul class="menu bg-base-200 w-full rounded-box">
                 <li class="menu-title">TOPICS</li>
 
-                <MenuItem href="/highlights/t/bitcoin">
+                <MenuItem href="/t/bitcoin">
                     <img src="https://abs.twimg.com/hashflags/Bitcoin_evergreen/Bitcoin_evergreen.png" style="width: 1.2em; vertical-align: -20%; margin-right: 0.075em; height: 1.2em; margin-left: 2px; display: inline-block;">
                     Bitcoin
                 </MenuItem>
 
-                <MenuItem href="/highlights/t/ai">
+                <MenuItem href="/t/ai">
                     Artificial Intelligence
                 </MenuItem>
 
-                <MenuItem href="/highlights/t/regenerative-agriculture">
+                <MenuItem href="/t/regenerative-agriculture">
                     Regenerative Agriculture
                 </MenuItem>
             </ul>

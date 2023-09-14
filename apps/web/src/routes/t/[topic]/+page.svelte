@@ -30,7 +30,6 @@
 
     $: {
         $pageTitle = `#${topic}`;
-        $pageSubtitle = "Ideas your network has found valuable";
     }
 
     onDestroy(() => {
@@ -46,11 +45,13 @@
         otherTopics.clear();
         if (highlights) highlights.unsubscribe();
 
-        highlights = $ndk.storeSubscribe(
-            { kinds: [NDKKind.Highlight as number], '#t': [topic] },
+        highlights = $ndk.storeSubscribe([
+            { kinds: [NDKKind.Highlight as number], '#t': [topic], limit: 20 },
+            { kinds: [NDKKind.Highlight as number], '#l': [topic], limit: 20 },
+        ],
             {
                 repostsFilters: [
-                    { kinds: [16 as number], '#k': [NDKKind.Highlight.toString()], '#t': [topic] },
+                    { kinds: [16 as number], '#k': [NDKKind.Highlight.toString()], '#t': [topic], limit: 10 },
                 ],
                 closeOnEose: false,
             },

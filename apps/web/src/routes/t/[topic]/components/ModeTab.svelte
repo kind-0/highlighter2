@@ -9,14 +9,14 @@
 
 <div class="tabs tabs-boxed">
     <a
-        href="/highlights/t/{topic}"
+        href="/t/{topic}"
         class="tab"
-        class:tab-active={$page.url.pathname === `/highlights/t/${topic}`}
+        class:tab-active={$page.url.pathname === `/t/${topic}`}
     >Highlights</a>
     <a
-        href="/highlights/t/{topic}/notes"
+        href="/t/{topic}/notes"
         class="tab"
-        class:tab-active={$page.url.pathname === `/highlights/t/${topic}/notes`}
+        class:tab-active={$page.url.pathname === `/t/${topic}/notes`}
     >Margin Notes</a>
 </div>
 
