@@ -7,8 +7,7 @@
     import { createEventDispatcher } from 'svelte';
     import type { NDKEvent } from '@nostr-dev-kit/ndk';
     import { user } from '$stores/session';
-    import NDKList from '$lib/ndk-kinds/lists';
-    import { NDKHighlight } from "@nostr-dev-kit/ndk";
+    import { NDKHighlight, NDKList } from "@nostr-dev-kit/ndk";
     import { naddrFromTagValue } from '$lib/utils';
     import ZapEventCard from '$lib/components/zaps/ZapEventCard.svelte';
     import ListCard from '$lib/components/lists/ListCard.svelte';

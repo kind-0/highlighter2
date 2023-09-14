@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { NDKUser } from '@nostr-dev-kit/ndk';
     import { page } from '$app/stores';
     import Section from '$components/Section.svelte';
     import HighlightList from '$components/HighlightList.svelte';
@@ -8,7 +7,6 @@
     import { NDKRelaySet, NDKHighlight, NDKArticle, type NDKTag } from '@nostr-dev-kit/ndk';
     import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
     import TagContentCards from '$components/ContentCards/TagContentCards.svelte';
-    import TagContentCard from '$components/ContentCards/TagContentCard.svelte';
     import { derived, type Readable } from 'svelte/store';
     import Navbar from '$components/Navbar/Navbar.svelte';
     import HighlightsSidebar from '$components/sidebars/HighlightsSidebar.svelte';

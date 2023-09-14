@@ -7,7 +7,7 @@
     import ModalWrapper from '$lib/components/ModalWrapper.svelte';
     import { Input } from "@kind0/ui-common";
     import { sortedListWithKind, sortedLists } from '$lib/stores/list';
-    import type NDKList from '$lib/ndk-kinds/lists';
+    import type { NDKList } from "@nostr-dev-kit/ndk";
 
     export let event: NDKEvent;
     export let listKind: number = 30001;

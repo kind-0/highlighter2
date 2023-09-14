@@ -1,5 +1,5 @@
+import type { NDKRelayList } from "@nostr-dev-kit/ndk";
 import Dexie from "dexie";
-import NDKRelayList from "$lib/ndk-kinds/lists/relay-list";
 
 /**
  * Get the naddr of the current relay set

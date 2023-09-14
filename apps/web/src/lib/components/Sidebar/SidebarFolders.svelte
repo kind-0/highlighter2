@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type NDKList from '$lib/ndk-kinds/lists';
+    import type { NDKList } from "@nostr-dev-kit/ndk";
     import { debounce } from 'throttle-debounce';
     import SidebarFolderLeaf from './SidebarFolderLeaf.svelte';
     import type { Readable } from 'svelte/store';

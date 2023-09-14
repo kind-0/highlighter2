@@ -1,9 +1,8 @@
 <script lang="ts">
 	import GenericEventCard from '$lib/components/events/generic/card.svelte';
-    import { ndk } from "@kind0/ui-common";
-    import NDKList from '$lib/ndk-kinds/lists';
+    import { PageTitle, ndk } from "@kind0/ui-common";
+    import { NDKList } from "@nostr-dev-kit/ndk";
     import { page } from '$app/stores';
-    import PageTitle from '$lib/components/PageTitle.svelte';
     import{ Avatar } from "@kind0/ui-common";
     import { Name } from '@nostr-dev-kit/ndk-svelte-components';
     import MainWithRightSidebar from '$lib/layouts/MainWithRightSidebar.svelte';

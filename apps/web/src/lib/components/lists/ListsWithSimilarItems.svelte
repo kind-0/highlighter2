@@ -4,7 +4,7 @@
 <script lang="ts">
     import type { NDKTag } from "@nostr-dev-kit/ndk";
     import MenuItem from "../sidebars/MenuItem.svelte";
-    import NDKList from "$lib/ndk-kinds/lists";
+    import { NDKList } from "@nostr-dev-kit/ndk";
     import { ndk } from "@kind0/ui-common";
     import { Name } from "@nostr-dev-kit/ndk-svelte-components";
 

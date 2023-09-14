@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type NDKRelayList from "$lib/ndk-kinds/lists/relay-list";
+    import type { NDKRelayList } from "@nostr-dev-kit/ndk";
     import RelaysIcon from "$lib/icons/Relays.svelte";
     import ButtonWithBorderGradient2 from "../buttons/ButtonWithBorderGradient2.svelte";
     import { changeRelaySet, currentRelaySet } from "$lib/components/RelaySets/index";

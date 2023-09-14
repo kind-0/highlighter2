@@ -1,5 +1,5 @@
 <script lang="ts">
-    import NDKList from '$lib/ndk-kinds/lists';
+    import { NDKList } from "@nostr-dev-kit/ndk";
     import{ Name } from "@kind0/ui-common";
 
     export let name: string;

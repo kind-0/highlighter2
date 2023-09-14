@@ -1,8 +1,7 @@
 import { writable, get as getStore, type Writable, readable, derived } from 'svelte/store';
 import { ndk } from "@kind0/ui-common";
-import NDK, { NDKEvent, NDKList, NDKSubscriptionCacheUsage, type NDKFilter, type NDKTag, type NDKUser, NDKKind, type NDKEventId, NDKDVMJobResult, NDKDVMRequest } from '@nostr-dev-kit/ndk';
+import NDK, { NDKEvent, NDKList, NDKSubscriptionCacheUsage, type NDKFilter, type NDKTag, type NDKUser, NDKKind, type NDKEventId, NDKDVMJobResult, NDKDVMRequest, NDKListKinds } from '@nostr-dev-kit/ndk';
 import type NDKSvelte from '@nostr-dev-kit/ndk-svelte';
-import { NDKListKinds } from '$lib/ndk-kinds';
 import { NDKHighlight } from "@nostr-dev-kit/ndk";
 import { persist, createLocalStorage } from "@macfja/svelte-persistent-store";
 import { newArticles } from './articles';

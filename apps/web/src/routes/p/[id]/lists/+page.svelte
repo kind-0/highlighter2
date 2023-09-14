@@ -2,11 +2,10 @@
 	import GenericEventCard from '$lib/components/events/generic/card.svelte';
     import { page } from "$app/stores";
     import MainWithRightSidebar from "$lib/layouts/MainWithRightSidebar.svelte";
-    import { NDKUser } from "@nostr-dev-kit/ndk";
+    import { NDKListKinds, NDKUser } from "@nostr-dev-kit/ndk";
     import { ndk } from "@kind0/ui-common";
-    import { NDKKind, NDKListKinds } from "$lib/ndk-kinds";
     import { onDestroy } from "svelte";
-    import NDKList from '$lib/ndk-kinds/lists';
+    import { NDKList } from "@nostr-dev-kit/ndk";
     import ListCard from '$lib/components/lists/ListCard.svelte';
 
     const { npub } = $page.data;

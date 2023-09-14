@@ -3,13 +3,12 @@
 -->
 <script lang="ts">
     import MenuItem from "../sidebars/MenuItem.svelte";
-    import NDKList from "$lib/ndk-kinds/lists";
+    import { NDKKind, NDKList } from "@nostr-dev-kit/ndk";
     import { ndk } from "@kind0/ui-common";
     import { Name } from "@nostr-dev-kit/ndk-svelte-components";
-    import { NDKKind } from "$lib/ndk-kinds";
 
     const lists = $ndk.storeSubscribe({
-        kinds: [NDKKind.HighlightList as number],
+        kinds: [NDKKind.CategorizedHighlightList as number],
     }, undefined, NDKList);
 </script>
 

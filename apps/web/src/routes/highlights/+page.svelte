@@ -1,6 +1,6 @@
 <script lang="ts">
     import { user, userFollows, highlights } from "$stores/session";
-    import { NDKHighlight } from "@nostr-dev-kit/ndk";
+    import type { NDKHighlight } from "@nostr-dev-kit/ndk";
     import { onMount } from "svelte";
     import HighlightList from "$lib/components/HighlightList.svelte";
     import { derived, type Readable } from "svelte/store";
@@ -24,6 +24,12 @@
         });
     })
 </script>
+
+{#if $sortedStore}
+    yes, {$sortedStore.length}
+{:else}
+    no sorted store 🤔
+{/if}
 
 {#if sortedStore && $sortedStore}
     <HighlightList items={$sortedStore} />

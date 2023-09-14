@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type NDKList from "$lib/ndk-kinds/lists";
+    import type { NDKList } from "@nostr-dev-kit/ndk";
 
     export let list: NDKList;
     export let linkPrefix = '/lists/'

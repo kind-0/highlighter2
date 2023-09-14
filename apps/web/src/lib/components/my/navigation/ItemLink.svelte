@@ -1,6 +1,6 @@
 <script lang="ts">
     import NavigationButton from './Button.svelte';
-    import type NDKList from '$lib/ndk-kinds/lists';
+    import type { NDKList } from "@nostr-dev-kit/ndk";
 
     export let activeItem: boolean = false
     export let item: NDKList

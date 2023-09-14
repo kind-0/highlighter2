@@ -10,7 +10,7 @@
     import { Textarea } from '@kind0/ui-common';
     import {  getLists } from "$lib/stores/list";
 
-    import NDKList from '$lib/ndk-kinds/lists/index.js';
+    import { NDKList } from "@nostr-dev-kit/ndk";
     import ModalButton from '$lib/components/ModalButton.svelte';
 
     let name: string;

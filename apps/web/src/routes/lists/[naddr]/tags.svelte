@@ -1,8 +1,7 @@
 <script lang="ts">
-    import type { NDKTag } from '@nostr-dev-kit/ndk';
+    import type { NDKList, NDKTag } from '@nostr-dev-kit/ndk';
 
     import CollapsibleCard from './CollapsibleCard.svelte';
-    import type NDKList from '$lib/ndk-kinds/lists/index.js';
     import { processEvent } from '$lib/stores/list';
 
     export let list: NDKList;

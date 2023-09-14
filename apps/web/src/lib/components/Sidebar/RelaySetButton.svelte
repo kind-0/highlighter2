@@ -6,7 +6,7 @@
     import { currentRelaySet } from '../RelaySets/index';
 
     import { onMount } from 'svelte';
-    import type NDKRelayList from '$lib/ndk-kinds/lists/relay-list';
+    import type { NDKRelayList } from "@nostr-dev-kit/ndk";
 
     let activeRelaySet: NDKRelayList | null;
 

@@ -1,9 +1,8 @@
 <script lang="ts">
     import {ModalWrapper} from '@kind0/ui-common';
     import { getListsFromFilter, sortedListWithKind } from '$lib/stores/list';
-    import { NDKKind } from '$lib/ndk-kinds';
     import RelaySetNavigatorCard from '$lib/components/Sidebar/RelaySetNavigatorCard.svelte';
-    import NDKRelayList from '$lib/ndk-kinds/lists/relay-list';
+    import { NDKKind, NDKRelayList } from "@nostr-dev-kit/ndk";
     import { currentRelaySet } from '$lib/components/RelaySets';
     import { onDestroy } from 'svelte';
     import type { NDKSubscription } from '@nostr-dev-kit/ndk';

@@ -6,8 +6,7 @@
     import HighlightList from '$lib/components/HighlightList.svelte';
     import { page } from "$app/stores";
     import { onDestroy } from 'svelte';
-    import { NDKKind } from '$lib/ndk-kinds';
-    import { NDKHighlight } from "@nostr-dev-kit/ndk";
+    import { NDKKind, NDKHighlight } from "@nostr-dev-kit/ndk";
     import RightSidebar from './components/RightSidebar/RightSidebar.svelte';
     import ModeTab from './components/ModeTab.svelte';
     import { ndk } from "@kind0/ui-common";
