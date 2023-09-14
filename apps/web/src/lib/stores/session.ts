@@ -321,7 +321,7 @@ async function fetchData(
      */
     const processKind3 = (event: NDKEvent) => {
         if (
-            (eosed && event.id !== processedKind3Id) ||
+            (event.id !== processedKind3Id) ||
             authors.length > 1 // if authors has more than one, add the received list
         ) {
             processedKind3Id = event.id;

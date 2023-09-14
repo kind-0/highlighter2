@@ -9,7 +9,7 @@
     let expanded = false;
     export let articlesToRender = 50;
 
-    let renderedArticles: Set<NDKTag> = new Set();
+    let renderedArticles: Map<string, NDKTag> = new Map();
 
     const selectArticles = debounce(300, (count: number) => {
         const highlightsPerArticle = new Map<NDKTag, number>();
@@ -27,9 +27,9 @@
 
         const mostHighlightedArticles = Array.from(highlightsPerArticle.entries()).sort((a, b) => a[1] - b[1]).slice(0, count);
 
-        renderedArticles = new Set();
+        renderedArticles = new Map();
         for (const [articleTag, _] of mostHighlightedArticles) {
-            renderedArticles.add(articleTag);
+            renderedArticles.set(articleTag[1], articleTag);
         }
     })
 
@@ -42,6 +42,6 @@
         on:click={() => { expanded = true; }}
         {expanded}
     >
-        <TagContentCards tags={Array.from(renderedArticles)} />
+        <TagContentCards tags={Array.from(renderedArticles.values())} />
     </Section>
 </div>
