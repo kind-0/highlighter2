@@ -9,7 +9,7 @@
     let sortedStore: Readable<NDKHighlight[]>;
 
     onMount(() => {
-        if (!$user) {
+        if (!$user || $userFollows.size === 0) {
             goto(`/highlights/local`);
             return;
         }
@@ -24,12 +24,6 @@
         });
     })
 </script>
-
-{#if $sortedStore}
-    yes, {$sortedStore.length}
-{:else}
-    no sorted store 🤔
-{/if}
 
 {#if sortedStore && $sortedStore}
     <HighlightList items={$sortedStore} />
