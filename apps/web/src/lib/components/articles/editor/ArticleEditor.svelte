@@ -9,6 +9,7 @@
     import { addLongForm, removeLongForm, isSaved as isLongFormSaved } from "$lib/stores/long-form";
     import type { NDKList } from "@nostr-dev-kit/ndk";
     import Toolbar from "./Toolbar.svelte";
+    import { user } from "$stores/session";
 
     export let event: NDKArticle;
 

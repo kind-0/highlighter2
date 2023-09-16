@@ -22,7 +22,6 @@
     let highlight: NDKHighlight | null;
 
     fetchQuotedHighlight(event).then(h => {
-        console.log(h)
         highlight = h
     })
 

@@ -18,6 +18,7 @@ Each <MarginNotePopup> component represents a single margin note.
     export let markId = '';
     export let user: NDKUser;
     export let marginNotes: Readable<NDKEvent[]>;
+    export let verticalPosition: number | undefined = undefined;
 
     const ownMarginNotes = derived(marginNotes, $marginNotes => {
             const ownMarginNotes = new Set<NDKEvent>();
@@ -32,7 +33,6 @@ Each <MarginNotePopup> component represents a single margin note.
         }
     );
 
-    let verticalHeight: number | undefined = undefined;
     let referenceElement: HTMLElement | null = null;
 
     function positionElement() {
@@ -47,8 +47,9 @@ Each <MarginNotePopup> component represents a single margin note.
         }
 
         // get the height of the reference element
-        if (rect && containerElementRect)
-            verticalHeight = rect.y - containerElementRect.y;
+        if (rect && containerElementRect) {
+            verticalPosition = rect.y - containerElementRect.y;
+        }
     }
 
     $: positionElement();
@@ -63,14 +64,15 @@ Each <MarginNotePopup> component represents a single margin note.
     }
 </script>
 
-{#if verticalHeight}
+{#if verticalPosition}
     <div
         class="absolute {$$props.class}"
-        style="top: {verticalHeight}px; z-index: 1; left: 1"
+        style="top: {verticalPosition}px; z-index: 1; left: 1"
     >
         <div class="card card-compact bg-base-300 hidden">
             <div class="card-body text-xs">
                 <AvatarWithName pubkey={user.hexpubkey} />
+                highlighted by
             </div>
         </div>
 
