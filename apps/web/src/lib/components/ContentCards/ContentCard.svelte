@@ -1,6 +1,7 @@
 <script lang="ts">
     import type { NDKEvent } from "@nostr-dev-kit/ndk";
     import ZapCounter from "./ZapCounter.svelte";
+    import { LazyLoadedImage } from "@kind0/ui-common";
 
     export let title: string | undefined;
     export let summary: string | undefined;
@@ -22,47 +23,16 @@
     if (!image) {
         image = chooseRandomImage();
     }
-
-    let aspectRatio: number;
-    let imgLoaded: boolean = false;
-
-    export const lazyLoad = (image, src) => {
-        const loaded = () => {
-            aspectRatio = image.naturalWidth/image.naturalHeight;
-            imgLoaded = true;
-        }
-        const observer = new IntersectionObserver(entries => {
-            if (entries[0].isIntersecting) {
-                image.src = src
-                // check if instantly loaded
-                if (image.complete) {
-                    loaded()
-                } else {
-                    // if the image isn't loaded yet, add an event listener
-                    image.addEventListener('load', loaded)
-                }
-            }
-        }, {})
-        // intersection observer
-        observer.observe(image)
-        return {
-            destroy() {
-                // clean up the event listener
-                image.removeEventListener('load', loaded)
-            }
-        }
-    }
-
 </script>
 
 
 
 <a href={url} class="flex flex-col gap-4 w-[166px] {$$props.class??""}">
     <div class="relative group overflow-hidden flex flex-col justify-end h-[244px] w-full shadow rounded-xl">
-        <div class="absolute top-0 left-0 h-full w-full rounded-xl {!imgLoaded ? 'grad-blue' : ''}">
-        {#if image}
-            <img use:lazyLoad={image} class="object-cover rounded-xl {aspectRatio <= 1 ? 'w-full': 'h-full'}"/>
-        {/if}
+        <div class="absolute top-0 left-0 h-full w-full rounded-xl">
+            {#if image}
+                <LazyLoadedImage {image} />
+            {/if}
         </div>
 
         <div class="absolute top-4 left-4 w-7 h-7 rounded  bg-base-300  overflow-hidden">
