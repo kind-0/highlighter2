@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "@fontsource/lora": "^5.0.8",
-    "@kind0/lib-svelte-kit": "workspace:*",
     "@kind0/ui-common": "workspace:*",
     "@macfja/svelte-persistent-store": "^2.3.2",
     "@mozilla/readability": "^0.4.4",

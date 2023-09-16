@@ -1,8 +1,7 @@
 <script>
-    import Highlight from "$lib/icons/Highlight.svelte";
     import Relays from "$lib/icons/Relays.svelte";
     import { BookBookmark, Users } from "phosphor-svelte";
-    import {SidebarSectionLink} from '@kind0/ui-common';
+    import {HighlightIcon, SidebarSectionLink} from '@kind0/ui-common';
     import SidebarFolderTree from "./SidebarFolderTree.svelte";
     import RelaySetButton from "$lib/components/Sidebar/RelaySetButton.svelte";
     import SidebarUnsavedNotes from "$lib/components/Sidebar/SidebarUnsavedNotes.svelte";
@@ -22,7 +21,7 @@
         <SidebarFolderTree kinds={[NDKKind.CategorizedHighlightList]}>
             <div slot="title">
                 <li class="menu-title flex flex-row items-center">
-                    <Highlight class="w-4 h-4 mr-2 text-accent" />
+                    <HighlightIcon class="w-4 h-4 mr-2 text-accent" />
                     HIGHLIGHTS
                 </li>
             </div>

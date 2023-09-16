@@ -7,7 +7,6 @@
     import type { NDKEvent } from '@nostr-dev-kit/ndk';
     import { ndk } from "@kind0/ui-common";
     import {NDKArticle} from "@nostr-dev-kit/ndk";
-    import { Card, Skeleton, TestimonialPlaceholder } from 'flowbite-svelte';
     import ReaderDVMTranscriptionHeader from '$lib/components/articles/dvm/ReaderDVMTranscriptionHeader.svelte';
 
     import ZapEventCard from '$lib/components/zaps/ZapEventCard.svelte';
@@ -67,11 +66,13 @@
 {#await articlePromise}
     <div class="full relative card">
         <div class="card-body">
-            <Card class="text-center flex flex-row gap-4 items-center absolute z-50 md:p-8" style="top: 40%; left: 40%;">
-                <h1 class="text-xl">
-                    Loading article...
-                </h1>
-            </Card>
+            <div class="cardtext-center flex flex-row gap-4 items-center absolute z-50 md:p-8" style="top: 40%; left: 40%;">
+                <div class="card-body">
+                    <h1 class="text-xl">
+                        Loading article...
+                    </h1>
+                </div>
+            </div>
         </div>
     </div>
 {:then article}

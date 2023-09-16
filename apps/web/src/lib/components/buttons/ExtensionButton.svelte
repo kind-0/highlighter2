@@ -1,6 +1,5 @@
 <script lang="ts">
     import PuzzleIcon from "$lib/icons/PuzzleIcon.svelte";
-    import { Tooltip } from "flowbite-svelte";
 
 </script>
 

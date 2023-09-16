@@ -1,8 +1,10 @@
 packages:
-  - 'mobile/'
   - 'apps/web/'
   - 'highlighter/'
-  - 'packages/*'
+  - 'packages/ui-common'
+  - 'packages/tsconfig'
+  - 'packages/tailwind-config'
+  - 'packages/eslint-config-custom'
   - 'packages/ndk/ndk'
   - 'packages/ndk/ndk-cache-redis'
   - 'packages/ndk/ndk-cache-dexie'

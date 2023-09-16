@@ -6,8 +6,7 @@
     import { sortedHighlightList, sortedUserList } from "$lib/stores/list";
     import { user, userFollowHashtags } from "$stores/session";
     import ReaderIcon from "$icons/ReaderIcon.svelte";
-    import {DvmIcon, SidebarSectionLink} from '@kind0/ui-common';
-    import Highlight from "$icons/Highlight.svelte";
+    import {DvmIcon, SidebarSectionLink, HighlightIcon} from '@kind0/ui-common';
     import CardWithTitle from "$components/cards/CardWithTitle.svelte";
     import Hashtag from "$icons/Hashtag.svelte";
     import RelaySetButton from "$components/Sidebar/RelaySetButton.svelte";
@@ -59,7 +58,7 @@
     </CardWithTitle>
 
     <CardWithTitle
-        icon={Highlight}
+        icon={HighlightIcon}
         iconClass="text-accent w-5 h-5"
         title="Highlighter"
     >

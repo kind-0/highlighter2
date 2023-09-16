@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { NDKEvent, NDKKind, type NDKFilter } from '@nostr-dev-kit/ndk';
-    import { ndk } from "@kind0/ui-common";
+    import { NDKEvent, NDKKind, type NDKFilter, type Hexpubkey } from '@nostr-dev-kit/ndk';
+    import { ArticleWideCard, ndk } from "@kind0/ui-common";
     import NewHighlight from '$lib/components/highlights/NewHighlight.svelte';
     import { currentScope } from '$lib/store';
     import { fade } from 'svelte/transition';
@@ -32,6 +32,7 @@
     let articleEvents: NDKEventStore<NDKEvent> | undefined;
     let highlights: Readable<NDKHighlight[]>;
     let marginNotes: Readable<NDKEvent[]>;
+    let usersWithInteractions: Readable<Hexpubkey[]>;
 
     // Set filter for current view
     $: if (scope !== $currentScope.label) {
@@ -84,6 +85,19 @@
             });
 
             return Array.from(marginNotes);
+        });
+
+        usersWithInteractions = derived(articleEvents, ($articleEvents) => {
+            const users = new Set<Hexpubkey>();
+
+            $articleEvents.forEach(event => {
+                if (
+                    (event.kind === 9802 || event.kind === 1) &&
+                    event.pubkey !== article?.pubkey)
+                    users.add(event.pubkey);
+            });
+
+            return Array.from(users);
         });
 
         // deduppedHighlights = derived(highlights, ($highlights) => {
@@ -198,36 +212,41 @@
     <div class="flex flex-col xl:flex-row w-full mx-auto md:px-6">
         <div class="card xl:w-7/12 leading-loose flex flex-col gap-2 text-lg card-compact md:card-normal">
             <div class="card-body">
-                <!-- Title -->
-                {#if articleTitle()}
-                    <h1 class="card-title flex flex-row justify-center text-2xl md:text-3xl font-black md:text-center leading-normal">{articleTitle()}</h1> {/if}
-
-                <div class="flex flex-row justify-between mb-2 overflow-clip items-center">
-                    <!-- Author / URL -->
-                    {#if article?.author && article?.author?.hexpubkey}
-                        <AvatarWithName
-                            pubkey={article.author.hexpubkey}
-                            avatarClass="w-12 h-12 rounded-full"
-                            nameClass="text-xl font-semibold"
-                        />
-                    {:else if url}
-                        <div class="text-xs whitespace-normal">
-                            {url}
-                        </div>
-                    {:else}
-                        <div></div>
+                {#if article instanceof NDKArticle}
+                    <ArticleWideCard
+                        {article}
+                        highlightCount={$highlights.length}
+                        usersWithInteractions={$usersWithInteractions}
+                    />
+                {:else}
+                    <!-- Title -->
+                    {#if articleTitle()}
+                        <h1 class="card-title flex flex-row justify-center text-2xl md:text-3xl font-black md:text-center leading-normal">{articleTitle()}</h1>
                     {/if}
-                </div>
+
+                    <div class="flex flex-row justify-between mb-2 overflow-clip items-center">
+                        <!-- Author / URL -->
+                        {#if article?.author && article?.author?.hexpubkey}
+                            <AvatarWithName
+                                pubkey={article.author.hexpubkey}
+                                avatarClass="w-12 h-12 rounded-full"
+                                nameClass="text-xl font-semibold"
+                            />
+                        {:else if url}
+                            <div class="text-xs whitespace-normal">
+                                {url}
+                            </div>
+                        {:else}
+                            <div></div>
+                        {/if}
+                    </div>
+                {/if}
 
                 {#if $$slots.preArticle}
                     <slot name="preArticle" />
                 {/if}
 
-                {#if article?.image}
-                    <div class="flex flex-row justify-center">
-                        <img src={article.image} class="max-h-64" />
-                    </div>
-                {/if}
+                <div class="divider"></div>
 
                 <!-- Content -->
                 <HighlightWrapper on:selectionchange={onSelectionChange}>

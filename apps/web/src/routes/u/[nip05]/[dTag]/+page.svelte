@@ -6,7 +6,6 @@
     import { NDKUser, type NDKEvent } from '@nostr-dev-kit/ndk';
     import { ndk } from "@kind0/ui-common";
     import NDKArticle from "@nostr-dev-kit/ndk";
-    import { Card, Skeleton, TestimonialPlaceholder } from 'flowbite-svelte';
 
     import Navbar from '$lib/components/Navbar/Navbar.svelte';
     import { onMount } from 'svelte';
@@ -55,19 +54,37 @@
 {#await articlePromise}
     <div class="full relative card">
         <div class="card-body">
-            <Card class="text-center flex flex-row gap-4 items-center absolute z-50 md:p-8" style="top: 40%; left: 40%;">
+            <!-- <Card class="text-center flex flex-row gap-4 items-center absolute z-50 md:p-8" style="top: 40%; left: 40%;">
                 <h1 class="text-xl">
                     Loading article...
                 </h1>
-            </Card>
+            </Card> -->
 
-            <div  class="flex flex-col items-start">
+            <!-- <div  class="flex flex-col items-start">
                 <TestimonialPlaceholder />
             </div>
 
             <Skeleton size='xxl' class='mt-8'/>
             <Skeleton size='xxl' class='mt-8'/>
-            <Skeleton size='xxl' class='mt-8'/>
+            <Skeleton size='xxl' class='mt-8'/> -->
+            Loading
+            <div class="flex flex-col items-start">
+                <div class="flex flex-row items-center gap-4">
+                    <div class="w-8 h-8 rounded-full bg-base-200 animate-pulse"></div>
+                    <div class="flex flex-col gap-2">
+                        <div class="w-32 h-4 rounded-lg bg-base-200 animate-pulse"></div>
+                        <div class="w-64 h-4 rounded-lg bg-base-200 animate-pulse"></div>
+                    </div>
+                </div>
+                <div class="w-full h-4 rounded-lg bg-base-200 animate-pulse"></div>
+                <div class="w-full h-4 rounded-lg bg-base-200 animate-pulse"></div>
+                <div class="w-full h-4 rounded-lg bg-base-200 animate-pulse"></div>
+                <div class="w-full h-4 rounded-lg bg-base-200 animate-pulse"></div>
+                <div class="w-full h-4 rounded-lg bg-base-200 animate-pulse"></div>
+                <div class="w-full h-4 rounded-lg bg-base-200 animate-pulse"></div>
+                <div class="w-full h-4 rounded-lg bg-base-200 animate-pulse"></div>
+                <div class="w-full h-4 rounded-lg bg-base-200 animate-pulse"></div>
+            </div>
         </div>
     </div>
 {:then article}
