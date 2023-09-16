@@ -17,36 +17,74 @@
 
     function markText(highlight: NDKHighlight, htmlText: string) {
         const hContent = highlight.content.trim();
-        let words = hContent.split(/ /);
+        let paragraphs = hContent.split(/\n/);
 
-        // Choose first N and last N words for the regex (N could be 2, 3, or whatever makes sense)
-        const N = 3;
-        const firstNWords = words.slice(0, N);
-        const lastNWords = words.slice(-N);
+        // console.log({paragraphs});
 
-        // Remove non-alphanumeric characters
-        const sanitizeWord = (w: string) => w.replace(/[^a-zA-Z0-9]/g, '.*');
-        const firstNWordsSanitized = firstNWords.map(sanitizeWord);
-        const lastNWordsSanitized = lastNWords.map(sanitizeWord);
+        for (const paragraph of paragraphs) {
+            if (paragraph.length === 0) continue;
 
-        // Create a regex pattern that matches the first and last N words with any characters in between
-        const pattern = firstNWordsSanitized.join('[^]*?') + '[^]*?' + lastNWordsSanitized.join('[^]*?');
+            let words = paragraph.split(/[ ]+/)
+                .filter(w => w.length > 0);
 
-        // Create a RegExp object from the pattern
-        const regex = new RegExp(pattern, 'is');
+            // console.log({words})
 
-        console.log({htmlText, regex});
+            let regex: RegExp;
 
-        // Wrap the matched text in <mark> tags
-        return htmlText.replace(regex, (match) => `<mark id=${highlight.id} data-highlight-id="${highlight.id}">${match}</mark>`);
+            // console.log(words.length, 'words');
+
+            // Choose first N and last N words for the regex (N could be 2, 3, or whatever makes sense)
+            if (words.length > 10) {
+                const N = 5;
+                const firstNWords = words.slice(0, N);
+                const lastNWords = words.slice(-N);
+
+                // Remove non-alphanumeric characters
+                const sanitizeWord = (w: string) => w
+                const firstNWordsSanitized = firstNWords.map(sanitizeWord);
+                const lastNWordsSanitized = lastNWords.map(sanitizeWord);
+
+                // Create a regex pattern that matches the first and last N words with any characters in between
+                const pattern = firstNWordsSanitized.join(' ') + '[^]*?' + lastNWordsSanitized.join('[^]*?');
+
+                // Create a RegExp object from the pattern
+                regex = new RegExp(pattern, 's');
+            } else {
+                regex = new RegExp(words.join('( )+'));
+            }
+
+            // console.log({regex});
+
+            // Wrap the matched text in <mark> tags
+            htmlText = htmlText.replace(regex, (match) => {
+                // console.log(`found a match using regexp`, {match});
+
+                // if there is a </p> in the match, we need to split by <p> to find
+                // all starting paragraphs and add a <mark>
+                // if (match.match(/<\/p>/)) {
+                //     console.log(`match contains paragraph breaks`);
+                //     const parts = match.split(/(<\/p>)/);
+                //         console.log({parts});
+                //     return parts
+                //         .map(part => `<mark id=${highlight.id} data-highlight-id="${highlight.id}">${part}</mark>`)
+                //         .join('');
+                // }
+
+                return `<mark id=${highlight.id} data-highlight-id="${highlight.id}">${match}</mark> (${highlight.id.slice(0, 6)})`
+            });
+
+            // console.log({htmlText});
+        }
+
+        return htmlText;
     }
 
     // let replacedHighlights: Record<string, boolean> = {};
     let markedContent: string = unmarkedContent;
 
     function markContent(highlight: NDKHighlight) {
-        // if (highlight.id !== 'd40d961dfa58f99836d0b7a33cc5e0aadd50dea6dad118cfb281f5261e84342b') return;
-        console.log(`markContent`, highlight.id);
+        // console.log(`markContent`, highlight.id, highlight.content);
+        // if (highlight.id !== '99f7108c83e23f1ff9cbbb9d33cffab511aa862a74ca4ba84b375821e339a215') return;
 
         if (!markedContent) return;
 
@@ -59,17 +97,17 @@
 
         // check if highlight is in the content
         if (markedContent.includes(highlight.content)) {
-            markedContent = markedContent.replace(highlight.content, `<mark id=${highlight.id} data-highlight-id="${highlight.id}">${highlight.content}</mark>`);
+            markedContent = markedContent.replace(highlight.content, `<mark id=${highlight.id} data-highlight-id="${highlight.id}">${highlight.content}</mark> (${highlight.id.slice(0, 6)})`);
             // replacedHighlights[highlight.id!] = true;
         } else {
             // highlight is not in the content, try to find it
-            console.log('could not find highlight 1', highlight.content, highlight.rawEvent());
+            // console.log('could not find highlight 1', highlight.content, highlight.rawEvent());
             markedContent = markText(highlight, markedContent);
         }
 
         // check if highlight id is in the content
         if (!markedContent.includes(highlight.id!)) {
-            console.log('could not find highlight id 2', highlight.id, highlight.rawEvent());
+            // console.log('could not find highlight id 2', highlight.id, highlight.rawEvent());
             const hContent = highlight.content.trim();
 
             if (hContent.includes('\n')) {
@@ -105,7 +143,7 @@
         if (processedHighlightIds.has(highlight.id!)) continue;
         processedHighlightIds.add(highlight.id!);
 
-        debouncedMarkContent(highlight);
+        markContent(highlight);
     }
 
     function clickHandler(e: MouseEvent) {
