@@ -17,7 +17,7 @@
     $: homeLink = $user ? `/reader` : '/';
 
     let currentRoute: string;
-    let logoToUse = FullLogo;
+    let logoToUse: any = FullLogo;
 
     $: currentRoute = $page.url.pathname;
     $: if (currentRoute.startsWith('/lists')) {
@@ -42,7 +42,7 @@
                 </label>
             </div>
 
-            <a href={homeLink} class="w-full">
+            <a href={homeLink} class="md:w-full">
                 <div class="flex flex-shrink-0 items-center">
                     <div class="w-48 hidden sm:block">
                         <svelte:component this={logoToUse} />
@@ -56,10 +56,12 @@
 
         <div class="
             navbar-center transition-all duration-100 ease-in-out
-            flex-grow w-main
+            flex-grow md:w-main
             {navbarOpened ? 'w-full md:w-[700px]' : ''}
         ">
-            <SearchInput bind:hasFocus={navbarOpened} />
+            <div class="hidden lg:block">
+                <SearchInput bind:hasFocus={navbarOpened} />
+            </div>
         </div>
 
         <div class="
