@@ -10,6 +10,7 @@
 
     export let isHiddenSidebar = false;
     export let isHiddenDrawerBtn = false;
+    export let mainComponent: any | undefined = undefined;
 
     let homeLink = '/';
     let navbarOpened = false;
@@ -20,7 +21,10 @@
     let logoToUse: any = FullLogo;
 
     $: currentRoute = $page.url.pathname;
-    $: if (currentRoute.startsWith('/lists')) {
+    $: if (
+            currentRoute.startsWith('/lists') ||
+            currentRoute.startsWith('/notes')
+        ) {
         logoToUse = AtlasNotesLogo;
     } else {
         logoToUse = FullLogo;
@@ -60,7 +64,11 @@
             {navbarOpened ? 'w-full md:w-[700px]' : ''}
         ">
             <div class="hidden lg:block">
-                <SearchInput bind:hasFocus={navbarOpened} />
+                {#if !mainComponent}
+                    <SearchInput bind:hasFocus={navbarOpened} />
+                {:else}
+                    <svelte:component this={mainComponent} />
+                {/if}
             </div>
         </div>
 

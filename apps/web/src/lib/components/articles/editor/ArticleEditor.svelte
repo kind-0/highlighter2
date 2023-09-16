@@ -1,15 +1,16 @@
 <script lang="ts">
-    import ArticleTitle from "./ArticleTitle.svelte";
-    import ArticlePreview from "./ArticlePreview.svelte";
     import { goto } from "$app/navigation";
-    import type { NDKArticle } from "@nostr-dev-kit/ndk";
+    import { NDKEvent, NDKArticle } from "@nostr-dev-kit/ndk";
     import { onDestroy, onMount } from "svelte";
-    import { ndk } from "@kind0/ui-common";
+    import { EventCard, ndk } from "@kind0/ui-common";
     import { Textarea } from '@kind0/ui-common';
     import { addLongForm, removeLongForm, isSaved as isLongFormSaved } from "$lib/stores/long-form";
     import type { NDKList } from "@nostr-dev-kit/ndk";
     import Toolbar from "./Toolbar.svelte";
     import { user } from "$stores/session";
+    import { EventContent } from "@nostr-dev-kit/ndk-svelte-components";
+    import Article from "$components/Article.svelte";
+    import ArticleContentCard from "$components/ContentCards/ArticleContentCard.svelte";
 
     export let event: NDKArticle;
 
@@ -80,85 +81,52 @@
     }
 </script>
 
-<div class="flex flex-row items-center justify-between lg:hidden static z-50 w-full bottom-0 py-2 px-4 pt-2">
-    <Toolbar
-        bind:event
-        bind:visibility={visibility}
-        bind:previewMode={previewMode}
-        on:save={save}
-    />
-</div>
-
-<div class="flex flex-row gap-8 overflow-y-auto h-full min-h-screen">
+<div class="flex flex-row gap-8 overflow-y-auto h-full min-h-[80vh]">
     <div
-        class="flex flex-col h-full w-full lg:w-1/2 gap-4"
-        class:hidden={previewMode}
+        class="flex flex-col h-full w-full gap-4"
     >
-        <div class="card card-compact">
+        <div class="card card-compact h-full">
             <div class="flex-row items-center justify-between hidden lg:flex z-50 w-full py-2 px-4 pt-2">
                 <Toolbar
+                    bind:title
                     bind:event
-                    bind:visibility={visibility}
                     bind:previewMode={previewMode}
-                    bind:showInsert
                     on:save={save}
+                    on:keydown={onTitleKeyDown}
+                    on:keyup={onTitleKeyUp}
+                    on:change={onTitleKeyUp}
                 />
             </div>
             <div class="divider my-0"></div>
-                <div class="card-body" class:hidden={previewMode}>
-                    <div class="flex flex-col gap-8 flex-grow">
-                        <div class="card card-compact flex-grow !rounded-xl">
-                            <div class="card-body flex-col-reverse lg:flex-col">
-                                <div class="flex-grow flex flex-col">
-                                    <ArticleTitle
-                                            bind:title
-                                            on:keydown={onTitleKeyDown}
-                                            on:keyup={onTitleKeyUp}
-                                            on:change={onTitleKeyUp}
-                                            class="px-0 text-base-100-content"
-                                        />
-                                    <Textarea
-                                        bind:this={bodyEl}
-                                        class="w-full border-0
-                                            flex-grow
-                                            h-full
-                                            bg-transparent
-                                            focus:ring-0 focus:border-0
-                                            focus:!border-none
-                                            placeholder-base-300-contrast
-                                            text-base-100-content
-                                            px-0
-                                        "
-                                        placeholder="Start writing..."
-                                        bind:value={body}
-                                        on:change={onBodyChange}
-                                        on:keyup={onBodyChange}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="card-body">
+                {#if !previewMode}
+                    <Textarea
+                        bind:this={bodyEl}
+                        class="w-full border-0
+                            flex-grow
+                            h-full
+                            bg-transparent
+                            focus:ring-0 focus:border-0
+                            focus:!border-none
+                            placeholder-base-300-contrast
+                            text-base-300-content
+                            focus:outline-none
+                            px-0
+                        "
+                        placeholder="Start writing..."
+                        bind:value={body}
+                        on:change={onBodyChange}
+                        on:keyup={onBodyChange}
+                    />
+                {:else}
+                    <Article>
+                        <EventContent
+                            ndk={$ndk}
+                            {event}
+                        />
+                    </Article>
+                {/if}
             </div>
-
-            {#if showInsert}
-                <div class="card card-compact h-1/2">
-                    <div class="card-body">
-                        here
-                    </div>
-                </div>
-            {/if}
         </div>
-    <div
-        class="lg:block lg:w-1/2 w-full"
-        class:hidden={!previewMode}
-    >
-        <ArticlePreview
-            {title}
-            {body}
-            tags={event.tags}
-            skipEditButton={true}
-            article={event}
-        />
     </div>
 </div>

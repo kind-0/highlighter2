@@ -123,3 +123,9 @@
         background: rgba(0,0,0,0.50)
     }
 </style>
+
+<div class="
+    hidden
+    max-h-[90vh]
+    max-w-md
+"></div>

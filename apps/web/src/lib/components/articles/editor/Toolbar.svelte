@@ -1,38 +1,46 @@
 <script lang="ts">
-    import ButtonWithBorderGradient2 from "$lib/components/buttons/ButtonWithBorderGradient2.svelte";
     import EventVisibility from "$lib/components/events/editor/EventVisibility.svelte";
     import type { NDKEvent } from "@nostr-dev-kit/ndk";
-    import { CaretDown } from "phosphor-svelte";
     import { createEventDispatcher } from "svelte";
+    import ArticleTitle from "./ArticleTitle.svelte";
 
     const dispatch = createEventDispatcher();
 
+    export let title: string;
     export let event: NDKEvent;
     export let previewMode: boolean;
-    export let showInsert: boolean;
-    export let visibility: string;
 </script>
 
-<div class="flex flex-row items-center justify-between fixed md:static z-50 w-full bottom-0 py-2 px-4 pt-2">
-    {#if !event.sig}
+<div class="flex flex-row items-center justify-between fixed md:static w-full bottom-0 px-4 pt-2">
+    <ArticleTitle
+        bind:title
+        on:keydown
+        on:keyup
+        on:change
+        class="px-0 text-base-100-content"
+    />
+    <!-- {#if !event.sig}
         <EventVisibility
             placement="top"
             class="whitespace-nowrap bg-base-300 border-none !rounded-full"
             bind:value={visibility}
         />
     {/if}
-
-    <button class="btn bg-base-300 !rounded-full" on:click={() => { showInsert = !showInsert}}>
+ -->
+    <!-- <button class="btn bg-base-300 !rounded-full" on:click={() => { showInsert = !showInsert}}>
         Insert
-    </button>
+    </button> -->
 
-    <button class="btn bg-base-300 lg:hidden" on:click={() => previewMode = !previewMode}>
-        Preview
-    </button>
+    <div class="join join-horizontal divide-x divide-base-100">
+        <button class="btn border-0 btn-neutral join-item" on:click={() => previewMode = !previewMode}>
+            Preview
+        </button>
 
-    <ButtonWithBorderGradient2
-        on:click={() => {dispatch('save')}} rounded="rounded-r-full"
-    >
-        Save
-    </ButtonWithBorderGradient2>
+        <button
+            class="btn border-0 btn-neutral join-item"
+            on:click={() => {dispatch('save')}}
+        >
+            Save
+        </button>
+    </div>
 </div>

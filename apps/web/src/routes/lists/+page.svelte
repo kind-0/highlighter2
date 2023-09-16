@@ -7,11 +7,9 @@
     import { lists } from "$lib/stores/list";
 
     import { derived } from 'svelte/store';
-    import ButtonWithBorderGradient2 from '$lib/components/buttons/ButtonWithBorderGradient2.svelte';
     import { ListPlus } from 'phosphor-svelte';
-    import MainWithRightSidebar from '$lib/layouts/MainWithRightSidebar.svelte';
     import type { NDKList } from '@nostr-dev-kit/ndk';
-    import { PageTitle } from '@kind0/ui-common';
+    import { AttentionButton, PageTitle } from '@kind0/ui-common';
 
     const namedLists = derived(lists, ($lists) => {
         const namedLists: NDKList[] = [];
@@ -46,14 +44,14 @@
 <PageTitle title="Organise">
     <div class="dropdown dropdown-end">
         <label tabindex="0" class="m-1 text-base">
-            <ButtonWithBorderGradient2 rounded="rounded-full w-full">
+            <AttentionButton rounded="rounded-full w-full">
                 <ListPlus class="mr-4" />
                 New
 
-            </ButtonWithBorderGradient2>
+            </AttentionButton>
         </label>
 
-        <ul tabindex="0" class="dropdown-content bg-base-300 z-[1] menu p-2 shadow rounded-box">
+        <ul tabindex="0" class="dropdown-content bg-base-300 z-[1] menu p-2 shadow rounded-box whitespace-nowrap">
             <li><a href="/lists/people/new">Profile List</a></li>
             <li><button on:click={() => { openModal(NewListModal, {}); }}>Generic List</button></li>
             <li><button on:click={() => { openModal(NewListModal, { kind: 30022 }); }}>Relay List</button></li>
@@ -61,23 +59,18 @@
     </div>
 </PageTitle>
 
-<MainWithRightSidebar>
-    <div class="flex flex-col gap-8">
-        <div class="grid grid-flow-row md:grid-cols-2 gap-4">
-            {#each $namedLists??[] as list (list.id)}
+<div class="flex flex-col gap-8">
+    <div class="grid grid-flow-row md:grid-cols-2 gap-4">
+        {#each $namedLists??[] as list (list.id)}
+            <ListCard {list} />
+        {/each}
+    </div>
+
+    <div class="grid grid-flow-row md:grid-cols-2 gap-4">
+        {#each $unnamedLists??[] as list (list.id)}
+            <div>
                 <ListCard {list} />
-            {/each}
-        </div>
-
-        <div class="grid grid-flow-row md:grid-cols-2 gap-4">
-            {#each $unnamedLists??[] as list (list.id)}
-                <div>
-                    <ListCard {list} />
-                </div>
-            {/each}
-        </div>
+            </div>
+        {/each}
     </div>
-
-    <div slot="right-sidebar" class=" flex flex-col">
-    </div>
-</MainWithRightSidebar>
+</div>

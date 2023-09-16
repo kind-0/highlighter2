@@ -17,6 +17,7 @@
     <CardWithTitle
         icon={ReaderIcon}
         title="Reader"
+        href="/reader"
     >
         <ul class="menu bg-base-200 w-full rounded-box">
             <li class="menu-title">CURATIONS</li>

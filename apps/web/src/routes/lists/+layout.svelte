@@ -1,6 +1,5 @@
 <script lang="ts">
     import Sidebar from "./components/Sidebar/Sidebar.svelte";
-    import WithLeftSidebar from "$lib/layouts/WithLeftSidebar.svelte";
     import { ThreeColumnsLayout } from "@kind0/ui-common";
     import Navbar from "$components/Navbar/Navbar.svelte";
 </script>

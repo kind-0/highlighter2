@@ -108,7 +108,7 @@
                 {:else if NDKListKinds.includes(e.kind)}
                     <ListCard list={NDKList.from(e)} />
                 {:else if e.kind === 9735}
-                    <ZapEventCard event={e} />
+                    <!-- <ZapEventCard event={e} /> -->
                 {:else if e.kind === 30023 || e.kind === 31023}
                     <ArticleIntroCard
                         article={NDKArticle.from(e)}

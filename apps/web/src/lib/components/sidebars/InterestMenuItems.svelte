@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { page } from "$app/stores";
     import Hashtag from "$icons/Hashtag.svelte";
     import { userFollowHashtags, userInterestLists } from "$stores/session";
     import { MenuItem } from "@kind0/ui-common";
@@ -23,6 +24,7 @@
             href="/t/{interestList.encode()}"
             activeClass="border-l-accent"
             innerClass="flex flex-row gap-2"
+            active={$page.url.pathname.startsWith(`/t/${interestList.encode()}`)}
         >
             <Hashtag class="w-6 h-6 !text-base-300-content" />
             {interestList.name}

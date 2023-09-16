@@ -287,27 +287,33 @@ async function fetchData(
 
     const processDVMResults = (event: NDKEvent) => {
         const dvmResults = NDKDVMJobResult.from(event);
-        opts.dvmResultsStore!.update((existingResults) => {
-            const jobRequestId = dvmResults.jobRequestId;
+        let jobRequestId: NDKEventId | undefined;
 
+        try {
+            jobRequestId = dvmResults.jobRequestId;
 
             if (!jobRequestId) {
-                console.log(`could not find a job request id`, dvmResults.rawEvent())
-                debugger;
+                console.log(`could not find a job request id`, dvmResults.rawEvent());
                 dvmResults.jobRequestId;
             }
 
+            if (!jobRequestId) return;
 
-            if (!jobRequestId) return existingResults;
+            opts.dvmResultsStore!.update((existingResults) => {
+                if (!jobRequestId) return existingResults;
 
-            if (!existingResults.has(jobRequestId)) {
-                existingResults.set(jobRequestId, []);
-            }
+                if (!existingResults.has(jobRequestId)) {
+                    existingResults.set(jobRequestId, []);
+                }
 
-            existingResults.get(jobRequestId)!.push(dvmResults);
+                existingResults.get(jobRequestId)!.push(dvmResults);
 
-            return existingResults;
-        });
+                return existingResults;
+            });
+        } catch (e) {
+            console.log(e);
+            return;
+        }
     };
 
     const processDVMRequests = (event: NDKEvent) => {

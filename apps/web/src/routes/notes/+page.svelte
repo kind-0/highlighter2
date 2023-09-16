@@ -3,7 +3,7 @@
 
     import type { NDKEvent } from '@nostr-dev-kit/ndk';
     import { user } from '$stores/session';
-    import { PageTitle, ndk } from "@kind0/ui-common";
+    import { AttentionButton, PageTitle, SubtleButton, ndk } from "@kind0/ui-common";
     import NDKArticle from "@nostr-dev-kit/ndk";
 
     import { onMount } from 'svelte';
@@ -52,20 +52,22 @@
 
 
 <div class="flex flex-col w-full">
-    <PageTitle title="Private Notes" subtitle="Encrypted notes to organize your thoughts">
-        <a href="/notes/new" class="btn btn-primary">
+    <PageTitle title="Notes" class="mb-8">
+        <a href="/notes/new" class="btn btn-neutral !rounded-full px-6">
             <NewIcon />
-            new
+            New
         </a>
     </PageTitle>
 
 
     {#if $sortedEntries}
-        {#each $sortedEntries as longForm (longForm.encode())}
-            <ArticleIntroCard
-                article={longForm}
-            />
-        {/each}
+        <div class="flex flex-col gap-4">
+            {#each $sortedEntries as longForm (longForm.encode())}
+                <ArticleIntroCard
+                    article={longForm}
+                />
+            {/each}
+        </div>
     {/if}
 
     {#if !$sortedEntries || $sortedEntries.length === 0}

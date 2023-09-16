@@ -70,7 +70,7 @@
                 //         .join('');
                 // }
 
-                return `<mark id=${highlight.id} data-highlight-id="${highlight.id}">${match}</mark> (${highlight.id.slice(0, 6)})`
+                return `<mark id=${highlight.id} data-highlight-id="${highlight.id}">${match}</mark>`
             });
 
             // console.log({htmlText});
@@ -97,7 +97,7 @@
 
         // check if highlight is in the content
         if (markedContent.includes(highlight.content)) {
-            markedContent = markedContent.replace(highlight.content, `<mark id=${highlight.id} data-highlight-id="${highlight.id}">${highlight.content}</mark> (${highlight.id.slice(0, 6)})`);
+            markedContent = markedContent.replace(highlight.content, `<mark id=${highlight.id} data-highlight-id="${highlight.id}">${highlight.content}</mark>`);
             // replacedHighlights[highlight.id!] = true;
         } else {
             // highlight is not in the content, try to find it

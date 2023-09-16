@@ -36,7 +36,7 @@ export function tryToLoadBech32(data: string): MediaType | undefined {
 export function tryToLoadTopic(data: string): MediaType | undefined {
     if (data!.startsWith('#')) {
         const topic = data!.replace(/^#/, '');
-        goto(`/t/${encodeURIComponent(topic)}`);
+        goto(`/topic/${encodeURIComponent(topic)}`);
         return 'topic';
     }
 }

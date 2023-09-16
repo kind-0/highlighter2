@@ -7,7 +7,8 @@
 <Input
     class="
         bg-transparent
-        text-4xl p-2
+        text-lg
+        font-semibold p-2
         w-full
         placeholder-base-300-contrast
         rounded-b-none outline-none

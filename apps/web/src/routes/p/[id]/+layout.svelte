@@ -1,6 +1,5 @@
 <script lang="ts">
     import { page } from "$app/stores";
-    import WithLeftSidebar from "$lib/layouts/WithLeftSidebar.svelte";
     import type { NDKUser } from "@nostr-dev-kit/ndk";
     import Sidebar from './Sidebar/Sidebar.svelte';
     import { ndk } from "@kind0/ui-common";
@@ -40,12 +39,10 @@
             class="absolute py-6 inset-0 w-full h-full bg-gradient-to-b from-black/50 to-black z-1"
         />
 
-        <WithLeftSidebar containerClass="max-w-7xl" sidebarClass="lg:!w-80 xl:!w-80">
-            <div slot="sidebar">
+            <!-- <div slot="sidebar">
                 <Sidebar {user} />
-            </div>
+            </div> -->
 
             <slot />
-        </WithLeftSidebar>
     </div>
 {/await}

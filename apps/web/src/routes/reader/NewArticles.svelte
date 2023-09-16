@@ -1,16 +1,15 @@
 <script lang="ts">
-	import { networkFollows } from '$stores/session';
-    import { newArticles } from '$stores/articles';
+    import { networkFollows } from '$stores/session';
+    import { slide } from "svelte/transition";
+    import Section from "$components/Section.svelte";
     import { onDestroy, onMount } from 'svelte';
     import ArticleContentCard from '$components/ContentCards/ArticleContentCard.svelte';
     import { derived } from 'svelte/store';
+    import { newArticles } from '$stores/articles';
+    import { ArticleWideCard } from '@kind0/ui-common';
 
     export let articlesToRender = 12;
     export let expanded = false;
-
-    newArticles.onEose(() => {
-        console.log(`newArticles unref`);
-    });
 
     const items = derived(newArticles, $newArticles => {
         let existingIds = new Set<string>();
@@ -49,9 +48,25 @@
 </script>
 
 {#if $items}
-    {#each $items as article (article.id)}
-        <div class="flex items-center justify-center">
-            <ArticleContentCard {article} />
-        </div>
-    {/each}
+    <div transition:slide>
+        <Section
+            title="Highlighter Fresh"
+            expanded={true}
+            flow="column"
+            class="bg-base-200 divide-y-2 divide-base-300 rounded-box !gap-0"
+        >
+            {#each $items as article (article.id)}
+                <a href="/a/{article.encode()}" class="p-4 w-full">
+                    <ArticleWideCard
+                        class="w-full"
+                        imageClass="!rounded-lg"
+                        titleClass="!text-2xl"
+                        {article}
+                        highlightCount={0}
+                        usersWithInteractions={[]}
+                    />
+                </a>
+            {/each}
+        </Section>
+    </div>
 {/if}

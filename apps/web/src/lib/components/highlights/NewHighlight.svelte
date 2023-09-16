@@ -197,7 +197,7 @@ transition:slide
         group
         max-h-screen
     ">
-        <div class="card-body overflow-y-auto">
+        <div class="card-body">
             <!-- If the highlight already exists (its someone else's), just display the item -->
             {#if isHighlightNew()}
                 <HighlightContentBox>

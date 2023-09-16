@@ -1,12 +1,10 @@
 <script lang="ts">
-    import NewContent from "$components/Curations/NewContent.svelte";
-    import Section from "$components/Section.svelte";
     import { NDKDVMRequest, type NDKArticle, NDKUser, NDKKind } from "@nostr-dev-kit/ndk";
-    import { fade } from "svelte/transition";
     import DvmRecommendations from "./DVMRecommendations.svelte";
     import { setNewArticlesFilters } from "$stores/articles";
     import RecentlyHighlighted from "./RecentlyHighlighted.svelte";
     import { userFollowHashtags } from "$stores/session";
+    import NewArticles from "./NewArticles.svelte";
 
     const userInterests = $userFollowHashtags;
 
@@ -21,36 +19,7 @@
 
     <RecentlyHighlighted />
 
-    <!-- <div transition:fade>
-        <Section
-            title="Highlighter Fresh"
-            on:click={() => {
-                newContentArticlesToRender += 10;
-                newContentExpanded = !newContentExpanded;
-            }}
-            expanded={newContentExpanded}
-        >
-            <div slot="actions">
-                <button class="btn btn-ghost font-light"
-                    on:click={() => {
-                        newContentArticlesToRender += 10;
-                        newContentExpanded = !newContentExpanded;
-                    }}
-                >
-                    View
-                    {#if newContentExpanded}
-                        Less
-                    {:else}
-                        More
-                    {/if}
-                </button>
-            </div>
-            <NewContent
-                bind:articlesToRender={newContentArticlesToRender}
-                expanded={newContentExpanded}
-            />
-        </Section>
-    </div> -->
+    <NewArticles />
 <!--
     <Section
         title="Recently Curated"
