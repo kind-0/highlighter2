@@ -1,6 +1,5 @@
 <script lang="ts">
     import { page } from '$app/stores';
-    import { onDestroy } from 'svelte';
 
     let { topic } = $page.params;
 
@@ -12,6 +11,16 @@
         href="/t/{topic}"
         class="tab"
         class:tab-active={$page.url.pathname === `/t/${topic}`}
+    >All</a>
+    <a
+        href="/t/{topic}/articles"
+        class="tab"
+        class:tab-active={$page.url.pathname === `/t/${topic}/articles`}
+    >Articles</a>
+    <a
+        href="/t/{topic}/highlights"
+        class="tab"
+        class:tab-active={$page.url.pathname === `/t/${topic}/highlights`}
     >Highlights</a>
     <a
         href="/t/{topic}/notes"

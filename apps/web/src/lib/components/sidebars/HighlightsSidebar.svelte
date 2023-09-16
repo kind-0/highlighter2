@@ -4,13 +4,13 @@
     import SidebarFolders from "../Sidebar/SidebarFolders.svelte";
     import MenuItem from './MenuItem.svelte';
     import { sortedHighlightList, sortedUserList } from "$lib/stores/list";
-    import { user, userFollowHashtags } from "$stores/session";
+    import { user } from "$stores/session";
     import ReaderIcon from "$icons/ReaderIcon.svelte";
     import {SidebarSectionLink, HighlightIcon} from '@kind0/ui-common';
     import CardWithTitle from "$components/cards/CardWithTitle.svelte";
-    import Hashtag from "$icons/Hashtag.svelte";
     import RelaySetButton from "$components/Sidebar/RelaySetButton.svelte";
     import { highlights } from "$stores/session";
+    import InterestMenuItems from './InterestMenuItems.svelte';
 
     let hasUserHighlights = false;
     let hasNetworkHighlights = false;
@@ -23,6 +23,8 @@
             hasNetworkHighlights = !!(Array.from($highlights).some(([key, h]) => userFollowsPubkeys.includes(h.pubkey)));
         }
     }
+
+
 </script>
 
 <div class="flex flex-col items-center gap-8">
@@ -63,19 +65,7 @@
                 {/each}
             {/if}
 
-            {#if $userFollowHashtags && $userFollowHashtags.length > 0}
-                <li class="menu-title">TOPICS</li>
-                {#each $userFollowHashtags as hashtag}
-                    <MenuItem
-                        href="/t/{hashtag}"
-                        activeClass="border-l-accent"
-                        innerClass="flex flex-row gap-2"
-                    >
-                        <Hashtag class="w-6 h-6 !text-base-300-content" />
-                        {hashtag}
-                    </MenuItem>
-                {/each}
-            {/if}
+            <InterestMenuItems />
 
             <SidebarFolders
                 title="LISTS"

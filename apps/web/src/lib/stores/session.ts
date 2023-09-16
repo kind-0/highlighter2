@@ -1,4 +1,4 @@
-import { writable, get as getStore, type Writable, readable, derived } from 'svelte/store';
+import { writable, get as getStore, type Writable, derived } from 'svelte/store';
 import { ndk } from "@kind0/ui-common";
 import NDK, { NDKEvent, NDKList, NDKSubscriptionCacheUsage, type NDKFilter, type NDKTag, type NDKUser, NDKKind, type NDKEventId, NDKDVMJobResult, NDKDVMRequest, NDKListKinds } from '@nostr-dev-kit/ndk';
 import type NDKSvelte from '@nostr-dev-kit/ndk-svelte';
@@ -55,6 +55,14 @@ export const highlights = writable<Map<string, NDKHighlight>>(new Map());
  * Current user's followed hashtags
  */
 export const userFollowHashtags = writable<string[]>([]);
+
+/**
+ * Current user's interests lists
+ */
+export const userInterestLists = derived(userLists, $userLists => {
+    return Array.from($userLists.values())
+        .filter(list => list.kind === NDKKind.InterestsList);
+});
 
 /**
  * The user's extended network
