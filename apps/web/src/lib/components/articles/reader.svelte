@@ -18,6 +18,7 @@
     import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
     import { user } from '$stores/session';
     import { rightDrawerContent } from '$stores/right-drawer';
+    import { CaretLeft, Share } from 'phosphor-svelte';
 
     export let article: NDKEvent | NDKArticle | string;
     export let content: string | undefined = undefined;
@@ -214,14 +215,36 @@
 </svelte:head>
 
 <RightDrawerLayout>
-    <div class="flex flex-col xl:flex-row w-full mx-auto md:px-6">
-        <div class="flex flex-col xl:w-7/12 join-vertical">
+    <div class="flex flex-col xl:flex-row w-full mx-auto md:px-6 pt-4">
+        <div class="flex flex-col xl:w-7/12 !rounded-xl">
+            <div class="
+                sticky !rounded-t-xl top-0 p-4 border-b-2 border-base-300 bg-base-200 left-0 right-0 z-50
+                flex flex-row items-center justify-between
+            ">
+                <div class="flex flex-row gap-4 items-center w-1/4">
+                    <a href="/reader" class="btn btn-neutral !rounded-full">
+                        <CaretLeft />
+                        Back
+                    </a>
+                </div>
+
+                <div class="text-base-100-content font-semibold w-2/4 text-lg flex-grow text-center whitespace-nowrap truncate">
+                    {articleTitle()}
+                </div>
+
+                <div class="flex flex-row gap-4 items-center w-1/4 justify-end">
+                    <a href="/reader" class="btn btn-neutral !rounded-full">
+                        <Share />
+                        Share
+                    </a>
+                </div>
+            </div>
             {#if article instanceof NDKArticle}
                 <ArticleWideCard
                     {article}
                     highlightCount={$highlights.length}
                     usersWithInteractions={$usersWithInteractions}
-                    class="rounded-b-none min-h-[12rem]"
+                    class="rounded-none min-h-[12rem] p-4"
                 />
             {/if}
             <div class="rounded-t-none border-t-2 border-base-300 join-item card leading-loose flex flex-col gap-2 text-lg card-compact md:card-normal">

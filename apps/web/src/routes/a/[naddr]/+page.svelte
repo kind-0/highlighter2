@@ -61,8 +61,6 @@
     }
 </script>
 
-<Navbar />
-
 {#await articlePromise}
     <div class="full relative card">
         <div class="card-body">
