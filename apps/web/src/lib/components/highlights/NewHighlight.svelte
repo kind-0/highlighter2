@@ -50,8 +50,8 @@
 
         // Zap splits
         if (highlight.article instanceof NDKEvent) {
-            highlight.tags.push(['zap', highlight.article.pubkey, "2" ]);
-            highlight.tags.push(['zap', $user!.hexpubkey, "1" ]);
+            highlight.tags.push(['zap', highlight.article.pubkey, "wss://purplepag.es", "2" ]);
+            highlight.tags.push(['zap', $user!.hexpubkey, "wss://purplepag.es", "1" ]);
         }
 
         await highlight.publish();
