@@ -35,12 +35,12 @@
 
             // Choose first N and last N words for the regex (N could be 2, 3, or whatever makes sense)
             if (words.length > 10) {
-                const N = 5;
+                const N = 3;
                 const firstNWords = words.slice(0, N);
                 const lastNWords = words.slice(-N);
 
                 // Remove non-alphanumeric characters
-                const sanitizeWord = (w: string) => w
+                const sanitizeWord = (w: string) => w.replace(/[^a-zA-Z0-9]/g, '.*');
                 const firstNWordsSanitized = firstNWords.map(sanitizeWord);
                 const lastNWordsSanitized = lastNWords.map(sanitizeWord);
 
@@ -48,6 +48,7 @@
                 const pattern = firstNWordsSanitized.join(' ') + '[^]*?' + lastNWordsSanitized.join('[^]*?');
 
                 // Create a RegExp object from the pattern
+                console.log({pattern});
                 regex = new RegExp(pattern, 's');
             } else {
                 regex = new RegExp(words.join('( )+'));
