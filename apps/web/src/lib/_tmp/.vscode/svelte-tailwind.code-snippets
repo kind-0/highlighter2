@@ -1,0 +1,128 @@
+{
+	"Tailwind - Button ": {
+		"prefix": "twb",
+		"body": [
+			"<button type=\"button\" class=\"\" on:click|preventDefault={async () => await null}>$1"
+		]
+	},
+	"Tailwind - Button - Sync": {
+		"prefix": "twbs",
+		"body": [
+			"<button type=\"button\" class=\"\" on:click|preventDefault={() => null}>$1"
+		]
+	},
+	"Tailwind - Zero ": {
+		"prefix": "tw0",
+		"body": [
+			"<div class=\"$1\">",
+			"$2",
+			"</div>"
+		]
+	},
+	"Tailwind - Flex ": {
+		"prefix": "twf",
+		"body": [
+			"<div class=\"flex\">"
+		]
+	},
+	"Tailwind - Initial ": {
+		"prefix": "twi",
+		"body": [
+			"<div class=\"$1\">"
+		]
+	},
+	"Tailwind - Initial - P ": {
+		"prefix": "twip",
+		"body": [
+			"<p class=\"$1\">"
+		]
+	},
+	"Tailwind - Flex - Column": {
+		"prefix": "twfc",
+		"body": [
+			"<div class=\"flex flex-col\">"
+		]
+	},
+	"Tailwind - Flex - Column Width Full": {
+		"prefix": "twfc1",
+		"body": [
+			"<div class=\"flex flex-col w-full\">"
+		]
+	},
+	"Tailwind - Flex - Col Width Full Center": {
+		"prefix": "twfc1c",
+		"body": [
+			"<div class=\"flex flex-col w-full justify-center\">"
+		]
+	},
+	"Tailwind - Flex - Col Width Full Center Center": {
+		"prefix": "twfc1cc",
+		"body": [
+			"<div class=\"flex flex-col w-full justify-center items-center\">"
+		]
+	},
+	"Tailwind - Flex - Row": {
+		"prefix": "twfr",
+		"body": [
+			"<div class=\"flex flex-row\">"
+		]
+	},
+	"Tailwind - Flex - Row Width Full": {
+		"prefix": "twfr1",
+		"body": [
+			"<div class=\"flex flex-row w-full\">"
+		]
+	},
+	"Tailwind - Flex - Row Width Full Center": {
+		"prefix": "twfr1c",
+		"body": [
+			"<div class=\"flex flex-row w-full justify-center\">"
+		]
+	},
+	"Tailwind - Flex - Row Width Full Center Center": {
+		"prefix": "twfr1cc",
+		"body": [
+			"<div class=\"flex flex-row w-full justify-center items-center\">"
+		]
+	},
+	"Tailwind - Paragraph ": {
+		"prefix": "twp",
+		"body": [
+			"<p class=\"font-sans font-medium text-base\">",
+			"{`$1`}",
+			"</p>"
+		]
+	},
+	"Tailwind - Paragraph Capital": {
+		"prefix": "twpc",
+		"body": [
+			"<p class=\"font-sans font-medium text-base first-letter:capitalize\">",
+			"\"${1}\"",
+			"</p>"
+		]
+	},
+	"Tailwind - Paragraph - Translate": {
+		"prefix": "twpt",
+		"body": [
+			"<p class=\"font-sans font-medium text-base\">",
+			"\"${t(`glossary:${1}`, `${1}`)}\"",
+			"</p>"
+		]
+	},
+	"Tailwind - Paragraph - Translate Capital": {
+		"prefix": "twptc",
+		"body": [
+			"<p class=\"font-sans font-medium text-base first-letter:capitalize\">",
+			"\"${t(`glossary:${1}`, `${1}`)}\"",
+			"</p>"
+		]
+	},
+	"Tailwind - Anchor ": {
+		"prefix": "twa",
+		"body": [
+			"<a href={`$2`}>",
+			"$1",
+			"</a>"
+		]
+	},
+}

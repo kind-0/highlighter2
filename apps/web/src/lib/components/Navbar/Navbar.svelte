@@ -31,7 +31,7 @@
     }
 </script>
 
-<nav class="navbar bg-base-100 shrink-0 sticky top-0 z-20 py-4 bg-base-100/80 backdrop-blur-sm justify-center gap-4">
+<nav class="navbar bg-base-100 shrink-0 sticky top-0 z-20 max-lg:px-8 px-4 py-4 bg-base-100/80 backdrop-blur-sm justify-center gap-4">
     <div class="w-full gap-32">
         <div class="
             {navbarOpened ? 'hidden lg:flex' : 'flex'}

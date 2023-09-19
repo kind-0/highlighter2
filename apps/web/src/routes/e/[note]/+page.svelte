@@ -1,6 +1,8 @@
 <script lang="ts">
-    import { ThreeColumnsLayout } from "@kind0/ui-common";
-    import Navbar from "$components/Navbar/Navbar.svelte";
+    //import { ThreeColumnsLayout } from "@kind0/ui-common";
+    //import Navbar from "$components/Navbar/Navbar.svelte";
+    import ThreeColumnsLayoutTmp from "$lib/_tmp/components/ThreeColumnsLayoutTmp.svelte";
+    import NavbarTmp from "$lib/_tmp/components/NavbarTmp.svelte";
 	import GenericEventCard from '$lib/components/events/generic/card.svelte';
     import { page } from '$app/stores';
     import type { NDKEvent } from '@nostr-dev-kit/ndk';
@@ -19,22 +21,20 @@
 </script>
 
 <svelte:head>
-	<title>{note ?? "HIGHLIGHTER.com"}</title>
+	<title>{note ?? "Highlighter"}</title>
 	<meta name="description" content="Unleash valuable words from their artificial silos" />
 </svelte:head>
 
-<ThreeColumnsLayout>
+<ThreeColumnsLayoutTmp>
     <div slot="navbar">
-        <Navbar />
+        <NavbarTmp />
     </div>
 
     {#key note}
-        <main class="w-main mx-auto pb-32 flex flex-col gap-6">
-            <GenericEventCard
-                bech32={note}
-                skipTitle={false}
-                bind:event
-            />
-        </main>
+        <GenericEventCard
+            bech32={note}
+            skipTitle={false}
+            bind:event
+        />
     {/key}
-</ThreeColumnsLayout>
+</ThreeColumnsLayoutTmp>
