@@ -1,6 +1,6 @@
 import { writable, get as getStore, type Writable, derived } from 'svelte/store';
 import { ndk } from "@kind0/ui-common";
-import NDK, { NDKEvent, NDKList, NDKSubscriptionCacheUsage, type NDKFilter, type NDKTag, type NDKUser, NDKKind, type NDKEventId, NDKDVMJobResult, NDKDVMRequest, NDKListKinds } from '@nostr-dev-kit/ndk';
+import { NDKEvent, NDKList, NDKSubscriptionCacheUsage, type NDKFilter, type NDKTag, type NDKUser, NDKKind, type NDKEventId, NDKDVMJobResult, NDKDVMRequest, NDKListKinds } from '@nostr-dev-kit/ndk';
 import type NDKSvelte from '@nostr-dev-kit/ndk-svelte';
 import { NDKHighlight } from "@nostr-dev-kit/ndk";
 import { persist, createLocalStorage } from "@macfja/svelte-persistent-store";
@@ -293,7 +293,7 @@ async function fetchData(
             jobRequestId = dvmResults.jobRequestId;
 
             if (!jobRequestId) {
-                console.log(`could not find a job request id`, dvmResults.rawEvent());
+                // console.log(`could not find a job request id`, dvmResults.rawEvent());
                 dvmResults.jobRequestId;
             }
 
@@ -311,7 +311,7 @@ async function fetchData(
                 return existingResults;
             });
         } catch (e) {
-            console.log(e);
+            // console.log(e);
             return;
         }
     };

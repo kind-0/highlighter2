@@ -3,13 +3,11 @@
     import { slide } from "svelte/transition";
     import Section from "$components/Section.svelte";
     import { onDestroy, onMount } from 'svelte';
-    import ArticleContentCard from '$components/ContentCards/ArticleContentCard.svelte';
     import { derived } from 'svelte/store';
     import { newArticles } from '$stores/articles';
     import { ArticleWideCard } from '@kind0/ui-common';
 
     export let articlesToRender = 12;
-    export let expanded = false;
 
     const items = derived(newArticles, $newArticles => {
         let existingIds = new Set<string>();
@@ -50,7 +48,7 @@
 {#if $items}
     <div transition:slide>
         <Section
-            title="Highlighter Fresh"
+            title="New Content"
             expanded={true}
             flow="column"
             class="bg-base-200 divide-y-2 divide-base-300 rounded-box !gap-0"
