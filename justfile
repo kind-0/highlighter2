@@ -2,6 +2,9 @@ LOCKFILE := "pnpm-lock.yaml"
 
 build:
     turbo build
+    
+build-kind0:
+    turbo run build --filter=@kind0/*
 
 copy-mobile:
     ./mobile_cp.sh
