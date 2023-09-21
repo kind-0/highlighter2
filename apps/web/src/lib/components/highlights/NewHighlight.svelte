@@ -1,14 +1,12 @@
 <script lang="ts">
 	import { slide } from 'svelte/transition';
 	import { user, userLabels } from '$stores/session';
-    import { ndk } from "@kind0/ui-common";
+    import { ndk, HighlightCard } from "@kind0/ui-common";
     import { NDKEvent, NDKKind, NDKList, type NostrEvent } from '@nostr-dev-kit/ndk';
     import { createEventDispatcher } from 'svelte';
     import type { NDKHighlight } from "@nostr-dev-kit/ndk";
-    import MainCtaInSecondaryActionButton from '../buttons/MainCTAInSecondaryActionButton.svelte';
     import { Textarea, TopicInput, AttentionButton } from '@kind0/ui-common';
     import HighlightContentBox from './HighlightContentBox.svelte';
-    import HighlightCard from './HighlightCard.svelte';
 
     export let highlight: NDKHighlight;
     export let topics: string[] = [];
@@ -220,7 +218,8 @@ transition:slide
                     class="
                         mt-4
                         border:base-300 border-opacity-50
-                        bg-transparent
+                        focus:ring-accent2
+                        bg-base-300
                         min-h-[25vh]
                         min-w-[25vw]
                     "
@@ -233,7 +232,8 @@ transition:slide
                     class="
                         mt-4
                         border:base-300 border-opacity-50
-                        bg-transparent
+                        focus:ring-accent2
+                        bg-base-300
                         min-h-[25vh]
                         min-w-[25vw]
                     "

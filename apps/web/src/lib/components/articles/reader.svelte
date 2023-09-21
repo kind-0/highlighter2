@@ -4,7 +4,7 @@
     import NewHighlight from '$lib/components/highlights/NewHighlight.svelte';
     import { currentScope } from '$lib/store';
     import { fade } from 'svelte/transition';
-    import { derived, type Readable } from 'svelte/store';
+    import { derived, writable, type Readable } from 'svelte/store';
     import { ReaderMarginNotePopup } from "@highlighter/svelte-kit-lib";
 
     import HighlightWrapper from '../HighlightWrapper.svelte';
@@ -186,6 +186,11 @@
                 return undefined;
             }
         }
+
+        if (article instanceof NDKEvent) {
+            return article.content.slice(0, 20) + "...";
+        }
+
         return article?.title || article?.url || article.toString();
     }
 
@@ -208,6 +213,8 @@
     // when there are highlights outside the viewport
     // (e.g. 10 highlights below)
     const popupPosition: Record<NDKEventId, number> = {}
+
+    const popupPositions = writable(new Set<number>());
 </script>
 
 <svelte:head>
@@ -218,7 +225,7 @@
     <div class="flex flex-col xl:flex-row w-full mx-auto md:px-6 pt-4">
         <div class="flex flex-col xl:w-7/12 !rounded-xl">
             <div class="
-                sticky !rounded-t-xl top-0 p-4 border-b-2 border-base-300 bg-base-200 left-0 right-0 z-50
+                sticky !rounded-t-xl top-0 p-4 border-b-2 border-base-300 bg-base-200/80 left-0 right-0 z-50
                 flex flex-row items-center justify-between
             ">
                 <div class="flex flex-row gap-4 items-center w-1/4">
@@ -334,11 +341,12 @@
                         <div class="flex flex-col gap-4">
                             {#each $highlights as highlight (highlight.id)}
                                 <ReaderMarginNotePopup
-                                    markId={highlight.id}
+                                    highlightEvent={highlight}
                                     user={highlight.author}
                                     {marginNotes}
                                     class={!!$rightDrawerContent ? "hidden" : ""}
                                     bind:verticalPosition={popupPosition[highlight.id]}
+                                    {popupPositions}
                                 />
                             {/each}
                         </div>

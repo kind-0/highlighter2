@@ -10,15 +10,18 @@ Each <MarginNotePopup> component represents a single margin note.
 -->
 <script lang="ts">
     import type { NDKEvent, NDKUser } from "@nostr-dev-kit/ndk";
-    import { AvatarWithName } from "@kind0/ui-common";
+    import { Avatar, CommentsButton, LinkToProfile, ThreadView } from "@kind0/ui-common";
     import ReaderMarginNoteCard from "./ReaderMarginNoteCard.svelte";
     import type { Readable } from 'svelte/store';
     import { derived } from 'svelte/store';
 
-    export let markId = '';
+    export let highlightEvent: NDKEvent;
     export let user: NDKUser;
     export let marginNotes: Readable<NDKEvent[]>;
     export let verticalPosition: number | undefined = undefined;
+    export let popupPositions: Readable<Set<number>>;
+
+    const markId = highlightEvent.id;
 
     const ownMarginNotes = derived(marginNotes, $marginNotes => {
             const ownMarginNotes = new Set<NDKEvent>();
@@ -52,7 +55,20 @@ Each <MarginNotePopup> component represents a single margin note.
         }
     }
 
-    $: positionElement();
+    function adjustPositionIfOccupied() {
+        popupPositions.update((positions) => {
+            while (positions.has(verticalPosition)) {
+                verticalPosition += 40;
+            }
+            positions.add(verticalPosition);
+            return positions;
+        });
+    }
+
+    $: {
+        positionElement();
+        adjustPositionIfOccupied();
+    }
 
     function hover(hovering: boolean) {
         // mark the reference element as active
@@ -62,6 +78,8 @@ Each <MarginNotePopup> component represents a single margin note.
             referenceElement?.classList.remove('active');
         }
     }
+
+    let open = false;
 </script>
 
 {#if verticalPosition}
@@ -69,14 +87,23 @@ Each <MarginNotePopup> component represents a single margin note.
         class="absolute {$$props.class}"
         style="top: {verticalPosition}px; z-index: 1; left: 1"
     >
-        <div class="card card-compact bg-base-300 hidden">
-            <div class="card-body text-xs">
-                <AvatarWithName pubkey={user.hexpubkey} />
-                highlighted by
-            </div>
-        </div>
+        {#if $ownMarginNotes?.size === 0}
+            <div class="flex flex-row gap-3 items-center group">
+                <LinkToProfile {user}>
+                    <Avatar {user} type="circle" size="small" />
+                </LinkToProfile>
 
-        {#if $ownMarginNotes?.size > 0}
+                <CommentsButton
+                    event={highlightEvent}
+                    class="btn btn-neutral btn-sm p-1 !rounded-full px-3 font-light opacity-0 group-hover:opacity-100"
+                    emit={true}
+                    on:click={() => { open = !open }}
+                />
+            </div>
+            {#if open}
+                <ThreadView event={highlightEvent} skipEvent={true} />
+            {/if}
+        {:else}
             {#each $ownMarginNotes as marginNote}
                 <div
                     on:mouseenter={() => hover(true)}

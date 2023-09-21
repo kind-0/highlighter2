@@ -15,7 +15,7 @@
     // NOOP To make sure the import is not tree-shaken
     $appHandlers;
 
-    import { user, userLabels, prepareSession, loadingScreen, userFollows, networkFollows, userAppHandlers, userDVMResults } from '$stores/session';
+    import { user, userLabels, prepareSession, loadingScreen, userFollows, networkFollows, userAppHandlers, userDVMResults, highlights } from '$stores/session';
     import { bunkerNDK, ndk } from '@kind0/ui-common';
 
     $: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : ''
@@ -104,6 +104,10 @@
     </pre>
 </div> -->
 
+<div class="fixed bottom-0 left-0 w-96 bg-base-300 p-4">
+    {$highlights?.size} highlights
+</div>
+
 <Modals>
     <div
         slot="backdrop"
@@ -128,4 +132,6 @@
     hidden
     max-h-[90vh]
     max-w-md
+    !max-w-lg
+    min-h-96
 "></div>

@@ -306,6 +306,9 @@ importers:
       svelte:
         specifier: ^4.2.0
         version: 4.2.0
+      svelte-modals:
+        specifier: ^1.3.0
+        version: 1.3.0(svelte@4.2.0)
     devDependencies:
       '@kind0/eslint-config-custom':
         specifier: workspace:*
@@ -802,9 +805,21 @@ importers:
       '@sveltejs/kit':
         specifier: ^1.24.0
         version: 1.24.0(svelte@4.2.0)(vite@4.4.9)
+      '@types/sanitize-html':
+        specifier: ^2.9.0
+        version: 2.9.0
+      markdown-it:
+        specifier: ^13.0.1
+        version: 13.0.1
+      nostr-tools:
+        specifier: ^1.15.0
+        version: 1.15.0(typescript@5.2.2)
       phosphor-svelte:
         specifier: ^1.3.0
         version: 1.3.0(svelte@4.2.0)
+      sanitize-html:
+        specifier: ^2.11.0
+        version: 2.11.0
       svelte:
         specifier: ^4.2.0
         version: 4.2.0
@@ -6619,7 +6634,6 @@ packages:
     resolution: {integrity: sha512-4fP/kEcKNj2u39IzrxWYuf/FnCCwwQCpif6wwY6ROUS1EPRIfWJjGkY3HIowY1EX/VbX5e86yq8AAE7UPMgATg==}
     dependencies:
       htmlparser2: 8.0.2
-    dev: true
 
   /@types/scheduler@0.16.3:
     resolution: {integrity: sha512-5cJ8CB4yAx7BH1oMvdU0Jh9lrEXyPkar6F9G/ERswkCuvP4KQZfZkSjcMbAICCpQTN4OuZn8tz0HiKv9TGZgrQ==}
@@ -14451,6 +14465,17 @@ packages:
 
   /sanitize-html@2.10.0:
     resolution: {integrity: sha512-JqdovUd81dG4k87vZt6uA6YhDfWkUGruUu/aPmXLxXi45gZExnt9Bnw/qeQU8oGf82vPyaE0vO4aH0PbobB9JQ==}
+    dependencies:
+      deepmerge: 4.3.1
+      escape-string-regexp: 4.0.0
+      htmlparser2: 8.0.2
+      is-plain-object: 5.0.0
+      parse-srcset: 1.0.2
+      postcss: 8.4.29
+    dev: false
+
+  /sanitize-html@2.11.0:
+    resolution: {integrity: sha512-BG68EDHRaGKqlsNjJ2xUB7gpInPA8gVx/mvjO743hZaeMCZ2DwzW7xvsqZ+KNU4QKwj86HJ3uu2liISf2qBBUA==}
     dependencies:
       deepmerge: 4.3.1
       escape-string-regexp: 4.0.0

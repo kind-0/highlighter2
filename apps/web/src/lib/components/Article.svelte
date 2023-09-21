@@ -106,4 +106,8 @@
     @apply list-disc my-6;
 }
 
+:global(article figure) {
+    @apply flex flex-col gap-4 mx-auto max-w-lg my-6;
+}
+
 </style>

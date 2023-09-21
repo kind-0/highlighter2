@@ -1,12 +1,13 @@
 <script lang="ts">
     import { NDKUser, type NDKEvent } from "@nostr-dev-kit/ndk";
-    import { ndk } from "@kind0/ui-common";
+    import { LinkToProfile, ndk, ThreadView } from "@kind0/ui-common";
     // import HighlightContent from "$lib/components/highlights/HighlightContent.svelte";
     import { SubtleButton, EventCard } from "@kind0/ui-common";
     import { removeQuotedEvent, fetchQuotedHighlight } from './utils';
     import type { NDKHighlight} from "@nostr-dev-kit/ndk";
-    import { AvatarWithName } from "@kind0/ui-common";
+    import { AvatarWithName, ReplyModal } from "@kind0/ui-common";
     import { onDestroy } from "svelte";
+    import { openModal } from "svelte-modals";
     import { Avatar, Name, EventContent } from "@nostr-dev-kit/ndk-svelte-components";
     import type { NDKEventStore } from "@nostr-dev-kit/ndk-svelte";
     import ReplyView from "./ReplyView.svelte";
@@ -53,6 +54,7 @@
     }
 
     let replying = false;
+    let open = false;
 </script>
 
 {#if highlight}
@@ -102,29 +104,34 @@
         <div slot="footer" class="flex flex-row justify-between gap-8 {replying ? 'hidden' : ''}">
             <div class="flex flex-row items-center gap-2">
                 {#if $replies?.length > 0}
-
                     <div class="flex -space-x-2 overflow-hidden">
                         {#each chooseUsersToDisplay(replyingUsersIds) as user}
-                            <Avatar {user} ndk={$ndk} class="inline-block h-7 w-7 rounded-full" />
+                            <LinkToProfile {user}>
+                                <Avatar {user} ndk={$ndk} class="inline-block h-7 w-7 rounded-full" />
+                            </LinkToProfile>
                         {/each}
                     </div>
 
-                    <div class="truncate text-xs">
+                    <button class="truncate text-xs" on:click={() => open = !open}>
                         <Name user={chooseUsersToDisplay(replyingUsersIds, 1)[0]} ndk={$ndk} />
                         {#if replyingUsersIds.size > 1}
                             <span>and {replyingUsersIds.size - 1} others</span>
                         {/if} commented
-                    </div>
+                    </button>
                 {/if}
             </div>
 
             <div>
                 <SubtleButton
-                    on:click={(e) => { replying = true; e.stopPropagation(); }}
+                    on:click={() => { openModal(ReplyModal, { event }) }}
                 >
                     Add your thoughts
                 </SubtleButton>
             </div>
         </div>
     </EventCard>
+
+    {#if open}
+        <ThreadView {event} skipEvent={true} />
+    {/if}
 {/if}

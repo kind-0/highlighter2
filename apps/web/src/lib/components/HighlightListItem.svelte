@@ -5,15 +5,11 @@
     of this highlights to render them as well.
 -->
 <script lang="ts">
-    import HighlightCard from '$lib/components/highlights/HighlightCard.svelte';
-
-    import{ Avatar } from "@kind0/ui-common";
-
     import NoteCard from '$lib/components/notes/card.svelte';
     import type { NDKHighlight } from "@nostr-dev-kit/ndk";
     import type { NDKEvent } from '@nostr-dev-kit/ndk';
     import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
-    import { ndk } from "@kind0/ui-common";
+    import { ndk, HighlightCard } from "@kind0/ui-common";
     import { MarginNoteCard } from '@highlighter/svelte-kit-lib';
 
     export let highlight: NDKHighlight;

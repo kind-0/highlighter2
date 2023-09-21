@@ -1,12 +1,9 @@
 <script lang="ts">
     import type { NDKEvent, NDKHighlight } from "@nostr-dev-kit/ndk";
-    import { ndk } from "@kind0/ui-common";
+    import { HighlightCardHeader, HighlightContent, ndk } from "@kind0/ui-common";
     import { fetchQuotedHighlight, removeQuotedEvent } from "../../Reader/utils";
-    import { EventCard } from "@kind0/ui-common";
-    import HighlightContent from "../Highlight/HighlightContent.svelte";
+    import { EventCard, linkToArticle } from "@kind0/ui-common";
     import { EventContent } from "@nostr-dev-kit/ndk-svelte-components";
-    import HighlightCardHeader from "../Highlight/HighlightCardHeader.svelte";
-    import linkToArticle from "../Highlight/link-to-article";
 
     /**
      * Event to render

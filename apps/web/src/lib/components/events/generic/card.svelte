@@ -1,16 +1,14 @@
 <script lang="ts">
 	import { longFormStore } from '$lib/stores/long-form';
-    import HighlightCard from '$lib/components/highlights/HighlightCard.svelte';
     import NoteCard from '$lib/components/notes/card.svelte';
     import { getContext } from 'svelte';
-    import { ndk } from "@kind0/ui-common";
+    import { ndk, HighlightCard } from "@kind0/ui-common";
     import { createEventDispatcher } from 'svelte';
     import type { NDKEvent } from '@nostr-dev-kit/ndk';
     import { NDKListKinds } from "@nostr-dev-kit/ndk";
     import { user } from '$stores/session';
     import { NDKHighlight, NDKList } from "@nostr-dev-kit/ndk";
     import { naddrFromTagValue } from '$lib/utils';
-    import ZapEventCard from '$lib/components/zaps/ZapEventCard.svelte';
     import ListCard from '$lib/components/lists/ListCard.svelte';
     import ArticleIntroCard from '$lib/components/articles/cards/ArticleIntroCard.svelte';
     import NDKArticle from "@nostr-dev-kit/ndk";

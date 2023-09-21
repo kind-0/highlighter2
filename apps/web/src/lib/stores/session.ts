@@ -392,43 +392,43 @@ async function fetchData(
 
     return new Promise((resolve) => {
         const kinds = opts.extraKinds ?? [];
+        const authorPrefixes = authors.map(f => f.slice(0, 16));
 
         if (opts.listsStore) {
             kinds.push(...opts.listsKinds!);
         }
 
         const filters: NDKFilter[] = [
-            { kinds, authors },
-            { "#k": ["9802"], authors }
+            { kinds, authors: authorPrefixes, limit: 10 },
+            { "#k": ["9802"], authors: authorPrefixes }
         ];
 
         if (opts.highlightStore) {
-            filters.push({ authors, kinds: [NDKKind.Highlight], limit: 50 });
+            filters.push({ authors: authorPrefixes, kinds: [NDKKind.Highlight], limit: 50 });
         }
 
         if (opts.labelsStore) {
-            filters.push({ authors, kinds: [NDKKind.Label], "#L": ["#t"], limit: 100 });
+            filters.push({ authors: authorPrefixes, kinds: [NDKKind.Label], "#L": ["#t"], limit: 100 });
         }
 
         if (opts.appHandlers) {
-            filters.push({ authors, kinds: [NDKKind.AppRecommendation] });
+            filters.push({ authors: authorPrefixes, kinds: [NDKKind.AppRecommendation] });
         }
 
         if (opts.dvmResultsStore) {
-            filters.push({ "#p": authors, kinds: [NDKKind.DVMJobResult], limit: 10 });
+            filters.push({ "#p": authorPrefixes, kinds: [NDKKind.DVMJobResult], limit: 10 });
         }
 
         if (opts.dvmRequestsStore) {
-            const oneHourAgo = Math.floor(Date.now() / 1000) - 3600;
-            filters.push({ authors, kinds: [65002, 65008], limit: 10 });
+            filters.push({ authors: authorPrefixes, kinds: [65002, 65008], limit: 10 });
         }
 
         if (opts.followsStore) {
-            filters.push({ kinds: [0, 3], authors });
+            filters.push({ kinds: [0, 3], authors: authorPrefixes });
         }
 
         if (opts.followHashtagsStore) {
-            filters.push({ authors, "#d": ["hashtags"] });
+            filters.push({ authors: authorPrefixes, "#d": ["hashtags"] });
         }
 
         const userDataSubscription = $ndk.subscribe(
