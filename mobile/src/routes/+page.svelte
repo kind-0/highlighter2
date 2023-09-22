@@ -3,10 +3,35 @@
     import Navbar from '$lib/components/Navbar/Navbar.svelte';
     import ButtonWithBorderGradient2 from '$lib/components/buttons/ButtonWithBorderGradient2.svelte';
     import GenericEventCard from '$lib/components/events/generic/card.svelte';
-    import { user } from '$stores/session';
+    import { user, userFollowHashtags } from '$stores/session';
+    import { ndk } from "@kind0/ui-common";
+    import { NDKEvent, type NostrEvent } from '@nostr-dev-kit/ndk';
 
-    function getStarted() {
+    const selectedTopics = [
+        "education",
+        "worldschooling",
+        "unschooling",
+        "learning"
+    ];
+
+    async function getStarted() {
         if ($user) {
+            const followedHashtags = new NDKEvent($ndk, {
+                kind: 30015,
+                tags: [
+                    ["d", "education"],
+                    ["title", "Education"],
+                    ...selectedTopics.map((t) => ["t", t]),
+                    ["p", "fa984bd7dbb282f07e16e7ae87b26a2a7b9b90b7246a44771f0cf5ae58018f52", "pablof7z" ]
+                ]
+            } as NostrEvent);
+
+            for (const h of $userFollowHashtags) { followedHashtags.tags.push(['t', h]); }
+
+            await followedHashtags.sign();
+
+            await followedHashtags.publish();
+
             goto('/reader');
             return;
         }
@@ -23,20 +48,22 @@
 </svelte:head>
 
 <div class="flex flex-col min-h-screen overflow-x-hidden">
-    <Navbar isHiddenDrawerBtn={true} isHiddenRelayBtn={true} />
+    <div class="mx-auto">
+        <Navbar isHiddenDrawerBtn={true} isHiddenRelayBtn={true} />
+    </div>
     <div class="hero flex flex-column justify-center">
         <div class="w-full md:max-w-2xl lg:max-w-3xl mx-auto flex flex-col gap-5 md:gap-12">
             <div class="relative">
                 <div class="mx-10 blur-sm text-xs md:text-base font-normal pb-1 hidden sm:block">
                     <span
-                        >Here’s the thing that nostr got right, and it’s the same thing that Bitcoin got right: information is easy to spread and hard
+                        >Here's the thing that nostr got right, and it's the same thing that Bitcoin got right: information is easy to spread and hard
                         to stifle.</span
                     ><span style="underline">1</span><span>
                         Information can be copied quickly and perfectly, which is, I believe, the underlying reason for its desire to be free.<br
-                        /><br />Easy to spread, hard to stifle. That’s the base reality of the nature of information. As always, the smart thing is to
+                        /><br />Easy to spread, hard to stifle. That's the base reality of the nature of information. As always, the smart thing is to
                         work with nature, not against it.</span
                     ><span style="underline">2</span><span>
-                        That’s what’s beautiful about the orange coin and the purple ostrich: both manage to work with the peculiarities of
+                        That's what's beautiful about the orange coin and the purple ostrich: both manage to work with the peculiarities of
                         information, not against them. Both realize that information can and should be copied, as it can be perfectly read and easily
                         spread, always. Both understand that resistance to censorship comes from writing to many places, making the cost of deletion
                         prohibitive.</span
@@ -44,11 +71,11 @@
                 </div>
                 <div class="mx-10 blur-sm text-xs md:text-base font-normal pb-1 sm:hidden">
                     <span
-                        >Here’s the thing that nostr got right, and it’s the same thing that Bitcoin got right: information is easy to spread and hard
+                        >Here's the thing that nostr got right, and it's the same thing that Bitcoin got right: information is easy to spread and hard
                         to stifle.</span
                     ><span style="underline">1</span><span>
                         Information can be copied quickly and perfectly, which is, I believe, the underlying reason for its desire to be free.<br
-                        /><br />Easy to spread, hard to stifle. That’s the base reality of the nature of information. As always, the smart thing is to
+                        /><br />Easy to spread, hard to stifle. That's the base reality of the nature of information. As always, the smart thing is to
                         work with nature, not against it.</span
                     >
                 </div>
@@ -79,15 +106,15 @@
             <div class="relative">
                 <div class="mx-10 blur-sm text-xs md:text-base font-normal pb-1">
                     <span class="hidden sm: block"
-                        >Here’s the thing that nostr got right, and it’s the same thing that Bitcoin got right: information is easy to spread and hard
+                        >Here's the thing that nostr got right, and it's the same thing that Bitcoin got right: information is easy to spread and hard
                         to stifle.</span
                     >
                     <span style="underline hidden sm:block">1</span><span class="hidden sm:block">
                         Information can be copied quickly and perfectly, which is, I believe, the underlying reason for its desire to be free.<br
-                        /><br />Easy to spread, hard to stifle. That’s the base reality of the nature of information. As always, the smart thing is to
+                        /><br />Easy to spread, hard to stifle. That's the base reality of the nature of information. As always, the smart thing is to
                         work with nature, not against it.</span
                     ><span style="underline">2</span><span>
-                        That’s what’s beautiful about the orange coin and the purple ostrich: both manage to work with the peculiarities of
+                        That's what's beautiful about the orange coin and the purple ostrich: both manage to work with the peculiarities of
                         information, not against them. Both realize that information can and should be copied, as it can be perfectly read and easily
                         spread, always. Both understand that resistance to censorship comes from writing to many places, making the cost of deletion
                         prohibitive.</span

@@ -13,7 +13,7 @@
 }
 
 :global(article h2) {
-    @apply text-base-100-content;
+    @apply dark:!text-white;
 }
 
 :global(article h1) {
@@ -96,4 +96,18 @@
     background: rgba(246, 48, 2, 0.8);
     color: #FFF0F0;
 }
+
+:global(article hr) {
+    @apply border-base-300;
+    @apply my-6;
+}
+
+:global(article ol) {
+    @apply list-disc my-6;
+}
+
+:global(article figure) {
+    @apply flex flex-col gap-4 mx-auto max-w-lg my-6;
+}
+
 </style>

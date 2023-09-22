@@ -1,6 +1,6 @@
 <script lang="ts">
     import { user } from '$stores/session';
-    import { ndk } from "@kind0/lib-svelte-kit";
+    import { PageTitle, ndk } from "@kind0/ui-common";
 
     import Tags from './tags.svelte';
     import type { NDKList, NDKTag } from '@nostr-dev-kit/ndk';
@@ -8,12 +8,11 @@
     import { goto } from '$app/navigation';
     import AddListItem from '$lib/components/lists/AddListItem.svelte';
     import AddRelayListItem from '$lib/components/lists/AddRelayListItem.svelte';
-    import NDKRelayList from '$lib/ndk-kinds/lists/relay-list';
+    import { NDKRelayList } from "@nostr-dev-kit/ndk";
     import { AvatarWithName } from "@kind0/ui-common";
     import { getSigner, type SignerStoreItem } from '$lib/stores/signer';
     import { saveEphemeralSigner } from '$lib/signers/ephemeral';
     import { getLists, processEvent } from '$lib/stores/list';
-    import PageTitle from '$lib/components/PageTitle.svelte';
     import CopyButton from '$lib/components/buttons/CopyButton.svelte';
     import { writable } from 'svelte/store';
     import { DotsThree, Trash } from 'phosphor-svelte';

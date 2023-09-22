@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { networkFollows } from '$stores/session';
-    import MainWithRightSidebar from "$lib/layouts/MainWithRightSidebar.svelte";
     import { user, userFollows, highlights } from "$stores/session";
     import type { NDKHighlight } from "@nostr-dev-kit/ndk";
     import { onDestroy, onMount } from "svelte";
@@ -29,6 +27,4 @@
     })
 </script>
 
-<MainWithRightSidebar>
-    <HighlightList items={$sortedStore} />
-</MainWithRightSidebar>
+<HighlightList items={$sortedStore} />

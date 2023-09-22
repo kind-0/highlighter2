@@ -1,13 +1,15 @@
+<!--
+    This component is used to display a highlight in a list of highlights.
+
+    When a highlight event is loaded, it will attempt to load margin notes
+    of this highlights to render them as well.
+-->
 <script lang="ts">
-    import HighlightCard from '$lib/components/highlights/HighlightCard.svelte';
-
-    import{ Avatar } from "@kind0/ui-common";
-
     import NoteCard from '$lib/components/notes/card.svelte';
     import type { NDKHighlight } from "@nostr-dev-kit/ndk";
     import type { NDKEvent } from '@nostr-dev-kit/ndk';
     import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
-    import { ndk } from '@kind0/lib-svelte-kit';
+    import { ndk, HighlightCard } from "@kind0/ui-common";
     import { MarginNoteCard } from '@highlighter/svelte-kit-lib';
 
     export let highlight: NDKHighlight;
@@ -47,11 +49,7 @@
 </script>
 
 {#await articlePromise then article}
-    <div class="
-        flex flex-col overflow-hidden
-        {$$props.class}
-        {collapsedQuotes? '' : 'gap-8'}
-    ">
+    <div class="flex flex-col overflow-hidden gap-8 {$$props.class}">
         {#if shouldDisplayQuote(highlight, $quotes||[])}
             <HighlightCard
                 class={$$props.itemClass}
@@ -63,34 +61,13 @@
                 {disableClick}
             />
             {#if ($quotes||[]).length > 0}
-                {#if collapsedQuotes}
-                    <div class="px-8 py-3">
-                        <div class="flex flex-row gap-2 items-center">
-                            <div class="isolate flex -space-x-2 overflow-hidden">
-                                {#each Array.from(new Set(quotePubkeys)).slice(0, 6) as quotePubkey}
-                                    <div class="relative z-30 inline-block h-8 w-8 rounded-full ring-2 ring-white">
-                                        <Avatar pubkey={quotePubkey} />
-                                    </div>
-                                {/each}
-                            </div>
-
-                            <button
-                                class="text-xs font-medium"
-                                on:click={() => { collapsedQuotes = false }}>
-                                Show {$quotes?.length} notes...
-                            </button>
+                <div class="ml-6 flex flex-col gap-6 quote-card">
+                    {#each ($quotes||[]) as quote}
+                        <div class="text-lg">
+                            <NoteCard event={quote} />
                         </div>
-                    </div>
-                {:else}
-                    <div class="ml-6 flex flex-col gap-6 quote-card">
-                        {#each ($quotes||[]) as quote}
-                        {quote.id}
-                            <div class="text-lg">
-                                <NoteCard event={quote} />
-                            </div>
-                        {/each}
-                    </div>
-                {/if}
+                    {/each}
+                </div>
             {/if}
         {:else}
             {#each ($quotes||[]) as quote}

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { ndk } from "@kind0/lib-svelte-kit";
+    import { ndk } from "@kind0/ui-common";
     import CloseIcon from '$lib/icons/Close.svelte';
     import { NDKEvent, type NostrEvent } from '@nostr-dev-kit/ndk';
 
@@ -7,7 +7,7 @@
     import ModalWrapper from '$lib/components/ModalWrapper.svelte';
     import { Input } from "@kind0/ui-common";
     import { sortedListWithKind, sortedLists } from '$lib/stores/list';
-    import type NDKList from '$lib/ndk-kinds/lists';
+    import type { NDKList } from "@nostr-dev-kit/ndk";
 
     export let event: NDKEvent;
     export let listKind: number = 30001;

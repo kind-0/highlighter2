@@ -1,8 +1,7 @@
 <script lang="ts">
-    import {Avatar, Name} from '@nostr-dev-kit/ndk-svelte-components';
-    import { ndk } from "@kind0/lib-svelte-kit";
+    import { Avatar, HighlightIcon, Name, ShelvesIcon } from "@kind0/ui-common";
     import type { NDKUser } from '@nostr-dev-kit/ndk';
-    import { Books, HighlighterCircle, Newspaper } from 'phosphor-svelte';
+    import { Newspaper } from 'phosphor-svelte';
     import { page } from '$app/stores';
     import MenuItem from '$components/sidebars/MenuItem.svelte';
 
@@ -18,8 +17,8 @@
 <ul class="menu bg-base-200 w-full rounded-box">
     <li class="border-b border-base-300 -mx-2 px-2">
         <div class="flex flex-row gap-4 items-center text-lg rounded-b-none hover:!bg-transparent hover:!cursor-default">
-            <Avatar ndk={$ndk} {user} class="w-12 h-12 rounded-lg" />
-            <Name ndk={$ndk} {user} class="text-lg font-semibold text-base-100-content" />
+            <Avatar {user} class="w-12 h-12 rounded-lg" />
+            <Name {user} class="text-lg font-semibold text-base-100-content" />
         </div>
     </li>
         <MenuItem
@@ -27,7 +26,7 @@
             class="w-full"
             innerClass="flex flex-row items-center gap-2 flex-grow"
         >
-            <HighlighterCircle weight="thin" class="w-8 h-8" />
+            <HighlightIcon class="w-6 h-6" />
             Highlights
         </MenuItem>
         <MenuItem
@@ -35,7 +34,7 @@
             class="w-full"
             innerClass="flex flex-row items-center gap-2 flex-grow"
         >
-            <Books weight="thin" class="w-8 h-8" />
+            <ShelvesIcon class="w-6 h-6" />
             Shelves
         </MenuItem>
         <MenuItem

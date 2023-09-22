@@ -5,9 +5,8 @@
     import { page } from '$app/stores';
     import MarkdownIt from 'markdown-it';
     import type { NDKEvent } from '@nostr-dev-kit/ndk';
-    import { ndk } from "@kind0/lib-svelte-kit";
+    import { ndk } from "@kind0/ui-common";
     import {NDKArticle} from "@nostr-dev-kit/ndk";
-    import { Card, Skeleton, TestimonialPlaceholder } from 'flowbite-svelte';
     import ReaderDVMTranscriptionHeader from '$lib/components/articles/dvm/ReaderDVMTranscriptionHeader.svelte';
 
     import ZapEventCard from '$lib/components/zaps/ZapEventCard.svelte';
@@ -62,24 +61,16 @@
     }
 </script>
 
-<Navbar />
-
 {#await articlePromise}
     <div class="full relative card">
         <div class="card-body">
-            <Card class="text-center flex flex-row gap-4 items-center absolute z-50 md:p-8" style="top: 40%; left: 40%;">
-                <h1 class="text-xl">
-                    Loading article...
-                </h1>
-            </Card>
-
-            <div  class="flex flex-col items-start">
-                <TestimonialPlaceholder />
+            <div class="cardtext-center flex flex-row gap-4 items-center absolute z-50 md:p-8" style="top: 40%; left: 40%;">
+                <div class="card-body">
+                    <h1 class="text-xl">
+                        Loading article...
+                    </h1>
+                </div>
             </div>
-
-            <Skeleton size='xxl' class='mt-8'/>
-            <Skeleton size='xxl' class='mt-8'/>
-            <Skeleton size='xxl' class='mt-8'/>
         </div>
     </div>
 {:then article}

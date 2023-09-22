@@ -1,7 +1,7 @@
 <script lang="ts">
-    import PageTitle from '$lib/components/PageTitle.svelte';
     import ButtonWithBorderGradient2 from '$lib/components/buttons/ButtonWithBorderGradient2.svelte';
     import Stars from '$lib/icons/Stars.svelte';
+    import { PageTitle } from '@kind0/ui-common';
 
     let bid = 50;
 </script>

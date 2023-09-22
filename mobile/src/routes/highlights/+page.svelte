@@ -1,6 +1,6 @@
 <script lang="ts">
     import { user, userFollows, highlights } from "$stores/session";
-    import { NDKHighlight } from "@nostr-dev-kit/ndk";
+    import type { NDKHighlight } from "@nostr-dev-kit/ndk";
     import { onMount } from "svelte";
     import HighlightList from "$lib/components/HighlightList.svelte";
     import { derived, type Readable } from "svelte/store";
@@ -9,7 +9,7 @@
     let sortedStore: Readable<NDKHighlight[]>;
 
     onMount(() => {
-        if (!$user) {
+        if (!$user || $userFollows.size === 0) {
             goto(`/highlights/local`);
             return;
         }

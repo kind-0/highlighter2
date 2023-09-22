@@ -1,14 +1,12 @@
 <script>
-	import { sortedLists } from '$lib/stores/list';
-    import Highlight from "$lib/icons/Highlight.svelte";
     import Relays from "$lib/icons/Relays.svelte";
-    import { NDKKind } from "$lib/ndk-kinds";
     import { BookBookmark, Users } from "phosphor-svelte";
-    import {SidebarSectionLink} from '@kind0/ui-common';
+    import {HighlightIcon, SidebarSectionLink} from '@kind0/ui-common';
     import SidebarFolderTree from "./SidebarFolderTree.svelte";
     import RelaySetButton from "$lib/components/Sidebar/RelaySetButton.svelte";
     import SidebarUnsavedNotes from "$lib/components/Sidebar/SidebarUnsavedNotes.svelte";
     import Logo from "$icons/Logo.svelte";
+    import { NDKKind } from "@nostr-dev-kit/ndk";
 </script>
 
 <div class="flex flex-col gap-8 pr-4 max-h-full overscroll-y-auto overflow-x-hidden">
@@ -20,10 +18,10 @@
 
         <SidebarUnsavedNotes />
 
-        <SidebarFolderTree kinds={[NDKKind.HighlightList]}>
+        <SidebarFolderTree kinds={[NDKKind.CategorizedHighlightList]}>
             <div slot="title">
                 <li class="menu-title flex flex-row items-center">
-                    <Highlight class="w-4 h-4 mr-2 text-accent" />
+                    <HighlightIcon class="w-4 h-4 mr-2 text-accent" />
                     HIGHLIGHTS
                 </li>
             </div>

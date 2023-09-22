@@ -50,6 +50,6 @@
     // }
 </script>
 
-<HighlightList items={Array.from($highlights.values())} />
+<HighlightList items={Array.from($highlights.values()).slice(0, 50)} />
 
 <!-- <button class="btn btn-neutral mt-8 btn-block" on:click={loadMore}>Load More</button> -->

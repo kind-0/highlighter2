@@ -1,7 +1,7 @@
 import { goto } from "$app/navigation";
-import { tryToLoadBech32, tryToLoadDVM, tryToLoadTopic, tryToLoadUserBech32 } from "./matchers";
+import { tryToLoadBech32, tryToLoadDVM, tryToLoadSearch, tryToLoadTopic, tryToLoadUserBech32 } from "./matchers";
 
-export type MediaType = 'audio' | 'video' | 'image' | 'overcast' | 'youtube' | 'web' | 'bech32' | 'topic';
+export type MediaType = 'audio' | 'video' | 'image' | 'overcast' | 'youtube' | 'web' | 'bech32' | 'topic' | 'search';
 export type ProcessingInstructions = {
     type?: MediaType | undefined,
     dvm?: boolean,
@@ -25,6 +25,7 @@ export async function getSearchProcessingInstructions(query: string, authorPubke
     if ((result.type = tryToLoadUserBech32(query))) return result;
     if ((result.type = tryToLoadBech32(query))) return result;
     if ((result.type = tryToLoadTopic(query))) return result;
+    if ((result.type = tryToLoadSearch(query))) return result;
 
     if (!result.type) {
         result.type = tryToLoadDVM(query);
@@ -33,7 +34,8 @@ export async function getSearchProcessingInstructions(query: string, authorPubke
     }
 
     switch (result.type) {
-    case 'overcast', 'youtube': {
+    case 'overcast':
+    case 'youtube': {
         const res = await fetch(`/api/cors?url=${encodeURIComponent(query)}`, {
             headers: { 'Content-Type': 'application/json' },
         });

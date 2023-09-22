@@ -1,5 +1,5 @@
     <script lang="ts">
-    import type NDKList from "$lib/ndk-kinds/lists";
+    import type { NDKList } from "@nostr-dev-kit/ndk";
     import { NDKPrivateKeySigner, NDKUser, type NDKTag, NDKRelay } from "@nostr-dev-kit/ndk";
     import { nip19 } from "nostr-tools";
 

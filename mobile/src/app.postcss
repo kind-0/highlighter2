@@ -97,3 +97,34 @@
     border: solid red 5px !important;
     display: block;
 }
+
+:global(article.highlighter) {
+    cursor: url(/images/highlight.svg) 0 30, auto;
+}
+
+:global(article mark[data-highlight-id]) {
+    cursor: pointer;
+    @apply transition-all duration-200;
+}
+
+:global(article mark:hover) {
+    cursor: pointer;
+    background: rgba(246, 48, 2, 0.8);
+    color: #FFF0F0;
+}
+
+:global(article figure) {
+    @apply flex flex-col gap-4;
+    @apply border border-red-500;
+}
+
+@layer base {
+	.scrollbar-hide::-webkit-scrollbar {
+		display: none;
+	}
+
+	.scrollbar-hide {
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
+}

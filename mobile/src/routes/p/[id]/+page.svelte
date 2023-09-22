@@ -1,24 +1,17 @@
 <script lang="ts">
     import { goto } from '$app/navigation';
     import { page } from '$app/stores';
-    import UserInterface from '$lib/interfaces/users';
-    import {ndk} from "@kind0/lib-svelte-kit";
+    import { ndk } from "@kind0/ui-common";
     import type { NDKUser } from '@nostr-dev-kit/ndk';
 
+    let { id } = $page.params;
     let { npub } = $page.data;
     let user: NDKUser;
-    let hexpubkey: string;
 
     if (npub.startsWith('npub')) {
-        const user = $ndk.getUser({npub})
-        hexpubkey = user.hexpubkey;
-    } else {
-        hexpubkey = npub;
-        user = $ndk.getUser({hexpubkey});
+        user = $ndk.getUser({npub})
     }
 
-    let userProfile = UserInterface.get({ hexpubkey });
-
     // Temporary hack
-    $: if (user) goto(`/p/${user.npub}/highlights`);
+    $: if (user) goto(`/p/${id}/highlights`);
 </script>

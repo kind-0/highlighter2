@@ -1,8 +1,7 @@
 <script lang="ts">
     import { user, userFollows } from '$stores/session';
-    import { loginAsGuest } from '@kind0/ui-common';
+    import { loginAsGuest, AttentionButton } from '@kind0/ui-common';
     import KeyIcon from '$lib/icons/Key.svelte';
-    import AttentionButton from '$lib/components/buttons/AttentionButton.svelte';
 
     const names = [
         "Curious Reader",
@@ -35,7 +34,9 @@
         })
         // forcefully update follow count
         if ($userFollows.size === 0) {
-            ["fa984bd7dbb282f07e16e7ae87b26a2a7b9b90b7246a44771f0cf5ae58018f52", "a9434ee165ed01b286becfc2771ef1705d3537d051b387288898cc00d5c885be", "6e468422dfb74a5738702a8823b9b28168abab8655faacb6853cd0ee15deee93", "b17c59874dc05d7f6ec975bce04770c8b7fa9d37f3ad0096fdb76c9385d68928", "dace63b00c42e6e017d00dd190a9328386002ff597b841eb5ef91de4f1ce8491"].forEach(p => $userFollows.add(p));
+            ["fa984bd7dbb282f07e16e7ae87b26a2a7b9b90b7246a44771f0cf5ae58018f52", "a9434ee165ed01b286becfc2771ef1705d3537d051b387288898cc00d5c885be", "6e468422dfb74a5738702a8823b9b28168abab8655faacb6853cd0ee15deee93","b17c59874dc05d7f6ec975bce04770c8b7fa9d37f3ad0096fdb76c9385d68928",
+            '75bf23531ae9f98c62995ba07191e488ead475975371d63d7dfd46bde1bfa895',
+            "dace63b00c42e6e017d00dd190a9328386002ff597b841eb5ef91de4f1ce8491"].forEach(p => $userFollows.add(p));
         }
         $user = u;
     }

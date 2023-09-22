@@ -116,6 +116,14 @@
         transition:fade={{ duration: 100 }}></div>
 </Modals>
 
+<div class="
+    hidden
+    max-h-[90vh]
+    max-w-md
+    !max-w-lg
+    min-h-96
+" />
+
 <style>
     .backdrop {
         position: fixed;
@@ -127,11 +135,3 @@
         background: rgba(0,0,0,0.50)
     }
 </style>
-
-<div class="
-    hidden
-    max-h-[90vh]
-    max-w-md
-    !max-w-lg
-    min-h-96
-"></div>

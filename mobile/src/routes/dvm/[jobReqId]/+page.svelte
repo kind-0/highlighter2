@@ -1,9 +1,8 @@
 <script lang="ts">
     import { page } from "$app/stores";
-    import JobRequestTranscription from "$lib/components/jobs/request/JobRequestTranscription.svelte";
-    import JobRequestEventsFeed from "$lib/components/jobs/request/event-feed/JobRequestEventsFeed.svelte";
     import Stars from "$lib/icons/Stars.svelte";
-    import {ndk} from "@kind0/lib-svelte-kit";
+    import { ndk } from "@kind0/ui-common";
+    import { DvmJobResultsFeed } from "@kind0/ui-common";
     import { NDKEvent, NDKTranscriptionDVM } from "@nostr-dev-kit/ndk";
 
     let jobReqId: string;
@@ -31,7 +30,7 @@
 
 {#await reqJobPromise then}
     {#if transcriptionJob.title}
-        <div class="card card-body">
+        <div class="card card-body shrink max-h-48">
             <div class="flex flex-row gap-4 w-full">
                 {#if transcriptionJob.image}
                     <img src={transcriptionJob.image} class="w-20 h-20 rounded-xl object-cover" />
@@ -55,5 +54,6 @@
         </div>
     {/if}
 
-    <JobRequestEventsFeed jobRequest={transcriptionJob} />
+    <DvmJobResultsFeed jobRequest={transcriptionJob} />
+    <!-- <JobRequestEventsFeed jobRequest={transcriptionJob} /> -->
 {/await}

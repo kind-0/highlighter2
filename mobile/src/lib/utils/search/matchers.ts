@@ -36,9 +36,19 @@ export function tryToLoadBech32(data: string): MediaType | undefined {
 export function tryToLoadTopic(data: string): MediaType | undefined {
     if (data!.startsWith('#')) {
         const topic = data!.replace(/^#/, '');
-        goto(`/highlights/t/${encodeURIComponent(topic)}`);
+        goto(`/topic/${encodeURIComponent(topic)}`);
         return 'topic';
     }
+}
+
+export function tryToLoadSearch(data: string): MediaType | undefined {
+    try {
+        new URL(data);
+        return undefined;
+    } catch (e) {}
+
+    goto(`/search?q=${encodeURIComponent(data)}`);
+    return 'search';
 }
 
 export function tryToLoadDVM(data: string): MediaType | undefined {

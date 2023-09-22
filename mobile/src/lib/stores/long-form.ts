@@ -1,7 +1,6 @@
 import { writable, derived, get as getStore } from 'svelte/store';
-import { ndk } from "@kind0/lib-svelte-kit";
-import NDK, { NDKSubscriptionCacheUsage, type NDKSubscription, type NDKUser, NDKEvent, NDKArticle } from '@nostr-dev-kit/ndk';
-import {NDKKind} from '../ndk-kinds/index.js';
+import { ndk } from "@kind0/ui-common";
+import NDK, { NDKSubscriptionCacheUsage, type NDKSubscription, type NDKUser, NDKEvent, NDKArticle, NDKKind } from '@nostr-dev-kit/ndk';
 import debug from 'debug';
 
 const d = debug('highlighter:long-form');
@@ -60,7 +59,7 @@ export function removeLongForm(longForm: NDKArticle): void {
 export function getLongForms(user: NDKUser): NDKSubscription {
     const $ndk = getStore(ndk);
     const sub = $ndk.subscribe({
-        kinds: [NDKKind.LongForm, 31023 as number],
+        kinds: [NDKKind.Article, 31023 as number],
         authors: [user.hexpubkey],
     }, {
         closeOnEose: false,

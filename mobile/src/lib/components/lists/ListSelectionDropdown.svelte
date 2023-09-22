@@ -1,11 +1,10 @@
 <script lang="ts">
-    import { NDKListKinds } from '$lib/ndk-kinds';
     import { sortedListWithKind } from '$lib/stores/list';
-    import { NDKList } from '@nostr-dev-kit/ndk';
+    import { NDKList, NDKListKinds } from '@nostr-dev-kit/ndk';
     import MenuItem from '../sidebars/MenuItem.svelte';
     import { Input } from "@kind0/ui-common";
     import { Plus } from 'phosphor-svelte';
-    import { ndk } from "@kind0/lib-svelte-kit";
+    import { ndk } from "@kind0/ui-common";
 
     export let kinds: number[] = NDKListKinds;
     export let newListKind: number;

@@ -1,8 +1,11 @@
 LOCKFILE := "pnpm-lock.yaml"
 
 build:
-    turbo build
+    turbo build --filter=highlighter-mobile
     
+build-all:
+    turbo build
+
 build-kind0:
     turbo run build --filter=@kind0/*
 

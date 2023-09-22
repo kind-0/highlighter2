@@ -31,12 +31,12 @@
     }
 </script>
 
-<nav class="navbar flex flex-row w-screen sticky top-0 z-20 px-4 lg:px-8 py-4 bg-base-100 backdrop-blur-sm justify-center gap-4">
-    <div class="flex flex-row w-screen lg:w-full gap-32">
+<nav class="flex flex-row w-screen sticky top-0 z-20 py-4 bg-base-100 backdrop-blur-sm justify-center">
+    <div class="flex flex-row w-screen px-4 gap-4">
         <div class="
             {navbarOpened ? 'hidden lg:flex' : 'flex'}
-            flex-row items-center sm:gap-4 navbar-start
-            w-sidebar
+            flex-row items-center gap-4 navbar-start
+            w-auto lg:w-sidebar
         ">
             <div class="flex-none {!isHiddenSidebar ? 'lg:hidden' : ''}">
                 <label for="left-drawer" class="btn btn-square btn-ghost {isHiddenDrawerBtn ? 'hidden' : ''}">
@@ -60,7 +60,7 @@
 
         <div class="
             navbar-center transition-all duration-100 ease-in-out
-            flex-grow md:w-main
+            flex-grow w-auto md:w-main
             {navbarOpened ? 'w-full md:w-[700px]' : ''}
         ">
             <div class="hidden lg:block">
@@ -74,7 +74,7 @@
 
         <div class="
             navbar-end
-            w-sidebar
+            w-auto lg:w-sidebar
             {navbarOpened ? 'hidden lg:flex' : 'flex'}
         ">
             <div class="flex items-center md:order-2 gap-4">

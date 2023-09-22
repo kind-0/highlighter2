@@ -1,6 +1,6 @@
 <script lang="ts">
     import {RelayList} from '@nostr-dev-kit/ndk-svelte-components';
-    import { ndk } from "@kind0/lib-svelte-kit";
+    import { ndk } from "@kind0/ui-common";
     import { PlugsConnected } from 'phosphor-svelte';
 
     export let iconOnly = false;

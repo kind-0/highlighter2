@@ -1,10 +1,10 @@
 <script lang="ts">
-    import { ndk } from "@kind0/lib-svelte-kit";
+    import { ndk } from "@kind0/ui-common";
     import { NDKDVMRequest, NDKKind, NDKUser, NDKEvent, NDKAppHandlerEvent, NDKDVMJobResult, type NDKTag, NDKArticle } from "@nostr-dev-kit/ndk";
     import Section from "$components/Section.svelte";
     import { user, userDVMRequests, userDVMResults } from "$stores/session";
-    import { contentDiscoveryApps } from "$stores/nip89";
-    import { Avatar, RelativeTime } from "@kind0/ui-common";
+    import { contentDiscoveryApps } from "@kind0/ui-common";
+    import { Avatar } from "@kind0/ui-common";
     import DvmRecommendationResult from "./DVMRecommendationResult.svelte";
     import { slide } from "svelte/transition";
 
@@ -90,16 +90,6 @@
 
     let expanded = false;
 </script>
-
-<!-- <pre>
-    selectedDVM = {!!selectedDVM}
-    request = {!!request} (id: {request?.id})
-    recommendation = {!!recommendation}
-    time since request was sent =
-    {#key request?.id}
-        <RelativeTime event={request} />
-    {/key}
-</pre> -->
 
 {#if selectedDVM && fallbackRecommendationEvents}
     <div transition:slide={{ axis: 'y'}}>

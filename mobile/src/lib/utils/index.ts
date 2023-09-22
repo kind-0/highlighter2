@@ -1,7 +1,7 @@
 import sanitizeHtml from 'sanitize-html';
 import MarkdownIt from 'markdown-it';
 import { nip19 } from 'nostr-tools';
-import { filterFromId, type NDKFilter, type NDKTag } from '@nostr-dev-kit/ndk';
+import { type NDKFilter, type NDKTag } from '@nostr-dev-kit/ndk';
 
 export function tagToNip19(tag: NDKTag): string | undefined {
     switch (tag[0]) {
@@ -26,10 +26,6 @@ export function filterForId(id: string): NDKFilter {
     } else {
         return { ids: [id] };
     }
-}
-
-export function filterFromNaddr(naddr: string): NDKFilter {
-    return filterFromId(naddr);
 }
 
 export function idFromNaddr(naddr: string) {

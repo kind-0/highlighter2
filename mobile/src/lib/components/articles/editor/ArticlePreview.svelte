@@ -45,7 +45,7 @@
         <div class="flex flex-row gap-4 items-center">
             <Article class="flex flex-col gap-4 md:gap-2">
                 <div class="flex flex-row items-start justify-between">
-                    <h1 class="md:text-4xl font-bold text-left mt-0 {$$props.titleClass??""}">{title}</h1>
+                    <h1 class="md:text-4xl font-semibold text-left mt-0 {$$props.titleClass??""}">{title}</h1>
 
                     <div class="flex flex-row gap-2 items-center">
                         {#if !skipEditButton}

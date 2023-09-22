@@ -140,7 +140,7 @@
                             </div>
                         {/if}
                     {:else if type === "topic"}
-                        <a href="/highlights/t/{value}" class="text-accent font-semibold">
+                        <a href="/t/{value}" class="text-accent font-semibold">
                             #{value}
                         </a>
                     {:else}

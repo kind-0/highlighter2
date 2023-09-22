@@ -4,11 +4,6 @@
 
     import NoteCard from '$lib/components/notes/card.svelte';
 
-    import HighlightButton from '$lib/components/events/buttons/HighlightButton.svelte';
-    import BookmarkButton from '$lib/components/events/buttons/bookmark.svelte';
-    import RepliesButton from '$lib/components/events/buttons/replies.svelte';
-    import BoostButton from '$lib/components/events/buttons/boost.svelte';
-
     import CardContent from './content.svelte';
 
     import { Avatar } from "@kind0/ui-common";
@@ -122,25 +117,6 @@
                                 z-10
                             ">
                                 {#if !skipButtons}
-                                    {#if event.kind !== 9802}
-                                        <div class="opacity-0 group-hover:opacity-100 transition duration-300">
-                                            <HighlightButton {event} />
-                                        </div>
-                                    {/if}
-                                    <div class="opacity-0 group-hover:opacity-100 transition duration-300">
-                                        <BookmarkButton {event} />
-                                    </div>
-
-                                    <div class="opacity-0 group-hover:opacity-100 transition duration-300">
-                                        <BoostButton {event} />
-                                    </div>
-
-                                    {#if replies}
-                                        <div class="opacity-0 group-hover:opacity-100 transition duration-300">
-                                            <RepliesButton {event} />
-                                        </div>
-                                    {/if}
-
                                     <div class="opacity-0 group-hover:opacity-100 transition duration-300">
                                     <div class="tooltip" data-tip="Link to this note">
                                             <a href={`/e/${event.encode()}`}>

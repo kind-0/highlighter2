@@ -1,48 +1,23 @@
 <script lang="ts">
-    import { onMount } from "svelte";
     import ContentCard from "./ContentCard.svelte";
     import { UrlIcon } from "@kind0/ui-common";
 
     export let url: string;
-
-    let res: string;
+    export let previewData: any;
     let siteName: string;
 
-    onMount(async () => {
-        const data = await fetch(`https://api.snort.social/api/v1/preview?url=${url}`, {
-            "credentials": "omit",
-            "headers": {
-                "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:109.0) Gecko/20100101 Firefox/117.0",
-                "Accept": "application/json",
-                "Accept-Language": "en-US,en;q=0.5",
-                "Sec-Fetch-Dest": "empty",
-                "Sec-Fetch-Mode": "cors",
-                "Sec-Fetch-Site": "same-site",
-                "Sec-GPC": "1",
-                "Pragma": "no-cache",
-                "Cache-Control": "no-cache"
-            },
-            "referrer": "https://snort.social/",
-            "method": "GET",
-            "mode": "cors"
-        });
-
-        res = await data.json();
-        console.log({res})
-
-        if (res?.og_tags && res?.og_tags.find((e: any) => e[0] === "og:site_name")) {
-            siteName = res.og_tags.find((e: any) => e[0] === "og:site_name")[1];
-        } else {
-            siteName = new URL(url).hostname.replace("www.", "");
-        }
-    });
+    if (previewData?.og_tags && previewData?.og_tags.find((e: any) => e[0] === "og:site_name")) {
+        siteName = previewData.og_tags.find((e: any) => e[0] === "og:site_name")[1];
+    } else {
+        siteName = new URL(url).hostname.replace("www.", "");
+    }
 </script>
 
-{#if res}
+{#if previewData}
     <ContentCard
-        title={res.title}
-        summary={res.description}
-        image={res.image}
+        title={previewData.title??siteName}
+        summary={previewData.description}
+        image={previewData.image}
         url={`/load?url=${encodeURIComponent(url)}`}
         class="truncate text-left items-start"
     >

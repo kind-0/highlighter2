@@ -1,8 +1,7 @@
-import { writable, get as getStore, type Writable, readable, derived } from 'svelte/store';
-import { ndk } from "@kind0/lib-svelte-kit";
-import NDK, { NDKEvent, NDKList, NDKSubscriptionCacheUsage, type NDKFilter, type NDKTag, type NDKUser, NDKKind, type NDKEventId, NDKDVMJobResult, NDKDVMRequest } from '@nostr-dev-kit/ndk';
+import { writable, get as getStore, type Writable, derived } from 'svelte/store';
+import { ndk } from "@kind0/ui-common";
+import { NDKEvent, NDKList, NDKSubscriptionCacheUsage, type NDKFilter, type NDKTag, type NDKUser, NDKKind, type NDKEventId, NDKDVMJobResult, NDKDVMRequest, NDKListKinds } from '@nostr-dev-kit/ndk';
 import type NDKSvelte from '@nostr-dev-kit/ndk-svelte';
-import { NDKListKinds } from '$lib/ndk-kinds';
 import { NDKHighlight } from "@nostr-dev-kit/ndk";
 import { persist, createLocalStorage } from "@macfja/svelte-persistent-store";
 import { newArticles } from './articles';
@@ -56,6 +55,14 @@ export const highlights = writable<Map<string, NDKHighlight>>(new Map());
  * Current user's followed hashtags
  */
 export const userFollowHashtags = writable<string[]>([]);
+
+/**
+ * Current user's interests lists
+ */
+export const userInterestLists = derived(userLists, $userLists => {
+    return Array.from($userLists.values())
+        .filter(list => list.kind === NDKKind.InterestsList);
+});
 
 /**
  * The user's extended network
@@ -280,27 +287,33 @@ async function fetchData(
 
     const processDVMResults = (event: NDKEvent) => {
         const dvmResults = NDKDVMJobResult.from(event);
-        opts.dvmResultsStore!.update((existingResults) => {
-            const jobRequestId = dvmResults.jobRequestId;
+        let jobRequestId: NDKEventId | undefined;
 
+        try {
+            jobRequestId = dvmResults.jobRequestId;
 
             if (!jobRequestId) {
-                console.log(`could not find a job request id`, dvmResults.rawEvent())
-                debugger;
+                // console.log(`could not find a job request id`, dvmResults.rawEvent());
                 dvmResults.jobRequestId;
             }
 
+            if (!jobRequestId) return;
 
-            if (!jobRequestId) return existingResults;
+            opts.dvmResultsStore!.update((existingResults) => {
+                if (!jobRequestId) return existingResults;
 
-            if (!existingResults.has(jobRequestId)) {
-                existingResults.set(jobRequestId, []);
-            }
+                if (!existingResults.has(jobRequestId)) {
+                    existingResults.set(jobRequestId, []);
+                }
 
-            existingResults.get(jobRequestId)!.push(dvmResults);
+                existingResults.get(jobRequestId)!.push(dvmResults);
 
-            return existingResults;
-        });
+                return existingResults;
+            });
+        } catch (e) {
+            // console.log(e);
+            return;
+        }
     };
 
     const processDVMRequests = (event: NDKEvent) => {
@@ -322,7 +335,7 @@ async function fetchData(
      */
     const processKind3 = (event: NDKEvent) => {
         if (
-            (eosed && event.id !== processedKind3Id) ||
+            (event.id !== processedKind3Id) ||
             authors.length > 1 // if authors has more than one, add the received list
         ) {
             processedKind3Id = event.id;
@@ -379,43 +392,43 @@ async function fetchData(
 
     return new Promise((resolve) => {
         const kinds = opts.extraKinds ?? [];
+        const authorPrefixes = authors.map(f => f.slice(0, 16));
 
         if (opts.listsStore) {
             kinds.push(...opts.listsKinds!);
         }
 
         const filters: NDKFilter[] = [
-            { kinds, authors },
-            { "#k": ["9802"], authors }
+            { kinds, authors: authorPrefixes, limit: 10 },
+            { "#k": ["9802"], authors: authorPrefixes }
         ];
 
         if (opts.highlightStore) {
-            filters.push({ authors, kinds: [NDKKind.Highlight], limit: 50 });
+            filters.push({ authors: authorPrefixes, kinds: [NDKKind.Highlight], limit: 50 });
         }
 
         if (opts.labelsStore) {
-            filters.push({ authors, kinds: [NDKKind.Label], "#L": ["#t"], limit: 100 });
+            filters.push({ authors: authorPrefixes, kinds: [NDKKind.Label], "#L": ["#t"], limit: 100 });
         }
 
         if (opts.appHandlers) {
-            filters.push({ authors, kinds: [NDKKind.AppRecommendation] });
+            filters.push({ authors: authorPrefixes, kinds: [NDKKind.AppRecommendation] });
         }
 
         if (opts.dvmResultsStore) {
-            filters.push({ "#p": authors, kinds: [NDKKind.DVMJobResult], limit: 10 });
+            filters.push({ "#p": authorPrefixes, kinds: [NDKKind.DVMJobResult], limit: 10 });
         }
 
         if (opts.dvmRequestsStore) {
-            const oneHourAgo = Math.floor(Date.now() / 1000) - 3600;
-            filters.push({ authors, kinds: [65002, 65008], limit: 10, since: oneHourAgo });
+            filters.push({ authors: authorPrefixes, kinds: [65002, 65008], limit: 10 });
         }
 
         if (opts.followsStore) {
-            filters.push({ kinds: [0, 3], authors });
+            filters.push({ kinds: [0, 3], authors: authorPrefixes });
         }
 
         if (opts.followHashtagsStore) {
-            filters.push({ authors, "#d": ["hashtags"] });
+            filters.push({ authors: authorPrefixes, "#d": ["hashtags"] });
         }
 
         const userDataSubscription = $ndk.subscribe(

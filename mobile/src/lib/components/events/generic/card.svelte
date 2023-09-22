@@ -1,22 +1,19 @@
 <script lang="ts">
 	import { longFormStore } from '$lib/stores/long-form';
-    import HighlightCard from '$lib/components/highlights/HighlightCard.svelte';
     import NoteCard from '$lib/components/notes/card.svelte';
     import { getContext } from 'svelte';
-    import { ndk } from "@kind0/lib-svelte-kit";
+    import { ndk, HighlightCard } from "@kind0/ui-common";
     import { createEventDispatcher } from 'svelte';
-    import type { NDKEvent, NDKFilter } from '@nostr-dev-kit/ndk';
+    import type { NDKEvent } from '@nostr-dev-kit/ndk';
+    import { NDKListKinds } from "@nostr-dev-kit/ndk";
     import { user } from '$stores/session';
-    import NDKList from '$lib/ndk-kinds/lists';
-    import { NDKHighlight } from "@nostr-dev-kit/ndk";
-    import { filterForId, filterFromNaddr, naddrFromTagValue } from '$lib/utils';
-    import ZapEventCard from '$lib/components/zaps/ZapEventCard.svelte';
+    import { NDKHighlight, NDKList } from "@nostr-dev-kit/ndk";
+    import { naddrFromTagValue } from '$lib/utils';
     import ListCard from '$lib/components/lists/ListCard.svelte';
     import ArticleIntroCard from '$lib/components/articles/cards/ArticleIntroCard.svelte';
     import NDKArticle from "@nostr-dev-kit/ndk";
     import { createDraggableEvent } from '$lib/utils/draggable';
     import { isMarginNote } from './types';
-    import { NDKListKinds } from '$lib/ndk-kinds';
     import { MarginNoteCard } from '@highlighter/svelte-kit-lib';
 
     export let bech32: string | undefined = undefined;
@@ -45,15 +42,7 @@
                 throw new Error(`no id or bech32`);
             }
 
-            let filter: NDKFilter;
-
-            if (id) {
-                filter = filterForId(id);
-            } else if (bech32) {
-                filter = filterFromNaddr(bech32);
-            }
-
-            $ndk.fetchEvent(filter).then(async (e) => {
+            $ndk.fetchEvent(id??bech32!).then(async (e) => {
                 if (!e) return reject(`no event ${id}`);
 
                 if (e.kind === 4) {
@@ -117,7 +106,7 @@
                 {:else if NDKListKinds.includes(e.kind)}
                     <ListCard list={NDKList.from(e)} />
                 {:else if e.kind === 9735}
-                    <ZapEventCard event={e} />
+                    <!-- <ZapEventCard event={e} /> -->
                 {:else if e.kind === 30023 || e.kind === 31023}
                     <ArticleIntroCard
                         article={NDKArticle.from(e)}

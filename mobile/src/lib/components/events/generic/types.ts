@@ -1,4 +1,3 @@
-import { NDKKind } from "$lib/ndk-kinds";
 import type { NDKEvent } from "@nostr-dev-kit/ndk";
 
 export function isMarginNote(event: NDKEvent) {

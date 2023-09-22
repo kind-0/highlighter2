@@ -1,5 +1,3 @@
-import { json } from '@sveltejs/kit';
-
 export async function load({ fetch, url }) {
     const loadUrl = url.searchParams.get('url');
     console.log({loadUrl})

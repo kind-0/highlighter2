@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { ndk } from "@kind0/lib-svelte-kit";
+    import { ndk } from "@kind0/ui-common";
 	import GenericEventCard from '$lib/components/events/generic/card.svelte';
     import type { NDKEvent, NDKFilter } from '@nostr-dev-kit/ndk';
     import { onDestroy } from 'svelte';

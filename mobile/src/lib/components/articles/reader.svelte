@@ -1,10 +1,10 @@
 <script lang="ts">
-    import { NDKEvent, NDKKind, type NDKFilter } from '@nostr-dev-kit/ndk';
-    import { ndk } from "@kind0/lib-svelte-kit";
+    import { NDKEvent, NDKKind, type NDKFilter, type Hexpubkey, type NDKEventId } from '@nostr-dev-kit/ndk';
+    import { ArticleWideCard, ndk } from "@kind0/ui-common";
     import NewHighlight from '$lib/components/highlights/NewHighlight.svelte';
     import { currentScope } from '$lib/store';
     import { fade } from 'svelte/transition';
-    import { derived, type Readable } from 'svelte/store';
+    import { derived, writable, type Readable } from 'svelte/store';
     import { ReaderMarginNotePopup } from "@highlighter/svelte-kit-lib";
 
     import HighlightWrapper from '../HighlightWrapper.svelte';
@@ -18,6 +18,7 @@
     import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
     import { user } from '$stores/session';
     import { rightDrawerContent } from '$stores/right-drawer';
+    import { CaretLeft, Share } from 'phosphor-svelte';
 
     export let article: NDKEvent | NDKArticle | string;
     export let content: string | undefined = undefined;
@@ -32,6 +33,7 @@
     let articleEvents: NDKEventStore<NDKEvent> | undefined;
     let highlights: Readable<NDKHighlight[]>;
     let marginNotes: Readable<NDKEvent[]>;
+    let usersWithInteractions: Readable<Hexpubkey[]>;
 
     // Set filter for current view
     $: if (scope !== $currentScope.label) {
@@ -86,6 +88,19 @@
             return Array.from(marginNotes);
         });
 
+        usersWithInteractions = derived(articleEvents, ($articleEvents) => {
+            const users = new Set<Hexpubkey>();
+
+            $articleEvents.forEach(event => {
+                if (
+                    (event.kind === 9802 || event.kind === 1) &&
+                    event.pubkey !== article?.pubkey)
+                    users.add(event.pubkey);
+            });
+
+            return Array.from(users);
+        });
+
         // deduppedHighlights = derived(highlights, ($highlights) => {
         //     const uniqueItems: NDKHighlight[] = [];
         //     const seenContent = new Set();
@@ -119,7 +134,7 @@
         if (
             selection.length > 30 && // wait until there is enough text selected to make this call, otherwise the UX is weird
             selection.length * 20 < paragraph.length) {
-            context = sentence + '… sentence ' + selection.length + 'paragraph:' + paragraph.length;
+            context = sentence;
         }
 
         // if (selection.length >= paragraph.length) {
@@ -171,6 +186,11 @@
                 return undefined;
             }
         }
+
+        if (article instanceof NDKEvent) {
+            return article.content.slice(0, 20) + "...";
+        }
+
         return article?.title || article?.url || article.toString();
     }
 
@@ -188,6 +208,13 @@
         openedHighlight = highlight;
         topics = [];
     }
+
+    // TODO: Use this popup position to mark to users
+    // when there are highlights outside the viewport
+    // (e.g. 10 highlights below)
+    const popupPosition: Record<NDKEventId, number> = {}
+
+    const popupPositions = writable(new Set<number>());
 </script>
 
 <svelte:head>
@@ -195,70 +222,100 @@
 </svelte:head>
 
 <RightDrawerLayout>
-    <div class="flex flex-col md:flex-row w-full mx-auto md:px-6">
-        <div class="card md:w-7/12 leading-loose flex flex-col gap-2 text-lg card-compact md:card-normal">
-            <div class="card-body">
-                <!-- Title -->
-                {#if articleTitle()}
-                    <h1 class="card-title flex flex-row justify-center text-2xl md:text-3xl font-black md:text-center leading-normal">{articleTitle()}</h1> {/if}
-
-                <div class="flex flex-row justify-between mb-2 overflow-clip items-center">
-                    <!-- Author / URL -->
-                    {#if article?.author && article?.author?.hexpubkey}
-                        <AvatarWithName
-                            pubkey={article.author.hexpubkey}
-                            avatarClass="w-12 h-12 rounded-full"
-                            nameClass="text-xl font-semibold"
-                        />
-                    {:else if url}
-                        <div class="text-xs whitespace-normal">
-                            {url}
-                        </div>
-                    {:else}
-                        <div></div>
-                    {/if}
+    <div class="flex flex-col xl:flex-row w-full mx-auto md:px-6 pt-4">
+        <div class="flex flex-col xl:w-7/12 !rounded-xl">
+            <div class="
+                sticky !rounded-t-xl top-0 p-4 border-b-2 border-base-300 bg-base-200/80 left-0 right-0 z-50
+                flex flex-row items-center justify-between
+            ">
+                <div class="flex flex-row gap-4 items-center w-1/4">
+                    <a href="/reader" class="btn btn-neutral !rounded-full">
+                        <CaretLeft />
+                        Back
+                    </a>
                 </div>
 
-                {#if $$slots.preArticle}
-                    <slot name="preArticle" />
-                {/if}
+                <div class="text-base-100-content font-semibold w-2/4 text-lg flex-grow text-center whitespace-nowrap truncate">
+                    {articleTitle()}
+                </div>
 
-                {#if article?.image}
-                    <div class="flex flex-row justify-center">
-                        <img src={article.image} class="max-h-64" />
-                    </div>
-                {/if}
+                <div class="flex flex-row gap-4 items-center w-1/4 justify-end">
+                    <a href="/reader" class="btn btn-neutral !rounded-full">
+                        <Share />
+                        Share
+                    </a>
+                </div>
+            </div>
+            {#if article instanceof NDKArticle}
+                <ArticleWideCard
+                    {article}
+                    highlightCount={$highlights.length}
+                    usersWithInteractions={$usersWithInteractions}
+                    class="rounded-none min-h-[12rem] p-4"
+                />
+            {/if}
+            <div class="rounded-t-none border-t-2 border-base-300 join-item card leading-loose flex flex-col gap-2 text-lg card-compact md:card-normal">
+                <div class="card-body">
+                    {#if !(article instanceof NDKArticle)}
+                        <!-- Title -->
+                        {#if articleTitle()}
+                            <h1 class="card-title flex flex-row justify-center text-2xl md:text-3xl font-black md:text-center leading-normal">{articleTitle()}</h1>
+                        {/if}
 
-                <!-- Content -->
-                <HighlightWrapper on:selectionchange={onSelectionChange}>
-                    <article class="my-2">
-                        <Article class="highlighter">
-                            {#if $$slots.default}
-                                <slot />
-                            {:else}
-                                <MarkedContent
-                                    {renderAsHtml}
-                                    content={content??""}
-                                    {unmarkedContent}
-                                    {highlights}
-                                    tags={article.tags}
-                                    addNewLines={true}
-                                    on:highlight-clicked={highlightClicked}
+                        <div class="flex flex-row justify-between mb-2 overflow-clip items-center">
+                            <!-- Author / URL -->
+                            {#if article?.author && article?.author?.hexpubkey}
+                                <AvatarWithName
+                                    pubkey={article.author.hexpubkey}
+                                    avatarClass="w-12 h-12 rounded-full"
+                                    nameClass="text-xl font-semibold"
                                 />
+                            {:else if url}
+                                <div class="text-xs whitespace-normal">
+                                    {url}
+                                </div>
+                            {:else}
+                                <div></div>
                             {/if}
-                        </Article>
-                    </article>
-                </HighlightWrapper>
+                        </div>
+                    {/if}
+
+                    {#if $$slots.preArticle}
+                        <slot name="preArticle" />
+                    {/if}
+
+                    <!-- Content -->
+                    <HighlightWrapper on:selectionchange={onSelectionChange}>
+                        <article class="my-2">
+                            <Article class="highlighter">
+                                {#if $$slots.default}
+                                    <slot />
+                                {:else}
+                                    <MarkedContent
+                                        {renderAsHtml}
+                                        content={content??""}
+                                        {unmarkedContent}
+                                        {highlights}
+                                        tags={article.tags}
+                                        addNewLines={true}
+                                        on:highlight-clicked={highlightClicked}
+                                    />
+                                {/if}
+                            </Article>
+                        </article>
+                    </HighlightWrapper>
+                </div>
             </div>
         </div>
 
         <!-- Sidebar -->
-        <div class="relative md:w-5/12 flex-grow" id="sidebarContainer">
+        <div class="relative xl:w-5/12 flex-grow" id="sidebarContainer">
             <div class="px-4 md:h-screen h-screen">
                 {#if newHighlightItem}
                     <div class="z-50 fixed top-20" transition:fade>
                         <NewHighlight
                             highlight={newHighlightItem}
+                            title={article?.url ? article.title : undefined}
                             on:close={onNewHighlightClose}
                             bind:topics
                         />
@@ -282,12 +339,14 @@
                 ">
                     {#if article}
                         <div class="flex flex-col gap-4">
-                            {#each $highlights as highlight}
+                            {#each $highlights as highlight (highlight.id)}
                                 <ReaderMarginNotePopup
-                                    markId={highlight.id}
+                                    highlightEvent={highlight}
                                     user={highlight.author}
                                     {marginNotes}
                                     class={!!$rightDrawerContent ? "hidden" : ""}
+                                    bind:verticalPosition={popupPosition[highlight.id]}
+                                    {popupPositions}
                                 />
                             {/each}
                         </div>
@@ -297,3 +356,8 @@
         </div>
     </div>
 </RightDrawerLayout>
+
+<!-- This classes are here so they don't get tree-shaken from the ui-common package -->
+<div class="
+    hidden lg:card-side lg:items-center lg:flex-row lg:gap-4 py-10 lg:!w-48 !min-h-96 lg:!w-[100px]
+"></div>

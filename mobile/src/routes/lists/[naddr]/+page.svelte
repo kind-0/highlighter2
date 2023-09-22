@@ -4,7 +4,7 @@
     import { userLists } from "$stores/session";
     import { page } from "$app/stores";
     import { derived, type Readable } from "svelte/store";
-    import {ndk} from "@kind0/lib-svelte-kit";
+    import { ndk } from "@kind0/ui-common";
     import { MainWithRightSidebar } from "@kind0/ui-common";
     import type { NDKList } from "@nostr-dev-kit/ndk";
 

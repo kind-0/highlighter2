@@ -1,8 +1,7 @@
 <script lang="ts">
-    import type NDKList from "$lib/ndk-kinds/lists";
-    import { type NDKPrivateKeySigner, type NDKUser, type NDKTag, NDKEvent, type NostrEvent, type NDKSigner, NDKKind } from "@nostr-dev-kit/ndk";
+    import { type NDKPrivateKeySigner, type NDKUser, type NDKTag, NDKEvent, type NostrEvent, type NDKSigner, NDKKind, NDKList } from "@nostr-dev-kit/ndk";
     import { nip19 } from "nostr-tools";
-    import {ndk} from "@kind0/lib-svelte-kit";
+    import { ndk } from "@kind0/ui-common";
     import EventVisibility from '$lib/components/events/editor/EventVisibility.svelte';
     import { createEventDispatcher } from 'svelte';
     import Button from '$lib/components/buttons/Button.svelte';

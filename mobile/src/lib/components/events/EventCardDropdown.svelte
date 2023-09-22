@@ -7,7 +7,7 @@
     import { onMount } from "svelte";
 
     import { signers } from "$lib/stores/signer";
-    import {ndk} from "@kind0/lib-svelte-kit";
+    import { ndk } from "@kind0/ui-common";
 
     import { db } from "@nostr-dev-kit/ndk-cache-dexie";
     import { createEventDispatcher } from "svelte";

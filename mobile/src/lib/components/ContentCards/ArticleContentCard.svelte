@@ -4,17 +4,7 @@
     import ContentCard from "./ContentCard.svelte";
     import { createEventDispatcher } from "svelte";
 
-    const dispatch = createEventDispatcher();
-
     export let article: NDKArticle;
-
-    const author = article.author;
-    const authorPromise = new Promise<void>((resolve) => {
-        author.fetchProfile().then(() => {
-            dispatch("author-loaded");
-            resolve();
-        });
-    });
 </script>
 
 <ContentCard

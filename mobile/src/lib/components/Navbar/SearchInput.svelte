@@ -1,7 +1,6 @@
 <script lang="ts">
     import { Hash, MagnifyingGlass } from 'phosphor-svelte';
     import { getSearchProcessingInstructions } from '$lib/utils/search/index.js';
-    import { page } from '$app/stores';
     import { goto } from '$app/navigation';
     import { fade } from 'svelte/transition';
     import { searchQuery, processingInstructions } from '$lib/stores/search';
@@ -21,12 +20,13 @@
     export function process() {
         loading = true;
         hasFocus = false;
+
         getSearchProcessingInstructions($searchQuery).then((p) => {
             $processingInstructions = p;
             loading = false;
 
             if ($processingInstructions?.dvm) {
-                gotoWeb();
+                gotoDvms();
             }
         });
     }
@@ -44,8 +44,8 @@
         }
     }
 
-    function gotoWeb() {
-        goto('/web');
+    function gotoDvms() {
+        goto('/dvms');
     }
 
     function useSuggestion(e: MouseEvent) {

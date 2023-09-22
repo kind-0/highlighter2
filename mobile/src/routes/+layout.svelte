@@ -1,5 +1,4 @@
 <script lang="ts">
-import { userDVMRequests, userFollowHashtags, userLists } from './../lib/stores/session.ts';
 import { onMount, setContext } from 'svelte';
 import { login } from '$lib/utils/login';
 import '../app.postcss';
@@ -11,13 +10,13 @@ import Loading from '$lib/components/Loading.svelte';
 import { page } from '$app/stores';
 import { goto } from '$app/navigation';
 import { user as uiCommonUser, userLabels as uiCommonUserLabels } from '@kind0/ui-common';
-import { appHandlers } from '$stores/nip89';
+import { appHandlers } from "@kind0/ui-common";
 
 // NOOP To make sure the import is not tree-shaken
 $appHandlers;
 
-import { user, userLabels, prepareSession, loadingScreen, userFollows, networkFollows, userAppHandlers, userDVMResults } from '$stores/session';
-import { bunkerNDK, ndk } from '@kind0/lib-svelte-kit';
+import { user, userLabels, prepareSession, loadingScreen, userFollows, networkFollows, userAppHandlers, userDVMResults, highlights } from '$stores/session';
+import { bunkerNDK, ndk } from '@kind0/ui-common';
 
 $: webManifestLink = ''
 
@@ -105,6 +104,10 @@ $page.url.pathname = {$page.url.pathname}
 </pre>
 </div> -->
 
+<div class="fixed bottom-0 left-0 w-96 bg-base-300 p-4">
+{$highlights?.size} highlights
+</div>
+
 <Modals>
 <div
 slot="backdrop"
@@ -112,6 +115,14 @@ class="backdrop z-10 fixed"
 on:click={closeModal}
 transition:fade={{ duration: 100 }}></div>
 </Modals>
+
+<div class="
+hidden
+max-h-[90vh]
+max-w-md
+!max-w-lg
+min-h-96
+" />
 
 <style>
 .backdrop {

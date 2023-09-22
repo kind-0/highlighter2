@@ -1,20 +1,12 @@
 <script lang="ts">
     import { page } from '$app/stores';
-    import Sidebar from "../lists/components/Sidebar/Sidebar.svelte";
-    import WithLeftSidebar from "$lib/layouts/WithLeftSidebar.svelte";
-    import { ndk } from "@kind0/lib-svelte-kit";
+    import Sidebar from "$components/sidebars/AtlasSidebar.svelte";
     import { user } from '$stores/session';
     import { getLongForms } from '$lib/stores/long-form';
     import { onDestroy } from 'svelte';
     import type { NDKSubscription } from '@nostr-dev-kit/ndk';
     import { ThreeColumnsLayout } from '@kind0/ui-common';
     import Navbar from '$components/Navbar/Navbar.svelte';
-
-    let readyToRender = true;
-
-    $: if ($user && $ndk.signer) {
-        readyToRender = true;
-    }
 
     const pagesWithHiddenSidebar = [
         '/notes/new',
@@ -49,9 +41,5 @@
         <Sidebar />
     </div>
 
-    {#if readyToRender}
-        <slot />
-    {:else}
-        Loading
-    {/if}
+    <slot />
 </ThreeColumnsLayout>

@@ -10,6 +10,7 @@
 
     export let isHiddenSidebar = false;
     export let isHiddenDrawerBtn = false;
+    export let mainComponent: any | undefined = undefined;
 
     let homeLink = '/';
     let navbarOpened = false;
@@ -17,22 +18,25 @@
     $: homeLink = $user ? `/reader` : '/';
 
     let currentRoute: string;
-    let logoToUse = FullLogo;
+    let logoToUse: any = FullLogo;
 
     $: currentRoute = $page.url.pathname;
-    $: if (currentRoute.startsWith('/lists')) {
+    $: if (
+            currentRoute.startsWith('/lists') ||
+            currentRoute.startsWith('/notes')
+        ) {
         logoToUse = AtlasNotesLogo;
     } else {
         logoToUse = FullLogo;
     }
 </script>
 
-<nav class="navbar bg-base-100 shrink-0 sticky top-0 z-20 py-4 bg-base-100/80 backdrop-blur-sm justify-center gap-4">
-    <div class="w-full gap-32">
+<nav class="flex flex-row w-screen sticky top-0 z-20 py-4 bg-base-100 backdrop-blur-sm justify-center">
+    <div class="flex flex-row w-screen px-4 gap-4">
         <div class="
             {navbarOpened ? 'hidden lg:flex' : 'flex'}
-            flex-row items-center sm:gap-4 navbar-start
-            w-sidebar
+            flex-row items-center gap-4 navbar-start
+            w-auto lg:w-sidebar
         ">
             <div class="flex-none {!isHiddenSidebar ? 'lg:hidden' : ''}">
                 <label for="left-drawer" class="btn btn-square btn-ghost {isHiddenDrawerBtn ? 'hidden' : ''}">
@@ -42,7 +46,7 @@
                 </label>
             </div>
 
-            <a href={homeLink} class="w-full">
+            <a href={homeLink} class="md:w-full">
                 <div class="flex flex-shrink-0 items-center">
                     <div class="w-48 hidden sm:block">
                         <svelte:component this={logoToUse} />
@@ -56,15 +60,21 @@
 
         <div class="
             navbar-center transition-all duration-100 ease-in-out
-            flex-grow w-main
+            flex-grow w-auto md:w-main
             {navbarOpened ? 'w-full md:w-[700px]' : ''}
         ">
-            <SearchInput bind:hasFocus={navbarOpened} />
+            <div class="hidden lg:block">
+                {#if !mainComponent}
+                    <SearchInput bind:hasFocus={navbarOpened} />
+                {:else}
+                    <svelte:component this={mainComponent} />
+                {/if}
+            </div>
         </div>
 
         <div class="
             navbar-end
-            w-sidebar
+            w-auto lg:w-sidebar
             {navbarOpened ? 'hidden lg:flex' : 'flex'}
         ">
             <div class="flex items-center md:order-2 gap-4">
