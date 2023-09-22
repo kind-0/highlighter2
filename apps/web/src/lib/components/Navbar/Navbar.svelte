@@ -31,8 +31,8 @@
     }
 </script>
 
-<nav class="navbar bg-base-100 shrink-0 sticky top-0 z-20 max-lg:px-8 px-4 py-4 bg-base-100/80 backdrop-blur-sm justify-center gap-4">
-    <div class="w-full gap-32">
+<nav class="navbar flex flex-row w-screen sticky top-0 z-20 px-4 lg:px-8 py-4 bg-base-100 backdrop-blur-sm justify-center gap-4">
+    <div class="flex flex-row w-screen lg:w-full gap-32">
         <div class="
             {navbarOpened ? 'hidden lg:flex' : 'flex'}
             flex-row items-center sm:gap-4 navbar-start

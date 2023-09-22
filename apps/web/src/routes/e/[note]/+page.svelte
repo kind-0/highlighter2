@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { ResponsiveColumnsLayout, ResponsiveLogoNavbar } from "@kind0/ui-common";
+    import { ThreeColumnsLayout, ResponsiveLogoNavbar } from "@kind0/ui-common";
 	import GenericEventCard from '$lib/components/events/generic/card.svelte';
     import { page } from '$app/stores';
     import type { NDKEvent } from '@nostr-dev-kit/ndk';
@@ -42,30 +42,7 @@
 	<meta name="description" content="Unleash valuable words from their artificial silos" />
 </svelte:head>
 
-<ResponsiveColumnsLayout>
-    <div slot="navbar">
-        <ResponsiveLogoNavbar {homeLink}>
-            <div slot="logo">
-                <div class="flex hidden sm:block">
-                    <svelte:component this={logoToUse} />
-                </div>
-                <div class="flex sm:hidden">
-                    <Logo />
-                </div>
-            </div>
-            <div slot="main">
-                <div class="flex flex-row w-full flex-1 justify-end items-center">
-                    <div class="hidden lg:block flex flex-row w-full">
-                        <SearchInput />
-                    </div>
-                    <div class="flex flex-row w-auto">
-                        <CurrentUser />
-                    </div>
-                </div>
-            </div>
-        </ResponsiveLogoNavbar>
-    </div>
-
+<div class="flex flex-col w-screen">
     {#key note}
         <GenericEventCard
             bech32={note}
@@ -73,4 +50,4 @@
             bind:event
         />
     {/key}
-</ResponsiveColumnsLayout>
+</div>
