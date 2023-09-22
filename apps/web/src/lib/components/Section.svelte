@@ -15,7 +15,7 @@
     </div>
 
     <div class="relative">
-        <div class="overflow-x-auto pb-4">
+        <div class="overflow-x-auto pb-4 px-2 lg:px-0 scrollbar-hide">
             <div class="
                 {flow === 'grid' ?
                     expanded ? "grid grid-flow-row grid-cols-2 md:grid-cols-4 gap-4" : "grid grid-flow-col auto-cols-max"

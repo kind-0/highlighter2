@@ -117,3 +117,14 @@
     @apply flex flex-col gap-4;
     @apply border border-red-500;
 }
+
+@layer base {
+	.scrollbar-hide::-webkit-scrollbar {
+		display: none;
+	}
+
+	.scrollbar-hide {
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
+}
