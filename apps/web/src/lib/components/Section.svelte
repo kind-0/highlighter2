@@ -7,7 +7,7 @@
 </script>
 
 <div class="flex flex-col gap-4">
-    <div class="flex flex-row items-center justify-between">
+    <div class="flex flex-row items-center justify-between px-4 lg:px-0">
         <h1 class="text-4xl font-bold">
             {title}
         </h1>
