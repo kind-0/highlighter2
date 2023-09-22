@@ -11,6 +11,10 @@ copy_web_source_code() {
         if [ ! -d "$app_mobile_src" ]; then
             mkdir -p "$app_mobile_src"
         fi
+        if [ -d "$app_mobile_src" ]; then
+            rm -rf "$app_mobile_src"
+            mkdir "$app_mobile_src"
+        fi
         cp -r "$app_web_src"/* "$app_mobile_src"
         echo "Files copied successfully from $app_web_src to $app_mobile_src"
     else

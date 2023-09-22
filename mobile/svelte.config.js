@@ -4,7 +4,7 @@ import { vitePreprocess } from '@sveltejs/kit/vite';
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	kit: {
-		adapter: adapter({ out: 'build' }),
+		adapter: adapter({ out: 'build', strict: false }),
 		alias: {
 			$actions: 'src/lib/actions',
 			$components: 'src/lib/components',
