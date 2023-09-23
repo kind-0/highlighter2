@@ -24,6 +24,7 @@
         "@types/inflected": "^2.1.0",
         "@types/jsdom": "^21.1.1",
         "@types/sanitize-html": "^2.9.0",
+        "@types/throttle-debounce": "^5.0.0",
         "@typescript-eslint/eslint-plugin": "^6.1.0",
         "@typescript-eslint/parser": "^6.1.0",
         "@vite-pwa/assets-generator": "^0.0.4",

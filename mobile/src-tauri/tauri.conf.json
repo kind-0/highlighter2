@@ -7,13 +7,15 @@
   },
   "package": {
     "productName": "Highlighter",
-    "version": "0.1.0"
+    "version": "0.0.2"
   },
   "tauri": {
     "bundle": {
       "active": true,
       "category": "DeveloperTool",
-      "copyright": "",
+      "copyright": "Copyright © 2023 Kind 0 Technologies",
+      "identifier": "com.highlighter.ios",
+      "longDescription": "",
       "deb": {
         "depends": []
       },
@@ -25,10 +27,8 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.highlighter.dev",
-      "longDescription": "",
       "macOS": {
-        "entitlements": null,
+        "entitlements": "../release/ios/entitlements.plist",
         "exceptionDomain": "",
         "frameworks": [],
         "providerShortName": null,
