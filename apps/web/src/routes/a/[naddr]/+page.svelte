@@ -59,6 +59,12 @@
 
         return true;
     }
+
+    $: {
+        if(articlePromise) {
+            console.log(`articlePromise: ${articlePromise.kind}`)
+        }
+    }
 </script>
 
 {#await articlePromise}

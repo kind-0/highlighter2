@@ -221,6 +221,7 @@ transition:slide
                         focus:ring-accent2
                         bg-base-300
                         min-h-[25vh]
+                        max-lg:w-[83vw]
                         min-w-[25vw]
                     "
                 />
@@ -244,8 +245,8 @@ transition:slide
             <div class="
                 flex flex-col md:flex-row
                 gap-8
-                items-end justify-between
-                w-full
+                items-start lg:items-end justify-between
+                w-auto lg:w-full
                 rounded-b-lg
                 py-4 pb-0
             ">

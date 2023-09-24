@@ -22,7 +22,8 @@
     $: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : ''
 
     let sessionPreparationStarted = false;
-    let mounted = false;
+    let mounted = true;
+    loadingScreen.set(false)
 
     onMount(async () => {
         try {
@@ -80,7 +81,14 @@
     //     sub = !!newArticles.subscription;
     //     networkFollowCount = $networkFollows?.size;
     // }, 100);
-
+    
+    /*
+{#if $loadingScreen && shouldShowLoadingScreen}
+    <div transition:fade>
+        <Loading on:loaded={() => $loadingScreen = false } />
+    </div>
+{/if}
+    */
 </script>
 
 <svelte:head>
@@ -88,11 +96,7 @@
     {@html webManifestLink}
 </svelte:head>
 
-{#if $loadingScreen && shouldShowLoadingScreen}
-    <div transition:fade>
-        <Loading on:loaded={() => $loadingScreen = false } />
-    </div>
-{/if}
+
 
 {#if mounted}
     <div transition:fade>
