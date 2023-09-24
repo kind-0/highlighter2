@@ -104,7 +104,7 @@ export async function prepareSession(): Promise<void> {
     return new Promise((resolve) => {
         const alreadyKnowFollows = getStore(userFollows).size > 0;
 
-        console.log('before-follows', getStore(userFollows).size, getStore(userFollowHashtags).length);
+        console.log('before-follows', getStore(userFollows).size, getStore(userFollowHashtags).length, !alreadyKnowFollows);
 
         fetchData(
             'user',
@@ -152,8 +152,6 @@ export async function prepareSession(): Promise<void> {
                         Array.from($userFollows),
                         {
                             followsStore: networkFollows,
-                            listsStore: networkLists,
-                            listsKinds: [39802],
                             closeOnEose: true,
                             waitUntilEoseToResolve: true
                         }
@@ -404,11 +402,13 @@ async function fetchData(
     return new Promise((resolve) => {
         const kinds = opts.extraKinds ?? [];
         let authorPubkeyLength = 64;
-        if (authors.length > 30) {
-            authorPubkeyLength -= Math.floor(authors.length / 30);
+        if (authors.length > 10) {
+            authorPubkeyLength -= Math.floor(authors.length / 10);
 
             if (authorPubkeyLength < 5) authorPubkeyLength = 6;
         }
+
+        console.log(`will request authors`, authors.length, authorPubkeyLength);
 
         const authorPrefixes = authors.map(f => f.slice(0, authorPubkeyLength));
 
@@ -416,13 +416,15 @@ async function fetchData(
             kinds.push(...opts.listsKinds!);
         }
 
-        const filters: NDKFilter[] = [
-            { kinds, authors: authorPrefixes, limit: 10 },
-            { "#k": ["9802"], authors: authorPrefixes, limit: 50 }
-        ];
+        const filters: NDKFilter[] = [];
+
+        if (kinds.length > 0) {
+            filters.push({ kinds, authors: authorPrefixes, limit: 10 });
+        }
 
         if (opts.highlightStore) {
             filters.push({ authors: authorPrefixes, kinds: [NDKKind.Highlight], limit: 50 });
+            filters.push({ "#k": ["9802"], authors: authorPrefixes, limit: 50 });
         }
 
         if (opts.labelsStore) {
@@ -442,14 +444,12 @@ async function fetchData(
         }
 
         if (opts.followsStore) {
-            filters.push({ kinds: [0, 3], authors: authorPrefixes });
+            filters.push({ kinds: [3], authors: authorPrefixes });
         }
 
         if (opts.followHashtagsStore) {
             filters.push({ authors: authorPrefixes, "#d": ["hashtags"] });
         }
-
-        console.log(`session filter`, filters);
 
         const userDataSubscription = $ndk.subscribe(
             filters,

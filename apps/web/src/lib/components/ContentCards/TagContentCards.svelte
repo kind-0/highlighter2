@@ -3,18 +3,11 @@
     import TagContentCard from "./TagContentCard.svelte";
 
     export let tags: NDKTag[];
-
-    let loadedArticles = new Set<NDKTag>();
-
-    function readyToRender(tag: NDKTag) {
-        loadedArticles.add(tag);
-        loadedArticles = loadedArticles;
-    }
 </script>
 
-{#each tags.slice(0, 10) as tag}
+{#each tags.slice(0, 50) as tag}
     <TagContentCard
         tag={tag}
-        on:loaded={(article) => readyToRender(tag)}
+        on:loaded
     />
 {/each}

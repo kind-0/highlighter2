@@ -27,11 +27,10 @@
     onMount(async () => {
         try {
             $ndk.connect();
-            // login($ndk, $bunkerNDK).then((user) => {
-            //     $user = user;
-            //     $uiCommonUser = user!;
-            //     console.log(`setting user2`);
-            // })
+            login($ndk, $bunkerNDK).then((user) => {
+                $user = user;
+                $uiCommonUser = user!;
+            })
             mounted = true;
         } catch (e) {
             console.error(`layout error2`, e);
@@ -52,6 +51,7 @@
             }
 
             prepareSession().then(() => {
+                console.log(`session finished`, {finishLoading});
                 if (finishLoading) $loadingScreen = false;
             })
         } else {
@@ -72,12 +72,14 @@
     let refCount: number;
     let sub: boolean;
     let newArticleCount: number;
+    let networkFollowCount: number;
 
-    setInterval(() => {
-        newArticleCount = $newArticles.length;
-        refCount = newArticles.refCount;
-        sub = !!newArticles.subscription;
-    }, 100);
+    // setInterval(() => {
+    //     newArticleCount = $newArticles.length;
+    //     refCount = newArticles.refCount;
+    //     sub = !!newArticles.subscription;
+    //     networkFollowCount = $networkFollows?.size;
+    // }, 100);
 
 </script>
 
@@ -115,14 +117,14 @@
     </pre>
 </div> -->
 
-<div class="fixed bottom-0 left-0 w-96 bg-base-300 p-4 h-24 overflow-y-auto">
+<!-- <div class="fixed bottom-0 left-0 w-96 bg-base-300 p-4 h-24 overflow-y-auto">
     <p>{$highlights?.size} highlights</p>
     <p>{newArticleCount} new articles</p>
     <p>{$newArticles?.length} new articles</p>
-    networkFollows = {$networkFollows?.size}
+    networkFollows = {networkFollowCount}
     subs = {sub}
     subs = {refCount}
-</div>
+</div> -->
 
 <Modals>
     <div

@@ -1,7 +1,7 @@
 <script lang="ts">
     import TagContentCards from "$components/ContentCards/TagContentCards.svelte";
     import Section from "$components/Section.svelte";
-    import { highlights } from "$stores/session";
+    import { highlights, loadingScreen } from "$stores/session";
     import type { NDKTag } from "@nostr-dev-kit/ndk";
     import { slide } from "svelte/transition";
     import { debounce } from "throttle-debounce";
@@ -35,14 +35,28 @@
     let highlightsWithArticleTags: number;
 
     $: highlightsWithArticleTags = $highlights && Array.from($highlights.values()).filter(h => !!h.getArticleTag()).length;
+
+    let loadedCards = 0;
+
+    function loadedCard() {
+
+        if (++loadedCards > 4 && $loadingScreen) {
+            $loadingScreen = false;
+        }
+
+        console.log(`loaded card ${loadedCards}`);
+    }
 </script>
 
 <div transition:slide={{ axis: 'y'}}>
     <Section
-        title={`Recently Highlighted ${renderedArticles.size} ${highlightsWithArticleTags}`}
+        title={`Recently Highlighted`}
         on:click={() => { expanded = true; }}
         {expanded}
     >
-        <TagContentCards tags={Array.from(renderedArticles.values())} />
+        <TagContentCards
+            tags={Array.from(renderedArticles.values())}
+            on:loaded={loadedCard}
+        />
     </Section>
 </div>

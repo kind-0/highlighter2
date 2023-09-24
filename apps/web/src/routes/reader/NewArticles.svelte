@@ -9,10 +9,6 @@
 
     export let articlesToRender = 12;
 
-    newArticles.onEose(() => {
-        alert('eose')
-    });
-
     const items = derived(newArticles, $newArticles => {
         let existingIds = new Set<string>();
         let items = $newArticles;

@@ -59,10 +59,7 @@
     })
 </script>
 
-{#await load}
-    <p>Loading
-        {tag[1]}</p>
-{:then payload}
+{#await load then payload}
     {#if tag[0] === "a"}
         <ArticleContentCard {article} />
     {:else if tag[0] === "r"}
