@@ -2,7 +2,7 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { internalIpV4 } from "internal-ip";
 import { defineConfig } from "vite";
 
-const mobile = !!/android|ios/.exec(process.env.TAURI_PLATFORM); // @ ts-expect-error process is a nodejs global
+const mobile = !!/android|ios/.exec(process.env.TAURI_PLATFORM || ''); // @ ts-expect-error process is a nodejs global
 
 // https://vitejs.dev/config/
 export default defineConfig(async () => ({
