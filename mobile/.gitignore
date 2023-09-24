@@ -18,3 +18,5 @@ Cargo.lock
 !.vscode/extensions.json
 !.vscode/settings.json
 _.txt
+
+/release/

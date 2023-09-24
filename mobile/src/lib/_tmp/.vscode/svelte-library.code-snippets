@@ -1,0 +1,80 @@
+{
+    "Svelte - Library - Function": {
+        "prefix": "sl-fn",
+        "body": [
+            "function ${1}() {",
+            "return;",
+            "}"
+        ],
+        "description": ""
+    },
+    "Svelte - Library - Function Export": {
+        "prefix": "sl-fne",
+        "body": [
+            "export function ${1}() {",
+            "return;",
+            "}"
+        ],
+        "description": ""
+    },
+    "Svelte - Library - Function Async": {
+        "prefix": "sl-fna",
+        "body": [
+            "async function ${1}() {",
+            "return;",
+            "}"
+        ],
+        "description": ""
+    },
+    "Svelte - Library - Function Async Export": {
+        "prefix": "sl-fnae",
+        "body": [
+            "export async function ${1}() {",
+            "return;",
+            "}"
+        ],
+        "description": ""
+    },
+    "Svelte - Library - Type": {
+        "prefix": "sl-tp",
+        "body": [
+            "type Types$1 = {}",
+        ],
+        "description": ""
+    },
+    "Svelte - Library - Type Export": {
+        "prefix": "sl-tpe",
+        "body": [
+            "export type Types$1 = {}",
+        ],
+        "description": ""
+    },
+    "Svelte - Library - Use Effect": {
+        "prefix": "sl-ue",
+        "body": [
+            "useEffect(",
+            "() => {",
+            "if ($1) {",
+            "console.log('- effect run -')",
+            "}",
+            "},",
+            "() => [$1]",
+            ");"
+        ],
+        "description": ""
+    },
+    "Svelte - Library - Use Effect Async": {
+        "prefix": "sl-uea",
+        "body": [
+            "useEffect(",
+            "async () => {",
+            "if ($1) {",
+            "console.log('- effect run -')",
+            "}",
+            "},",
+            "() => [$1]",
+            ");"
+        ],
+        "description": ""
+    },
+}

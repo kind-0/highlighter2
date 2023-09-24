@@ -1,0 +1,26 @@
+{
+	"Svelte - i18n - Translation Entry": {
+		"prefix": "tel",
+		"body": [
+			"\"${1}\": \"${2}\","
+		]
+	},
+	"Svelte - i18n - Translation Glossary": {
+		"prefix": "tgf",
+		"body": [
+			"\\$t(`glossary.${1}`${2})"
+		]
+	},
+	"Svelte - i18n - Translation App": {
+		"prefix": "taf",
+		"body": [
+			"\\$t(`app.${1}`${2})"
+		]
+	},
+	"Svelte - i18n - Translation Farm": {
+		"prefix": "tff",
+		"body": [
+			"\\$t(`foundation.${1}`${2})"
+		]
+	}
+}
