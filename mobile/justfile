@@ -1,7 +1,8 @@
-TAURI_BUILD_ROOT := "src-tauri/gen"
 TAURI_API_ROOT := "src-tauri/.tauri"
-TAURI_RUST_TARGET := "./target"
 
+TAURI_ANDROID_BUNDLE := "src-tauri/gen/android"
+
+# Android
 android-init:
     pnpm run tauri android init
 
@@ -11,6 +12,10 @@ android-dev:
 android-build:
     pnpm run tauri android build
 
+android-release:
+    ./android_release.sh
+
+# iOS
 ios-init:
     pnpm run tauri ios init
 
@@ -19,16 +24,12 @@ ios-dev:
 
 ios-build:
     pnpm run tauri ios build
-renew:
-    if [ -d {{TAURI_BUILD_ROOT}} ]; then \
-        rm -r {{TAURI_BUILD_ROOT}}; \
-    fi
-    if [ -d {{TAURI_API_ROOT}} ]; then \
-        rm -r {{TAURI_API_ROOT}}; \
-    fi
-    if [ -d {{TAURI_RUST_TARGET}} ]; then \
-        sudo rm -rf {{TAURI_RUST_TARGET}}; \
-    fi
+
+ios-build-universal:
+    pnpm run tauri build -- --target universal-apple-darwin
+
+ios-release:
+    ./ios_release.sh
 
 #ios-plugin:
 #    cargo tauri plugin ios add --name {{name}}
