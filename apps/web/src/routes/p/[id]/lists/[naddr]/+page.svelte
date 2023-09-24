@@ -22,16 +22,15 @@
     });
 </script>
 
-<MainWithRightSidebar>
-    {#await fetch then list}
-        <PageTitle title={list.name} subtitle={list.description} />
+{#await fetch then list}
+    <PageTitle title={list.name} subtitle={list.description} />
 
-        <Tags {list} tags={list.items} />
-    {/await}
+    <Tags {list} tags={list.items} />
+{/await}
 
+<!--
     <div slot="right-sidebar">
         {#if list}
             <ListsWithSimilarItems {list} items={list.items} />
         {/if}
-    </div>
-</MainWithRightSidebar>
+    </div> -->

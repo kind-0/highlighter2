@@ -68,5 +68,5 @@
         <p>Unknown tag type: {JSON.stringify(tag)}</p>
     {/if}
 {:catch e}
-    <p>Unable to load {JSON.stringify(tag)}: {e}</p>
+    <!-- <p>Unable to load {JSON.stringify(tag)}: {e}</p> -->
 {/await}

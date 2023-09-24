@@ -64,6 +64,11 @@ export const userInterestLists = derived(userLists, $userLists => {
         .filter(list => list.kind === NDKKind.InterestsList);
 });
 
+export const userShelves = derived(userLists, $userLists => {
+    return Array.from($userLists.values())
+        .filter(list => list.kind === NDKKind.CategorizedHighlightList);
+});
+
 /**
  * The user's extended network
  */
@@ -77,6 +82,11 @@ export const networkFollows = persist(
  * The user's extended network lists
  */
 export const networkLists = writable<Map<string, NDKList>>(new Map());
+
+export const networkShelves = derived(networkLists, $networkLists => {
+    return Array.from($networkLists.values())
+        .filter(list => list.kind === NDKKind.CategorizedHighlightList);
+});
 
 /**
  * Main entry point to prepare the session.
@@ -119,6 +129,7 @@ export async function prepareSession(): Promise<void> {
             console.log(`user hashtags: ${Object.keys(getStore(userFollowHashtags)).length}`);
 
             newArticles.ref();
+            setTimeout(() => newArticles.unref(), 5000);
 
             resolve();
 

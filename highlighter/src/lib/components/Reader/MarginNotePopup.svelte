@@ -23,6 +23,33 @@ Each <MarginNotePopup> component represents a single margin note.
 
     const markId = highlightEvent.id;
 
+    let isSmallScreen = false;
+    let currentMode = "absolute"; // possible values: "absolute", "inserted"
+    let myElement: HTMLElement | null = null;
+
+    // Listen to window resize events
+    window.addEventListener("resize", updatePosition);
+
+    // Initialize based on initial window size
+    $: isSmallScreen = true; //window.innerWidth < 1081;
+
+    console.log({isSmallScreen});
+
+    function updatePosition() {
+        // isSmallScreen = window.innerWidth < 1081;
+        isSmallScreen = true
+        if (isSmallScreen && referenceElement && myElement && currentMode !== "inserted") {
+            referenceElement.insertAdjacentElement('afterend', myElement);
+            currentMode = "inserted";
+        } else if (!isSmallScreen && currentMode !== "absolute") {
+            // Insert the element back to its original container, if you have its reference.
+            // Otherwise, apply your absolute positioning logic here.
+            positionElement();
+            currentMode = "absolute";
+        }
+        console.log({isSmallScreen, currentMode});
+    }
+
     const ownMarginNotes = derived(marginNotes, $marginNotes => {
             const ownMarginNotes = new Set<NDKEvent>();
 
@@ -68,6 +95,7 @@ Each <MarginNotePopup> component represents a single margin note.
     $: {
         positionElement();
         adjustPositionIfOccupied();
+        updatePosition(); // Call the update function whenever the reactive statements are run
     }
 
     function hover(hovering: boolean) {
@@ -80,12 +108,14 @@ Each <MarginNotePopup> component represents a single margin note.
     }
 
     let open = false;
+    let commentCount: number;
 </script>
 
 {#if verticalPosition}
     <div
-        class="absolute {$$props.class}"
-        style="top: {verticalPosition}px; z-index: 1; left: 1"
+        bind:this={myElement}
+        class="{currentMode} {$$props.class} left-1"
+        style="top: {verticalPosition}px; z-index: 1;"
     >
         {#if $ownMarginNotes?.size === 0}
             <div class="flex flex-row gap-3 items-center group">
@@ -95,7 +125,11 @@ Each <MarginNotePopup> component represents a single margin note.
 
                 <CommentsButton
                     event={highlightEvent}
-                    class="btn btn-neutral btn-sm p-1 !rounded-full px-3 font-light opacity-0 group-hover:opacity-100"
+                    bind:commentCount
+                    class="
+                        btn btn-neutral btn-sm p-1 !rounded-full px-3 font-light
+                        {commentCount === 0 ? "opacity-0 group-hover:opacity-100" : ""}
+                    "
                     emit={true}
                     on:click={() => { open = !open }}
                 />

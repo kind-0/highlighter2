@@ -4,7 +4,7 @@
     import ButtonWithBorderGradient2 from '$lib/components/buttons/ButtonWithBorderGradient2.svelte';
     import GenericEventCard from '$lib/components/events/generic/card.svelte';
     import { user, userFollowHashtags } from '$stores/session';
-    import { ndk } from "@kind0/ui-common";
+    import { AttentionButton, ndk } from "@kind0/ui-common";
     import { NDKEvent, type NostrEvent } from '@nostr-dev-kit/ndk';
 
     const selectedTopics = [
@@ -130,15 +130,22 @@
                     </span>
                 </div>
 
-                <ButtonWithBorderGradient2
-                    class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-2/3 md:translate-y-1/4 lg:translate-y-3/4"
-                    innerClass="text-xl md:text-2xl font-thin px-10 py-4"
-                    style="z-index: 9999"
-                    on:click={getStarted}
-                >
-                    I enjoy reading about
-                    Philosophy
-                </ButtonWithBorderGradient2>
+                <div class="flex flex-row gap-2 items-center justify-center">
+                    <label class="text-xl md:!text-2xl text-base-100-content font-thin z-50">
+
+                    </label>
+                    <div class="dropdown">
+                        <AttentionButton
+                            tabindex="0"
+                            class="btn m-1 !text-xl md:!text-2xl !font-thin !px-10 !py-4 !rounded-xl join-item"
+                        >I enjoy reading about</AttentionButton>
+                        <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                            <li><a>Education</a></li>
+                            <li><a>Philosophy</a></li>
+                            <li><a>Economics</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

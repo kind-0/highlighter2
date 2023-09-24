@@ -1,6 +1,6 @@
 <script lang="ts">
     import { NDKEvent, NDKKind, type NDKFilter, type Hexpubkey, type NDKEventId } from '@nostr-dev-kit/ndk';
-    import { ArticleWideCard, ndk } from "@kind0/ui-common";
+    import { ndk } from "@kind0/ui-common";
     import NewHighlight from '$lib/components/highlights/NewHighlight.svelte';
     import { currentScope } from '$lib/store';
     import { fade } from 'svelte/transition';
@@ -18,7 +18,9 @@
     import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
     import { user } from '$stores/session';
     import { rightDrawerContent } from '$stores/right-drawer';
-    import { CaretLeft, Share } from 'phosphor-svelte';
+    import { Book, CaretLeft, Share } from 'phosphor-svelte';
+    import AddToShelfButton from '$components/buttons/AddToShelfButton.svelte';
+    import ArticleWideCard from './ArticleWideCard.svelte';
 
     export let article: NDKEvent | NDKArticle | string;
     export let content: string | undefined = undefined;
@@ -181,11 +183,7 @@
     }
 
     function articleTitle() {
-        if (article instanceof NDKArticle) {
-            if (!article.title) {
-                return undefined;
-            }
-        }
+        if (article.title) return article.title;
 
         if (article instanceof NDKEvent) {
             return article.content.slice(0, 20) + "...";
@@ -222,7 +220,7 @@
 </svelte:head>
 
 <RightDrawerLayout>
-    <div class="flex flex-col xl:flex-row w-full mx-auto md:px-6 pt-4">
+    <div class="flex flex-col w-screen xl:flex-row mx-auto xl:px-6 pt-4">
         <div class="flex flex-col xl:w-7/12 !rounded-xl">
             <div class="
                 sticky !rounded-t-xl top-0 p-4 border-b-2 border-base-300 bg-base-200/80 left-0 right-0 z-50
@@ -240,10 +238,7 @@
                 </div>
 
                 <div class="flex flex-row gap-4 items-center w-1/4 justify-end">
-                    <a href="/reader" class="btn btn-neutral !rounded-full">
-                        <Share />
-                        Share
-                    </a>
+                    <AddToShelfButton event={article} class="btn btn-neutral !rounded-full" />
                 </div>
             </div>
             {#if article instanceof NDKArticle}
@@ -251,15 +246,15 @@
                     {article}
                     highlightCount={$highlights.length}
                     usersWithInteractions={$usersWithInteractions}
-                    class="rounded-none min-h-[12rem] p-4"
+                    class="rounded-none min-h-[12rem] p-4 bg-base-200"
                 />
             {/if}
-            <div class="rounded-t-none border-t-2 border-base-300 join-item card leading-loose flex flex-col gap-2 text-lg card-compact md:card-normal">
+            <div class="rounded-t-none border-t-2 border-base-300 join-item card leading-loose flex flex-col gap-2 text-lg card-compact xl:card-normal">
                 <div class="card-body">
                     {#if !(article instanceof NDKArticle)}
                         <!-- Title -->
                         {#if articleTitle()}
-                            <h1 class="card-title flex flex-row justify-center text-2xl md:text-3xl font-black md:text-center leading-normal">{articleTitle()}</h1>
+                            <h1 class="card-title flex flex-row justify-center text-2xl xl:text-3xl font-black xl:text-center leading-normal">{articleTitle()}</h1>
                         {/if}
 
                         <div class="flex flex-row justify-between mb-2 overflow-clip items-center">
@@ -309,8 +304,8 @@
         </div>
 
         <!-- Sidebar -->
-        <div class="relative xl:w-5/12 flex-grow" id="sidebarContainer">
-            <div class="px-4 md:h-screen h-screen">
+        <div class="w-48 right-0 relative xl:w-5/12 flex-grow" id="sidebarContainer">
+            <div class="px-4 xl:h-screen h-screen">
                 {#if newHighlightItem}
                     <div class="z-50 fixed top-20" transition:fade>
                         <NewHighlight
@@ -335,7 +330,7 @@
                 <div class="
                     {(newHighlightItem || openedHighlight) ? 'opacity-50' : ''}
                     transition duration-100
-                    md:mb-96
+                    xl:mb-96
                 ">
                     {#if article}
                         <div class="flex flex-col gap-4">

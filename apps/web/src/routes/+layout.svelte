@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { newArticles } from '$stores/articles';
     import { onMount, setContext } from 'svelte';
     import { login } from '$lib/utils/login';
     import '../app.postcss';
@@ -68,6 +69,17 @@
     let shouldShowLoadingScreen = true;
 
     $: shouldShowLoadingScreen = $page.url.pathname !== '/';
+
+    let refCount: number;
+    let sub: boolean;
+    let newArticleCount: number;
+
+    setInterval(() => {
+        newArticleCount = $newArticles.length;
+        refCount = newArticles.refCount;
+        sub = !!newArticles.subscription;
+    }, 100);
+
 </script>
 
 <svelte:head>
@@ -105,7 +117,11 @@
 </div> -->
 
 <div class="fixed bottom-0 left-0 w-96 bg-base-300 p-4">
-    {$highlights?.size} highlights
+    <p>{$highlights?.size} highlights</p>
+    <p>{newArticleCount} new articles</p>
+    <p>{$newArticles?.length} new articles</p>
+    subs = {sub}
+    subs = {refCount}
 </div>
 
 <Modals>
@@ -121,7 +137,9 @@
     max-h-[90vh]
     max-w-md
     !max-w-lg
+    max-w-4xl
     min-h-96
+    !rounded-lg
 " />
 
 <style>

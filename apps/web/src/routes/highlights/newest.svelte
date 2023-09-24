@@ -2,8 +2,6 @@
     import HighlightList from '$lib/components/HighlightList.svelte';
     import type { NDKHighlight } from "@nostr-dev-kit/ndk";
     // import { highlights } from '$lib/stores/highlights';
-    import { throttle } from 'throttle-debounce';
-    import { userFollows } from "$stores/session";
     import { derived, type Readable } from 'svelte/store';
     import type { NDKEvent } from '@nostr-dev-kit/ndk';
     import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';

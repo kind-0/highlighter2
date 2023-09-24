@@ -1,11 +1,11 @@
 <script lang="ts">
-    import MoreOptionsIcon from '$lib/icons/MoreOptions.svelte';
-
-	import UserCard from '$lib/components/UserCard.svelte';
+    import { UserCard } from '@nostr-dev-kit/ndk-svelte-components';
     import GenericEventCard from '$lib/components/events/generic/card.svelte';
     import RelayCard from '$lib/components/relays/RelayCard.svelte';
     import type { NDKEvent, NDKTag } from '@nostr-dev-kit/ndk';
     import { createEventDispatcher } from 'svelte';
+    import { DotsThreeVertical } from 'phosphor-svelte';
+    import { ndk } from '@kind0/ui-common';
 
     const dispatch = createEventDispatcher();
 
@@ -52,7 +52,7 @@
                 class="w-full"
             />
         {:else if tag[0] === 'p'}
-            <UserCard pubkey={tag[1]} />
+            <UserCard ndk={$ndk} pubkey={tag[1]} />
         {:else}
             <GenericEventCard
                 id={tag[1]}
@@ -67,7 +67,7 @@
     <div class="dropdown">
         <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
         <label tabindex="0" class="w-5 h-5 opacity-0 group-hover:opacity-100 focus:opacity-100">
-            <MoreOptionsIcon class="w-5 h-5" />
+            <DotsThreeVertical />
         </label>
         <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
         <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-neutral rounded-box">

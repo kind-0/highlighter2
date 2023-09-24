@@ -31,8 +31,7 @@
     }
 </script>
 
-<nav class="flex flex-row w-screen sticky top-0 z-20 py-4 bg-base-100 backdrop-blur-sm justify-center">
-    <div class="flex flex-row w-screen px-4 gap-4">
+<nav class="flex flex-row gap-4 w-screen sticky top-0 z-20 py-4 bg-base-100 backdrop-blur-sm justify-center">
         <div class="
             {navbarOpened ? 'hidden lg:flex' : 'flex'}
             flex-row items-center gap-4 navbar-start
@@ -48,22 +47,22 @@
 
             <a href={homeLink} class="md:w-full">
                 <div class="flex flex-shrink-0 items-center">
-                    <div class="w-48 hidden sm:block">
+                    <div class="w-48 hidden md:block">
                         <svelte:component this={logoToUse} />
                     </div>
                 </div>
                 <div class="w-full flex justify-center">
-                    <div class="sm:hidden"><Logo /></div>
+                    <div class="md:hidden"><Logo /></div>
                 </div>
             </a>
         </div>
 
         <div class="
             navbar-center transition-all duration-100 ease-in-out
-            flex-grow w-auto md:w-main
-            {navbarOpened ? 'w-full md:w-[700px]' : ''}
+            flex-grow lg:flex-grow-0 lg:!w-main
+            {navbarOpened ? 'w-full lg:w-[700px]' : ''}
         ">
-            <div class="hidden lg:block">
+            <div class="hidden sm:block">
                 {#if !mainComponent}
                     <SearchInput bind:hasFocus={navbarOpened} />
                 {:else}
@@ -84,5 +83,4 @@
                 <CurrentUser />
             </div>
         </div>
-    </div>
 </nav>

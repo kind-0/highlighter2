@@ -159,6 +159,9 @@ module.exports = {
                         color: "#FFF0F0",
                     },
                 },
+                ".tooltip": {
+                    background: "#232323"
+                }
             },
         ],
         darkTheme: "black",

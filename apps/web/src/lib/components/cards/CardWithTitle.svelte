@@ -1,6 +1,6 @@
 <script lang="ts">
     export let icon: any | undefined = undefined;
-    export let title: string;
+    export let title: string | undefined = undefined;
     export let href: string = "#";
 </script>
 
@@ -11,10 +11,16 @@
         <a {href} class="flex flex-row gap-5 items-center hover:!bg-transparent">
             {#if icon}
                 <svelte:component this={icon} class={$$props.iconClass ?? "w-5 h-5"} />
+            {:else if $$slots.icon}
+                <slot name="icon" />
             {/if}
 
             <div class="text-base-100-content">
-                {title}
+                {#if $$slots.title}
+                    <slot name="title" />
+                {:else}
+                    {title}
+                {/if}
             </div>
         </a>
     </div>
