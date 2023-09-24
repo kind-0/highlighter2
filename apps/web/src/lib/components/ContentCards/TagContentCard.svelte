@@ -47,7 +47,7 @@
 
                     return res.json();
                 }).then((res) => {
-                    if (!res) { reject(); return; }
+                    if (!res) { console.log(`!res`); reject(); return; }
                     dispatch("loaded", { previewData: res });
                     previewData = res;
                     resolve();
@@ -59,7 +59,10 @@
     })
 </script>
 
-{#await load then payload}
+{#await load}
+    <p>Loading
+        {tag[1]}</p>
+{:then payload}
     {#if tag[0] === "a"}
         <ArticleContentCard {article} />
     {:else if tag[0] === "r"}
@@ -68,5 +71,5 @@
         <p>Unknown tag type: {JSON.stringify(tag)}</p>
     {/if}
 {:catch e}
-    <!-- <p>Unable to load {JSON.stringify(tag)}: {e}</p> -->
+    <p>Unable to load {JSON.stringify(tag)}: {e}</p>
 {/await}

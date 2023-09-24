@@ -9,6 +9,19 @@ function findBech32Match(data: string): string | undefined {
     }
 }
 
+export function tryToLoadRss(data: string): MediaType | undefined {
+    // if the data is a URL, check if it's an RSS feed
+    try {
+        const url = new URL(data);
+
+        // if url ends with rss or atom, it's probably a feed
+        if (url.pathname.match(/(rss|atom)$/i)) {
+            goto(`/reader/rss/${encodeURIComponent(data)}`);
+            return "rss";
+        }
+    } catch (e) { /* empty */ }
+}
+
 export function tryToLoadUserBech32(data: string): MediaType | undefined {
     try {
         const midUrlEventMatcher = /(npub|nprofile)1([a-zA-Z0-9]+)\/?$/i;

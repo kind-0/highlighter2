@@ -27,11 +27,11 @@
     onMount(async () => {
         try {
             $ndk.connect();
-            login($ndk, $bunkerNDK).then((user) => {
-                $user = user;
-                $uiCommonUser = user!;
-                console.log(`setting user2`);
-            })
+            // login($ndk, $bunkerNDK).then((user) => {
+            //     $user = user;
+            //     $uiCommonUser = user!;
+            //     console.log(`setting user2`);
+            // })
             mounted = true;
         } catch (e) {
             console.error(`layout error2`, e);
@@ -44,7 +44,6 @@
         if ($userFollows.size === 0) {
             let finishLoading = false;
             $loadingScreen = true;
-            $loadingScreen = false;
 
             if ($page.url.pathname === '/') {
                 goto('/reader');
@@ -116,10 +115,11 @@
     </pre>
 </div> -->
 
-<div class="fixed bottom-0 left-0 w-96 bg-base-300 p-4">
+<div class="fixed bottom-0 left-0 w-96 bg-base-300 p-4 h-24 overflow-y-auto">
     <p>{$highlights?.size} highlights</p>
     <p>{newArticleCount} new articles</p>
     <p>{$newArticles?.length} new articles</p>
+    networkFollows = {$networkFollows?.size}
     subs = {sub}
     subs = {refCount}
 </div>
@@ -140,6 +140,7 @@
     max-w-4xl
     min-h-96
     !rounded-lg
+    lg:block
 " />
 
 <style>

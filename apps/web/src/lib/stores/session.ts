@@ -141,7 +141,6 @@ export async function prepareSession(): Promise<void> {
                     highlightStore: highlights,
                     listsStore: networkLists,
                     listsKinds: [39802],
-                    extraKinds: [0],
                 }
             ).then(() => {
                 console.log(`network lists count: ${getStore(networkLists).size}`);
@@ -172,12 +171,13 @@ function shouldFetchNetworkFollows() {
     // check if the user has more than 30k network follows or if the last update was more than 7d ago
     const lastUpdate = localStorage.getItem('network-follows-updated-t');
     const lastUpdateDate = lastUpdate ? new Date(parseInt(lastUpdate)) : null;
+    const networkFollowCount = getStore(networkFollows).size;
 
-    if (lastUpdateDate && lastUpdateDate.getDate() > (new Date()).getDate() - 7) {
+    if (networkFollowCount > 1000 && lastUpdateDate && lastUpdateDate.getDate() > (new Date()).getDate() - 7) {
         return false;
     }
 
-    return getStore(networkFollows).size < 10000;
+    return networkFollowCount < 10000;
 }
 
 function isHashtagListEvent(event: NDKEvent) {
@@ -403,7 +403,14 @@ async function fetchData(
 
     return new Promise((resolve) => {
         const kinds = opts.extraKinds ?? [];
-        const authorPrefixes = authors.map(f => f.slice(0, 16));
+        let authorPubkeyLength = 64;
+        if (authors.length > 30) {
+            authorPubkeyLength -= Math.floor(authors.length / 30);
+
+            if (authorPubkeyLength < 5) authorPubkeyLength = 6;
+        }
+
+        const authorPrefixes = authors.map(f => f.slice(0, authorPubkeyLength));
 
         if (opts.listsStore) {
             kinds.push(...opts.listsKinds!);
@@ -411,7 +418,7 @@ async function fetchData(
 
         const filters: NDKFilter[] = [
             { kinds, authors: authorPrefixes, limit: 10 },
-            { "#k": ["9802"], authors: authorPrefixes }
+            { "#k": ["9802"], authors: authorPrefixes, limit: 50 }
         ];
 
         if (opts.highlightStore) {
@@ -442,6 +449,8 @@ async function fetchData(
             filters.push({ authors: authorPrefixes, "#d": ["hashtags"] });
         }
 
+        console.log(`session filter`, filters);
+
         const userDataSubscription = $ndk.subscribe(
             filters,
             {
@@ -456,6 +465,8 @@ async function fetchData(
 
         userDataSubscription.on('eose', () => {
             eosed = true;
+            _(`received eose`);
+            console.log(`received eose`, opts.waitUntilEoseToResolve);
 
             if (kind3Key) {
                 const mostRecentKind3 = mostRecentEvents.get(kind3Key!);
@@ -468,11 +479,15 @@ async function fetchData(
             }
 
             if (opts.waitUntilEoseToResolve) {
+                _(`resolving`);
+                console.log(`resolving`);
                 resolve();
             }
         });
 
         if (!opts.waitUntilEoseToResolve) {
+            _(`resolve without waiting for eose`);
+            console.log(`resolve without waiting for eose`);
             resolve();
         }
     });

@@ -1,7 +1,7 @@
 import { goto } from "$app/navigation";
-import { tryToLoadBech32, tryToLoadDVM, tryToLoadSearch, tryToLoadTopic, tryToLoadUserBech32 } from "./matchers";
+import { tryToLoadBech32, tryToLoadDVM, tryToLoadRss, tryToLoadSearch, tryToLoadTopic, tryToLoadUserBech32 } from "./matchers";
 
-export type MediaType = 'audio' | 'video' | 'image' | 'overcast' | 'youtube' | 'web' | 'bech32' | 'topic' | 'search';
+export type MediaType = 'audio' | 'video' | 'image' | 'overcast' | 'youtube' | 'web' | 'bech32' | 'topic' | 'search' | 'rss';
 export type ProcessingInstructions = {
     type?: MediaType | undefined,
     dvm?: boolean,
@@ -22,6 +22,7 @@ export type ProcessingInstructions = {
 export async function getSearchProcessingInstructions(query: string, authorPubkey?: string): Promise<ProcessingInstructions> {
     const result: ProcessingInstructions = {};
 
+    if ((result.type = tryToLoadRss(query))) return result;
     if ((result.type = tryToLoadUserBech32(query))) return result;
     if ((result.type = tryToLoadBech32(query))) return result;
     if ((result.type = tryToLoadTopic(query))) return result;

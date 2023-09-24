@@ -7,18 +7,13 @@
     import { ListPlus } from "phosphor-svelte";
     import { openModal } from "svelte-modals";
 
-    export let article: NDKArticle;
+    export let title: string;
     export let highlightCount: number | undefined = undefined;
     export let usersWithInteractions: Hexpubkey[] | undefined = undefined;
-
-    let image = article.image;
-
-    if (!image) {
-        article.author?.fetchProfile().then(profile => {
-            console.log(profile)
-            image = profile.banner;
-        });
-    }
+    export let authorName: string | undefined = undefined;
+    export let image: string | undefined = undefined;
+    export let summary: string | undefined = undefined;
+    export let date: number | undefined = undefined;
 
     function chooseRandomImage() {
         const images = [
@@ -50,26 +45,18 @@
     <div class="body flex flex-col gap-0">
         <div class="flex flex-col lg:flex-row items-start justify-between gap-4 lg:gap-0">
             <div class="flex flex-row flex-wrap items-center gap-2 lg:gap-8">
-                <LinkToProfile user={article.author}>
-                    <AvatarWithName
-                        pubkey={article.author.hexpubkey}
-                        avatarClass="w-6 h-6 rounded-full"
-                        nameClass="text-normal"
-                    />
-                </LinkToProfile>
+                {#if authorName}
+                    {authorName}
+                {/if}
 
                 <RelativeTime
-                    timestamp={article.published_at * 1000}
+                    timestamp={date * 1000}
                     class="text-sm"
                 />
             </div>
 
             <div class="flex flex-col lg:flex-row lg:items-center justify-end gap-4 lg:gap-8 items-end">
                 <div class="flex flex-row items-center gap-2">
-                    <ZapsButton
-                        event={article}
-                        class="btn btn-ghost btn-sm p-1 !rounded-full px-3 font-light !text-xs"
-                    />
                     {#if highlightCount}
                         <button
                             class="btn btn-ghost btn-sm p-1 !rounded-full px-3 font-light !text-xs"
@@ -79,12 +66,12 @@
                         </button>
                     {/if}
 
-                    <AddToShelfButton
+                    <!-- <AddToShelfButton
                         event={article}
                         class="tooltip-left"
                     >
                         <ListPlus />
-                    </AddToShelfButton>
+                    </AddToShelfButton> -->
                 </div>
 
                 {#if usersWithInteractions && usersWithInteractions.length > 0}
@@ -106,17 +93,9 @@
         </div>
 
         <div class="flex flex-col gap-2">
-            <h1 class="text-3xl card-title {$$props.titleClass}">{article.title??"Untitled"}</h1>
-            {#if article.summary}
-                <div class="summary">{article.summary}</div>
-            {:else}
-                <div class="summary">
-                    <EventContent
-                        ndk={$ndk}
-                        event={article}
-                        content={article.content.slice(0, 200)}
-                    />
-                </div>
+            <h1 class="text-3xl card-title {$$props.titleClass}">{title??"Untitled"}</h1>
+            {#if summary}
+                <div class="summary">{summary}</div>
             {/if}
         </div>
     </div>

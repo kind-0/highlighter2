@@ -3,14 +3,19 @@
     import DvmRecommendations from "./DVMRecommendations.svelte";
     import { newArticles, setNewArticlesFilters } from "$stores/articles";
     import RecentlyHighlighted from "./RecentlyHighlighted.svelte";
-    import { userFollowHashtags } from "$stores/session";
+    import { userFollowHashtags, loadingScreen } from "$stores/session";
     import NewArticles from "./NewArticles.svelte";
     import { onDestroy, onMount } from "svelte";
+    import { page } from "$app/stores";
 
     const userInterests = $userFollowHashtags;
 
+    let rss: string;
+
+    $: rss = $page.url.searchParams.get("rss");
+
     onMount(() => {
-        const filter: NDKFilter = { kinds: [NDKKind.Article] };
+        const filter: NDKFilter = { kinds: [NDKKind.Article], limit: 20 };
 
         if (userInterests?.length > 0) {
             filter["#t"] = userInterests;

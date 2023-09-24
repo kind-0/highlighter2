@@ -10,6 +10,8 @@ import { ndk } from "@kind0/ui-common";
     }, undefined, NDKList)
 </script>
 
+{$curations.length}
+
 {#each $curations as curation (curation.id)}
     <Section
         title={curation.tagValue("title")??"Untitled"}

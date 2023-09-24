@@ -6,7 +6,7 @@
     import { NDKUser, type Hexpubkey } from '@nostr-dev-kit/ndk';
 
     export let data;
-    const { text, contentType } = data;
+    const { text, contentType, title, articleUrl } = data;
 
     let url: string;
     let author: string;
@@ -47,6 +47,17 @@
         />
     {:else if contentType === 'embed/overcast'}
         overcast
+    {:else if contentType === 'text/rss'}
+        <Reader
+            renderAsHtml={true}
+            article={{
+                title,
+                url: articleUrl
+            }}
+            content={text}
+            unmarkedContent={text}
+            url={articleUrl}
+        />
     {:else}
         {#await fetchArticle(text, url, contentType)}
             <div class="card">
