@@ -1,6 +1,6 @@
 <div class="
     text-xl text-justify leading-loose
-    overflow-auto w-full
+    overflow-hidden w-full
 ">
     <article class={$$props.class??""}>
         <slot />
