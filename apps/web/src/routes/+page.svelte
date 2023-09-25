@@ -139,7 +139,7 @@
                             tabindex="0"
                             class="btn m-1 !text-xl md:!text-2xl !font-thin !px-10 !py-4 !rounded-xl join-item"
                         >I enjoy reading about</AttentionButton>
-                        <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                        <ul tabindex="0" class="dropdown-content z-[1] menu mt-2 p-2 shadow bg-base-100 rounded-xl w-full lg:w-52">
                             <li><a>Education</a></li>
                             <li><a>Philosophy</a></li>
                             <li><a>Economics</a></li>

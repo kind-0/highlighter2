@@ -10,3 +10,5 @@ devploy:
 	rsync -avP -l -t . --exclude node_modules pablo@dev.highlighter.com:projects/dev-highlighter
 	ssh pablo@dev.highlighter.com "source ~/.nvm/nvm.sh && cd projects/dev-highlighter && /home/pablo/.local/share/pnpm/pnpm install && pm2 restart dev-highlighter"
 
+dev-lan:
+	pnpm run dev --host 0.0.0.0
