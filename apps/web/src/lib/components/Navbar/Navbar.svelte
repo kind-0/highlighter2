@@ -31,7 +31,7 @@
     }
 </script>
 
-<nav class="flex flex-row gap-4 w-screen sticky top-0 z-20 py-4 bg-base-100 backdrop-blur-sm justify-center">
+<nav class="flex flex-row gap-4 w-screen sticky top-0 z-20 py-4 px-4 bg-base-100 backdrop-blur-sm justify-center">
         <div class="
             {navbarOpened ? 'hidden lg:flex' : 'flex'}
             flex-row items-center gap-4 navbar-start
