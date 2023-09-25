@@ -13,6 +13,7 @@
     import ModalButton from '$lib/components/ModalButton.svelte';
 
     let name: string;
+    
     let description: string;
 
     export let kind = NDKKind.CategorizedHighlightList;
@@ -43,8 +44,8 @@
     class=""
     title="Add to Reading shelf"
 >
-    <div class="flex flex-row flex-nowrap gap-8">
-        <div class="flex flex-col gap-8 border-2 border-base-300 p-4 rounded-box">
+    <div class="flex flex-row flex-nowrap justify-center gap-8">
+        <div class="flex flex-col gap-8 border-2 border-base-300 p-4 rounded-box w-full">
             <div class="flex flex-col gap-4">
                 <h1 class="text-2xl font-bold">
                     New Reading Shelf
