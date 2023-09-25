@@ -23,7 +23,7 @@
         {event}
         authorAction="margin note by"
         skipHeader={skipTitle}
-        class={$$props.class}
+        class={$$props.class || ``}
         on:mouseenter
         on:mouseleave
     >
@@ -36,7 +36,7 @@
         <a href={linkToArticle(highlight)} class="
             h-full flex flex-col gap-2
             overflow-auto
-            {$$props.class}
+            {$$props.class || ``}
         ">
             {#if !skipHighlight}
                 <div class="text-sm">

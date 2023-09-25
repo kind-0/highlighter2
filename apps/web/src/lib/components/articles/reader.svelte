@@ -6,7 +6,6 @@
     import { fade } from 'svelte/transition';
     import { derived, writable, type Readable } from 'svelte/store';
     import { ReaderMarginNotePopup } from "@highlighter/svelte-kit-lib";
-
     import HighlightWrapper from '../HighlightWrapper.svelte';
     import Article from '../Article.svelte';
     import { NDKArticle } from "@nostr-dev-kit/ndk";

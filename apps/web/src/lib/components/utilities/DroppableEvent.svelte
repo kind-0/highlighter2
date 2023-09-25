@@ -57,7 +57,7 @@
     ondragover="return false"
     class={`
         ${dropZoneActive ? hoverClass : ''}
-        ${$$props.class}
+        ${$$props.class || ``}
     `}
 >
     <slot />

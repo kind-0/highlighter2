@@ -7,7 +7,7 @@
     $: active = $page.url.pathname === href;
 </script>
 
-<li class={$$props.class}>
+<li class={$$props.class || ``}>
     <a
         {href}
         class="

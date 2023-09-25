@@ -114,7 +114,7 @@ Each <MarginNotePopup> component represents a single margin note.
 {#if verticalPosition}
     <div
         bind:this={myElement}
-        class="{currentMode} {$$props.class} left-1"
+        class="{currentMode} {$$props.class || ``} left-1"
         style="top: {verticalPosition}px; z-index: 1;"
     >
         {#if $ownMarginNotes?.size === 0}

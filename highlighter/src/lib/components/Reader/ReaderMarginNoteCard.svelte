@@ -62,7 +62,7 @@
         {event}
         authorAction="margin note by"
         skipHeader={skipTitle}
-        class={$$props.class}
+        class={$$props.class || ``}
         on:mouseenter
         on:mouseleave
         on:click

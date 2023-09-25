@@ -44,7 +44,7 @@
     }
 </script>
 
-<div class="card card-bordered {$$props.class}" draggable={true} on:dragstart={dragStart}>
+<div class="card card-bordered {$$props.class || ``}" draggable={true} on:dragstart={dragStart}>
     <div class="card-body">
         <h5 class="card-title text-base-100-content">
             {relayInfo?.name ?? relayUrl}

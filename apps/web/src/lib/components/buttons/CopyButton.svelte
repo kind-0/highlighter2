@@ -26,7 +26,7 @@
 </script>
 
 <button
-    class={$$props.class}
+    class={$$props.class || ``}
     on:click={copy}
 >
     <div class="flex flex-row items-center gap-2 whitespace-nowrap">

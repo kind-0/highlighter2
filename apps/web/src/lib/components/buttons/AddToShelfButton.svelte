@@ -11,7 +11,7 @@
     }
 </script>
 
-<button class="tooltip {$$props.class}" on:click|preventDefault|stopPropagation={click} data-tip="Add to Curation">
+<button class="tooltip {$$props.class || ``}" on:click|preventDefault|stopPropagation={click} data-tip="Add to Curation">
     {#if $$slots.default}
         <slot />
     {:else}

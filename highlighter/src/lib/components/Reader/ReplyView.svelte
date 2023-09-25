@@ -43,7 +43,7 @@
             bg-transparent
             min-h-[40vh]
             min-w-[25vw]
-            {$$props.class}
+            {$$props.class || ``}
         "
     />
 

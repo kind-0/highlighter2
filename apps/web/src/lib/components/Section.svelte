@@ -20,7 +20,7 @@
                 {flow === 'grid' ?
                     expanded ? "grid grid-flow-row grid-cols-2 md:grid-cols-4 gap-4" : "grid grid-flow-col auto-cols-max"
                 : "flex flex-col items-start justify-stretch"
-            } gap-4 {$$props.class}" transition:slide={{axis:'y'}}>
+            } gap-4 {$$props.class || ``}" transition:slide={{axis:'y'}}>
                 <slot />
             </div>
         </div>

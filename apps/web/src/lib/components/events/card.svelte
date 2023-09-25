@@ -51,7 +51,7 @@
             <div class="
                 card card-bordered
                 flex flex-col gap-2 group h-full
-                {$$props.class}
+                {$$props.class || ``}
             ">
                 <div class="card-body !px-6 py-4">
                     {#if !skipHeader}
@@ -78,7 +78,7 @@
                         <div class="
                             leading-relaxed h-full flex flex-col
                             overflow-auto
-                            {$$props.class}
+                            {$$props.class || ``}
                         ">
                             <CardContent
                                 note={event.content}
