@@ -222,23 +222,30 @@
 <RightDrawerLayout>
     <div class="flex flex-col w-screen xl:flex-row mx-auto xl:px-6 pt-4">
         <div class="flex flex-col xl:w-7/12 !rounded-xl">
-            <div class="
-                sticky !rounded-t-xl top-0 p-4 border-b-2 border-base-300 bg-base-200/80 left-0 right-0 z-50
-                flex flex-row items-center justify-between
-            ">
-                <div class="flex flex-row gap-4 items-center w-1/4">
-                    <a href="/reader" class="btn btn-neutral !rounded-full">
-                        <CaretLeft />
-                        Back
-                    </a>
-                </div>
+            <div class="flex flex-col w-full">
+                <div class="
+                    sticky !rounded-t-xl top-0 p-4 border-b-2 border-base-300 bg-base-200/80 left-0 right-0 z-50
+                    flex flex-row items-center justify-between
+                ">
+                    <div class="flex flex-row gap-4 items-center w-1/4">
+                        <a href="/reader" class="btn btn-neutral !rounded-full">
+                            <CaretLeft />
+                            Back
+                        </a>
+                    </div>
 
-                <div class="text-base-100-content font-semibold w-2/4 text-lg flex-grow text-center whitespace-nowrap truncate">
-                    {articleTitle()}
-                </div>
+                    <div class="max-lg:hidden text-base-100-content font-semibold w-2/4 text-lg flex-grow text-center whitespace-nowrap truncate">
+                        {articleTitle()}
+                    </div>
 
-                <div class="flex flex-row gap-4 items-center w-1/4 justify-end">
-                    <AddToShelfButton event={article} class="btn btn-neutral !rounded-full" />
+                    <div class="flex flex-row gap-4 items-center w-1/4 justify-end">
+                        <AddToShelfButton event={article} class="btn btn-neutral !rounded-full" />
+                    </div>
+                </div>
+                <div class="lg:hidden flex flex-row w-full justify-center p-4">
+                    <div class="text-base-100-content font-semibold w-2/4 text-lg flex-grow text-center whitespace-nowrap truncate">
+                        {articleTitle()}
+                    </div>
                 </div>
             </div>
             {#if article instanceof NDKArticle}
