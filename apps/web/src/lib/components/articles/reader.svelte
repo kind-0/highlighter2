@@ -312,7 +312,7 @@
 
         <!-- Sidebar -->
         <div class="w-48 right-0 relative xl:w-5/12 flex-grow" id="sidebarContainer">
-            <div class="px-4 xl:h-screen h-screen">
+            <div class="px-4 h-auto xl:h-screen">
                 {#if newHighlightItem}
                     <div class="z-50 fixed top-20" transition:fade>
                         <NewHighlight
