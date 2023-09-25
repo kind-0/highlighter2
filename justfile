@@ -51,3 +51,10 @@ branches:
 update:
     git submodule update --recursive --remote
     cd packages && git checkout master && git pull
+
+initialize:
+    cd packages && git checkout master & cd ..
+    pnpm install
+    ./ndk_compile.sh
+    just build
+    echo "[highlighter] Initialized."
