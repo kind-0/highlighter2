@@ -253,6 +253,7 @@ transition:slide
                 <div class="flex flex-row md:flex-col gap-0 md:gap-4 items-center md:items-start whitespace-nowrap">
                     <TopicInput
                         class="btn-outline btn-neutral !rounded-full font-normal"
+                        dropdownClass="dropdown-start"
                         bind:selectedTopics={topics}
                         bind:availableTopics
                         bind:suggestedTopics

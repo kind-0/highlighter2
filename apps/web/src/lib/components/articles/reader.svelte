@@ -313,7 +313,7 @@
         <div class="w-48 right-0 relative xl:w-5/12 flex-grow" id="sidebarContainer">
             <div class="px-4 h-auto xl:h-screen">
                 {#if newHighlightItem}
-                    <div class="z-50 fixed top-20" transition:fade>
+                    <div class="z-50 fixed top-20 flex w-[calc(100%-36px)] pt-8" transition:fade>
                         <NewHighlight
                             highlight={newHighlightItem}
                             title={article?.url ? article.title : undefined}
