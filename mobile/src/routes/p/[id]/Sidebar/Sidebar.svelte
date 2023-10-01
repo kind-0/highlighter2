@@ -4,6 +4,7 @@
     import { Newspaper } from 'phosphor-svelte';
     import { page } from '$app/stores';
     import MenuItem from '$components/sidebars/MenuItem.svelte';
+    import CardWithTitle from "$components/cards/CardWithTitle.svelte";
 
     export let user: NDKUser;
 
@@ -14,35 +15,44 @@
     $: bio = user.profile?.bio??user.profile?.about;
 </script>
 
-<ul class="menu bg-base-200 w-full rounded-box">
-    <li class="border-b border-base-300 -mx-2 px-2">
-        <div class="flex flex-row gap-4 items-center text-lg rounded-b-none hover:!bg-transparent hover:!cursor-default">
+<div class="flex flex-col items-center gap-8">
+    <CardWithTitle
+        iconClass="text-accent w-5 h-5"
+        href={`/p/${id}`}
+    >
+        <div slot="icon">
             <Avatar {user} class="w-12 h-12 rounded-lg" />
-            <Name {user} class="text-lg font-semibold text-base-100-content" />
         </div>
-    </li>
-        <MenuItem
-            href="/p/{id}/highlights"
-            class="w-full"
-            innerClass="flex flex-row items-center gap-2 flex-grow"
-        >
-            <HighlightIcon class="w-6 h-6" />
-            Highlights
-        </MenuItem>
-        <MenuItem
-            href="/p/{id}/lists"
-            class="w-full"
-            innerClass="flex flex-row items-center gap-2 flex-grow"
-        >
-            <ShelvesIcon class="w-6 h-6" />
-            Shelves
-        </MenuItem>
-        <MenuItem
-            href="/p/{id}/articles"
-            class="w-full"
-            innerClass="flex flex-row items-center gap-2 flex-grow"
-        >
-            <Newspaper weight="thin" class="w-8 h-8" />
-            Writing
-        </MenuItem>
-</ul>
+
+        <span slot="title">
+            <Name {user} class="text-lg font-semibold truncate" />
+        </span>
+
+        <ul class="menu bg-base-200 w-full rounded-box">
+            <MenuItem
+                href="/p/{id}/highlights"
+                class="w-full"
+                innerClass="flex flex-row items-center gap-5 flex-grow"
+            >
+                <HighlightIcon class="w-4 h-4" />
+                Highlights
+            </MenuItem>
+            <MenuItem
+                href="/p/{id}/lists"
+                class="w-full"
+                innerClass="flex flex-row items-center gap-5 flex-grow"
+            >
+                <ShelvesIcon class="w-4 h-4" />
+                Shelves
+            </MenuItem>
+            <MenuItem
+                href="/p/{id}/articles"
+                class="w-full"
+                innerClass="flex flex-row items-center gap-5 flex-grow"
+            >
+                <Newspaper class="w-4 h-4" />
+                Writing
+            </MenuItem>
+        </ul>
+    </CardWithTitle>
+</div>

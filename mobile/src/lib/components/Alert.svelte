@@ -2,7 +2,7 @@
     export let type: string = 'info';
 </script>
 
-<div class="border-l-4 p-4 mt-4 {type} {$$props.class}">
+<div class="border-l-4 p-4 mt-4 {type} {$$props.class || ``}">
     <div class="flex">
         <div class="flex flex-col gap-4 text-sm">
             <slot />

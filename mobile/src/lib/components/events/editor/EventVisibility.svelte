@@ -23,7 +23,7 @@
             text-left
             truncate
             whitespace-nowrap
-            {$$props.class}
+            {$$props.class || ``}
         ">
             <div class="font-normal truncate">
                 {#if value === 'Public'}

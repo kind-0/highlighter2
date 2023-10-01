@@ -11,7 +11,7 @@
     setContext("skipTitle", skipTitle);
 </script>
 
-<div class="flex flex-col gap-4 overflow-hidden w-full">
+<div class="flex flex-col gap-4 overflow-hidden w-full px-4">
     {#each items as item (item.id)}
         <HighlightListItem
             class=""

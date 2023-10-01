@@ -49,7 +49,7 @@
 </script>
 
 {#await articlePromise then article}
-    <div class="flex flex-col overflow-hidden gap-8 {$$props.class}">
+    <div class="flex flex-col overflow-hidden gap-8 {$$props.class || ``}">
         {#if shouldDisplayQuote(highlight, $quotes||[])}
             <HighlightCard
                 class={$$props.itemClass}

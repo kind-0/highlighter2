@@ -7,7 +7,7 @@
 
     let tags: NDKTag[] | undefined;
 
-    $loadingScreen = false;
+    // $loadingScreen = false;
 
     try {
         tags = JSON.parse(jobResult.content);

@@ -221,6 +221,7 @@ transition:slide
                         focus:ring-accent2
                         bg-base-300
                         min-h-[25vh]
+                        max-lg:w-[83vw]
                         min-w-[25vw]
                     "
                 />
@@ -244,14 +245,15 @@ transition:slide
             <div class="
                 flex flex-col md:flex-row
                 gap-8
-                items-end justify-between
-                w-full
+                items-start lg:items-end justify-between
+                w-auto lg:w-full
                 rounded-b-lg
                 py-4 pb-0
             ">
                 <div class="flex flex-row md:flex-col gap-0 md:gap-4 items-center md:items-start whitespace-nowrap">
                     <TopicInput
                         class="btn-outline btn-neutral !rounded-full font-normal"
+                        dropdownClass="dropdown-start"
                         bind:selectedTopics={topics}
                         bind:availableTopics
                         bind:suggestedTopics

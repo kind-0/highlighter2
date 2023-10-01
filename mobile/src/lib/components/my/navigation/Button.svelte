@@ -6,7 +6,7 @@
     py-1 px-2
     group flex gap-x-2 font-regular
     w-full transition rounded-md
-    {$$props.class}
+    {$$props.class || ``}
 "
     on:dragenter
     on:dragleave

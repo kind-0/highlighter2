@@ -2,7 +2,7 @@
     let rand = Math.floor(Math.random() * 1000000000);
 </script>
 
-<svg viewBox="0 0 94 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full svg-logo {$$props.class}">
+<svg viewBox="0 0 94 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full svg-logo {$$props.class || ``}">
     <path d="M20 8.4V3H20.9V5.4H23.6V3H24.5V8.4H23.6V6.2H20.9V8.4H20Z"/>
     <path d="M28.1 3H29V8.4H28.1V3Z"/>
     <path d="M36.3 5.8H37.2V7.7C36.7 8.2 36 8.5 35 8.5C34.2 8.5 33.5 8.2 33 7.7C32.5 7.2 32.2 6.5 32.2 5.7C32.2 4.9 32.5 4.2 33 3.7C33.6 3.2 34.2 2.9 35 2.9C35.8 2.9 36.4 3.1 37 3.6L36.5 4.3C36.3 4.1 36.1 4 35.9 3.9C35.7 3.8 35.4 3.8 35.1 3.8C34.5 3.8 34.1 4 33.7 4.3C33.3 4.7 33.1 5.1 33.1 5.7C33.1 6.3 33.3 6.7 33.6 7.1C34 7.4 34.5 7.6 35 7.6C35.5 7.6 35.9 7.5 36.3 7.3V5.8Z"/>

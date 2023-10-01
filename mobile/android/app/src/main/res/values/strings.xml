@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Highlighter</string>
+    <string name="title_activity_main">Highlighter</string>
+    <string name="package_name">com.highlighter.highlighter</string>
+    <string name="custom_url_scheme">com.highlighter.highlighter</string>
+</resources>

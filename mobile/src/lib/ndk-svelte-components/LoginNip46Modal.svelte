@@ -4,7 +4,7 @@
     import { onMount } from 'svelte';
     import { user } from '$stores/session';
 
-    import ModalWrapper from '$lib/components/ModalWrapper.svelte';
+    import ModalWrapper from '$lib/components/ModalWrapper.svelte'; //@todo-pablo: use from @kind-0/ui-common?
     import { Textarea } from '@kind0/ui-common';
     import { bunkerNDK, ndk } from '@kind0/ui-common';
 

@@ -47,7 +47,7 @@
 
                     return res.json();
                 }).then((res) => {
-                    if (!res) { reject(); return; }
+                    if (!res) { console.log(`!res`); reject(); return; }
                     dispatch("loaded", { previewData: res });
                     previewData = res;
                     resolve();

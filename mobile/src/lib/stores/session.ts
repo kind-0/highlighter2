@@ -64,6 +64,11 @@ export const userInterestLists = derived(userLists, $userLists => {
         .filter(list => list.kind === NDKKind.InterestsList);
 });
 
+export const userShelves = derived(userLists, $userLists => {
+    return Array.from($userLists.values())
+        .filter(list => list.kind === NDKKind.CategorizedHighlightList);
+});
+
 /**
  * The user's extended network
  */
@@ -77,6 +82,11 @@ export const networkFollows = persist(
  * The user's extended network lists
  */
 export const networkLists = writable<Map<string, NDKList>>(new Map());
+
+export const networkShelves = derived(networkLists, $networkLists => {
+    return Array.from($networkLists.values())
+        .filter(list => list.kind === NDKKind.CategorizedHighlightList);
+});
 
 /**
  * Main entry point to prepare the session.
@@ -94,7 +104,7 @@ export async function prepareSession(): Promise<void> {
     return new Promise((resolve) => {
         const alreadyKnowFollows = getStore(userFollows).size > 0;
 
-        console.log('before-follows', getStore(userFollows).size, getStore(userFollowHashtags).length);
+        console.log('before-follows', getStore(userFollows).size, getStore(userFollowHashtags).length, !alreadyKnowFollows);
 
         fetchData(
             'user',
@@ -119,6 +129,7 @@ export async function prepareSession(): Promise<void> {
             console.log(`user hashtags: ${Object.keys(getStore(userFollowHashtags)).length}`);
 
             newArticles.ref();
+            setTimeout(() => newArticles.unref(), 5000);
 
             resolve();
 
@@ -130,7 +141,6 @@ export async function prepareSession(): Promise<void> {
                     highlightStore: highlights,
                     listsStore: networkLists,
                     listsKinds: [39802],
-                    extraKinds: [0],
                 }
             ).then(() => {
                 console.log(`network lists count: ${getStore(networkLists).size}`);
@@ -142,8 +152,6 @@ export async function prepareSession(): Promise<void> {
                         Array.from($userFollows),
                         {
                             followsStore: networkFollows,
-                            listsStore: networkLists,
-                            listsKinds: [39802],
                             closeOnEose: true,
                             waitUntilEoseToResolve: true
                         }
@@ -161,12 +169,13 @@ function shouldFetchNetworkFollows() {
     // check if the user has more than 30k network follows or if the last update was more than 7d ago
     const lastUpdate = localStorage.getItem('network-follows-updated-t');
     const lastUpdateDate = lastUpdate ? new Date(parseInt(lastUpdate)) : null;
+    const networkFollowCount = getStore(networkFollows).size;
 
-    if (lastUpdateDate && lastUpdateDate.getDate() > (new Date()).getDate() - 7) {
+    if (networkFollowCount > 1000 && lastUpdateDate && lastUpdateDate.getDate() > (new Date()).getDate() - 7) {
         return false;
     }
 
-    return getStore(networkFollows).size < 10000;
+    return networkFollowCount < 10000;
 }
 
 function isHashtagListEvent(event: NDKEvent) {
@@ -392,19 +401,30 @@ async function fetchData(
 
     return new Promise((resolve) => {
         const kinds = opts.extraKinds ?? [];
-        const authorPrefixes = authors.map(f => f.slice(0, 16));
+        let authorPubkeyLength = 64;
+        if (authors.length > 10) {
+            authorPubkeyLength -= Math.floor(authors.length / 10);
+
+            if (authorPubkeyLength < 5) authorPubkeyLength = 6;
+        }
+
+        console.log(`will request authors`, authors.length, authorPubkeyLength);
+
+        const authorPrefixes = authors.map(f => f.slice(0, authorPubkeyLength));
 
         if (opts.listsStore) {
             kinds.push(...opts.listsKinds!);
         }
 
-        const filters: NDKFilter[] = [
-            { kinds, authors: authorPrefixes, limit: 10 },
-            { "#k": ["9802"], authors: authorPrefixes }
-        ];
+        const filters: NDKFilter[] = [];
+
+        if (kinds.length > 0) {
+            filters.push({ kinds, authors: authorPrefixes, limit: 10 });
+        }
 
         if (opts.highlightStore) {
             filters.push({ authors: authorPrefixes, kinds: [NDKKind.Highlight], limit: 50 });
+            filters.push({ "#k": ["9802"], authors: authorPrefixes, limit: 50 });
         }
 
         if (opts.labelsStore) {
@@ -424,7 +444,7 @@ async function fetchData(
         }
 
         if (opts.followsStore) {
-            filters.push({ kinds: [0, 3], authors: authorPrefixes });
+            filters.push({ kinds: [3], authors: authorPrefixes });
         }
 
         if (opts.followHashtagsStore) {
@@ -445,6 +465,8 @@ async function fetchData(
 
         userDataSubscription.on('eose', () => {
             eosed = true;
+            _(`received eose`);
+            console.log(`received eose`, opts.waitUntilEoseToResolve);
 
             if (kind3Key) {
                 const mostRecentKind3 = mostRecentEvents.get(kind3Key!);
@@ -457,11 +479,15 @@ async function fetchData(
             }
 
             if (opts.waitUntilEoseToResolve) {
+                _(`resolving`);
+                console.log(`resolving`);
                 resolve();
             }
         });
 
         if (!opts.waitUntilEoseToResolve) {
+            _(`resolve without waiting for eose`);
+            console.log(`resolve without waiting for eose`);
             resolve();
         }
     });

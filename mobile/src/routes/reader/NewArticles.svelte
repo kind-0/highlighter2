@@ -5,7 +5,7 @@
     import { onDestroy, onMount } from 'svelte';
     import { derived } from 'svelte/store';
     import { newArticles } from '$stores/articles';
-    import { ArticleWideCard } from '@kind0/ui-common';
+    import ArticleWideCard from '$components/articles/ArticleWideCard.svelte';
 
     export let articlesToRender = 12;
 
@@ -51,13 +51,13 @@
             title="New Content"
             expanded={true}
             flow="column"
-            class="bg-base-200 divide-y-2 divide-base-300 rounded-box !gap-0"
+            class="divide-y-2 divide-base-300 rounded-box !gap-0"
         >
             {#each $items as article (article.id)}
-                <a href="/a/{article.encode()}" class="p-4 w-full">
+                <a href="/a/{article.encode()}" class="py-4 w-full">
                     <ArticleWideCard
                         class="w-full"
-                        imageClass="!rounded-lg"
+                        imageClass="rounded-lg"
                         titleClass="!text-2xl"
                         {article}
                         highlightCount={0}

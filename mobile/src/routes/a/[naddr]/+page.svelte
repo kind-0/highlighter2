@@ -59,6 +59,12 @@
 
         return true;
     }
+
+    $: {
+        if(articlePromise) {
+            console.log(`articlePromise: ${articlePromise.kind}`)
+        }
+    }
 </script>
 
 {#await articlePromise}
@@ -102,10 +108,10 @@
         />
     {/if}
 {:catch}
-    <Card size="full">
-        <div class="text-center">
+    <div class="card">
+        <div class="card-body">
             <h1>Article not found</h1>
             <p>Unable to find article with id {naddr}</p>
         </div>
-    </Card>
+    </div>
 {/await}

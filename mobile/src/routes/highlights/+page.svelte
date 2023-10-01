@@ -26,5 +26,5 @@
 </script>
 
 {#if sortedStore && $sortedStore}
-    <HighlightList items={$sortedStore} />
+    <HighlightList items={$sortedStore} containerStyle={`w-32`} />
 {/if}

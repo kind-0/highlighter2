@@ -98,7 +98,7 @@
             on:click={() => { expanded = true; }}
             {expanded}
         >
-            <div slot="actions">
+            <div slot="actions" class="flex flex-col w-full">
                 <!-- svelte-ignore a11y-label-has-associated-control -->
                 <div class="dropdown">
                     <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
@@ -112,13 +112,13 @@
                             {#await selectedDVM.fetchProfile() then profile}
                                 From
                                 <span class="font-semibold text-base-100-content">
-                                    {profile.name}
+                                    {profile?.name}
                                 </span>
                             {/await}
                         {/if}
                     </label>
                     <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-                    <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-fit">
+                    <ul tabindex="0" class="dropdown-content z-[1] menu mt-2 p-2 shadow bg-base-100 rounded-xl max-lg:w-full w-fit">
                         {#each $contentDiscoveryApps as contentDiscoveryApp}
                             {#await contentDiscoveryApp.fetchProfile() then profile}
                                 <li>
@@ -134,10 +134,11 @@
                                         >
                                             <Avatar ndk={$ndk} userProfile={profile} type="circle" class="w-12 h-12" />
                                             <div class="flex flex-col gap-2">
-                                                <div class="text-base whitespace-nowrap truncate text-base-100-content">{profile.name}</div>
-
+                                                <div class="text-base max-lg:text-left whitespace-nowrap truncate text-base-100-content">
+                                                    {profile?.name}
+                                                </div>
                                                 <div class="text-xs text-left">
-                                                    {profile.about}
+                                                    {profile?.about}
                                                 </div>
                                             </div>
                                         </div>

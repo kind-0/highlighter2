@@ -7,7 +7,7 @@
 </script>
 
 <div class="flex flex-col gap-4">
-    <div class="flex flex-col lg:flex-row items-start justify-start lg:justify-between lg:items-center px-4 lg:px-0 gap-4 lg:gap-0">
+    <div class="flex flex-col lg:flex-row items-start justify-start lg:justify-between lg:items-center pt-4 px-4 lg:px-0 gap-4 lg:gap-0">
         <h1 class="text-4xl font-bold">
             {title}
         </h1>
@@ -20,7 +20,7 @@
                 {flow === 'grid' ?
                     expanded ? "grid grid-flow-row grid-cols-2 md:grid-cols-4 gap-4" : "grid grid-flow-col auto-cols-max"
                 : "flex flex-col items-start justify-stretch"
-            } gap-4 {$$props.class}" transition:slide={{axis:'y'}}>
+            } gap-4 {$$props.class || ``}" transition:slide={{axis:'y'}}>
                 <slot />
             </div>
         </div>

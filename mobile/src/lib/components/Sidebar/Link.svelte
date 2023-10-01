@@ -5,7 +5,7 @@
 </script>
 
 
-<li class={$$props.class}>
+<li class={$$props.class || ``}>
     <a
         {href}
         class="flex flex-row items-center gap-2"
