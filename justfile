@@ -61,6 +61,7 @@ initialize:
 
 update_ndk_pin:
     git submodule update --recursive --remote
-    cd packages && git checkout master && git pull 
-    cd ndk && git checkout b197635 & cd ../..
+    cd packages && git checkout master && git pull && cd ..
+    cd packages/ndk && git checkout b197635 & cd ../..
     pnpm install
+    ./ndk_compile.sh
