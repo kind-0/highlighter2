@@ -35,8 +35,6 @@
     }
 </script>
 
-<Navbar />
-
 {#if text}
     {#if contentType === 'text/plain'}
         <Reader

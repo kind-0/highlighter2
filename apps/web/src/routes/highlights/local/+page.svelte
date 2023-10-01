@@ -20,6 +20,6 @@
     });
 </script>
 
-<main class="w-main pb-32 flex flex-col gap-6">
+<main class="w-screen lg:w-main pb-32 flex flex-col gap-6">
     <Newest highlights={store} />
 </main>

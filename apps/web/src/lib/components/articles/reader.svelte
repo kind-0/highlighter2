@@ -223,7 +223,7 @@
         <div class="flex flex-col xl:w-7/12 !rounded-xl">
             <div class="flex flex-col w-full">
                 <div class="
-                    sticky !rounded-t-xl top-0 p-4 border-b-2 border-base-300 bg-base-200/80 left-0 right-0 z-50
+                    sticky !rounded-t-xl top-0 p-4 border-b-2 border-base-300 bg-base-200/80 left-0 right-0
                     flex flex-row items-center justify-between
                 ">
                     <div class="flex flex-row gap-4 items-center w-1/4">

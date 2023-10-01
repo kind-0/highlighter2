@@ -18,6 +18,7 @@
 
     import { user, userLabels, prepareSession, loadingScreen, userFollows, networkFollows, userAppHandlers, userDVMResults, highlights } from '$stores/session';
     import { bunkerNDK, ndk } from '@kind0/ui-common';
+    import { page_mobiletabs } from '$stores/page_mobiletabs';
 
     $: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : ''
 
@@ -32,6 +33,12 @@
                 $user = user;
                 $uiCommonUser = user!;
             })
+
+            // set ui params
+            let isMobile = true // @todo set properly
+            page_mobiletabs.set(isMobile)
+            // set ui params end
+          
             mounted = true;
         } catch (e) {
             console.error(`layout error2`, e);

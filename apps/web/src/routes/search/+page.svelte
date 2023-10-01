@@ -12,6 +12,9 @@
     import HighlightsSidebar from '$components/sidebars/HighlightsSidebar.svelte';
     import ArticleContentCard from '$components/ContentCards/ArticleContentCard.svelte';
     import RelatedUsersAndTopics from '../web/components/RightSidebar/RelatedUsersAndTopics.svelte';
+    import PageContainer from '$components/PageContainer.svelte';
+    import { onMount } from 'svelte';
+    import { goto } from '$app/navigation';
     let query: string | null;
     let prevQuery: string;
 
@@ -88,60 +91,73 @@
     let users: Set<string> = new Set();
     let otherTopics: Set<string> = new Set();
     let topicCounts: Map<string, number> = new Map();
+
+    let searchText = ``
+
+    async function submit() {
+        await goto(`/search?q=${searchText}`)
+        return;
+    }
 </script>
 
 <svelte:head>
     <title>{query} search on Highlighter</title>
 </svelte:head>
 
-<ThreeColumnsLayout>
-    <div slot="navbar">
-        <Navbar />
-    </div>
+<PageContainer>
+    {#if query}
+        <PageTitle title="Search" subtitle={`"${query}"`} class="mb-8" />
 
-    <div slot="sidebar">
-        <HighlightsSidebar />
-    </div>
+        <div class="flex flex-col divide-y-2 divide-base-300 gap-4">
+            {#key query}
+                {#if $highlightedArticles.length > 0}
+                    <Section
+                        title="Highlighted Articles"
+                        on:click={() => { expanded = true; }}
+                        {expanded}
+                    >
+                        <TagContentCards tags={$highlightedArticles} />
+                    </Section>
+                {/if}
+            {/key}
 
-    <PageTitle title="Search" subtitle={query} class="mb-8" />
-
-    <div class="flex flex-col divide-y-2 divide-base-300 gap-4">
-        {#key query}
-            {#if $highlightedArticles.length > 0}
+            {#if $articles.length > 0}
                 <Section
-                    title="Highlighted Articles"
+                    title="Articles"
                     on:click={() => { expanded = true; }}
                     {expanded}
                 >
-                    <TagContentCards tags={$highlightedArticles} />
+                    {#each $articles as article}
+                        <ArticleContentCard {article} />
+                    {/each}
                 </Section>
             {/if}
-        {/key}
 
-        {#if $articles.length > 0}
-            <Section
-                title="Articles"
-                on:click={() => { expanded = true; }}
-                {expanded}
-            >
-                {#each $articles as article}
-                    <ArticleContentCard {article} />
-                {/each}
-            </Section>
-        {/if}
+            {#if $highlights && $highlights.length > 0}
+                <Section
+                    title="Highlights"
+                    expanded={true}
+                    flow="column"
+                >
+                    <HighlightList items={$highlights} />
+                </Section>
+            {/if}
+        </div>
 
-        {#if $highlights && $highlights.length > 0}
-            <Section
-                title="Highlights"
-                expanded={true}
-                flow="column"
-            >
-                <HighlightList items={$highlights} />
-            </Section>
-        {/if}
-    </div>
+        <!-- @note-pablo,removed  <div slot="rightSidebar" class="flex flex-col gap-4">
+            <RelatedUsersAndTopics {users} {otherTopics} {sortedOtherTopics} />
+        </div> -->
+    {:else}
+        <div class="flex flex-col w-full justify-center items-center">
+            <div class="flex flex-row w-full justify-center items-center">
+                <input class="input w-full" on:input={({currentTarget:{value}}) => searchText = value} />
+            </div>
+            <div class="flex flex-row w-full justify-end items-center">
+                <button class="btn" on:click={submit}>
+                    Search
+                </button>
+            </div>
+        </div>
+    {/if}
+</PageContainer>
 
-    <div slot="rightSidebar" class="flex flex-col gap-4">
-        <RelatedUsersAndTopics {users} {otherTopics} {sortedOtherTopics} />
-    </div>
-</ThreeColumnsLayout>

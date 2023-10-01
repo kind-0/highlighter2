@@ -47,9 +47,11 @@
     <meta name="description" content="Highlighter" />
 </svelte:head>
 
-<div class="flex flex-col min-h-screen overflow-x-hidden">
+<div class="flex flex-col min-h-screen h-screen overflow-x-hidden">
     <div class="mx-auto">
-        <Navbar isHiddenDrawerBtn={true} isHiddenRelayBtn={true} />
+        <Navbar 
+        isHiddenDrawerBtn={true} 
+        logoLink={`/reader`} />
     </div>
     <div class="hero flex flex-column justify-center">
         <div class="w-full md:max-w-2xl lg:max-w-3xl mx-auto flex flex-col gap-5 md:gap-12">
@@ -83,6 +85,8 @@
                 <div
                     class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/3 text-4xl md:text-6xl z-1 text-center font-bold w-full"
                 >
+                    <a href="/reader">
+
                     <!-- TODO UPDATE GRADIENT COLOR FOR LIGHT AND DARK MODE -->
                     <span class="bg-clip-text text-transparent bg-gradient-to-r from-gradient3 to-gradient4 dark:from-white dark:to-gradient4">
                         Elevate
@@ -90,6 +94,7 @@
                         <br/>
                         to Wisdom
                     </span>
+                    </a>
                 </div>
             </div>
 
@@ -132,7 +137,7 @@
 
                 <div class="flex flex-row gap-2 items-center justify-center">
                     <label class="text-xl md:!text-2xl text-base-100-content font-thin z-50">
-
+                        
                     </label>
                     <div class="dropdown">
                         <AttentionButton
@@ -140,9 +145,13 @@
                             class="btn m-1 !text-xl md:!text-2xl !font-thin !px-10 !py-4 !rounded-xl join-item"
                         >I enjoy reading about</AttentionButton>
                         <ul tabindex="0" class="dropdown-content z-[1] menu mt-2 p-2 shadow bg-base-100 rounded-xl w-full lg:w-52">
-                            <li><a>Education</a></li>
-                            <li><a>Philosophy</a></li>
-                            <li><a>Economics</a></li>
+                            {#each ['education', 'philosophy', 'economics'] as readingOpt}
+                                <li>
+                                    <a href={`/search?q=${readingOpt}`} class="capitalize">
+                                        {readingOpt}
+                                    </a>
+                                </li>
+                            {/each}
                         </ul>
                     </div>
                 </div>
