@@ -58,3 +58,9 @@ initialize:
     ./ndk_compile.sh
     just build
     echo "[highlighter] Initialized."
+
+update_ndk_pin:
+    git submodule update --recursive --remote
+    cd packages && git checkout master && git pull 
+    cd ndk && git checkout b197635 & cd ../..
+    pnpm install

@@ -47,7 +47,7 @@
     <meta name="description" content="Highlighter" />
 </svelte:head>
 
-<div class="flex flex-col min-h-screen h-screen overflow-x-hidden">
+<div class="flex flex-col min-h-screen h-screen overflow-x-hidden max-lg:overflow-y-hidden">
     <div class="mx-auto">
         <Navbar 
         isHiddenDrawerBtn={true} 
@@ -128,14 +128,14 @@
                 <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-base-100" />
 
                 <div
-                    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-3/4 text-white text-4xl md:text-6xl z-1 text-center font-bold w-full"
+                    class="max-lg:hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-3/4 text-white text-4xl md:text-6xl z-1 text-center font-bold w-full"
                 >
                     <span class="bg-clip-text text-transparent bg-gradient-to-tr from-gradient4 to-gradient3">
                         What will you discover?
                     </span>
                 </div>
 
-                <div class="flex flex-row gap-2 items-center justify-center">
+                <div class="max-lg:hidden flex flex-row gap-2 items-center justify-center">
                     <label class="text-xl md:!text-2xl text-base-100-content font-thin z-50">
                         
                     </label>
