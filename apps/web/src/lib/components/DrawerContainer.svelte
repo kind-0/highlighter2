@@ -19,7 +19,7 @@
     <div class="drawer-content">
       <slot name="page" />
     </div>
-    <div class="drawer-side">
+    <div class="drawer-side z-50">
       <label for="my-drawer" class="drawer-overlay" />
       <DrawerInnerContainer closeDrawerCallback={async () => { page_drawer.set(false) }}>
         <slot name="drawer" />

@@ -1,6 +1,7 @@
 <script lang="ts">
     import AddToShelfButton from "$components/buttons/AddToShelfButton.svelte";
     import Curation from "$icons/Curation.svelte";
+    import { page_navbar } from "$stores/page_navbar";
     import { Avatar, AvatarWithName, BookmarkIcon, HighlightIcon, LazyLoadedImage, LinkToProfile, RelativeTime, ZapsButton, ndk } from "@kind0/ui-common";
     import type { Hexpubkey, NDKArticle } from "@nostr-dev-kit/ndk";
     import { EventContent } from "@nostr-dev-kit/ndk-svelte-components";
@@ -69,6 +70,8 @@
                     <ZapsButton
                         event={article}
                         class="btn btn-ghost btn-sm p-1 !rounded-full px-3 font-light !text-xs"
+                        onZapsModalOpen={async () => { page_navbar.set(false) }}
+                        onZapsModalClose={async () => { console.log(`\nYOYO\n`); page_navbar.set(true) }}
                     />
                     {#if highlightCount}
                         <button

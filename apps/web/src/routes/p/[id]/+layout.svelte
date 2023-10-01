@@ -8,6 +8,7 @@
     import TagContentCards from "$components/ContentCards/TagContentCards.svelte";
     import Navbar from "$components/Navbar/Navbar.svelte";
     import Sidebar from "./Sidebar/Sidebar.svelte";
+    import PageContainer from "$components/PageContainer.svelte";
 
     let npub = $page.data.npub;
     let user: NDKUser;
@@ -25,7 +26,11 @@
     })
 </script>
 
-<ThreeColumnsLayout>
+<PageContainer hideNavbar={true}>
+    <slot />
+</PageContainer>
+
+<!---<ThreeColumnsLayout>
     <div slot="navbar">
         <Navbar />
     </div>
@@ -37,4 +42,4 @@
     </div>
 
     <slot />
-</ThreeColumnsLayout>
+</ThreeColumnsLayout>-->

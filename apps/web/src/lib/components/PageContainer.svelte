@@ -9,6 +9,7 @@
     import DrawerNavigationLinks from "./DrawerNavigationLinks.svelte";
     import Navbar from './Navbar/Navbar.svelte';
     import { onMount } from 'svelte';
+    import { page_navbar } from '$stores/page_navbar';
 
     export let hideNavbar = false
 
@@ -23,7 +24,7 @@
     <svelte:fragment slot="page">
         <ThreeColumnsLayout>
             <div slot="navbar">
-                {#if !hideNavbar}
+                {#if !hideNavbar && !$page_drawer && $page_navbar}
                     <Navbar isHiddenLogo={true} drawerOpenCallback={async () => { page_drawer.set(!$page_drawer) }} />
                 {/if}
             </div>

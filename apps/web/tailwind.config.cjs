@@ -81,6 +81,11 @@ module.exports = {
                         "background-color": "#f2f2f2",
                         color: "#232323",
                     },
+                    ".btn-neutral": {
+                        "background-color": "#e5e4e2",
+                        "border-color": "#d1d1cf",
+                        "color": "#6c6b6a"
+                    },
                 },
             },
             {
