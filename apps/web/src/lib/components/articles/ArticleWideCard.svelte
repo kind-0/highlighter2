@@ -71,7 +71,7 @@
                         event={article}
                         class="btn btn-ghost btn-sm p-1 !rounded-full px-3 font-light !text-xs"
                         onZapsModalOpen={async () => { page_navbar.set(false) }}
-                        onZapsModalClose={async () => { console.log(`\nYOYO\n`); page_navbar.set(true) }}
+                        onZapsModalClose={async () => { page_navbar.set(true) }}
                     />
                     {#if highlightCount}
                         <button
@@ -85,6 +85,8 @@
                     <AddToShelfButton
                         event={article}
                         class="tooltip-left"
+                        onButtonClick={async () => { page_navbar.set(false) }}
+                        onModalClose={async () => { page_navbar.set(true) }}
                     >
                         <ListPlus />
                     </AddToShelfButton>

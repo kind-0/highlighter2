@@ -18,6 +18,7 @@
 
     export let kind = NDKKind.CategorizedHighlightList;
     export let event: NDKEvent;
+    export let onModalClose = async () => {return}
 
     async function createNewList() {
         const list = new NDKList($ndk, {kind} as NostrEvent);
@@ -43,6 +44,7 @@
 <ModalWrapper
     class=""
     title="Add to Reading shelf"
+    {onModalClose}
 >
     <div class="flex flex-row flex-nowrap justify-center gap-8">
         <div class="flex flex-col gap-8 border-2 border-base-300 p-4 rounded-box w-full">
