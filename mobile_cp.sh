@@ -127,6 +127,11 @@ update_dependencies() {
 
   append_dependencies=(
       "@tauri-apps/plugin-dialog https://github.com/tauri-apps/tauri-plugin-dialog#v2"
+      "@capacitor/android ^5.4.1"
+      "@capacitor/cli ^5.4.1"
+      "@capacitor/core ^5.4.1"
+      "@capacitor/ios ^5.4.1"
+      "@capacitor/assets ^5.4.1"
   )
 
   for key in "${!append_dependencies[@]}"; do

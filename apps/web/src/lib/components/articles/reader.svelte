@@ -20,6 +20,7 @@
     import { Book, CaretLeft, Share } from 'phosphor-svelte';
     import AddToShelfButton from '$components/buttons/AddToShelfButton.svelte';
     import ArticleWideCard from './ArticleWideCard.svelte';
+    import { page_navbar } from '$stores/page_navbar';
 
     export let article: NDKEvent | NDKArticle | string;
     export let content: string | undefined = undefined;
@@ -238,7 +239,12 @@
                     </div>
 
                     <div class="flex flex-row gap-4 items-center w-1/4 justify-end">
-                        <AddToShelfButton event={article} class="btn btn-neutral !rounded-full" />
+                        <AddToShelfButton 
+                            event={article} 
+                            class="btn btn-neutral !rounded-full" 
+                            onButtonClick={async () => { page_navbar.set(false) }}
+                            onModalClose={async () => { page_navbar.set(true) }} 
+                        />
                     </div>
                 </div>
                 <div class="lg:hidden flex flex-row w-full justify-center p-4">

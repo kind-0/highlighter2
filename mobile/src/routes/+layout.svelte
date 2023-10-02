@@ -19,6 +19,7 @@ $appHandlers;
 import { user, userLabels, prepareSession, loadingScreen, userFollows, networkFollows, userAppHandlers, userDVMResults, highlights } from '$stores/session';
 import { bunkerNDK, ndk } from '@kind0/ui-common';
 import { page_mobiletabs } from '$stores/page_mobiletabs';
+import { page_navbar } from '$stores/page_navbar';
 
 $: webManifestLink = ''
 
@@ -37,6 +38,7 @@ $uiCommonUser = user!;
 // set ui params
 let isMobile = true // @todo set properly
 page_mobiletabs.set(isMobile)
+page_navbar.set(true)
 // set ui params end
 
 mounted = true;

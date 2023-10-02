@@ -5,9 +5,12 @@
     import { openModal } from "svelte-modals";
 
     export let event: NDKEvent;
+    export let onButtonClick = async () => {return}
+    export let onModalClose = async () => {return}
 
-    function click() {
-        openModal(AddToShelfModal, { event });
+    async function click() {
+        await onButtonClick()
+        openModal(AddToShelfModal, { event, onModalClose });
     }
 </script>
 

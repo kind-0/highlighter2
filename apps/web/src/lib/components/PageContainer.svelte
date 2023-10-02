@@ -4,7 +4,7 @@
     import MobileTabs from "$components/MobileTabs.svelte";
     import { page_drawer } from "$stores/page_drawer";
     import { page_mobiletabs } from "$stores/page_mobiletabs";
-    import { ThreeColumnsLayout } from "@kind0/ui-common";
+    import { LoadingSpinner, ThreeColumnsLayout } from "@kind0/ui-common";
     import DrawerContainer from "./DrawerContainer.svelte";
     import DrawerNavigationLinks from "./DrawerNavigationLinks.svelte";
     import Navbar from './Navbar/Navbar.svelte';
@@ -12,6 +12,9 @@
     import { page_navbar } from '$stores/page_navbar';
 
     export let hideNavbar = false
+    export let pageContainerClass = ``
+    export let pageOverflowHidden = false
+    export let pageLoading = false
 
     let mounted = false
 
@@ -20,7 +23,7 @@
     })
 </script>
 
-<DrawerContainer>
+<DrawerContainer {pageOverflowHidden} {pageLoading}>
     <svelte:fragment slot="page">
         <ThreeColumnsLayout>
             <div slot="navbar">
@@ -33,11 +36,17 @@
                 <Sidebar />
             </div>
 
-            <div class="flex flex-col w-full justify-center items-center {$page_mobiletabs ? `pb-20` : ``}">
+            <div class="flex flex-col w-full justify-start items-start {$page_mobiletabs ? `pb-20` : ``} {pageContainerClass || ``}">
                 {#if $page_mobiletabs}
                     <MobileTabs />
                 {/if}
-                <slot />
+                {#if pageLoading}
+                    <div class="flex flex-col h-[calc(100vh_-_96px)] w-full justify-center items-center">
+                        <LoadingSpinner />
+                    </div>
+                {:else}
+                    <slot />
+                {/if}
             </div>
         </ThreeColumnsLayout>
     </svelte:fragment>

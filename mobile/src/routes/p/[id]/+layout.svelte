@@ -8,16 +8,20 @@
     import TagContentCards from "$components/ContentCards/TagContentCards.svelte";
     import Navbar from "$components/Navbar/Navbar.svelte";
     import Sidebar from "./Sidebar/Sidebar.svelte";
+    import PageContainer from "$components/PageContainer.svelte";
+    import { page_loading } from "$stores/page_loading";
 
-    let npub = $page.data.npub;
+    //let npub = $page.data.npub;
     let user: NDKUser;
 
     $: npub = $page.data.npub;
 
     onMount(() => {
+        page_loading.set(true);
         user = $ndk.getUser({npub});
 
         startUserView(user);
+        page_loading.set(false);
     });
 
     onDestroy(() => {
@@ -25,7 +29,11 @@
     })
 </script>
 
-<ThreeColumnsLayout>
+<PageContainer hideNavbar={true} pageLoading={$page_loading}>
+    <slot />
+</PageContainer>
+
+<!---<ThreeColumnsLayout>
     <div slot="navbar">
         <Navbar />
     </div>
@@ -37,4 +45,4 @@
     </div>
 
     <slot />
-</ThreeColumnsLayout>
+</ThreeColumnsLayout>-->

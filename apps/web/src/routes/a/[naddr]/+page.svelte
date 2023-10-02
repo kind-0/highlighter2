@@ -5,13 +5,14 @@
     import { page } from '$app/stores';
     import MarkdownIt from 'markdown-it';
     import type { NDKEvent } from '@nostr-dev-kit/ndk';
-    import { ndk } from "@kind0/ui-common";
+    import { ndk, LoadingSpinner } from "@kind0/ui-common";
     import {NDKArticle} from "@nostr-dev-kit/ndk";
     import ReaderDVMTranscriptionHeader from '$lib/components/articles/dvm/ReaderDVMTranscriptionHeader.svelte';
 
     import ZapEventCard from '$lib/components/zaps/ZapEventCard.svelte';
     import EventCard from '$lib/components/events/generic/card.svelte';
     import Navbar from '$lib/components/Navbar/Navbar.svelte';
+    import { page_loading } from '$stores/page_loading';
 
     const { naddr } = $page.params;
     let article: NDKEvent | NDKArticle;
@@ -63,22 +64,13 @@
     $: {
         if(articlePromise) {
             console.log(`articlePromise: ${articlePromise.kind}`)
+            page_loading.set(false)
         }
     }
 </script>
 
 {#await articlePromise}
-    <div class="full relative card">
-        <div class="card-body">
-            <div class="cardtext-center flex flex-row gap-4 items-center absolute z-50 md:p-8" style="top: 40%; left: 40%;">
-                <div class="card-body">
-                    <h1 class="text-xl">
-                        Loading article...
-                    </h1>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div />
 {:then article}
     {#if !article}
         No article found

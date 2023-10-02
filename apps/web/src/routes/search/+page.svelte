@@ -2,7 +2,7 @@
     import { page } from '$app/stores';
     import Section from '$components/Section.svelte';
     import HighlightList from '$components/HighlightList.svelte';
-    import { ndk } from "@kind0/ui-common";
+    import { Input, ndk } from "@kind0/ui-common";
     import { ThreeColumnsLayout, PageTitle } from '@kind0/ui-common';
     import { NDKRelaySet, NDKHighlight, NDKArticle, type NDKTag } from '@nostr-dev-kit/ndk';
     import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
@@ -106,9 +106,9 @@
 
 <PageContainer>
     {#if query}
-        <PageTitle title="Search" subtitle={`"${query}"`} class="mb-8" />
+        <PageTitle title="Search" subtitle={`"${query}"`} class="" />
 
-        <div class="flex flex-col divide-y-2 divide-base-300 gap-4">
+        <div class="flex flex-col w-full divide-y-2 divide-base-300 gap-4">
             {#key query}
                 {#if $highlightedArticles.length > 0}
                     <Section
@@ -131,6 +131,15 @@
                         <ArticleContentCard {article} />
                     {/each}
                 </Section>
+            {:else}
+                <div class="flex flex-col w-full justify-center items-center gap-4 pt-4">
+                    <p class="font-sans font-medium text-base">
+                        {`No results found.`}
+                    </p>
+                    <a href={`/search?q=`} class="font-sans font-regular text-base">
+                        {`Click here to return to search`}
+                    </a>
+                </div>
             {/if}
 
             {#if $highlights && $highlights.length > 0}
@@ -143,18 +152,22 @@
                 </Section>
             {/if}
         </div>
-
         <!-- @note-pablo,removed  <div slot="rightSidebar" class="flex flex-col gap-4">
             <RelatedUsersAndTopics {users} {otherTopics} {sortedOtherTopics} />
         </div> -->
     {:else}
-        <div class="flex flex-col w-full justify-center items-center">
-            <div class="flex flex-row w-full justify-center items-center">
-                <input class="input w-full" on:input={({currentTarget:{value}}) => searchText = value} />
+        <div class="-mt-8 flex flex-col w-full justify-start items-center gap-2 px-4">
+            <div class="flex flex-row w-full justify-start items-center">
+                <p class="font-sans font-bold text-4xl">
+                    {`Search`}
+                </p>
             </div>
-            <div class="flex flex-row w-full justify-end items-center">
-                <button class="btn" on:click={submit}>
-                    Search
+            <div class="flex flex-row w-full justify-center items-center">
+                <Input class="w-full rounded-full" on:input={(e) => { searchText = e.target?.value || searchText }}  />
+            </div>
+            <div class="flex flex-row w-full justify-center items-center px-4 pt-4">
+                <button class="btn btn-md w-24 rounded-full" on:click={submit}>
+                    Submit
                 </button>
             </div>
         </div>

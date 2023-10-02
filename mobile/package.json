@@ -62,6 +62,7 @@
     "websocket-polyfill": "^0.0.3"
   },
   "devDependencies": {
+    "@capacitor/assets": "^3.0.1",
     "@grail-ui/svelte": "^0.10.1",
     "@highlighter/svelte-kit-lib": "workspace:*",
     "@kind0/tsconfig": "workspace:*",

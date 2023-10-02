@@ -8,13 +8,18 @@
     import { derived, get, type Readable } from "svelte/store";
     import { userSubscription } from "$stores/user-view";
     import Reader from "$components/articles/reader.svelte";
+    import HomePageLink from "$components/HomePageLink.svelte";
 
     let { id } = $page.params;
     let { npub } = $page.data;
     let user: NDKUser;
 
     if (npub.startsWith('npub')) {
-        user = $ndk.getUser({npub})
+        try {
+            user = $ndk.getUser({npub})
+        } catch(e) {
+            console.log(e, ` error`);
+        }
     }
 
     let articles: Readable<Map<NDKEventId, NDKArticle>>;
@@ -79,4 +84,11 @@
             <ArticleContentCard {article} />
         {/each}
     </Section>
+{:else}
+    <div class="flex flex-col w-full justify-center items-center pt-8 gap-4">
+        <p class="font-sans font-medium text-base">
+            {`No public key found`}
+        </p>
+        <HomePageLink />
+    </div>
 {/if}

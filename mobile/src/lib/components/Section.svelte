@@ -6,7 +6,7 @@
     export let flow: 'grid' | 'column' = 'grid';
 </script>
 
-<div class="flex flex-col gap-4">
+<div class="flex flex-col gap-4 {$$props.class || ``}">
     <div class="flex flex-col lg:flex-row items-start justify-start lg:justify-between lg:items-center pt-4 px-4 lg:px-0 gap-4 lg:gap-0">
         <h1 class="text-4xl font-bold">
             {title}
