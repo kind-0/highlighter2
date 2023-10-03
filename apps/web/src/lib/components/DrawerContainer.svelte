@@ -1,6 +1,5 @@
 <script lang="ts">
     import { page_drawer } from "$stores/page_drawer";
-    import { LoadingSpinner } from "@kind0/ui-common";
     import DrawerInnerContainer from "./DrawerInnerContainer.svelte";
 
     export let onChange = async () => {return}

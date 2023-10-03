@@ -12,6 +12,9 @@ module.exports = {
                 gradient4: "#5CA2FF",
                 accent2: "#817EFF",
             },
+            height: {
+                mobileModalContents: "460px"
+            },
             width: {
                 sidebar: "244px",
                 main: "700px",

@@ -25,7 +25,7 @@
         overflow-y-auto
         {$$props.class || ``}
     " style="pointer-events: auto; max-height: 80vh;" on:click|stopPropagation={()=>{}}>
-        <div class="flex flex-col divide-y divide-neutral-800">
+        <div class="flex flex-col divide-y divide-base-300">
             <div class="relative flex w-full justify-center items-center">
                 <div class="absolute top-[22px] left-[22px]">
                     <button on:click={closeModal} class="btn-close-inner w-7 h-7 p-1.5 rounded-full">

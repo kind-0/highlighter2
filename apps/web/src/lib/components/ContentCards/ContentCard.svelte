@@ -35,7 +35,7 @@
             {/if}
         </div>
 
-        <div class="absolute top-4 left-4 w-7 h-7 rounded  bg-base-300  overflow-hidden">
+        <div class="absolute top-4 left-4 flex w-auto h-auto justify-center items-center rounded-lg bg-base-300 overflow-hidden">
             <slot name="icon"/>
         </div>
 

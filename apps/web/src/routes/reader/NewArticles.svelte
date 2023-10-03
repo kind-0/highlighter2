@@ -6,8 +6,13 @@
     import { derived } from 'svelte/store';
     import { newArticles } from '$stores/articles';
     import ArticleWideCard from '$components/articles/ArticleWideCard.svelte';
+    import PageReloadButton from '$components/buttons/PageReloadButton.svelte';
+    import { LoadingSpinner } from '@kind0/ui-common';
 
     export let articlesToRender = 12;
+
+    let _loading = false
+    let _networkConnectionError = false
 
     const items = derived(newArticles, $newArticles => {
         let existingIds = new Set<string>();
@@ -51,20 +56,30 @@
             title="New Content"
             expanded={true}
             flow="column"
-            class="divide-y-2 divide-base-300 rounded-box !gap-0"
+            class="divide-y-2 divide-base-300 rounded-box"
         >
-            {#each $items as article (article.id)}
-                <a href="/a/{article.encode()}" class="py-4 w-full">
-                    <ArticleWideCard
-                        class="w-full"
-                        imageClass="rounded-lg"
-                        titleClass="!text-2xl"
-                        {article}
-                        highlightCount={0}
-                        usersWithInteractions={[]}
-                    />
-                </a>
-            {/each}
+            {#if $items.length < 0}
+                {#each $items as article (article.id)}
+                    <a href="/a/{article.encode()}" class="py-4 w-full">
+                        <ArticleWideCard
+                            class="w-full"
+                            imageClass="rounded-lg"
+                            titleClass="!text-2xl"
+                            {article}
+                            highlightCount={0}
+                            usersWithInteractions={[]}
+                        />
+                    </a>
+                {/each}
+            {:else}
+                    <div class="flex flex-row pt-4 h-10 w-full justify-center items-center gap-1">
+                        {#if _networkConnectionError}
+                            <PageReloadButton />
+                        {:else}
+                            <LoadingSpinner class={`w-3 h-3 text-slate-200`} />
+                        {/if}
+                    </div>
+            {/if}
         </Section>
     </div>
 {/if}
