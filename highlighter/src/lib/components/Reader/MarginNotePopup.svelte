@@ -33,7 +33,7 @@ Each <MarginNotePopup> component represents a single margin note.
     // Initialize based on initial window size
     $: isSmallScreen = true; //window.innerWidth < 1081;
 
-    console.log({isSmallScreen});
+    //console.log({isSmallScreen});
 
     function updatePosition() {
         // isSmallScreen = window.innerWidth < 1081;

@@ -10,7 +10,7 @@
     <div class="flex flex-col">
         <div class="flex flex-row w-full justify-center items-center">
             <p class="font-sans font-medium text-base">
-            {`error: ${errorMsg}`}
+                {`error: ${errorMsg}`}
             </p>
         </div>
         <HomePageLink />
@@ -18,7 +18,7 @@
 
     <a href="/" class="flex flex-row w-full justify-center items-center pt-4">
         <p class="font-sans font-light text-base">
-        {`highlighter v0.0.1`}
+            {`highlighter`}
         </p>
     </a>
 </div>

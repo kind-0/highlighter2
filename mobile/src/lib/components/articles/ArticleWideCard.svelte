@@ -39,7 +39,7 @@
 </script>
 
 <div class="flex flex-row gap-4 rounded-box justify-start {$$props.class || ``}">
-    <figure class="rounded-lg bg-base-300 {$$props.imageClass}">
+    <figure class="rounded-lg {$$props.imageClass}">
         {#key image}
             <LazyLoadedImage
                 image={image}
