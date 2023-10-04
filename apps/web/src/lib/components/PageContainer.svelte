@@ -1,6 +1,6 @@
 <script lang="ts">
     //
-    import Sidebar from '$components/sidebars/ReaderSidebar.svelte'
+    import ReaderSidebar from '$components/sidebars/ReaderSidebar.svelte'
     import MobileTabs from "$components/MobileTabs.svelte";
     import { page_drawer } from "$stores/page_drawer";
     import { page_mobiletabs } from "$stores/page_mobiletabs";
@@ -39,7 +39,7 @@
                 </div>
             
                 <div slot="sidebar">
-                    <Sidebar />
+                    <ReaderSidebar />
                 </div>
 
                 <div class="flex flex-col w-full justify-start items-start {$page_mobiletabs ? `pb-20` : ``} {pageContainerClass || ``}">
