@@ -9,7 +9,7 @@
     import MenuItem from './MenuItem.svelte';
 </script>
 
-<div class="flex flex-col gap-8 bg-purple-200 w-sidebar">
+<div class="flex flex-col gap-8 w-sidebar">
     <SidebarSectionLink
         href="/highlights"
         title="Highlighter"
