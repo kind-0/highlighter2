@@ -4,6 +4,6 @@
 
 </script>
 
-<PageContainer pageContainerClass={`overflow-y-hidden`} pageOverflowHidden={true} pageLoading={$page_loading}>
+<PageContainer pageClass={`overflow-y-hidden`} pageOverflowHidden={true} pageLoading={$page_loading}>
     <slot />
 </PageContainer>
