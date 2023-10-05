@@ -2,7 +2,7 @@
     import { page } from '$app/stores';
     import Section from '$components/Section.svelte';
     import HighlightList from '$components/HighlightList.svelte';
-    import { Input, ndk } from "@kind0/ui-common";
+    import { EntryInput, Input, ndk } from "@kind0/ui-common";
     import { ThreeColumnsLayout, PageTitle } from '@kind0/ui-common';
     import { NDKRelaySet, NDKHighlight, NDKArticle, type NDKTag } from '@nostr-dev-kit/ndk';
     import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
@@ -15,6 +15,8 @@
     import PageContainer from '$components/PageContainer.svelte';
     import { onMount } from 'svelte';
     import { goto } from '$app/navigation';
+    import { login } from '$utils/login';
+    import { rxp_uri } from '$utils/rxp';
     let query: string | null;
     let prevQuery: string;
 
@@ -92,10 +94,10 @@
     let otherTopics: Set<string> = new Set();
     let topicCounts: Map<string, number> = new Map();
 
-    let searchText = ``
+    let searchQueryText = ``
 
     async function submit() {
-        await goto(`/search?q=${searchText}`)
+        await goto(`/search?q=${searchQueryText}`)
         return;
     }
 </script>
@@ -106,7 +108,13 @@
 
 <PageContainer>
     {#if query}
-        <PageTitle title="Search" subtitle={`"${query}"`} class="" />
+        <PageTitle title="Search:" subtitle={`"${query}"`} class="" />
+
+        <div class="flex flex-row h-16 w-full justify-end items-center px-4">
+            <a href="/search" class="btn btn-neutral btn-xs">
+                {`Return to search`}
+            </a>
+        </div>
 
         <div class="flex flex-col w-full divide-y-2 divide-base-300 gap-4">
             {#key query}
@@ -134,10 +142,10 @@
             {:else}
                 <div class="flex flex-col w-full justify-center items-center gap-4 pt-4">
                     <p class="font-sans font-medium text-base">
-                        {`No results found.`}
+                        {`No articles have been found.`}
                     </p>
-                    <a href={`/search?q=`} class="font-sans font-regular text-base">
-                        {`Click here to return to search`}
+                    <a href={`/search?q=`} class="btn btn-neutral btn-xs">
+                        {`return to search`}
                     </a>
                 </div>
             {/if}
@@ -156,17 +164,22 @@
             <RelatedUsersAndTopics {users} {otherTopics} {sortedOtherTopics} />
         </div> -->
     {:else}
-        <div class="-mt-8 flex flex-col w-full justify-start items-center gap-2 px-4">
+        <div class="flex flex-col w-full justify-start items-center gap-2 px-4">
             <div class="flex flex-row w-full justify-start items-center">
                 <p class="font-sans font-bold text-4xl">
                     {`Search`}
                 </p>
             </div>
             <div class="flex flex-row w-full justify-center items-center">
-                <Input class="w-full rounded-full" on:input={(e) => { searchText = e.target?.value || searchText }}  />
+                <EntryInput 
+                    class="w-full rounded-full" 
+                    placeholder={`Search`} 
+                    onInputValidation={async v => rxp_uri.test(v)}
+                    onInputValidationSuccess={async v => { searchQueryText = v }} 
+                    />
             </div>
             <div class="flex flex-row w-full justify-center items-center px-4 pt-4">
-                <button class="btn btn-md w-24 rounded-full" on:click={submit}>
+                <button class="btn btn-neutral btn-wide" on:click={submit}>
                     Submit
                 </button>
             </div>

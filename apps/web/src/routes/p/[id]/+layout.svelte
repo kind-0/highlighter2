@@ -29,7 +29,7 @@
     })
 </script>
 
-<PageContainer hideNavbar={true} pageLoading={$page_loading}>
+<PageContainer hideNavbar={false} pageLoading={$page_loading}>
     <slot />
 </PageContainer>
 
