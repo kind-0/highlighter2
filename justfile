@@ -52,7 +52,9 @@ branches:
         fi
 
 update:
+    git pull --recurse-submodules
     git submodule update --recursive --remote
+    cd packages/ndk && git checkout master && git pull
     cd packages && git checkout master && git pull
 
 initialize:
