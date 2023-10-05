@@ -87,7 +87,7 @@
 {:else}
     <div class="flex flex-col w-full justify-center items-center pt-8 gap-4">
         <p class="font-sans font-medium text-base">
-            {`No public key found`}
+            {`Searching for articles`}
         </p>
         <HomePageLink />
     </div>

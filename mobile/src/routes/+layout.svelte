@@ -1,38 +1,31 @@
 <script lang="ts">
-    import { login } from "$lib/utils/login";
-    import { onMount } from "svelte";
-    import { Modals, closeModal } from "svelte-modals";
-    import { fade } from "svelte/transition";
-    import "../app.postcss";
+	import { newArticles } from '$stores/articles';
+    import { onMount, setContext } from 'svelte';
+    import { login } from '$lib/utils/login';
+    import '../app.postcss';
+    import { Modals, closeModal } from 'svelte-modals'
+    import { fade } from 'svelte/transition'
     //import { pwaInfo } from 'virtual:pwa-info';
-    import { goto } from "$app/navigation";
-    import { page } from "$app/stores";
     import "@fontsource/lora";
-    import {
-        appHandlers,
-        user as uiCommonUser,
-        userLabels as uiCommonUserLabels,
-    } from "@kind0/ui-common";
+    import Loading from '$lib/components/Loading.svelte';
+    import { page } from '$app/stores';
+    import { goto } from '$app/navigation';
+    import { user as uiCommonUser, userLabels as uiCommonUserLabels } from '@kind0/ui-common';
+    import { appHandlers } from "@kind0/ui-common";
 
     // NOOP To make sure the import is not tree-shaken
     $appHandlers;
 
-    import { page_mobiletabs } from "$stores/page_mobiletabs";
-    import { page_navbar } from "$stores/page_navbar";
-    import {
-        loadingScreen,
-        prepareSession,
-        user,
-        userFollows,
-        userLabels,
-    } from "$stores/session";
-    import { bunkerNDK, ndk } from "@kind0/ui-common";
+    import { user, userLabels, prepareSession, loadingScreen, userFollows, networkFollows, userAppHandlers, userDVMResults, highlights } from '$stores/session';
+    import { bunkerNDK, ndk } from '@kind0/ui-common';
+    import { page_mobiletabs } from '$stores/page_mobiletabs';
+    import { page_navbar } from '$stores/page_navbar';
 
-    // $: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : ''
+    //$: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : ''
 
     let sessionPreparationStarted = false;
     let mounted = true;
-    loadingScreen.set(false);
+    loadingScreen.set(false)
 
     onMount(async () => {
         try {
@@ -40,14 +33,14 @@
             login($ndk, $bunkerNDK).then((user) => {
                 $user = user;
                 $uiCommonUser = user!;
-            });
+            })
 
             // set ui params
-            let isMobile = true; // @todo set properly
-            page_mobiletabs.set(isMobile);
-            page_navbar.set(true);
+            let isMobile = true // @todo set properly
+            page_mobiletabs.set(isMobile)
+            page_navbar.set(true)
             // set ui params end
-
+          
             mounted = true;
         } catch (e) {
             console.error(`layout error2`, e);
@@ -61,16 +54,16 @@
             let finishLoading = false;
             $loadingScreen = true;
 
-            if ($page.url.pathname === "/") {
-                goto("/reader");
-            } else if ($page.url.pathname !== "/reader") {
+            if ($page.url.pathname === '/') {
+                goto('/reader');
+            } else if ($page.url.pathname !== '/reader') {
                 finishLoading = true;
             }
 
             prepareSession().then(() => {
-                console.log(`session finished`, { finishLoading });
+                console.log(`session finished`, {finishLoading});
                 if (finishLoading) $loadingScreen = false;
-            });
+            })
         } else {
             prepareSession();
         }
@@ -84,7 +77,7 @@
 
     let shouldShowLoadingScreen = true;
 
-    $: shouldShowLoadingScreen = $page.url.pathname !== "/";
+    $: shouldShowLoadingScreen = $page.url.pathname !== '/';
 
     let refCount: number;
     let sub: boolean;
@@ -97,7 +90,7 @@
     //     sub = !!newArticles.subscription;
     //     networkFollowCount = $networkFollows?.size;
     // }, 100);
-
+    
     /*
 {#if $loadingScreen && shouldShowLoadingScreen}
     <div transition:fade>
@@ -111,6 +104,8 @@
     <title>Highlighter</title>
     {@html webManifestLink}
 </svelte:head>
+
+
 
 {#if mounted}
     <div transition:fade>
@@ -149,12 +144,10 @@
         slot="backdrop"
         class="backdrop z-10 fixed"
         on:click={closeModal}
-        transition:fade={{ duration: 100 }}
-    />
+        transition:fade={{ duration: 100 }}></div>
 </Modals>
 
-<div
-    class="
+<div class="
     hidden
     max-h-[90vh]
     max-w-md
@@ -163,8 +156,7 @@
     min-h-96
     !rounded-lg
     lg:block
-"
-/>
+" />
 
 <style>
     .backdrop {
@@ -174,6 +166,6 @@
         right: 0;
         backdrop-filter: blur(0.15rem);
         left: 0;
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba(0,0,0,0.50)
     }
 </style>

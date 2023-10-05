@@ -1,6 +1,6 @@
 <script lang="ts">
     //
-    import Sidebar from '$components/sidebars/ReaderSidebar.svelte'
+    import ReaderSidebar from '$components/sidebars/ReaderSidebar.svelte'
     import MobileTabs from "$components/MobileTabs.svelte";
     import { page_drawer } from "$stores/page_drawer";
     import { page_mobiletabs } from "$stores/page_mobiletabs";
@@ -13,7 +13,8 @@
     import { navigating } from '$app/stores';
 
     export let hideNavbar = false
-    export let pageContainerClass = ``
+    //export let pageClass = ``
+    //export let mainClass = ``
     export let pageOverflowHidden = false
     export let pageLoading = false
 
@@ -39,10 +40,10 @@
                 </div>
             
                 <div slot="sidebar">
-                    <Sidebar />
+                    <ReaderSidebar />
                 </div>
-
-                <div class="flex flex-col w-full justify-start items-start {$page_mobiletabs ? `pb-20` : ``} {pageContainerClass || ``}">
+            
+                <div class="flex flex-col w-screen lg:w-auto overflow-x-hidden justify-start items-start px-0 {$page_mobiletabs ? `pb-24` : ``} {`` || ``}">
                     {#if $page_mobiletabs}
                         <MobileTabs />
                     {/if}

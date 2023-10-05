@@ -51,6 +51,7 @@
 <div transition:slide={{ axis: 'y'}}>
     <Section
         title={`Recently Highlighted`}
+        class={``}
         on:click={() => { expanded = true; }}
         {expanded}
     >

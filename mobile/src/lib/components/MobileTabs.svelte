@@ -2,7 +2,7 @@
     //
 </script>
 
-<div class="fixed z-10 bottom-0 left-0 flex flex-row h-20 w-full justify-start items-start bg-base-200 border-t-base-300 border-t-[1.5px]">
+<div class="hidden max-lg:block fixed z-10 bottom-0 left-0 flex flex-row h-20 w-full justify-start items-start bg-base-200 border-t-base-300 border-t-[1.5px]">
     <div class="flex flex-row h-full w-full justify-start items-center gap-4 text-neutral/80">
         <div class="flex basis-1/4 justify-center active:scale-[97%]">
             <a href={`/reader`} class="flex flex-col w-full items-center gap-1">
