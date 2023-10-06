@@ -1,9 +1,15 @@
 <script lang="ts">
-    //
+    import { page_layout } from "$stores/page_layout";
+
+    $: addMobileTopSpace = $page_layout === `mobile_addtopspace`
+
+    $: {
+        console.log(`[mobile tabs] addMobileTopSpace `, addMobileTopSpace);
+    }
 </script>
 
-<div class="hidden max-lg:block fixed z-10 bottom-0 left-0 flex flex-row h-20 w-full justify-start items-start bg-base-200 border-t-base-300 border-t-[1.5px]">
-    <div class="flex flex-row h-full w-full justify-start items-center gap-4 text-neutral/80">
+<div class="hidden max-lg:block fixed z-10 left-0 bottom-0 flex-row h-auto w-full justify-start items-start {addMobileTopSpace ? `py-2` : `pb-0`} bg-base-200 border-t-base-300 border-t-[1.5px]">
+    <div class="flex flex-row h-mobileTabs w-full items-center gap-4 text-neutral/80 bg-red-200">
         <div class="flex basis-1/4 justify-center active:scale-[97%]">
             <a href={`/reader`} class="flex flex-col w-full items-center gap-1">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

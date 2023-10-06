@@ -1,167 +1,183 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{html,js,svelte,ts}", "./node_modules/flowbite-svelte/**/*.{html,js,svelte,ts}"],
-  // darkMode: 'class',
-  theme: {
-    extend: {
-      sans: ["Inter var"],
-      colors: {
-        gradient1: "#FF5E63",
-        gradient2: "#FF7E34",
-        gradient3: "#916EFF",
-        gradient4: "#5CA2FF",
-        accent2: "#817EFF",
-      },
-      width: {
-        sidebar: "244px",
-        main: "700px",
-      },
-      spacing: {
-        32: "32px",
-      },
-      borderRadius: {
-        xl: "22px",
-      },
-    },
-    fontFamily: {
-      serif: ["Lora"],
-    },
-  },
-  plugins: [
-    require("@tailwindcss/forms"),
-    require("@tailwindcss/typography"),
-    // require('flowbite/plugin'),
-    require("daisyui"),
-  ],
-  daisyui: {
-    themes: [
-      {
-        lofi: {
-          ...require("daisyui/src/theming/themes")["[data-theme=light]"],
-          "base-100": "#f2f2f2",
-          "base-200": "#ffffff",
-          accent: "#FB6038",
-          ".card": {
-            background: "white",
-            "box-shadow": "0 0 0 1px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1)",
-          },
-          ".svg-logo": {
-            fill: "black",
-          },
-          ".text-base-100-content": {
-            color: "#000000",
-          },
-          ".input": {
-            background: "white",
-          },
-          mark: {
-            background: "rgba(255, 104, 94, 0.33)",
-            color: "#000000",
-          },
-          ".menu": {
-            background: "white",
-          },
-          ".menu .menu-title": {
-            color: "#b3b3b3",
-            "font-weight": "600",
-          },
-          ".dropdown-content": {
-            "box-shadow":
-              "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.1) 0px 4px 6px -4px",
-          },
-          ".grad-orange": {
-            "background-image": "radial-gradient(farthest-corner at 100% 0px, #FF7E34 0%, #FF5E63 100%)",
-          },
-          ".grad-blue": {
-            "background-image": "radial-gradient(farthest-corner at 100% 0px, #5CA2FF 0%, #916EFF 100%)",
-          },
-          ".btn-close-outter": {
-            "background-color": "#ffffff",
-          },
-          ".btn-close-inner": {
-            "background-color": "#f2f2f2",
-            color: "#232323",
-          },
+    content: ["./src/**/*.{html,js,svelte,ts}"],
+    // darkMode: 'class',
+    theme: {
+        extend: {
+            sans: ["Inter var"],
+            colors: {
+                gradient1: "#FF5E63",
+                gradient2: "#FF7E34",
+                gradient3: "#916EFF",
+                gradient4: "#5CA2FF",
+                accent2: "#817EFF",
+            },
+            height: {
+                mobileModalContents: "460px",
+                mobileTabs: "84px",
+                mobileTabsLg: "100px"
+            },
+            width: {
+                sidebar: "244px",
+                main: "700px",
+                sectionMax: "1020px"
+            },
+            maxWidth: {
+                'mainContentLg': '840px'
+            },
+            spacing: {
+                32: "32px",
+            },
+            borderRadius: {
+                xl: "22px",
+            },
         },
-      },
-      {
-        black: {
-          ...require("daisyui/src/theming/themes")["[data-theme=dark]"],
-          "base-100": "#000000",
-          "base-200": "#111111",
-          "base-300": "#232323",
-          "neutral-800": "#232323",
-          "neutral-900": "#111111",
-          ".menu": {
-            background: "#111111",
-          },
-          h1: {
-            color: "#ffffff",
-          },
-          ".tab-active": {
-            color: "#ffffff",
-          },
-          accent: "#FF685E",
-          ".btn": {
-            "border-radius": "5px",
-            "text-transform": "none",
-          },
-          ".btn-rounded-full": {
-            "border-radius": "9999px !important",
-          },
-          ".btn-circle": {
-            "border-radius": "9999px !important",
-          },
-          ".btn-close-outter": {
-            "background-color": "#000000",
-          },
-          ".btn-close-inner": {
-            "background-color": "#232323",
-            color: "#B3B3B3",
-          },
-          ".btn-neutral": {
-            "background-color": "#232323",
-          },
-          ".card": {
-            background: "#111111",
-          },
-          ".input": {
-            background: "rgb(26, 25, 25)",
-          },
-          ".svg-logo": {
-            fill: "white",
-          },
-          ".text-base-100-content": {
-            color: "#ffffff",
-          },
-          ".text-base-300-content": {
-            color: "#B3B3B3",
-          },
-          ".dropdown-content": {
-            "box-shadow":
-              "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px",
-          },
-          ".grad-orange": {
-            "background-image": "radial-gradient(farthest-corner at 100% 0px, #FF7E34 0%, #FF5E63 100%)",
-          },
-          ".grad-blue": {
-            "background-image": "radial-gradient(farthest-corner at 100% 0px, #5CA2FF 0%, #916EFF 100%)",
-          },
-          mark: {
-            background: "rgba(255, 104, 94, 0.33)",
-            color: "#FDC1BE",
-          },
-          "::selection": {
-            background: "rgba(255, 104, 94, 0.33)",
-            color: "#FDC1BE",
-          },
-          "mark.active": {
-            background: "rgba(246, 48, 2, 0.8)",
-            color: "#FFF0F0",
-          },
+        fontFamily: {
+            serif: ["Lora"],
         },
-      },
+    },
+    plugins: [
+        require("@tailwindcss/forms"),
+        require("@tailwindcss/typography"),
+        require("daisyui"),
     ],
-    darkTheme: "black",
-  },
+    daisyui: {
+        themes: [
+            {
+                lofi: {
+                    ...require("daisyui/src/theming/themes")["[data-theme=light]"],
+                    "base-100": "#f2f2f2",
+                    "base-200": "#ffffff",
+                    accent: "#FB6038",
+                    ".card": {
+                        background: "white",
+                        "box-shadow": "0 0 0 1px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1)",
+                    },
+                    ".svg-logo": {
+                        fill: "black",
+                    },
+                    ".text-base-100-content": {
+                        color: "#000000",
+                    },
+                    ".input": {
+                        background: "white",
+                    },
+                    mark: {
+                        background: "rgba(255, 104, 94, 0.33)",
+                        color: "#000000",
+                    },
+                    ".menu": {
+                        background: "white",
+                    },
+                    ".menu .menu-title": {
+                        color: "#b3b3b3",
+                        "font-weight": "600",
+                    },
+                    ".dropdown-content": {
+                        "box-shadow":
+                            "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.1) 0px 4px 6px -4px",
+                    },
+                    ".grad-orange": {
+                        "background-image": "radial-gradient(farthest-corner at 100% 0px, #FF7E34 0%, #FF5E63 100%)",
+                    },
+                    ".grad-blue": {
+                        "background-image": "radial-gradient(farthest-corner at 100% 0px, #5CA2FF 0%, #916EFF 100%)",
+                    },
+                    ".btn-close-outter": {
+                        "background-color": "#ffffff",
+                    },
+                    ".btn-close-inner": {
+                        "background-color": "#f2f2f2",
+                        color: "#232323",
+                    },
+                    ".btn-neutral": {
+                        "background-color": "#e5e4e2",
+                        "border-color": "#d1d1cf",
+                        "color": "#6c6b6a"
+                    },
+                },
+            },
+            {
+                black: {
+                    ...require("daisyui/src/theming/themes")["[data-theme=dark]"],
+                    "base-100": "#000000",
+                    "base-200": "#111111",
+                    "base-300": "#232323",
+                    "neutral-800": "#232323",
+                    "neutral-900": "#111111",
+                    ".menu": {
+                        background: "#111111",
+                    },
+                    h1: {
+                        color: "#ffffff",
+                    },
+                    ".tab-active": {
+                        color: "#ffffff",
+                    },
+                    accent: "#FF685E",
+                    ".btn": {
+                        "border-radius": "5px",
+                        "text-transform": "none",
+                    },
+                    ".btn-rounded-full": {
+                        "border-radius": "9999px !important",
+                    },
+                    ".btn-circle": {
+                        "border-radius": "9999px !important",
+                    },
+                    ".btn-close-outter": {
+                        "background-color": "#000000",
+                    },
+                    ".btn-close-inner": {
+                        "background-color": "#232323",
+                        color: "#B3B3B3",
+                    },
+                    ".btn-neutral": {
+                        "background-color": "#232323",
+                    },
+                    ".card": {
+                        background: "#111111",
+                    },
+                    ".input": {
+                        background: "rgb(26, 25, 25)",
+                    },
+                    ".svg-logo": {
+                        fill: "white",
+                    },
+                    ".text-base-100-content": {
+                        color: "#ffffff",
+                    },
+                    ".text-base-300-content": {
+                        color: "#B3B3B3",
+                    },
+                    ".dropdown-content": {
+                        "box-shadow":
+                            "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px",
+                    },
+                    ".grad-orange": {
+                        "background-image": "radial-gradient(farthest-corner at 100% 0px, #FF7E34 0%, #FF5E63 100%)",
+                    },
+                    ".grad-blue": {
+                        "background-image": "radial-gradient(farthest-corner at 100% 0px, #5CA2FF 0%, #916EFF 100%)",
+                    },
+                    mark: {
+                        background: "rgba(255, 104, 94, 0.33)",
+                        color: "#FDC1BE",
+                    },
+                    "::selection": {
+                        background: "rgba(255, 104, 94, 0.33)",
+                        color: "#FDC1BE",
+                    },
+                    "mark.active": {
+                        background: "rgba(246, 48, 2, 0.8)",
+                        color: "#FFF0F0",
+                    },
+                },
+                ".tooltip": {
+                    background: "#232323"
+                }
+            },
+        ],
+        darkTheme: "black",
+    },
 };

@@ -20,11 +20,15 @@
     import { bunkerNDK, ndk } from '@kind0/ui-common';
     import { page_mobiletabs } from '$stores/page_mobiletabs';
     import { page_navbar } from '$stores/page_navbar';
+    import { page_layout } from '$stores/page_layout';
+    import PageContainer from '$components/PageContainer.svelte';
+    import Footer from '$components/Footer.svelte';
 
     $: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : ''
 
     let sessionPreparationStarted = false;
-    let mounted = true;
+    let mounted = false;
+    let mountedMobile = false;
     loadingScreen.set(false)
 
     onMount(async () => {
@@ -40,10 +44,16 @@
             page_mobiletabs.set(isMobile)
             page_navbar.set(true)
             // set ui params end
-          
-            mounted = true;
+
+            // @todo better workaround to navigate to '/reader' on mobile
+            if(window.innerWidth < 450) {
+                await goto(`/reader`)
+                mountedMobile = true
+            }
         } catch (e) {
             console.error(`layout error2`, e);
+            mounted = true;
+        } finally {
             mounted = true;
         }
     });
@@ -102,10 +112,9 @@
 
 <svelte:head>
     <title>Highlighter</title>
+    <meta name="description" content="Highlighter" />
     {@html webManifestLink}
 </svelte:head>
-
-
 
 {#if mounted}
     <div transition:fade>
@@ -156,6 +165,11 @@
     min-h-96
     !rounded-lg
     lg:block
+    bg-purple-300
+    bg-orange-300
+    bg-blue-300
+    bg-yellow-300
+    bg-red-300
 " />
 
 <style>

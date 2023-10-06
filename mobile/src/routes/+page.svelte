@@ -1,8 +1,10 @@
 <script lang="ts">
     import { goto } from '$app/navigation';
+    import Footer from '$components/Footer.svelte';
     import Navbar from '$lib/components/Navbar/Navbar.svelte';
     import ButtonWithBorderGradient2 from '$lib/components/buttons/ButtonWithBorderGradient2.svelte';
     import GenericEventCard from '$lib/components/events/generic/card.svelte';
+    import { page_layout } from '$stores/page_layout';
     import { user, userFollowHashtags } from '$stores/session';
     import { AttentionButton, ndk } from "@kind0/ui-common";
     import { NDKEvent, type NostrEvent } from '@nostr-dev-kit/ndk';
@@ -42,18 +44,13 @@
     }
 </script>
 
-<svelte:head>
-    <title>Highlighter</title>
-    <meta name="description" content="Highlighter" />
-</svelte:head>
-
 <div class="flex flex-col min-h-screen h-screen overflow-x-hidden max-lg:overflow-y-hidden">
     <div class="mx-auto">
         <Navbar 
         isHiddenDrawerBtn={true} 
         logoLink={`/reader`} />
     </div>
-    <div class="hero flex flex-column justify-center">
+    <div class="hero flex flex-column justify-center pb-16">
         <div class="w-full md:max-w-2xl lg:max-w-3xl mx-auto flex flex-col gap-5 md:gap-12">
             <div class="relative">
                 <div class="mx-10 blur-sm text-xs md:text-base font-normal pb-1 hidden sm:block">
@@ -158,4 +155,5 @@
             </div>
         </div>
     </div>
+    <Footer />
 </div>

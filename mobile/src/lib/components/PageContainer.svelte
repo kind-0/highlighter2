@@ -11,18 +11,44 @@
     import { onMount } from 'svelte';
     import { page_navbar } from '$stores/page_navbar';
     import { navigating } from '$app/stores';
+    import { page_layout } from '$stores/page_layout';
+    import { assertPageLayoutOptions } from '$utils/layout';
 
     export let hideNavbar = false
+    export let hideSidebar = false
+
     //export let pageClass = ``
-    //export let mainClass = ``
+    export let pageClassMain = ``
     export let pageOverflowHidden = false
     export let pageLoading = false
 
-    let mounted = false
+    //let mounted = false
+    //let _layoutWindowSmallest = false
 
-    onMount(async () => {
+    /*onMount(async () => {
         mounted = true
-    })
+    })*/
+
+    let windowWidth = window.innerWidth;
+    let windowHeight = window.innerHeight;
+
+    // Update dimensions when the window is resized
+    window.addEventListener("resize", () => {
+        windowWidth = window.innerWidth;
+        windowHeight = window.innerHeight;
+    });
+
+    $: {
+        page_layout.set(assertPageLayoutOptions(windowWidth, windowHeight))
+    }
+
+    $: addMobileTopSpace = $page_layout === `mobile_addtopspace`
+
+    $: {
+        console.log(`windowWidth `, windowWidth);
+        console.log(`windowHeight `, windowHeight);
+        console.log(`[page container] addMobileTopSpace `, addMobileTopSpace);
+    }
 </script>
 
 {#if $navigating}
@@ -35,15 +61,17 @@
             <ThreeColumnsLayout>
                 <div slot="navbar">
                     {#if !hideNavbar && !$page_drawer && $page_navbar}
-                        <Navbar isHiddenLogo={true} drawerOpenCallback={async () => { page_drawer.set(!$page_drawer) }} />
+                        <Navbar isHiddenLogo={true} {addMobileTopSpace} drawerOpenCallback={async () => { page_drawer.set(!$page_drawer) }} />
                     {/if}
                 </div>
             
                 <div slot="sidebar">
-                    <ReaderSidebar />
+                    {#if !hideSidebar}
+                        <ReaderSidebar />
+                    {/if}
                 </div>
             
-                <div class="flex flex-col w-screen lg:w-auto overflow-x-hidden justify-start items-start px-0 {$page_mobiletabs ? `pb-24` : ``} {`` || ``}">
+                <div class="flex flex-col w-screen lg:w-auto overflow-x-hidden justify-start items-start px-0 scrollbar-hide {$page_mobiletabs ? `pb-24` : ``} {pageClassMain}">
                     {#if $page_mobiletabs}
                         <MobileTabs />
                     {/if}

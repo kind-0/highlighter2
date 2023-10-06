@@ -3,9 +3,13 @@
 copy_web_source_code() {
     app_web_src="$1/src"
     app_web_static="$1/static"
+    app_web_tailwind="$1/tailwind.config.cjs"
+    #app_web_sveltekit="$1/svelte.config.js"
 
     app_mobile_src="$2/src"
     app_mobile_static="$2/static"
+    app_mobile_tailwind="$2/tailwind.config.cjs"
+    #app_mobile_sveltekit="$2/svelte.config.js"
 
     if [ -d "$app_web_src" ]; then
         if [ ! -d "$app_mobile_src" ]; then
@@ -30,6 +34,20 @@ copy_web_source_code() {
     else
         echo "Static directory $app_web_static does not exist."
     fi
+
+    if [ -f "$app_web_tailwind" ]; then
+        cp -r "$app_web_tailwind" "$app_mobile_tailwind"
+        echo "Tailwind config copied successfully from $app_web_tailwind to $app_mobile_tailwind"
+    else
+        echo "Tailwind config $app_web_tailwind does not exist."
+    fi
+
+    #if [ -f "$app_web_sveltekit" ]; then
+    #    cp -r "$app_web_sveltekit" "$app_mobile_sveltekit"
+    #    echo "SvelteKit config copied successfully from $app_web_sveltekit to $app_mobile_sveltekit"
+    #else
+    #    echo "SvelteKit config $app_web_sveltekit does not exist."
+    #fi
 }
 
 startsWith() {
@@ -131,7 +149,7 @@ update_dependencies() {
       "@capacitor/cli ^5.4.1"
       "@capacitor/core ^5.4.1"
       "@capacitor/ios ^5.4.1"
-      "@capacitor/assets ^5.4.1"
+      "@capacitor/assets ^3.0.1"
   )
 
   for key in "${!append_dependencies[@]}"; do

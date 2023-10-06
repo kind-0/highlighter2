@@ -9,6 +9,9 @@ build-all:
 build-lib:
     turbo build --filter=@highlighter/svelte-kit-lib
 
+build-mobile:
+    turbo build --filter=!highlighter
+
 build-kind0:
     turbo run build --filter=@kind0/*
 

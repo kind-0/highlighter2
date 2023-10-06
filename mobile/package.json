@@ -11,10 +11,6 @@
     "tauri": "tauri"
   },
   "dependencies": {
-    "@capacitor/android": "^5.4.1",
-    "@capacitor/cli": "^5.4.1",
-    "@capacitor/core": "^5.4.1",
-    "@capacitor/ios": "^5.4.1",
     "@fontsource/lora": "^5.0.8",
     "@kind0/ui-common": "workspace:*",
     "@macfja/svelte-persistent-store": "^2.3.2",
@@ -29,7 +25,6 @@
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/typography": "^0.5.9",
     "@tauri-apps/api": "2.0.0-alpha.5",
-    "@tauri-apps/plugin-dialog": "https://github.com/tauri-apps/tauri-plugin-dialog#v2",
     "@types/turndown": "^5.0.1",
     "add": "^2.0.6",
     "cheerio": "1.0.0-rc.12",
@@ -59,10 +54,15 @@
     "vite": "^4.4.9",
     "vite-plugin-pwa": "^0.16.4",
     "webln": "^0.3.2",
-    "websocket-polyfill": "^0.0.3"
+    "websocket-polyfill": "^0.0.3",
+    "@tauri-apps/plugin-dialog": "https://github.com/tauri-apps/tauri-plugin-dialog#v2",
+    "@capacitor/android": "^5.4.1",
+    "@capacitor/cli": "^5.4.1",
+    "@capacitor/core": "^5.4.1",
+    "@capacitor/ios": "^5.4.1",
+    "@capacitor/assets": "^3.0.1"
   },
   "devDependencies": {
-    "@capacitor/assets": "^3.0.1",
     "@grail-ui/svelte": "^0.10.1",
     "@highlighter/svelte-kit-lib": "workspace:*",
     "@kind0/tsconfig": "workspace:*",

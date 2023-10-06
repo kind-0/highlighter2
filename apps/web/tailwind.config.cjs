@@ -13,12 +13,17 @@ module.exports = {
                 accent2: "#817EFF",
             },
             height: {
-                mobileModalContents: "460px"
+                mobileModalContents: "460px",
+                mobileTabs: "84px",
+                mobileTabsLg: "100px"
             },
             width: {
                 sidebar: "244px",
                 main: "700px",
                 sectionMax: "1020px"
+            },
+            maxWidth: {
+                'mainContentLg': '840px'
             },
             spacing: {
                 32: "32px",
