@@ -17,38 +17,15 @@
     export let hideNavbar = false
     export let hideSidebar = false
 
-    //export let pageClass = ``
     export let pageClassMain = ``
     export let pageOverflowHidden = false
     export let pageLoading = false
 
-    //let mounted = false
-    //let _layoutWindowSmallest = false
-
-    /*onMount(async () => {
-        mounted = true
-    })*/
-
-    let windowWidth = window.innerWidth;
-    let windowHeight = window.innerHeight;
-
-    // Update dimensions when the window is resized
-    window.addEventListener("resize", () => {
-        windowWidth = window.innerWidth;
-        windowHeight = window.innerHeight;
-    });
-
-    $: {
-        page_layout.set(assertPageLayoutOptions(windowWidth, windowHeight))
-    }
+    onMount(async () => {
+        page_layout.set(assertPageLayoutOptions(window.innerWidth, window.innerHeight))
+    })
 
     $: addMobileTopSpace = $page_layout === `mobile_addtopspace`
-
-    $: {
-        console.log(`windowWidth `, windowWidth);
-        console.log(`windowHeight `, windowHeight);
-        console.log(`[page container] addMobileTopSpace `, addMobileTopSpace);
-    }
 </script>
 
 {#if $navigating}

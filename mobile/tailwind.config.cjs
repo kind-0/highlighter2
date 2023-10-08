@@ -13,7 +13,8 @@ module.exports = {
                 accent2: "#817EFF",
             },
             height: {
-                mobileModalContents: "460px",
+                modalCoverScreen: "90vh",
+                modalLargeScreen: "420px",
                 mobileTabs: "84px",
                 mobileTabsLg: "100px"
             },

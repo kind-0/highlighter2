@@ -1,11 +1,8 @@
 <script lang="ts">
     import { NDKEvent, NDKKind, type NDKFilter, type Hexpubkey, type NDKEventId } from '@nostr-dev-kit/ndk';
     import { ndk } from "@kind0/ui-common";
-    import NewHighlight from '$lib/components/highlights/NewHighlight.svelte';
     import { currentScope } from '$lib/store';
-    import { fade } from 'svelte/transition';
     import { derived, writable, type Readable } from 'svelte/store';
-    import { ReaderMarginNotePopup } from "@highlighter/svelte-kit-lib";
     import HighlightWrapper from '../HighlightWrapper.svelte';
     import Article from '../Article.svelte';
     import { NDKArticle } from "@nostr-dev-kit/ndk";
@@ -16,8 +13,7 @@
     import RightDrawerLayout from '$lib/layouts/RightDrawerLayout.svelte';
     import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
     import { user } from '$stores/session';
-    import { rightDrawerContent } from '$stores/right-drawer';
-    import { Book, CaretLeft, Share } from 'phosphor-svelte';
+    import { CaretLeft } from 'phosphor-svelte';
     import AddToShelfButton from '$components/buttons/AddToShelfButton.svelte';
     import ArticleWideCard from './ArticleWideCard.svelte';
     import { page_navbar } from '$stores/page_navbar';

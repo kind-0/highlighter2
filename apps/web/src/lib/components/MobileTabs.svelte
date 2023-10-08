@@ -2,10 +2,6 @@
     import { page_layout } from "$stores/page_layout";
 
     $: addMobileTopSpace = $page_layout === `mobile_addtopspace`
-
-    $: {
-        console.log(`[mobile tabs] addMobileTopSpace `, addMobileTopSpace);
-    }
 </script>
 
 <div class="hidden max-lg:block fixed z-10 left-0 bottom-0 flex-row h-auto w-full justify-start items-start {addMobileTopSpace ? `py-2` : `pb-0`} bg-base-200 border-t-base-300 border-t-[1.5px]">

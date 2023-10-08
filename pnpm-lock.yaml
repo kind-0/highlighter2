@@ -26,6 +26,12 @@ importers:
 
   apps/web:
     dependencies:
+      '@capacitor/device':
+        specifier: ^5.0.6
+        version: 5.0.6(@capacitor/core@5.4.1)
+      '@capacitor/share':
+        specifier: ^5.0.6
+        version: 5.0.6(@capacitor/core@5.4.1)
       '@fontsource/lora':
         specifier: ^5.0.8
         version: 5.0.8
@@ -201,6 +207,9 @@ importers:
       '@types/jsdom':
         specifier: ^21.1.1
         version: 21.1.1
+      '@types/markdown-it':
+        specifier: ^13.0.1
+        version: 13.0.1
       '@types/sanitize-html':
         specifier: ^2.9.0
         version: 2.9.0
@@ -358,9 +367,15 @@ importers:
       '@capacitor/core':
         specifier: ^5.4.1
         version: 5.4.1
+      '@capacitor/device':
+        specifier: ^5.0.6
+        version: 5.0.6(@capacitor/core@5.4.1)
       '@capacitor/ios':
         specifier: ^5.4.1
         version: 5.4.1(@capacitor/core@5.4.1)
+      '@capacitor/share':
+        specifier: ^5.0.6
+        version: 5.0.6(@capacitor/core@5.4.1)
       '@fontsource/lora':
         specifier: ^5.0.8
         version: 5.0.8
@@ -539,6 +554,9 @@ importers:
       '@types/jsdom':
         specifier: ^21.1.1
         version: 21.1.1
+      '@types/markdown-it':
+        specifier: ^13.0.1
+        version: 13.0.1
       '@types/sanitize-html':
         specifier: ^2.9.0
         version: 2.9.0
@@ -1119,6 +1137,9 @@ importers:
       '@kind0/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
+      '@svelte-put/shortcut':
+        specifier: ^3.0.0
+        version: 3.0.0
       '@sveltejs/package':
         specifier: ^2.2.1
         version: 2.2.1(svelte@4.2.0)(typescript@5.2.2)
@@ -3652,10 +3673,26 @@ packages:
       tslib: 2.6.2
     dev: false
 
+  /@capacitor/device@5.0.6(@capacitor/core@5.4.1):
+    resolution: {integrity: sha512-tmjK0H8IKbDLMcmzZzJPbV+9yLkKJ76QOdz4A7fZAOYx2GnFHsFngxldq/wKotGAJuDX/ih3ZzHNrzVguzlv2g==}
+    peerDependencies:
+      '@capacitor/core': ^5.0.0
+    dependencies:
+      '@capacitor/core': 5.4.1
+    dev: false
+
   /@capacitor/ios@5.4.1(@capacitor/core@5.4.1):
     resolution: {integrity: sha512-s5djQEX1HFM6u4gQlWz7DUWG7ma0d3AwwnjbSbCh25aYEt40Dbei0TjzlKrfU6b3nUbyVVAZJBJgMuk7Bq59qA==}
     peerDependencies:
       '@capacitor/core': ^5.4.0
+    dependencies:
+      '@capacitor/core': 5.4.1
+    dev: false
+
+  /@capacitor/share@5.0.6(@capacitor/core@5.4.1):
+    resolution: {integrity: sha512-/dVOW7kcuuD7hWB9Z1drArIpEk+5JCoMnMrAs2c7CLp3q5PeaXNJjTkGr6RJ1OtMhsHyXc6DAFwQ4frFkmZsgw==}
+    peerDependencies:
+      '@capacitor/core': ^5.0.0
     dependencies:
       '@capacitor/core': 5.4.1
     dev: false
@@ -6398,6 +6435,10 @@ packages:
       magic-string: 0.25.9
       string.prototype.matchall: 4.0.10
 
+  /@svelte-put/shortcut@3.0.0:
+    resolution: {integrity: sha512-nZg3pwpTi9wUsvQPlqOzEsxZcF2jmY5j+VBq/20IUjjd2OpM92XqZAga0PCCjE6OuEobOt58UMnC2QZgOvk0tQ==}
+    dev: true
+
   /@sveltejs/adapter-auto@2.1.0(@sveltejs/kit@1.24.0):
     resolution: {integrity: sha512-o2pZCfATFtA/Gw/BB0Xm7k4EYaekXxaPGER3xGSY3FvzFJGTlJlZjBseaXwYSM94lZ0HniOjTokN3cWaLX6fow==}
     peerDependencies:
@@ -7069,7 +7110,6 @@ packages:
 
   /@types/linkify-it@3.0.3:
     resolution: {integrity: sha512-pTjcqY9E4nOI55Wgpz7eiI8+LzdYnw3qxXCfHyBDdPbYvbyLgWLJGh8EdPvqawwMK1Uo1794AUkkR38Fr0g+2g==}
-    dev: false
 
   /@types/lodash@4.14.197:
     resolution: {integrity: sha512-BMVOiWs0uNxHVlHBgzTIqJYmj+PgCo4euloGF+5m4okL3rEYzM2EEv78mw8zWSMM57dM7kVIgJ2QDvwHSoCI5g==}
@@ -7080,7 +7120,6 @@ packages:
     dependencies:
       '@types/linkify-it': 3.0.3
       '@types/mdurl': 1.0.2
-    dev: false
 
   /@types/mdast@3.0.12:
     resolution: {integrity: sha512-DT+iNIRNX884cx0/Q1ja7NyUPpZuv0KPyL5rGNxm1WC1OtHstl7n4Jb7nk+xacNShQMbczJjt8uFzznpp6kYBg==}
@@ -7090,7 +7129,6 @@ packages:
 
   /@types/mdurl@1.0.2:
     resolution: {integrity: sha512-eC4U9MlIcu2q0KQmXszyn5Akca/0jrQmwDRgpAMJai7qBWq4amIQhZyNau4VYGtCeALvW1/NtjzJJ567aZxfKA==}
-    dev: false
 
   /@types/mdx@2.0.7:
     resolution: {integrity: sha512-BG4tyr+4amr3WsSEmHn/fXPqaCba/AYZ7dsaQTiavihQunHSIxk+uAtqsjvicNpyHN6cm+B9RVrUOtW9VzIKHw==}

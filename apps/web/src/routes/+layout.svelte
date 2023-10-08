@@ -23,6 +23,10 @@
     import { page_layout } from '$stores/page_layout';
     import PageContainer from '$components/PageContainer.svelte';
     import Footer from '$components/Footer.svelte';
+    import { Share } from '@capacitor/share';
+    import { Device } from '@capacitor/device';
+    import { app_device } from '$stores/app_device';
+    import { app_share } from '$stores/app_share';
 
     $: webManifestLink = pwaInfo ? pwaInfo.webManifest.linkTag : ''
 
@@ -38,12 +42,24 @@
                 $user = user;
                 $uiCommonUser = user!;
             })
+            
+            //
+            // set device params (start)
+            const can_share = await Share.canShare()
+            app_share.set(can_share.value === true)
 
-            // set ui params
+            const info = await Device.getInfo();
+            app_device.set(info || undefined)
+
+            // set device params (start)
+            //
+            //
+            // set ui params (start)
             let isMobile = true // @todo set properly
             page_mobiletabs.set(isMobile)
             page_navbar.set(true)
-            // set ui params end
+            //
+            // set ui params (end)
 
             // @todo better workaround to navigate to '/reader' on mobile
             if(window.innerWidth < 450) {

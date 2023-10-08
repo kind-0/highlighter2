@@ -93,9 +93,10 @@
 
 <ModalWrapper
     title="Add to Reading shelf"
-    {onModalClose}
+    class="h-modalCoverScreen"
+    {onModalClose}  
 >
-    <div class="flex flex-col h-mobileModalContents justify-start gap-4">
+    <div class="flex flex-col h-full justify-start gap-4">
         <div class="flex flex-row justify-start items-center pl-2 gap-1 text-neutral/80">
             {#if _showCreatedNewShelfSuccess}
                 <div class="flex" />

@@ -5,13 +5,12 @@
     import { page } from '$app/stores';
     import MarkdownIt from 'markdown-it';
     import type { NDKEvent } from '@nostr-dev-kit/ndk';
-    import { ndk, LoadingSpinner } from "@kind0/ui-common";
+    import { ndk } from "@kind0/ui-common";
     import {NDKArticle} from "@nostr-dev-kit/ndk";
     import ReaderDVMTranscriptionHeader from '$lib/components/articles/dvm/ReaderDVMTranscriptionHeader.svelte';
 
     import ZapEventCard from '$lib/components/zaps/ZapEventCard.svelte';
     import EventCard from '$lib/components/events/generic/card.svelte';
-    import Navbar from '$lib/components/Navbar/Navbar.svelte';
     import { page_loading } from '$stores/page_loading';
 
     const { naddr } = $page.params;
@@ -62,8 +61,7 @@
     }
 
     $: {
-        if(articlePromise) {
-            console.log(`articlePromise: ${articlePromise.kind}`)
+        if(!!articlePromise) {
             page_loading.set(false)
         }
     }
