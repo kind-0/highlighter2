@@ -1,13 +1,11 @@
 <script lang="ts">
     import ShareButton from "$components/ShareButton.svelte";
-import AddToShelfButton from "$components/buttons/AddToShelfButton.svelte";
-    import Curation from "$icons/Curation.svelte";
+    import AddToShelfButton from "$components/buttons/AddToShelfButton.svelte";
     import { page_navbar } from "$stores/page_navbar";
-    import { Avatar, AvatarWithName, BookmarkIcon, HighlightIcon, LazyLoadedImage, LinkToProfile, RelativeTime, ZapsButton, ndk } from "@kind0/ui-common";
+    import { Avatar, AvatarWithName, HighlightIcon, LazyLoadedImage, LinkToProfile, RelativeTime, ZapsButton, ndk } from "@kind0/ui-common";
     import type { Hexpubkey, NDKArticle } from "@nostr-dev-kit/ndk";
     import { EventContent } from "@nostr-dev-kit/ndk-svelte-components";
     import { ListPlus } from "phosphor-svelte";
-    import { openModal } from "svelte-modals";
 
     export let article: NDKArticle;
     export let highlightCount: number | undefined = undefined;

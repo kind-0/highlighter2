@@ -2,21 +2,17 @@
     import { page } from '$app/stores';
     import Section from '$components/Section.svelte';
     import HighlightList from '$components/HighlightList.svelte';
-    import { EntryInput, Input, ndk } from "@kind0/ui-common";
-    import { ThreeColumnsLayout, PageTitle } from '@kind0/ui-common';
+    import { EntryInput, ndk } from "@kind0/ui-common";
+    import {  PageTitle } from '@kind0/ui-common';
     import { NDKRelaySet, NDKHighlight, NDKArticle, type NDKTag } from '@nostr-dev-kit/ndk';
     import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
     import TagContentCards from '$components/ContentCards/TagContentCards.svelte';
     import { derived, type Readable } from 'svelte/store';
-    import Navbar from '$components/Navbar/Navbar.svelte';
-    import HighlightsSidebar from '$components/sidebars/HighlightsSidebar.svelte';
     import ArticleContentCard from '$components/ContentCards/ArticleContentCard.svelte';
-    import RelatedUsersAndTopics from '../web/components/RightSidebar/RelatedUsersAndTopics.svelte';
     import PageContainer from '$components/PageContainer.svelte';
-    import { onMount } from 'svelte';
     import { goto } from '$app/navigation';
-    import { login } from '$utils/login';
     import { rxp_uri } from '$utils/rxp';
+    import SearchPageLinkButton from '$components/buttons/SearchPageLinkButton.svelte';
     let query: string | null;
     let prevQuery: string;
 
@@ -95,9 +91,14 @@
     let topicCounts: Map<string, number> = new Map();
 
     let searchQueryText = ``
+    let _errorMsg = ``
 
-    async function submit() {
-        await goto(`/search?q=${searchQueryText}`)
+    async function search_submit() {
+        if(!!searchQueryText) {
+            await goto(`/search?q=${searchQueryText}`)
+        } else {
+            _errorMsg = `Enter a search parameter.`
+        }
         return;
     }
 </script>
@@ -110,10 +111,8 @@
     {#if query}
         <PageTitle title="Search:" subtitle={`"${query}"`} class="" />
 
-        <div class="flex flex-row h-16 w-full justify-end items-center px-4">
-            <a href="/search" class="btn btn-neutral btn-xs">
-                {`Return to search`}
-            </a>
+        <div class="flex flex-row w-full justify-end items-center p-4">
+            <SearchPageLinkButton />
         </div>
 
         <div class="flex flex-col w-full divide-y-2 divide-base-300 gap-4">
@@ -144,9 +143,7 @@
                     <p class="font-sans font-medium text-base">
                         {`No articles have been found.`}
                     </p>
-                    <a href={`/search?q=`} class="btn btn-neutral btn-xs">
-                        {`return to search`}
-                    </a>
+                    <SearchPageLinkButton>{`go to search`}</SearchPageLinkButton>
                 </div>
             {/if}
 
@@ -160,7 +157,8 @@
                 </Section>
             {/if}
         </div>
-        <!-- @note-pablo,removed  <div slot="rightSidebar" class="flex flex-col gap-4">
+        <!-- @note-pablo, removed this
+        <div slot="rightSidebar" class="flex flex-col gap-4">
             <RelatedUsersAndTopics {users} {otherTopics} {sortedOtherTopics} />
         </div> -->
     {:else}
@@ -174,12 +172,20 @@
                 <EntryInput 
                     class="w-full rounded-full" 
                     placeholder={`Search`} 
+                    onInputCallback={async _ => { _errorMsg = `` }}
                     onInputValidation={async v => rxp_uri.test(v)}
                     onInputValidationSuccess={async v => { searchQueryText = v }} 
                     />
             </div>
+            {#if !!_errorMsg}
+                <div class="flex flex-row w-full justify-center items-center">
+                    <p class="font-sans font-medium text-base">
+                        {_errorMsg}
+                    </p>
+                </div>
+            {/if}
             <div class="flex flex-row w-full justify-center items-center px-4 pt-4">
-                <button class="btn btn-neutral btn-wide" on:click={submit}>
+                <button class="btn btn-sm btn-neutral btn-wide" on:click={search_submit}>
                     Submit
                 </button>
             </div>
