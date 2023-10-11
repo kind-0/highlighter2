@@ -37,9 +37,12 @@ async function getDelegatedSignerName(list: NDKList) {
         await $user?.fetchProfile();
     }
 
-    if ($user?.profile?.name) {
-        name = $user.profile.displayName + `'s `;
-    }
+    name = `${
+        $user?.profile?.displayName ??
+        $user?.profile?.name ??
+        $user?.profile?.nip05 ??
+        `${$user?.npub.slice(0, 9)}...`
+      }'s `;
 
     return name + list.name;
 }
