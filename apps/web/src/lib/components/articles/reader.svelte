@@ -332,7 +332,7 @@
                 {/if}
 
                 {#if openedHighlight}
-                    <div class="z-50 fixed top-20" transition:fade>
+                    <div class="z-50 fixed top-20 px-4" transition:fade>
                         <NewHighlight
                             highlight={openedHighlight}
                             on:close={onNewHighlightClose}
@@ -344,7 +344,7 @@
                 <div class="
                     {(newHighlightItem || openedHighlight) ? 'opacity-50' : ''}
                     transition duration-100
-                    xl:mb-96
+                    xl:mb-96 px-4
                 ">
                     {#if article}
                         <div class="flex flex-col gap-4">

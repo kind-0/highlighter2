@@ -16,13 +16,10 @@
     // NOOP To make sure the import is not tree-shaken
     $appHandlers;
 
-    import { user, userLabels, prepareSession, loadingScreen, userFollows, networkFollows, userAppHandlers, userDVMResults, highlights } from '$stores/session';
+    import { user, userLabels, prepareSession, loadingScreen, userFollows } from '$stores/session';
     import { bunkerNDK, ndk } from '@kind0/ui-common';
     import { page_mobiletabs } from '$stores/page_mobiletabs';
     import { page_navbar } from '$stores/page_navbar';
-    import { page_layout } from '$stores/page_layout';
-    import PageContainer from '$components/PageContainer.svelte';
-    import Footer from '$components/Footer.svelte';
     import { Share } from '@capacitor/share';
     import { Device } from '@capacitor/device';
     import { app_device } from '$stores/app_device';

@@ -41,7 +41,7 @@
         title="Highlighter"
     >
         <ul class="menu bg-base-200 w-full rounded-box">
-            <RelaySetButton />
+            <!-- <RelaySetButton /> -->
             <li class="menu-title">PROFILES</li>
             {#if hasUserHighlights}
                 <MenuItem href="/highlights/me" activeClass="border-l-accent">

@@ -1,10 +1,7 @@
 <script lang="ts">
     import { goto } from '$app/navigation';
-    import Footer from '$components/Footer.svelte';
     import Navbar from '$lib/components/Navbar/Navbar.svelte';
-    import ButtonWithBorderGradient2 from '$lib/components/buttons/ButtonWithBorderGradient2.svelte';
     import GenericEventCard from '$lib/components/events/generic/card.svelte';
-    import { page_layout } from '$stores/page_layout';
     import { user, userFollowHashtags } from '$stores/session';
     import { AttentionButton, ndk } from "@kind0/ui-common";
     import { NDKEvent, type NostrEvent } from '@nostr-dev-kit/ndk';
@@ -46,8 +43,8 @@
 
 <div class="flex flex-col min-h-screen h-screen overflow-x-hidden max-lg:overflow-y-hidden">
     <div class="mx-auto">
-        <Navbar 
-        isHiddenDrawerBtn={true} 
+        <Navbar
+        isHiddenDrawerBtn={true}
         logoLink={`/reader`} />
     </div>
     <div class="hero flex flex-column justify-center pb-16">
@@ -134,7 +131,7 @@
 
                 <div class="max-lg:hidden flex flex-row gap-2 items-center justify-center">
                     <label class="text-xl md:!text-2xl text-base-100-content font-thin z-50">
-                        
+
                     </label>
                     <div class="dropdown">
                         <AttentionButton
@@ -155,5 +152,4 @@
             </div>
         </div>
     </div>
-    <Footer />
 </div>

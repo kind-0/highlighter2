@@ -11,8 +11,8 @@
 
     export let articlesToRender = 12;
 
-    let _loading = false
-    let _networkConnectionError = false
+    let _loading = false;
+    let _networkConnectionError = false;
 
     const items = derived(newArticles, $newArticles => {
         let existingIds = new Set<string>();
@@ -58,7 +58,7 @@
             flow="column"
             class="divide-y-2 divide-base-300 rounded-box"
         >
-            {#if $items.length < 0}
+            {#if $items.length > 0}
                 {#each $items as article (article.id)}
                     <a href="/a/{article.encode()}" class="py-4 w-full">
                         <ArticleWideCard

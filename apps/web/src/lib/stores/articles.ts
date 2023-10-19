@@ -7,7 +7,7 @@ const baseFilters: NDKFilter[] = [ { kinds: [NDKKind.Article as number], limit: 
 
 export const newArticles: NDKEventStore<NDKArticle> = get(ndk).storeSubscribe(
     baseFilters, {
-        autoStart: false,
+        autoStart: true,
         closeOnEose: false,
         subId: "new-articles-store",
         unrefUnsubscribeTimeout: 5000,

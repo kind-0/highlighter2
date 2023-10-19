@@ -31,7 +31,7 @@
     <div tabindex="0" class="dropdown-content z-20 card card-compact w-96 shadow bg-primary text-primary-content">
         <div class="card-body">
             <div class="flex flex-col gap-4">
-                <!-- <RelayList ndk={$ndk} /> -->
+                <RelayList ndk={$ndk} />
             </div>
         </div>
     </div>

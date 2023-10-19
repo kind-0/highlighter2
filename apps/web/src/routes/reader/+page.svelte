@@ -34,7 +34,7 @@
     })
 </script>
 
-<div class="flex flex-col max-lg:w-screen overflow-x-hidden gap-8">
+<div class="flex flex-col overflow-x-hidden gap-8">
     <DvmRecommendations />
 
     <RecentlyHighlighted />

@@ -89,9 +89,7 @@
             {navbarOpened ? 'hidden lg:flex' : 'flex'}
         ">
             <div class="flex items-center md:order-2 gap-4">
-                <div class="hidden">
-                    <RelaysButton iconOnly={true} />
-                </div>
+                <RelaysButton iconOnly={true} />
                 <CurrentUser />
             </div>
         </div>
