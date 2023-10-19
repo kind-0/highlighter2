@@ -232,11 +232,12 @@ transition:slide
                     on:submit={save}
                     class="
                         mt-4
-                        border:base-300 border-opacity-50
                         focus:ring-accent2
                         bg-base-300
                         min-h-[25vh]
                         min-w-[25vw]
+                        input input-bordered
+                        resize-none
                     "
                 />
             {/if}

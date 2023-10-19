@@ -37,7 +37,6 @@
 
 </script>
 
-<div class="flex flex-col justify-center items-center gap-4">
 <div class="flex flex-row gap-4 rounded-box justify-start {$$props.class || ``}">
     <figure class="rounded-lg {$$props.imageClass}">
         {#key image}
@@ -125,15 +124,6 @@
             {/if}
         </div>
     </div>
-</div> 
-<div class="flex flex-row w-full justify-end items-center p-4">
-    <div class="flex flex-row gap-2 items-center">
-        
-        <ShareButton class={`btn btn-xs`} options={{url: `https://nostr.band/${article.id}`}}>
-            {`click to share`}
-        </ShareButton>
-    </div>
-</div>
 </div>
 
 <style lang="postcss">

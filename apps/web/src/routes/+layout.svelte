@@ -42,7 +42,7 @@
                 $user = user;
                 $uiCommonUser = user!;
             })
-            
+
             //
             // set device params (start)
             const can_share = await Share.canShare()
@@ -55,7 +55,7 @@
             //
             //
             // set ui params (start)
-            let isMobile = true // @todo set properly
+            let isMobile = false // @todo set properly
             page_mobiletabs.set(isMobile)
             page_navbar.set(true)
             //
@@ -116,7 +116,7 @@
     //     sub = !!newArticles.subscription;
     //     networkFollowCount = $networkFollows?.size;
     // }, 100);
-    
+
     /*
 {#if $loadingScreen && shouldShowLoadingScreen}
     <div transition:fade>

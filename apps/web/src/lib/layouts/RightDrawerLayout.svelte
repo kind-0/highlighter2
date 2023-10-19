@@ -1,6 +1,6 @@
 <script lang="ts">
     import { rightDrawerContent } from '$lib/stores/right-drawer';
-    import ThreadView from '$lib/components/ThreadView/ThreadView.svelte';
+    import { ThreadView } from '@kind0/ui-common';
 </script>
 
 <div

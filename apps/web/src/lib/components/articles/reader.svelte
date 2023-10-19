@@ -9,6 +9,7 @@
     import { onDestroy } from 'svelte';
     import { NDKHighlight } from "@nostr-dev-kit/ndk";
     import MarkedContent from './MarkedContent.svelte';
+    import NewHighlight from "$components/highlights/NewHighlight.svelte";
     import { AvatarWithName } from "@kind0/ui-common";
     import RightDrawerLayout from '$lib/layouts/RightDrawerLayout.svelte';
     import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
@@ -17,6 +18,9 @@
     import AddToShelfButton from '$components/buttons/AddToShelfButton.svelte';
     import ArticleWideCard from './ArticleWideCard.svelte';
     import { page_navbar } from '$stores/page_navbar';
+    import { ReaderMarginNotePopup } from '@highlighter/svelte-kit-lib';
+    import { rightDrawerContent } from '$stores/right-drawer';
+    import { fade } from 'svelte/transition';
 
     export let article: NDKEvent | NDKArticle | string;
     export let content: string | undefined = undefined;
@@ -216,36 +220,37 @@
 </svelte:head>
 
 <RightDrawerLayout>
-    <div class="flex flex-col w-screen xl:flex-row mx-auto xl:px-6 pt-4">
-        <div class="flex flex-col w-full xl:px-16 !rounded-xl">
+    <div class="
+        flex flex-col xl:flex-row mx-auto xl:px-6 xl:pt-4
+    ">
+        <!-- article container -->
+        <div class="
+            flex flex-col
+            w-7/12
+        ">
             <div class="flex flex-col w-full">
                 <div class="
-                    sticky !rounded-t-xl top-0 p-4 border-b-2 border-base-300 bg-base-200/80 left-0 right-0
+                    sticky xl:!rounded-t-xl top-0 p-4 border-b-2 border-base-300 bg-base-200/80 left-0 right-0
                     flex flex-row items-center justify-between
                 ">
                     <div class="flex flex-row gap-4 items-center w-1/4">
-                        <a href="/reader" class="btn btn-neutral !rounded-full">
+                        <a href="/reader" class="btn !rounded-full">
                             <CaretLeft />
                             Back
                         </a>
                     </div>
 
-                    <div class="max-lg:hidden text-base-100-content font-semibold w-2/4 text-lg flex-grow text-center whitespace-nowrap truncate">
+                    <div class="max-sm:hidden text-base-100-content font-semibold w-2/4 text-lg flex-grow text-center whitespace-nowrap truncate">
                         {articleTitle()}
                     </div>
 
                     <div class="flex flex-row gap-4 items-center w-1/4 justify-end">
-                        <AddToShelfButton 
-                            event={article} 
-                            class="btn btn-neutral !rounded-full" 
+                        <AddToShelfButton
+                            event={article}
+                            class="btn !rounded-full"
                             onButtonClick={async () => { page_navbar.set(false) }}
-                            onModalClose={async () => { page_navbar.set(true) }} 
+                            onModalClose={async () => { page_navbar.set(true) }}
                         />
-                    </div>
-                </div>
-                <div class="lg:hidden flex flex-row w-full justify-center p-4">
-                    <div class="text-base-100-content font-semibold w-2/4 text-lg flex-grow text-center whitespace-nowrap truncate">
-                        {articleTitle()}
                     </div>
                 </div>
             </div>
@@ -311,11 +316,12 @@
             </div>
         </div>
 
-        <!-- Sidebar 
-        <div class="w-48 right-0 relative xl:w-5/12 flex-grow" id="sidebarContainer">
-            <div class="px-4 h-auto xl:h-screen">
+        <!-- Sidebar  -->
+        <div class="
+        " id="sidebarContainer">
+            <div class="h-auto xl:h-screen">
                 {#if newHighlightItem}
-                    <div class="z-50 fixed top-20 flex w-[calc(100%-36px)] pt-8" transition:fade>
+                    <div class="z-50 fixed top-20 flex pt-8 px-4" transition:fade>
                         <NewHighlight
                             highlight={newHighlightItem}
                             title={article?.url ? article.title : undefined}
@@ -356,7 +362,7 @@
                     {/if}
                 </div>
             </div>
-        </div>-->
+        </div>
     </div>
 </RightDrawerLayout>
 

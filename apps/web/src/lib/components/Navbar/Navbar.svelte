@@ -7,14 +7,18 @@
     import {AtlasNotesLogo} from '@kind0/ui-common';
     import { user } from '$stores/session';
     import { page } from '$app/stores';
+    import { page_layout } from '$stores/page_layout';
 
     export let isHiddenSidebar = false;
     export let isHiddenDrawerBtn = false;
     export let isHiddenLogo = false;
     export let mainComponent: any | undefined = undefined;
     export let drawerOpenCallback: () => Promise<void> = async () => { return }
-    export let logoLink = `/`
-    export let addMobileTopSpace = false
+    export let logoLink = `/`;
+
+    let addMobileTopSpace = false;
+
+    $: addMobileTopSpace = $page_layout === `mobile_addtopspace`;
 
     let homeLink = '/';
     let navbarOpened = false;
@@ -35,7 +39,7 @@
     }
 </script>
 
-<nav class="flex flex-row gap-4 w-screen sticky top-0 py-4 {addMobileTopSpace ? `max-lg:pt-12 mb-8` : `max-lg:pt-6`} px-4 max-lg:px-6 bg-base-100 backdrop-blur-sm justify-center">
+<nav class="flex flex-row gap-4 sticky top-0 py-4 {addMobileTopSpace ? `max-lg:pt-12 mb-8` : `max-lg:pt-6`} px-4 max-lg:px-6 bg-base-100 backdrop-blur-sm justify-center">
         <div class="
             {navbarOpened ? 'hidden lg:flex' : 'flex'}
             flex-row items-center gap-4 navbar-start
