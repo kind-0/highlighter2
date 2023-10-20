@@ -1,12 +1,9 @@
 <script lang="ts">
     import { page } from "$app/stores";
     import type { NDKUser } from "@nostr-dev-kit/ndk";
-    import { ThreeColumnsLayout, ndk } from "@kind0/ui-common";
+    import { ndk } from "@kind0/ui-common";
     import { startUserView, userSubscription } from "$stores/user-view.js";
     import { onDestroy, onMount } from "svelte";
-    import Section from "$components/Section.svelte";
-    import TagContentCards from "$components/ContentCards/TagContentCards.svelte";
-    import Navbar from "$components/Navbar/Navbar.svelte";
     import Sidebar from "./Sidebar/Sidebar.svelte";
     import PageContainer from "$components/PageContainer.svelte";
     import { page_loading } from "$stores/page_loading";
@@ -17,11 +14,11 @@
     $: npub = $page.data.npub;
 
     onMount(() => {
-        page_loading.set(true);
+        $page_loading = true;
         user = $ndk.getUser({npub});
 
         startUserView(user);
-        page_loading.set(false);
+        $page_loading = false;
     });
 
     onDestroy(() => {
@@ -29,7 +26,10 @@
     })
 </script>
 
-<PageContainer hideNavbar={false} pageLoading={$page_loading}>
+<PageContainer>
+    <div slot="leftSidebar">
+        <Sidebar {user} />
+    </div>
     <slot />
 </PageContainer>
 

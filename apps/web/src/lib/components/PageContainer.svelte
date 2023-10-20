@@ -8,14 +8,14 @@
     import Navbar from './Navbar/Navbar.svelte';
     import { page_navbar } from '$stores/page_navbar';
     import { navigating } from '$app/stores';
+    import { page_loading } from "$stores/page_loading";
 
     export let hideNavbar = false;
     export let hideSidebar = false;
-    export let leftSidebar: any;
+    export let leftSidebar: any | undefined = undefined;
 
     export let pageClassMain = ``;
     export let pageOverflowHidden = false;
-    export let pageLoading = false;
 </script>
 
 {#if $navigating}
@@ -26,15 +26,21 @@
     <DrawerContainer {pageOverflowHidden}>
         <svelte:fragment slot="page">
             <ThreeColumnsLayout>
-                <div slot="navbar">
+                <div slot="navbar" class="w-full">
                     {#if !hideNavbar && !$page_drawer && $page_navbar}
-                        <Navbar isHiddenLogo={false} drawerOpenCallback={async () => { page_drawer.set(!$page_drawer) }} />
+                        <Navbar
+                            isHiddenLogo={false}
+                        />
                     {/if}
                 </div>
 
                 <div slot="sidebar">
-                    {#if !hideSidebar && leftSidebar}
-                        <svelte:component this={leftSidebar} />
+                    {#if !hideSidebar}
+                        {#if leftSidebar}
+                            <svelte:component this={leftSidebar} />
+                        {:else if $$slots.leftSidebar}
+                            <slot name="leftSidebar" />
+                        {/if}
                     {/if}
                 </div>
 
@@ -42,7 +48,7 @@
                     {#if $page_mobiletabs}
                         <MobileTabs />
                     {/if}
-                    {#if pageLoading}
+                    {#if $page_loading}
                         <div class="flex flex-col h-[calc(100vh_-_96px)] w-full justify-center items-center">
                             <LoadingSpinner />
                         </div>
@@ -53,7 +59,12 @@
             </ThreeColumnsLayout>
         </svelte:fragment>
         <svelte:fragment slot="drawer">
-            <DrawerNavigationLinks />
+            {#if leftSidebar}
+                <svelte:component this={leftSidebar} />
+            {:else if $$slots.leftSidebar}
+                <slot name="leftSidebar" />
+            {/if}
+            <!-- <DrawerNavigationLinks /> -->
         </svelte:fragment>
     </DrawerContainer>
 {/if}
