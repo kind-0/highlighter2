@@ -78,7 +78,7 @@
         </ul>
     </CardWithTitle>
 
-    <SidebarSectionLink
+    <!-- <SidebarSectionLink
         href="/lists"
         class="!h-fit"
     >
@@ -89,7 +89,7 @@
                 built right in nostr.
             </span>
         </div>
-    </SidebarSectionLink>
+    </SidebarSectionLink> -->
 </div>
 
 <style>
