@@ -8,12 +8,12 @@
     import { user } from '$stores/session';
     import { page } from '$app/stores';
     import { page_layout } from '$stores/page_layout';
+    import { page_drawer } from '$stores/page_drawer';
 
     export let isHiddenSidebar = false;
     export let isHiddenDrawerBtn = false;
     export let isHiddenLogo = false;
     export let mainComponent: any | undefined = undefined;
-    export let drawerOpenCallback: () => Promise<void> = async () => { return }
     export let logoLink = `/`;
 
     let addMobileTopSpace = false;
@@ -37,9 +37,13 @@
     } else {
         logoToUse = FullLogo;
     }
+
+    function toggleDrawer() {
+        $page_drawer = !$page_drawer;
+    }
 </script>
 
-<nav class="flex flex-row gap-4 sticky top-0 py-4 {addMobileTopSpace ? `max-lg:pt-12 mb-8` : `max-lg:pt-6`} px-4 max-lg:px-6 bg-base-100 backdrop-blur-sm justify-center">
+<nav class="flex flex-row gap-4 sticky top-0 py-4 w-full {addMobileTopSpace ? `max-lg:pt-12 mb-8` : `max-lg:pt-6`} px-4 max-lg:px-6 bg-base-100 backdrop-blur-sm justify-center">
         <div class="
             {navbarOpened ? 'hidden lg:flex' : 'flex'}
             flex-row items-center gap-4 navbar-start
@@ -47,7 +51,7 @@
         ">
             <div class="flex-none {!isHiddenSidebar ? 'lg:hidden' : ''}">
                 <label for="left-drawer" class="btn btn-square btn-ghost {isHiddenDrawerBtn ? 'hidden' : ''}">
-                    <button on:click={async () => { await drawerOpenCallback() }}>
+                    <button on:click={toggleDrawer}>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current"
                             ><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg
                         >
