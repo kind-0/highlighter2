@@ -16,11 +16,11 @@ export function startUserView(user: NDKUser) {
     userSubscription = $ndk.storeSubscribe([
         {
             kinds: [ NDKKind.Highlight, NDKKind.Article ],
-            authors: [user.hexpubkey]
+            authors: [user.pubkey]
         },
         {
             kinds: [ NDKKind.Zap ],
-            "#p": [ user.hexpubkey ]
+            "#p": [ user.pubkey ]
         }
     ], {
         subId: 'user-view'
