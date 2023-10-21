@@ -5,11 +5,9 @@
 </script>
 
 <ThreeColumnsLayout>
-    <div slot="navbar">
-        <Navbar />
-    </div>
+    <Navbar slot="navbar" />
 
-    <div slot="sidebar">
+    <div slot="sidebar" class="w-full">
         <Sidebar />
     </div>
 

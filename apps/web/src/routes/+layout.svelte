@@ -29,7 +29,6 @@
 
     let sessionPreparationStarted = false;
     let mounted = false;
-    let mountedMobile = false;
     loadingScreen.set(false)
 
     onMount(async () => {
@@ -57,12 +56,6 @@
             page_navbar.set(true)
             //
             // set ui params (end)
-
-            // @todo better workaround to navigate to '/reader' on mobile
-            if(window.innerWidth < 450) {
-                await goto(`/reader`)
-                mountedMobile = true
-            }
         } catch (e) {
             console.error(`layout error2`, e);
             mounted = true;

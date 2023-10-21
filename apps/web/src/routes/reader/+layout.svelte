@@ -1,10 +1,18 @@
 <script lang="ts">
-    import PageContainer from '$components/PageContainer.svelte';
+    import Navbar from '$components/Navbar/Navbar.svelte';
     import ReaderSidebar from '$components/sidebars/ReaderSidebar.svelte'
+    import { ThreeColumnsLayout } from '@kind0/ui-common';
 </script>
 
-<PageContainer
-    leftSidebar={ReaderSidebar}
->
+<ThreeColumnsLayout>
+    <div slot="navbar" class="w-full">
+        <Navbar />
+    </div>
+
+    <div slot="sidebar" class="w-full">
+        <ReaderSidebar />
+    </div>
+
     <slot />
-</PageContainer>
+</ThreeColumnsLayout>
+

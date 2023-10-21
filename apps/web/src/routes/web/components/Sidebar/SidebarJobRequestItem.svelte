@@ -29,7 +29,7 @@
 
 {#if title}
 
-<li class="overflow-hidden w-fit">
+<li class="overflow-hidden w-full truncate">
     <a href="/dvm/{jobRequest.encode()}" class="overflow-hidden flex items-start justify-start text-left">
         {#if image}
             <img src={image} alt="image" class="w-10 h-10 object-cover !rounded-lg me-2" />

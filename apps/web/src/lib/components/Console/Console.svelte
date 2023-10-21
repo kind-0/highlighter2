@@ -9,7 +9,7 @@
     let prevSearchQuery: string | undefined = undefined;
     let jobRequestId: string | undefined;
 
-    let priorJobRequests: NDKEventStore<NDKTranscriptionDVM>;
+    let priorJobRequests: NDKEventStore<NDKDVMRequest>;
     let jobRequest: NDKTranscriptionDVM | undefined = undefined;
     let jobEvents: NDKEventStore<NDKEvent> | null = null;
     let showPriorJobResults = true;
@@ -18,10 +18,10 @@
         prevSearchQuery = $searchQuery;
 
         if ($processingInstructions?.dvm && $processingInstructions.url) {
-            priorJobRequests = $ndk.storeSubscribe({
-                kinds: [NDKKind.DVMJobRequestTranscription as number],
-                '#i': [$processingInstructions.url],
-            }, { closeOnEose: true, groupable: false }, NDKDVMRequest)
+            // priorJobRequests = $ndk.storeSubscribe({
+            //     kinds: [NDKKind.DVMJobRequestTranscription as number],
+            //     '#i': [$processingInstructions.url],
+            // }, { closeOnEose: true, groupable: false, subId: 'prior-requests' }, NDKDVMRequest)
         }
     }
 
@@ -38,7 +38,7 @@
 
 <div class="flex flex-col items-center gap-6">
     {#if $processingInstructions?.url}
-        <div class="flex flex-col gap-4 w-main">
+        <div class="flex flex-col gap-4 lg:w-main">
             <div class="card card-body">
                 <JobRequestTranscription
                     bind:jobRequest
@@ -55,8 +55,8 @@
             {#if showPriorJobResults && $priorJobRequests && $priorJobRequests.length > 0}
                 <div class="flex flex-col gap-4">
                     {#each $priorJobRequests as job}
-                        <DvmJobResultsFeed jobRequest={job} />
-                        <!-- <JobRequestEventsFeed onlyJobsWithResults={true} jobRequest={job} /> -->
+                        <!-- <DvmJobResultsFeed jobRequest={job} /> -->
+                        <JobRequestEventsFeed onlyJobsWithResults={false} jobRequest={job} />
                     {/each}
                 </div>
             {:else if jobRequestId && jobRequest}

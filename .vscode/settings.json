@@ -1,6 +1,7 @@
 {
     "search.useParentIgnoreFiles": true,
     "files.exclude": {
-        "**/.svelte-kit": true
+        "**/.svelte-kit": true,
+        "mobile/": true
     }
 }

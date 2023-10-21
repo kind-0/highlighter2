@@ -1,18 +1,20 @@
 <script lang="ts">
+	import Sidebar from './../p/[id]/Sidebar/Sidebar.svelte';
     import { page } from '$app/stores';
     import Section from '$components/Section.svelte';
     import HighlightList from '$components/HighlightList.svelte';
-    import { EntryInput, ndk } from "@kind0/ui-common";
+    import { EntryInput, ThreeColumnsLayout, ndk } from "@kind0/ui-common";
     import {  PageTitle } from '@kind0/ui-common';
     import { NDKRelaySet, NDKHighlight, NDKArticle, type NDKTag } from '@nostr-dev-kit/ndk';
     import type { NDKEventStore } from '@nostr-dev-kit/ndk-svelte';
     import TagContentCards from '$components/ContentCards/TagContentCards.svelte';
     import { derived, type Readable } from 'svelte/store';
     import ArticleContentCard from '$components/ContentCards/ArticleContentCard.svelte';
-    import PageContainer from '$components/PageContainer.svelte';
     import { goto } from '$app/navigation';
     import { rxp_uri } from '$utils/rxp';
     import SearchPageLinkButton from '$components/buttons/SearchPageLinkButton.svelte';
+    import Navbar from '$components/Navbar/Navbar.svelte';
+    import ReaderSidebar from '$components/sidebars/ReaderSidebar.svelte';
     let query: string | null;
     let prevQuery: string;
 
@@ -107,7 +109,11 @@
     <title>{query} search on Highlighter</title>
 </svelte:head>
 
-<PageContainer>
+<ThreeColumnsLayout>
+    <Navbar slot="navbar" />
+
+    <ReaderSidebar slot="sidebar" />
+
     {#if query}
         <PageTitle title="Search:" subtitle={`"${query}"`} class="" />
 
@@ -169,12 +175,12 @@
                 </p>
             </div>
             <div class="flex flex-row w-full justify-center items-center">
-                <EntryInput 
-                    class="w-full rounded-full" 
-                    placeholder={`Search`} 
+                <EntryInput
+                    class="w-full rounded-full"
+                    placeholder={`Search`}
                     onInputCallback={async _ => { _errorMsg = `` }}
                     onInputValidation={async v => rxp_uri.test(v)}
-                    onInputValidationSuccess={async v => { searchQueryText = v }} 
+                    onInputValidationSuccess={async v => { searchQueryText = v }}
                     />
             </div>
             {#if !!_errorMsg}
@@ -191,5 +197,5 @@
             </div>
         </div>
     {/if}
-</PageContainer>
+</ThreeColumnsLayout>
 

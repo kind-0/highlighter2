@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Avatar, HighlightIcon, Name, ShelvesIcon } from "@kind0/ui-common";
+    import { AttentionButton, Avatar, HighlightIcon, Name, ShelvesIcon } from "@kind0/ui-common";
     import type { NDKUser } from '@nostr-dev-kit/ndk';
     import { Newspaper } from 'phosphor-svelte';
     import { page } from '$app/stores';
@@ -28,7 +28,7 @@
             <Name {user} class="text-lg font-semibold truncate" />
         </span>
 
-        <ul class="menu bg-base-200 w-full rounded-box">
+        <ul class="menu">
             <MenuItem
                 href="/p/{id}/highlights"
                 class="w-full"
@@ -54,5 +54,21 @@
                 Writing
             </MenuItem>
         </ul>
+
+        <div class="divider my-2"></div>
+
+        <ul class="menu w-full">
+            <li class="menu-title">
+                SUPPORTERS
+            </li>
+        </ul>
+
+        <div class="flex flex-row">
+
+            <AttentionButton href="/p/{id}/support" class="">
+                Support
+            </AttentionButton>
+        </div>
+
     </CardWithTitle>
 </div>

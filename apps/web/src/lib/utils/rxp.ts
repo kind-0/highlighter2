@@ -1,1 +1,1 @@
-export const rxp_uri = /^[a-zA-Z0-9\-_]+$/
+export const rxp_uri = /^[a-zA-Z0-9\-_]+$/;

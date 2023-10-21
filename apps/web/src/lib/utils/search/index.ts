@@ -24,7 +24,7 @@ export async function getSearchProcessingInstructions(query: string, authorPubke
 
     if ((result.type = tryToLoadRss(query))) return result;
     if ((result.type = tryToLoadUserBech32(query))) return result;
-    if ((result.type = tryToLoadBech32(query))) return result;
+    if ((result.type = await tryToLoadBech32(query))) return result;
     if ((result.type = tryToLoadTopic(query))) return result;
     if ((result.type = tryToLoadSearch(query))) return result;
 

@@ -4,11 +4,10 @@
     import type { ProcessableTypes } from './types';
     import TranscriptionTimeRange from './TranscriptionTimeRange.svelte';
     import Stars from '$lib/icons/Stars.svelte';
-    import ButtonWithBorderGradient2 from '$lib/components/buttons/ButtonWithBorderGradient2.svelte';
     import { NDKTranscriptionDVM } from '@nostr-dev-kit/ndk';
     import { AttentionButton } from "@kind0/ui-common";
     import { slide } from "svelte/transition";
-    import { CaretCircleDoubleDown, CaretDoubleDown, CaretDown } from "phosphor-svelte";
+    import { CaretDown } from "phosphor-svelte";
 
     const dispatch = createEventDispatcher();
 
@@ -34,7 +33,6 @@
 
         jobRequest.bid = processBid * 1000;
         jobRequest.addInput(url, "url");
-        jobRequest.job = 'speech-to-text';
 
         if (startTime.toString().length > 0 && endTime.toString().length > 0) {
             jobRequest.addParam('range', startTime.toString(), endTime.toString());
@@ -44,6 +42,8 @@
 
         if (title) jobRequest.tags.push(['title', title]);
         if (image) jobRequest.tags.push(['image', image]);
+
+        console.log(event, jobRequest.rawEvent());
 
         await jobRequest.publish();
 

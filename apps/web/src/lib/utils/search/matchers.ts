@@ -1,5 +1,9 @@
 import { goto } from "$app/navigation";
+import { nip19 } from "nostr-tools";
+import { ndk } from "@kind0/ui-common";
+import { get as getStore } from "svelte/store";
 import type { MediaType } from ".";
+import { NDKKind } from "@nostr-dev-kit/ndk";
 
 function findBech32Match(data: string): string | undefined {
     const midUrlEventMatcher = /(naddr|nevent|note)1([a-zA-Z0-9]+)\/?$/i;
@@ -35,14 +39,27 @@ export function tryToLoadUserBech32(data: string): MediaType | undefined {
     } catch (e) { /* empty */ }
 }
 
-export function tryToLoadBech32(data: string): MediaType | undefined {
+export async function tryToLoadBech32(data: string): Promise<MediaType | undefined> {
     try {
         const bech32Match = findBech32Match(data!);
 
-        if (bech32Match) {
-            goto(`/a/${encodeURIComponent(bech32Match)}`);
+        if (!bech32Match) return;
+
+        const $ndk = getStore(ndk);
+        const event = await $ndk.fetchEvent(bech32Match);
+
+        if (!event) return;
+
+        if (event.kind! >= 65002 && event.kind! <= 65999) {
+            goto(`/dvm/${encodeURIComponent(bech32Match)}`);
+            return "bech32";
+        } else if (event.kind === NDKKind.Highlight) {
+            goto(`/e/${encodeURIComponent(bech32Match)}`);
             return "bech32";
         }
+
+        goto(`/a/${encodeURIComponent(bech32Match)}`);
+        return "bech32";
     } catch (e) { /* empty */ }
 }
 

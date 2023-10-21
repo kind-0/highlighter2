@@ -4,11 +4,10 @@
     import RelaysButton from '$lib/components/RelaysButton.svelte';
     import SearchInput from './SearchInput.svelte';
     import Logo from '$lib/icons/Logo.svelte';
-    import {AtlasNotesLogo} from '@kind0/ui-common';
+    import {AtlasNotesLogo, pageDrawerToggle} from '@kind0/ui-common';
     import { user } from '$stores/session';
     import { page } from '$app/stores';
     import { page_layout } from '$stores/page_layout';
-    import { page_drawer } from '$stores/page_drawer';
 
     export let isHiddenSidebar = false;
     export let isHiddenDrawerBtn = false;
@@ -39,7 +38,7 @@
     }
 
     function toggleDrawer() {
-        $page_drawer = !$page_drawer;
+        $pageDrawerToggle = !$pageDrawerToggle;
     }
 </script>
 

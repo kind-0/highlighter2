@@ -3,7 +3,7 @@ import { NDKUser } from "@nostr-dev-kit/ndk";
 export async function load({ params }) {
     const {id} = params;
 
-    if (id.startsWith('npub')) {
+    if (id.startsWith('npub1')) {
         return { npub: id };
     }
 

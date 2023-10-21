@@ -1,12 +1,11 @@
 <script lang="ts">
     import { page } from "$app/stores";
     import type { NDKUser } from "@nostr-dev-kit/ndk";
-    import { ndk } from "@kind0/ui-common";
+    import { ThreeColumnsLayout, ndk } from "@kind0/ui-common";
     import { startUserView, userSubscription } from "$stores/user-view.js";
     import { onDestroy, onMount } from "svelte";
     import Sidebar from "./Sidebar/Sidebar.svelte";
-    import PageContainer from "$components/PageContainer.svelte";
-    import { page_loading } from "$stores/page_loading";
+    import Navbar from "$components/Navbar/Navbar.svelte";
 
     //let npub = $page.data.npub;
     let user: NDKUser;
@@ -14,24 +13,23 @@
     $: npub = $page.data.npub;
 
     onMount(() => {
-        $page_loading = true;
         user = $ndk.getUser({npub});
 
         startUserView(user);
-        $page_loading = false;
     });
 
     onDestroy(() => {
-        userSubscription?.unsubscribe();
+        userSubscription.unref();
     })
 </script>
 
-<PageContainer>
-    <div slot="leftSidebar">
-        <Sidebar {user} />
-    </div>
-    <slot />
-</PageContainer>
+{#if user}
+    <ThreeColumnsLayout>
+        <Navbar slot="navbar" />
+        <Sidebar {user}  slot="sidebar" />
+        <slot />
+    </ThreeColumnsLayout>
+{/if}
 
 <!---<ThreeColumnsLayout>
     <div slot="navbar">

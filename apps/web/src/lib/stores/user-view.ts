@@ -14,10 +14,12 @@ export function startUserView(user: NDKUser) {
     }
 
     userSubscription = $ndk.storeSubscribe([
+        // highlights and articles the user has created
         {
             kinds: [ NDKKind.Highlight, NDKKind.Article ],
             authors: [user.pubkey]
         },
+        // zaps the user has received
         {
             kinds: [ NDKKind.Zap ],
             "#p": [ user.pubkey ]

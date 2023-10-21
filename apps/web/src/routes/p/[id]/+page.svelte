@@ -3,7 +3,7 @@
     import { goto } from '$app/navigation';
     import { page } from '$app/stores';
     import { AvatarWithName, ndk, nicelyFormattedMilliSatNumber } from "@kind0/ui-common";
-    import { NDKArticle, NDKEvent, zapInvoiceFromEvent, type NDKEventId, type NDKUser, type NDKZapInvoice, type Hexpubkey } from '@nostr-dev-kit/ndk';
+    import { NDKArticle, NDKEvent, zapInvoiceFromEvent, type NDKEventId, type NDKUser, type NDKZapInvoice, type Hexpubkey, NDKKind } from '@nostr-dev-kit/ndk';
     import ArticleContentCard from "$components/ContentCards/ArticleContentCard.svelte";
     import { derived, get, type Readable } from "svelte/store";
     import { userSubscription } from "$stores/user-view";
@@ -31,6 +31,11 @@
             const articles = new Map<NDKEventId, NDKArticle>();
 
             for (const event of $userSubscription) {
+                if (
+                    event.pubkey !== user.pubkey ||
+                    event.kind !== NDKKind.Article
+                ) continue;
+
                 const id = event.encode();
                 if (!articles.has(id)) articles.set(id, NDKArticle.from(event));
             }
@@ -74,21 +79,12 @@
     </div>
 {/if} -->
 
-{#if $articles}
-    <Section
-        title="Articles"
-        on:click={() => { expanded = true; }}
-        {expanded}
-    >
-        {#each $articles.values() as article (article.id)}
-            <ArticleContentCard {article} />
-        {/each}
-    </Section>
-{:else}
-    <div class="flex flex-col w-full justify-center items-center pt-8 gap-4">
-        <p class="font-sans font-medium text-base">
-            {`Searching for articles`}
-        </p>
-        <HomePageLink />
-    </div>
-{/if}
+<Section
+    title="Articles"
+    on:click={() => { expanded = true; }}
+    {expanded}
+>
+    {#each $articles.values() as article (article.id)}
+        <ArticleContentCard {article} />
+    {/each}
+</Section>
