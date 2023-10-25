@@ -51,7 +51,7 @@
         title="DVMs"
     >
         <ul class="menu bg-base-200 w-full rounded-box overflow-clip">
-            {#each $userJobs as jobRequest (jobRequest.id)}
+            {#each $userJobs as jobRequest}
                 <SidebarJobRequestItem {jobRequest} />
             {/each}
         </ul>
@@ -63,7 +63,6 @@
         title="Highlighter"
     >
         <ul class="menu bg-base-200 w-full rounded-box">
-            <RelaySetButton />
             <li class="menu-title">PROFILES</li>
             {#if hasUserHighlights}
                 <MenuItem href="/highlights/me" activeClass="border-l-accent">

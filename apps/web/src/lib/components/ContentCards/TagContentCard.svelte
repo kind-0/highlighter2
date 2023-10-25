@@ -64,8 +64,8 @@
         <ArticleContentCard {article} />
     {:else if tag[0] === "r"}
         <UrlContentCard url={tag[1]} {previewData} />
-    {:else}
-        <p>Unknown tag type: {JSON.stringify(tag)}</p>
+    {:else if tag[0] === "e"}
+        <ArticleContentCard {article} />
     {/if}
 {:catch e}
     <p>Unable to load {JSON.stringify(tag)}: {e}</p>

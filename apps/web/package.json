@@ -75,6 +75,7 @@
         "debug": "^4.3.4",
         "dexie": "^3.2.4",
         "eventemitter3": "^5.0.0",
+        "faker": "^6.6.6",
         "get-selection-more": "^1.1.0",
         "inflected": "^2.1.0",
         "jsdom": "^21.1.1",

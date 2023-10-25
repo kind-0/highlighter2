@@ -13,7 +13,6 @@ module.exports = {
                 accent2: "#817EFF",
             },
             height: {
-                modalCoverScreen: "90vh",
                 modalLargeScreen: "420px",
                 mobileTabs: "84px",
                 mobileTabsLg: "100px"
@@ -163,7 +162,10 @@ module.exports = {
                     },
                     mark: {
                         background: "rgba(255, 104, 94, 0.33)",
-                        color: "#FDC1BE",
+                        color: "#dadada",
+                    },
+                    article: {
+                        color: "#dadada",
                     },
                     "::selection": {
                         background: "rgba(255, 104, 94, 0.33)",

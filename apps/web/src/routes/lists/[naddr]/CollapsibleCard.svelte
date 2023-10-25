@@ -5,7 +5,7 @@
     import type { NDKEvent, NDKTag } from '@nostr-dev-kit/ndk';
     import { createEventDispatcher } from 'svelte';
     import { DotsThreeVertical } from 'phosphor-svelte';
-    import { ndk } from '@kind0/ui-common';
+    import { AvatarWithName, ndk } from '@kind0/ui-common';
 
     const dispatch = createEventDispatcher();
 
@@ -52,7 +52,8 @@
                 class="w-full"
             />
         {:else if tag[0] === 'p'}
-            <UserCard ndk={$ndk} pubkey={tag[1]} />
+            <AvatarWithName pubkey={tag[1]} />
+            <!-- <UserCard ndk={$ndk} pubkey={tag[1]} /> -->
         {:else}
             <GenericEventCard
                 id={tag[1]}

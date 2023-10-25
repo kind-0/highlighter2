@@ -4,9 +4,7 @@
     import { page_mobiletabs } from "$stores/page_mobiletabs";
     import { LoadingSpinner, ThreeColumnsLayout } from "@kind0/ui-common";
     import DrawerContainer from "./DrawerContainer.svelte";
-    import DrawerNavigationLinks from "./DrawerNavigationLinks.svelte";
     import Navbar from './Navbar/Navbar.svelte';
-    import { page_navbar } from '$stores/page_navbar';
     import { navigating } from '$app/stores';
     import { page_loading } from "$stores/page_loading";
 
@@ -27,7 +25,7 @@
         <svelte:fragment slot="page">
             <ThreeColumnsLayout>
                 <div slot="navbar" class="w-full">
-                    {#if !hideNavbar && !$page_drawer && $page_navbar}
+                    {#if !hideNavbar && !$page_drawer}
                         <Navbar
                             isHiddenLogo={false}
                         />

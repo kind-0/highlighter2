@@ -1,24 +1,27 @@
 <script lang="ts">
     import Section from "$components/Section.svelte";
-    import { goto } from '$app/navigation';
     import { page } from '$app/stores';
-    import { AvatarWithName, ndk, nicelyFormattedMilliSatNumber } from "@kind0/ui-common";
-    import { NDKArticle, NDKEvent, zapInvoiceFromEvent, type NDKEventId, type NDKUser, type NDKZapInvoice, type Hexpubkey, NDKKind } from '@nostr-dev-kit/ndk';
+    import { ndk, user as currentUser } from "@kind0/ui-common";
+    import { NDKArticle, zapInvoiceFromEvent, type NDKEventId, type NDKUser, type NDKZapInvoice, type Hexpubkey, NDKKind } from '@nostr-dev-kit/ndk';
     import ArticleContentCard from "$components/ContentCards/ArticleContentCard.svelte";
     import { derived, get, type Readable } from "svelte/store";
-    import { userSubscription } from "$stores/user-view";
-    import Reader from "$components/articles/reader.svelte";
-    import HomePageLink from "$components/HomePageLink.svelte";
+    import { getUserSupporters, userSubscription } from "$stores/user-view";
+    import SupportUserCard from "$components/User/SupportUserCard.svelte";
 
     let { id } = $page.params;
     let { npub } = $page.data;
     let user: NDKUser;
 
-    if (npub.startsWith('npub')) {
-        try {
-            user = $ndk.getUser({npub})
-        } catch(e) {
-            console.log(e, ` error`);
+    $: {
+        id = $page.params.id;
+        npub = $page.data.npub;
+
+        if (npub.startsWith('npub')) {
+            try {
+                user = $ndk.getUser({npub})
+            } catch(e) {
+                console.log(e, ` error`);
+            }
         }
     }
 
@@ -58,6 +61,8 @@
     }
 
     let expanded = false;
+
+    const userSupporters = getUserSupporters();
 </script>
 
 <!-- {#if zaps.size > 0}
@@ -79,12 +84,17 @@
     </div>
 {/if} -->
 
-<Section
-    title="Articles"
-    on:click={() => { expanded = true; }}
-    {expanded}
->
-    {#each $articles.values() as article (article.id)}
-        <ArticleContentCard {article} />
-    {/each}
-</Section>
+{#key id}
+    {#if !$userSupporters.find(e => e.pubkey === $currentUser.pubkey)}
+        <SupportUserCard {user} />
+    {/if}
+
+    <Section
+        title="Articles"
+        on:click={() => { expanded = true; }}
+    >
+        {#each $articles.values() as article (article.id)}
+            <ArticleContentCard {article} />
+        {/each}
+    </Section>
+{/key}

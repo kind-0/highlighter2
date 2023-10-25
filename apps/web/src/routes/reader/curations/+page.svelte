@@ -1,7 +1,7 @@
 <script lang="ts">
     import TagContentCards from "$components/ContentCards/TagContentCards.svelte";
     import Section from "$components/Section.svelte";
-import { ndk } from "@kind0/ui-common";
+    import { ndk } from "@kind0/ui-common";
     import { NDKList } from "@nostr-dev-kit/ndk";
 
     const curations = $ndk.storeSubscribe({
@@ -9,8 +9,6 @@ import { ndk } from "@kind0/ui-common";
         "#c": ["curation"]
     }, undefined, NDKList)
 </script>
-
-{$curations.length}
 
 {#each $curations as curation (curation.id)}
     <Section

@@ -10,9 +10,9 @@
 </script>
 
 <div class="flex flex-col gap-8 pr-4 max-h-full overscroll-y-auto overflow-x-hidden">
-    <ul class="menu bg-base-200 w-full rounded-box">
+    <!-- <ul class="menu bg-base-200 w-full rounded-box">
         <RelaySetButton />
-    </ul>
+    </ul> -->
 
     <ul class="menu bg-base-200 w-full rounded-box">
 

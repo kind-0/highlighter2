@@ -32,7 +32,7 @@
                         innerClass="flex flex-row items-center gap-2"
                     >
                         <Avatar pubkey={userShelf.pubkey} size="tiny" type="square" />
-                        {userShelf.name}
+                        {userShelf.title}
                     </MenuItem>
                 {/if}
             {/each}
@@ -42,7 +42,7 @@
                     <li>
                         <a href="/reader/{networkShelf.encode()}">
                             <Avatar pubkey={networkShelf.pubkey} size="tiny" type="square" />
-                            {networkShelf.name}
+                            {networkShelf.title}
                         </a>
                     </li>
                 {/if}

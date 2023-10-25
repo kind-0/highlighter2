@@ -27,11 +27,15 @@
         }, undefined, NDKHighlight);
 
         articleTags = derived(highlights, $highlights => {
+            const tagIds = new Set<string>();
             const tags = new Set<NDKTag>();
 
             $highlights?.forEach((h: NDKHighlight) => {
                 const tag = h.getArticleTag();
-                if (tag) tags.add(tag);
+                if (tag && !tagIds.has(tag[1])) {
+                    tags.add(tag);
+                    tagIds.add(tag[1]);
+                }
             })
 
             return tags;
@@ -49,7 +53,6 @@
     <Section
         title="Recently Highlighted"
         on:click={() => { expanded = true; }}
-        {expanded}
     >
         <TagContentCards tags={Array.from($articleTags)} />
     </Section>

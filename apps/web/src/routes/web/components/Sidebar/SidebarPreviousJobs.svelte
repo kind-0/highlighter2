@@ -11,7 +11,7 @@
     let sortedJobs: Readable<NDKDVMRequest[]>;
 
     onMount(() => {
-        const query: NDKFilter = { kinds: [65002 as number], limit: 10 };
+        const query: NDKFilter = { kinds: [5000 as number], limit: 10 };
 
         if ($user) {
             query.authors = [$user.hexpubkey];

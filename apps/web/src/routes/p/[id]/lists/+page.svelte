@@ -1,35 +1,44 @@
 <script lang="ts">
-	import GenericEventCard from '$lib/components/events/generic/card.svelte';
     import { page } from "$app/stores";
-    import MainWithRightSidebar from "$lib/layouts/MainWithRightSidebar.svelte";
-    import { NDKListKinds, NDKUser } from "@nostr-dev-kit/ndk";
+    import TagContentCards from "$components/ContentCards/TagContentCards.svelte";
+    import HighlightListItem from "$components/HighlightListItem.svelte";
+    import Section from "$components/Section.svelte";
+    import Highlight from "$icons/Highlight.svelte";
     import { ndk } from "@kind0/ui-common";
-    import { onDestroy } from "svelte";
-    import { NDKList } from "@nostr-dev-kit/ndk";
-    import ListCard from '$lib/components/lists/ListCard.svelte';
+    import { NDKHighlight, NDKKind, NDKList, NDKUser } from "@nostr-dev-kit/ndk";
 
     const { npub } = $page.data;
 
     const user = new NDKUser({npub});
 
-    const lists = $ndk.storeSubscribe({
-            kinds: NDKListKinds,
-            authors: [user.hexpubkey]
-        },
-        undefined,
-        NDKList
-    );
+    const curations = $ndk.storeSubscribe([
+        {
+            authors: [user.pubkey],
+            kinds: [NDKKind.CategorizedBookmarkList],
+            "#c": ["curation"]
+        }
+        , {
+            authors: [user.pubkey],
+            kinds: [NDKKind.CategorizedHighlightList as number],
 
-    onDestroy(() => {
-        lists.unsubscribe();
-    });
+        }
+    ], undefined, NDKList)
 </script>
 
-<MainWithRightSidebar>
-    {#each $lists||[] as list}
-        <ListCard
-            {list}
-            linkPrefix={`/p/${$page.params.id}/lists/`}
-        />
-    {/each}
-</MainWithRightSidebar>
+{#each $curations as curation (curation.id)}
+    {#if curation.items.length > 0}
+        <Section
+            title={curation.title??"Curation List"}
+        >
+
+            <TagContentCards tags={curation.items} />
+        </Section>
+        {#each curation.items as item}
+            {#await $ndk.fetchEvent(item[1]) then event}
+                {#if event && event.kind === NDKKind.Highlight}
+                    <HighlightListItem highlight={NDKHighlight.from(event)} />
+                {/if}
+            {/await}
+        {/each}
+    {/if}
+{/each}

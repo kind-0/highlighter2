@@ -15,6 +15,8 @@
     export let mainComponent: any | undefined = undefined;
     export let logoLink = `/`;
 
+    $: logoLink = !$user || $page.url.pathname === '/reader' ? `/` : `/reader`;
+
     let addMobileTopSpace = false;
 
     $: addMobileTopSpace = $page_layout === `mobile_addtopspace`;
@@ -42,7 +44,7 @@
     }
 </script>
 
-<nav class="flex flex-row gap-4 sticky top-0 py-4 w-full {addMobileTopSpace ? `max-lg:pt-12 mb-8` : `max-lg:pt-6`} px-4 max-lg:px-6 bg-base-100 backdrop-blur-sm justify-center">
+<nav class="flex flex-row gap-4 sticky top-0 py-2 w-full {addMobileTopSpace ? `max-lg:pt-12 mb-8` : `max-lg:pt-6`} px-4 max-lg:px-6 bg-base-100/80 backdrop-blur-sm justify-center">
         <div class="
             {navbarOpened ? 'hidden lg:flex' : 'flex'}
             flex-row items-center gap-4 navbar-start

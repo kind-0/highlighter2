@@ -4,7 +4,6 @@
     import { onDestroy } from "svelte";
     import { ndk } from "@kind0/ui-common";
     import { AvatarWithName } from "@kind0/ui-common";
-    import PaymentRequestButton from "./PaymentRequestButton.svelte";
     import { user } from '$stores/session';
     import rejectEvent from './reject.js';
     import CheckIcon from "$lib/icons/Check.svelte";

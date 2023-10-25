@@ -19,7 +19,6 @@
     import { user, userLabels, prepareSession, loadingScreen, userFollows } from '$stores/session';
     import { bunkerNDK, ndk } from '@kind0/ui-common';
     import { page_mobiletabs } from '$stores/page_mobiletabs';
-    import { page_navbar } from '$stores/page_navbar';
     import { Share } from '@capacitor/share';
     import { Device } from '@capacitor/device';
     import { app_device } from '$stores/app_device';
@@ -53,7 +52,6 @@
             // set ui params (start)
             let isMobile = false // @todo set properly
             page_mobiletabs.set(isMobile)
-            page_navbar.set(true)
             //
             // set ui params (end)
         } catch (e) {

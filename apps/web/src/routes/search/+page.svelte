@@ -15,6 +15,7 @@
     import SearchPageLinkButton from '$components/buttons/SearchPageLinkButton.svelte';
     import Navbar from '$components/Navbar/Navbar.svelte';
     import ReaderSidebar from '$components/sidebars/ReaderSidebar.svelte';
+    import RelatedUsersAndTopics from '../web/components/RightSidebar/RelatedUsersAndTopics.svelte';
     let query: string | null;
     let prevQuery: string;
 
@@ -117,17 +118,12 @@
     {#if query}
         <PageTitle title="Search:" subtitle={`"${query}"`} class="" />
 
-        <div class="flex flex-row w-full justify-end items-center p-4">
-            <SearchPageLinkButton />
-        </div>
-
         <div class="flex flex-col w-full divide-y-2 divide-base-300 gap-4">
             {#key query}
                 {#if $highlightedArticles.length > 0}
                     <Section
                         title="Highlighted Articles"
                         on:click={() => { expanded = true; }}
-                        {expanded}
                     >
                         <TagContentCards tags={$highlightedArticles} />
                     </Section>
@@ -138,19 +134,12 @@
                 <Section
                     title="Articles"
                     on:click={() => { expanded = true; }}
-                    {expanded}
                 >
                     {#each $articles as article}
+                        {JSON.stringify(article)}
                         <ArticleContentCard {article} />
                     {/each}
                 </Section>
-            {:else}
-                <div class="flex flex-col w-full justify-center items-center gap-4 pt-4">
-                    <p class="font-sans font-medium text-base">
-                        {`No articles have been found.`}
-                    </p>
-                    <SearchPageLinkButton>{`go to search`}</SearchPageLinkButton>
-                </div>
             {/if}
 
             {#if $highlights && $highlights.length > 0}
@@ -163,10 +152,6 @@
                 </Section>
             {/if}
         </div>
-        <!-- @note-pablo, removed this
-        <div slot="rightSidebar" class="flex flex-col gap-4">
-            <RelatedUsersAndTopics {users} {otherTopics} {sortedOtherTopics} />
-        </div> -->
     {:else}
         <div class="flex flex-col w-full justify-start items-center gap-2 px-4">
             <div class="flex flex-row w-full justify-start items-center">
@@ -197,5 +182,9 @@
             </div>
         </div>
     {/if}
+
+    <div slot="rightSidebar" class="flex flex-col gap-4">
+        <RelatedUsersAndTopics {users} {otherTopics} {sortedOtherTopics} />
+    </div>
 </ThreeColumnsLayout>
 

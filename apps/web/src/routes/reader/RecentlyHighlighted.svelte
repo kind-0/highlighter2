@@ -1,20 +1,23 @@
 <script lang="ts">
     import TagContentCards from "$components/ContentCards/TagContentCards.svelte";
     import Section from "$components/Section.svelte";
-    import { highlights, loadingScreen } from "$stores/session";
-    import type { NDKTag } from "@nostr-dev-kit/ndk";
+    import { highlights as highlightsStore, loadingScreen } from "$stores/session";
+    import type { NDKHighlight, NDKTag } from "@nostr-dev-kit/ndk";
+    import type { Readable } from "svelte/store";
     import { slide } from "svelte/transition";
     import { debounce } from "throttle-debounce";
 
     let expanded = false;
     export let articlesToRender = 20;
+    export let skipTitle = false;
+    export let highlights: Readable<Map<string, NDKHighlight>> = highlightsStore;
 
     let renderedArticles: Map<string, NDKTag> = new Map();
 
     const selectArticles = debounce(50, (count: number) => {
         const highlightedArticles = new Set<NDKTag>();
         const sortedHighlights = Array.from($highlights.values())
-            .sort((a, b) => b.created_at - a.created_at)
+            .sort((a, b) => b.created_at! - a.created_at!)
             .slice(0, count * 3);
 
         for (const highlight of sortedHighlights) {
@@ -50,7 +53,7 @@
 
 <div transition:slide={{ axis: 'y'}}>
     <Section
-        title={`Recently Highlighted`}
+        title={skipTitle?``:`Recently Highlighted`}
         class={``}
         on:click={() => { expanded = true; }}
         {expanded}

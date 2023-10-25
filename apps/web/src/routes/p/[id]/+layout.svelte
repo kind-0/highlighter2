@@ -24,11 +24,13 @@
 </script>
 
 {#if user}
-    <ThreeColumnsLayout>
-        <Navbar slot="navbar" />
-        <Sidebar {user}  slot="sidebar" />
-        <slot />
-    </ThreeColumnsLayout>
+    {#key user.pubkey}
+        <ThreeColumnsLayout>
+            <Navbar slot="navbar" />
+            <Sidebar {user}  slot="sidebar" />
+            <slot />
+        </ThreeColumnsLayout>
+    {/key}
 {/if}
 
 <!---<ThreeColumnsLayout>

@@ -19,10 +19,11 @@
         class="truncate text-left items-start"
     >
         <LongFormIcon slot="icon" class="w-7 h-7" />
-        <AvatarWithName
-            slot="footer"
-            pubkey={article.pubkey}
-            avatarClass="w-7 h-7"
-            nameClass="text-base-100-content items-start" />
+        <a href="/p/{article.author.npub}" slot="footer">
+            <AvatarWithName
+                pubkey={article.pubkey}
+                avatarClass="w-7 h-7 rounded-md"
+                nameClass="text-base-100-content items-start" />
+        </a>
     </ContentCard>
 {/if}

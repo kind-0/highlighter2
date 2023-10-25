@@ -1,6 +1,6 @@
 <script lang="ts">
     import { user } from '$stores/session';
-    import { ndk } from "@kind0/ui-common";
+    import { ModalButton, ndk } from "@kind0/ui-common";
 
     import { closeModal } from 'svelte-modals';
     import type { NostrEvent } from '@nostr-dev-kit/ndk';
@@ -11,7 +11,6 @@
     import {  getLists } from "$lib/stores/list";
 
     import { NDKList } from "@nostr-dev-kit/ndk";
-    import ModalButton from '$lib/components/ModalButton.svelte';
 
     let name: string;
     let description: string;

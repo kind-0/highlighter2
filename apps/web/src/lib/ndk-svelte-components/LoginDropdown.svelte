@@ -24,8 +24,7 @@
             <div class="p-4">
                 <div class="flex flex-col items-start px-4">
                     <div class="text-xs">
-                        Highlighter is a tool built using the <span class="text-accent2">Nostr Protocol</span>, which means you can login using keys
-                        instead of a centralized identity provider.
+                        Highlighter is a tool built using the <span class="text-accent">Nostr Protocol</span>, which means you can login using keys instead of a centralized identity provider.
                     </div>
                 </div>
             </div>

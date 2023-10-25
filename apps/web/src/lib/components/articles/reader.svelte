@@ -17,7 +17,6 @@
     import { CaretLeft } from 'phosphor-svelte';
     import AddToShelfButton from '$components/buttons/AddToShelfButton.svelte';
     import ArticleWideCard from './ArticleWideCard.svelte';
-    import { page_navbar } from '$stores/page_navbar';
     import { ReaderMarginNotePopup } from '@highlighter/svelte-kit-lib';
     import { rightDrawerContent } from '$stores/right-drawer';
     import { fade } from 'svelte/transition';
@@ -75,7 +74,7 @@
                 }
             });
 
-            return Array.from(highlights);
+            return Array.from(highlights).slice(0, 20);
         });
 
         marginNotes = derived(articleEvents, ($articleEvents) => {
@@ -226,7 +225,7 @@
         <!-- article container -->
         <div class="
             flex flex-col
-            w-7/12
+            md:w-7/12
         ">
             <div class="flex flex-col w-full">
                 <div class="
@@ -248,8 +247,6 @@
                         <AddToShelfButton
                             event={article}
                             class="btn !rounded-full"
-                            onButtonClick={async () => { page_navbar.set(false) }}
-                            onModalClose={async () => { page_navbar.set(true) }}
                         />
                     </div>
                 </div>
@@ -267,7 +264,7 @@
                     {#if !(article instanceof NDKArticle)}
                         <!-- Title -->
                         {#if articleTitle()}
-                            <h1 class="card-title flex flex-row justify-center text-2xl xl:text-3xl font-black xl:text-center leading-normal">{articleTitle()}</h1>
+                            <h1 class="card-title flex flex-row justify-center text-2xl xl:text-3xl font-bold xl:text-center leading-normal">{articleTitle()}</h1>
                         {/if}
 
                         <div class="flex flex-row justify-between mb-2 overflow-clip items-center">

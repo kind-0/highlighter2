@@ -95,6 +95,9 @@ importers:
       eventemitter3:
         specifier: ^5.0.0
         version: 5.0.1
+      faker:
+        specifier: ^6.6.6
+        version: 6.6.6
       get-selection-more:
         specifier: ^1.1.0
         version: 1.1.0
@@ -1052,6 +1055,9 @@ importers:
       '@types/sanitize-html':
         specifier: ^2.9.0
         version: 2.9.0
+      classnames:
+        specifier: ^2.3.2
+        version: 2.3.2
       markdown-it:
         specifier: ^13.0.1
         version: 13.0.1
@@ -10697,6 +10703,10 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /faker@6.6.6:
+    resolution: {integrity: sha512-9tCqYEDHI5RYFQigXFwF1hnCwcWCOJl/hmll0lr5D2Ljjb0o4wphb69wikeJDz5qCEzXCoPvG6ss5SDP6IfOdg==}
+    dev: false
 
   /fast-deep-equal@3.1.3:
     resolution: {integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==}

@@ -1,7 +1,5 @@
 <script lang="ts">
-    import ShareButton from "$components/ShareButton.svelte";
     import AddToShelfButton from "$components/buttons/AddToShelfButton.svelte";
-    import { page_navbar } from "$stores/page_navbar";
     import { Avatar, AvatarWithName, HighlightIcon, LazyLoadedImage, LinkToProfile, RelativeTime, ZapsButton, ndk } from "@kind0/ui-common";
     import type { Hexpubkey, NDKArticle } from "@nostr-dev-kit/ndk";
     import { EventContent } from "@nostr-dev-kit/ndk-svelte-components";
@@ -35,10 +33,13 @@
         image = chooseRandomImage();
     }
 
+    let timestamp: number;
+
+    $: timestamp = (article?.published_at??article?.created_at??0) * 1000;
 </script>
 
-<div class="flex flex-row gap-4 rounded-box justify-start {$$props.class || ``}">
-    <figure class="rounded-lg {$$props.imageClass}">
+<div class="flex flex-col-reverse md:flex-row gap-4 rounded-box w-full md:justify-start {$$props.class || ``}">
+    <figure class="rounded-lg {$$props.imageClass} !w-1/4 shrink-0">
         {#key image}
             <LazyLoadedImage
                 image={image}
@@ -49,7 +50,7 @@
 
     <div class="body flex flex-col gap-0">
         <div class="flex flex-col lg:flex-row items-start justify-between gap-4 lg:gap-0">
-            <div class="flex flex-row flex-wrap items-center gap-2 lg:gap-8">
+            <div class="flex flex-row flex-wrap justify-between w-full items-center gap-2 lg:gap-8">
                 <LinkToProfile user={article.author}>
                     <AvatarWithName
                         pubkey={article.author.hexpubkey}
@@ -59,22 +60,20 @@
                 </LinkToProfile>
 
                 <RelativeTime
-                    timestamp={article.published_at * 1000}
+                    {timestamp}
                     class="text-sm"
                 />
             </div>
 
-            <div class="flex flex-col lg:flex-row lg:items-center justify-end gap-4 lg:gap-8 items-end">
+            <div class="flex flex-row lg:items-center justify-between md:justify-end w-full md:w-fit gap-4 lg:gap-8 items-end">
                 <div class="flex flex-row items-center gap-2">
                     <ZapsButton
                         event={article}
-                        class="btn btn-ghost btn-sm p-1 !rounded-full px-3 font-light !text-xs"
-                        onZapsModalOpen={async () => { page_navbar.set(false) }}
-                        onZapsModalClose={async () => { page_navbar.set(true) }}
+                        class="btn btn-ghost btn-sm p-1 !rounded-full md:px-3 font-light !text-xs"
                     />
                     {#if highlightCount}
                         <button
-                            class="btn btn-ghost btn-sm p-1 !rounded-full px-3 font-light !text-xs"
+                            class="btn btn-ghost btn-sm p-1 !rounded-full md:px-3 font-light !text-xs"
                         >
                             <HighlightIcon class="w-4 h-4" />
                             {highlightCount}
@@ -84,8 +83,6 @@
                     <AddToShelfButton
                         event={article}
                         class="tooltip-left"
-                        onButtonClick={async () => { page_navbar.set(false) }}
-                        onModalClose={async () => { page_navbar.set(true) }}
                     >
                         <ListPlus />
                     </AddToShelfButton>

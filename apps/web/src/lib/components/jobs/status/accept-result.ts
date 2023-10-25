@@ -1,6 +1,6 @@
 import { goto } from "$app/navigation";
 import { NDKDVMJobResult, NDKEvent, type NostrEvent } from '@nostr-dev-kit/ndk';
-import { pay } from '$lib/utils/pay';
+// import { pay } from '$lib/utils/pay';
 import { ndk } from "@kind0/ui-common";
 import { get as getStore } from 'svelte/store';
 
@@ -27,7 +27,7 @@ export default async function chooseResult(pendingAmount: number, event: NDKDVMJ
     // check if we need to zap it
     if (pendingAmount > 0) {
         event.zap(pendingAmount*1000).then((pr) => {
-            if (pr) pay(pr);
+            // if (pr) pay(pr);
         });
     }
 

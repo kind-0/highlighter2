@@ -1,5 +1,4 @@
 <script lang="ts">
-    import JobStatus from '$lib/components/jobs/status/JobStatus.svelte';
     import { onDestroy } from "svelte";
     import type { NDKEvent, NDKDVMRequest } from "@nostr-dev-kit/ndk";
     import { ndk } from "@kind0/ui-common";
@@ -16,7 +15,6 @@
         if (jobEvents) unsubscribeFromJob();
 
         jobEvents = $ndk.storeSubscribe({
-            kinds: [1,5,7, 9735, 65000 as number, 65001 as number],
             ...jobRequest.filter()
         }, { closeOnEose: false, groupable: onlyJobsWithResults });
 
@@ -50,10 +48,12 @@
     })
 </script>
 
-{#if pubkeyGroupedJobEvents}
+commented out component JobRequestEventsFeed
+
+<!-- {#if pubkeyGroupedJobEvents}
     <div class="flex flex-col gap-4 w-main">
         {#each Object.keys(pubkeyGroupedJobEvents) as pubkey}
             <JobStatus {pubkey} {onlyJobsWithResults} events={pubkeyGroupedJobEvents[pubkey]} />
         {/each}
     </div>
-{/if}
+{/if} -->

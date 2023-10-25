@@ -57,6 +57,11 @@ export const highlights = writable<Map<string, NDKHighlight>>(new Map());
 export const userFollowHashtags = writable<string[]>([]);
 
 /**
+ * Current user's supported people
+ */
+export const userSupport = writable<NDKEvent[]>([]);
+
+/**
  * Current user's interests lists
  */
 export const userInterestLists = derived(userLists, $userLists => {
@@ -89,6 +94,11 @@ export const networkShelves = derived(networkLists, $networkLists => {
 });
 
 /**
+ * Network's supported people
+ */
+export const networkSupport = writable<NDKEvent[]>([]);
+
+/**
  * Main entry point to prepare the session.
  */
 export async function prepareSession(): Promise<void> {
@@ -115,7 +125,7 @@ export async function prepareSession(): Promise<void> {
                 followsStore: userFollows,
                 labelsStore: userLabels,
                 appHandlers: userAppHandlers,
-                dvmResultsStore: userDVMResults,
+                supportStore: userSupport,
                 dvmRequestsStore: userDVMRequests,
                 listsStore: userLists,
                 followHashtagsStore: userFollowHashtags,
@@ -189,8 +199,8 @@ interface IFetchDataOptions {
     highlightStore? : Writable<Map<string, NDKEvent>>;
     followsStore?: Writable<Set<string>>;
     labelsStore?: Writable<Set<string>>;
+    supportStore?: Writable<NDKEvent[]>;
     appHandlers?: Writable<Map<number, Map<AppHandlerType, Nip33EventPointer>>>;
-    dvmResultsStore?: Writable<Map<NDKEventId, NDKEvent[]>>;
     dvmRequestsStore?: Writable<Map<number, NDKDVMRequest[]>>;
     listsStore?: Writable<Map<string, NDKList>>;
     listsKinds?: number[];
@@ -246,11 +256,11 @@ async function fetchData(
             processHashtagList(event);
         } else if (event.kind === NDKKind.Label) {
             processLabel(event);
+        } else if (event.kind === 7001) {
+            processSupport(event);
         } else if (event.kind === NDKKind.AppRecommendation) {
             processAppHandler(event);
-        } else if (event.kind === NDKKind.DVMJobResult) {
-            processDVMResults(event);
-        } else if (event.kind! >= 65002 && event.kind! <= 65100) {
+        } else if (event.kind! >= 5000 && event.kind! <= 5999) {
             processDVMRequests(event);
         } else if (NDKListKinds.includes(event.kind!) && opts.listsStore) {
             processList(event);
@@ -276,6 +286,14 @@ async function fetchData(
         });
     };
 
+    const processSupport = (event: NDKEvent) => {
+        opts.supportStore!.update((support) => {
+            support.push(event);
+
+            return support;
+        });
+    };
+
     const processAppHandler = (event: NDKEvent) => {
         opts.appHandlers!.update((appHandlers) => {
             const handlerKind = parseInt(event.tagValue("d")!);
@@ -292,37 +310,6 @@ async function fetchData(
 
             return appHandlers;
         });
-    };
-
-    const processDVMResults = (event: NDKEvent) => {
-        const dvmResults = NDKDVMJobResult.from(event);
-        let jobRequestId: NDKEventId | undefined;
-
-        try {
-            jobRequestId = dvmResults.jobRequestId;
-
-            if (!jobRequestId) {
-                // console.log(`could not find a job request id`, dvmResults.rawEvent());
-                dvmResults.jobRequestId;
-            }
-
-            if (!jobRequestId) return;
-
-            opts.dvmResultsStore!.update((existingResults) => {
-                if (!jobRequestId) return existingResults;
-
-                if (!existingResults.has(jobRequestId)) {
-                    existingResults.set(jobRequestId, []);
-                }
-
-                existingResults.get(jobRequestId)!.push(dvmResults);
-
-                return existingResults;
-            });
-        } catch (e) {
-            // console.log(e);
-            return;
-        }
     };
 
     const processDVMRequests = (event: NDKEvent) => {
@@ -435,12 +422,8 @@ async function fetchData(
             filters.push({ authors: authorPrefixes, kinds: [NDKKind.AppRecommendation] });
         }
 
-        if (opts.dvmResultsStore) {
-            filters.push({ "#p": authorPrefixes, kinds: [NDKKind.DVMJobResult], limit: 10 });
-        }
-
         if (opts.dvmRequestsStore) {
-            filters.push({ authors: authorPrefixes, kinds: [65002, 65008], limit: 10 });
+            filters.push({ authors: authorPrefixes, kinds: [5000], limit: 10 });
         }
 
         if (opts.followsStore) {
@@ -449,6 +432,10 @@ async function fetchData(
 
         if (opts.followHashtagsStore) {
             filters.push({ authors: authorPrefixes, "#d": ["hashtags"] });
+        }
+
+        if (opts.supportStore) {
+            filters.push({ authors: authorPrefixes, kinds: [7001 as number] });
         }
 
         const userDataSubscription = $ndk.subscribe(

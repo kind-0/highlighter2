@@ -38,7 +38,7 @@
             }
         }
 
-        return selectedItems;
+        return selectedItems.sort((a, b) => (b.published_at??b.created_at)! - (a.published_at??a.created_at!)!);
     });
 
     onMount(() => {

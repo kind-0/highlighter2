@@ -1,6 +1,6 @@
 <script lang="ts">
     import { user } from '$stores/session';
-    import { PageTitle, ndk } from "@kind0/ui-common";
+    import { CopyButton, PageTitle, ndk } from "@kind0/ui-common";
 
     import Tags from './tags.svelte';
     import type { NDKList, NDKTag } from '@nostr-dev-kit/ndk';
@@ -13,7 +13,6 @@
     import { getSigner, type SignerStoreItem } from '$lib/stores/signer';
     import { saveEphemeralSigner } from '$lib/signers/ephemeral';
     import { getLists, processEvent } from '$lib/stores/list';
-    import CopyButton from '$lib/components/buttons/CopyButton.svelte';
     import { writable } from 'svelte/store';
     import { DotsThree, Trash } from 'phosphor-svelte';
     import {

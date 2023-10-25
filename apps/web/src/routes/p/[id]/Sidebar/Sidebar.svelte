@@ -1,10 +1,13 @@
 <script lang="ts">
+	import SupportAuthorModal from '$modals/SupportAuthorModal.svelte';
     import { AttentionButton, Avatar, HighlightIcon, Name, ShelvesIcon } from "@kind0/ui-common";
     import type { NDKUser } from '@nostr-dev-kit/ndk';
     import { Newspaper } from 'phosphor-svelte';
     import { page } from '$app/stores';
     import MenuItem from '$components/sidebars/MenuItem.svelte';
     import CardWithTitle from "$components/cards/CardWithTitle.svelte";
+    import { getUserSupporters } from "$stores/user-view.js";
+    import { openModal } from "svelte-modals";
 
     export let user: NDKUser;
 
@@ -13,6 +16,12 @@
     let bio: string | undefined;
 
     $: bio = user.profile?.bio??user.profile?.about;
+
+    const userSupporters = getUserSupporters();
+
+    function openSupport() {
+        openModal(SupportAuthorModal, { user })
+    }
 </script>
 
 <div class="flex flex-col items-center gap-8">
@@ -20,11 +29,11 @@
         iconClass="text-accent w-5 h-5"
         href={`/p/${id}`}
     >
-        <div slot="icon">
+        <div slot="icon" class="shrink-0">
             <Avatar {user} class="w-12 h-12 rounded-lg" />
         </div>
 
-        <span slot="title">
+        <span slot="title" class="truncate">
             <Name {user} class="text-lg font-semibold truncate" />
         </span>
 
@@ -58,17 +67,23 @@
         <div class="divider my-2"></div>
 
         <ul class="menu w-full">
-            <li class="menu-title">
+            <li class="menu-title mb-4">
                 SUPPORTERS
             </li>
+            <li class="flex flex-row items-center justify-between">
+                {#if $userSupporters.length > 0}
+                    <div class="flex flex-row flex-wrap avatar-group justify-center gap-6">
+                        {#each $userSupporters as supporter (supporter.id)}
+                            <Avatar user={supporter.author} class="w-12 h-12 border-0" type="circle" />
+                        {/each}
+                    </div>
+                {/if}
+
+                <AttentionButton class="w-full" on:click={openSupport}>
+                    Support
+                </AttentionButton>
+            </li>
         </ul>
-
-        <div class="flex flex-row">
-
-            <AttentionButton href="/p/{id}/support" class="">
-                Support
-            </AttentionButton>
-        </div>
 
     </CardWithTitle>
 </div>

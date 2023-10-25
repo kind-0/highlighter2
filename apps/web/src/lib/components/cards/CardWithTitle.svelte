@@ -15,7 +15,7 @@
                 <slot name="icon" />
             {/if}
 
-            <div class="text-base-100-content">
+            <div class="text-base-100-content truncate">
                 {#if $$slots.title}
                     <slot name="title" />
                 {:else}

@@ -5,12 +5,13 @@
     import { NDKList } from "@nostr-dev-kit/ndk";
     import Tags from '../../../../lists/[naddr]/tags.svelte';
     import ListsWithSimilarItems from "$lib/components/lists/ListsWithSimilarItems.svelte";
+    import TagContentCard from "$components/ContentCards/TagContentCard.svelte";
 
     const { naddr } = $page.params;
 
     let list: NDKList | undefined;
 
-    const fetch = new Promise((resolve, reject) => {
+    const fetch = new Promise<NDKList>((resolve, reject) => {
         $ndk.fetchEvent(naddr).then((event) => {
             if (event) {
                 list = NDKList.from(event);
@@ -23,14 +24,10 @@
 </script>
 
 {#await fetch then list}
-    <PageTitle title={list.name} subtitle={list.description} />
+    <PageTitle title={list.title} subtitle={list.description} />
 
-    <Tags {list} tags={list.items} />
+    {#each list.items.slice(0, 50) as tag}
+        <TagContentCard {tag} />
+
+    {/each}
 {/await}
-
-<!--
-    <div slot="right-sidebar">
-        {#if list}
-            <ListsWithSimilarItems {list} items={list.items} />
-        {/if}
-    </div> -->

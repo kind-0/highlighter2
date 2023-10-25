@@ -27,8 +27,9 @@
 
 
 
-<a href={url} class="flex flex-col gap-4 w-[166px] {$$props.class??""}">
-    <div class="relative group overflow-hidden flex flex-col justify-end h-[244px] w-full shadow rounded-xl">
+<div class="flex flex-col gap-4 w-[166px] {$$props.class??""}">
+    <!-- group class -->
+    <a href={url} class="relative opacity-90 hover:opacity-100 overflow-hidden flex flex-col justify-end h-[244px] w-full shadow rounded-xl">
         <div class="absolute top-0 left-0 h-full w-full rounded-xl">
             {#if image}
                 <LazyLoadedImage {image} />
@@ -43,7 +44,7 @@
             <div class="max-h-14">
                 <p class="title text-base-100-content text-xs whitespace-normal font-medium leading-[18px]">{title}</p>
             </div>
-            <div class="hidden group-hover:flex flex-col flex-grow justify-between pt-2 gap-2.5 transition-all duration-300">
+            <!-- <div class="hidden group-hover:flex flex-col flex-grow justify-between pt-2 gap-2.5 transition-all duration-300">
                 <div>
                     {#if summary}
                     <p class="summary text-xs font-normal leading-[18px] whitespace-normal">{summary}</p>
@@ -52,14 +53,14 @@
                 {#if event}
                     <ZapCounter {event} />
                 {/if}
-            </div>
+            </div> -->
         </div>
-    </div>
+    </a>
 
     <div class="flex w-full px-2 justify-start items-center">
         <slot name="footer" />
     </div>
-</a>
+</div>
 
 <style>
     .title {
