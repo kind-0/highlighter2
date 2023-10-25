@@ -109,6 +109,4 @@
     :global(article figure) {
         @apply flex flex-col gap-4 mx-auto max-w-lg my-6;
     }
-
-    :g
 </style>
