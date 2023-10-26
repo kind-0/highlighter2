@@ -32,17 +32,3 @@
         </ThreeColumnsLayout>
     {/key}
 {/if}
-
-<!---<ThreeColumnsLayout>
-    <div slot="navbar">
-        <Navbar />
-    </div>
-
-    <div slot="sidebar">
-        {#if user}
-            <Sidebar {user} />
-        {/if}
-    </div>
-
-    <slot />
-</ThreeColumnsLayout>-->

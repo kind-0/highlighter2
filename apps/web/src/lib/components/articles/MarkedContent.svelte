@@ -35,7 +35,7 @@
 
             // Choose first N and last N words for the regex (N could be 2, 3, or whatever makes sense)
             if (words.length > 10) {
-                const N = 3;
+                const N = 10;
                 const firstNWords = words.slice(0, N);
                 const lastNWords = words.slice(-N);
 
@@ -45,7 +45,15 @@
                 const lastNWordsSanitized = lastNWords.map(sanitizeWord);
 
                 // Create a regex pattern that matches the first and last N words with any characters in between
-                const pattern = firstNWordsSanitized.join(' ') + '[^]*?' + lastNWordsSanitized.join('[^]*?');
+                let pattern = firstNWordsSanitized.join(' ') + '[^]*?' + lastNWordsSanitized.join('[^]*?');
+
+                if (pattern.startsWith('.*')) {
+                    pattern = pattern.slice(2);
+                }
+
+                if (pattern.endsWith('.*')) {
+                    pattern = pattern.slice(0, -2);
+                }
 
                 // Create a RegExp object from the pattern
                 console.log({pattern});

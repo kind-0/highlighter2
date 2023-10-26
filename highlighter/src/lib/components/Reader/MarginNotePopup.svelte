@@ -31,7 +31,7 @@ Each <MarginNotePopup> component represents a single margin note.
     window.addEventListener("resize", updatePosition);
 
     // Initialize based on initial window size
-    $: isSmallScreen = true; //window.innerWidth < 1081;
+    $: isSmallScreen = window.innerWidth < 1081;
 
     //console.log({isSmallScreen});
 
@@ -47,7 +47,6 @@ Each <MarginNotePopup> component represents a single margin note.
             positionElement();
             currentMode = "absolute";
         }
-        console.log({isSmallScreen, currentMode});
     }
 
     const ownMarginNotes = derived(marginNotes, $marginNotes => {

@@ -2,11 +2,11 @@
     import Navbar from "$components/Navbar/Navbar.svelte";
     import { ThreeColumnsLayout } from "@kind0/ui-common";
 
-    
+
 </script>
 
 <ThreeColumnsLayout>
-    <div slot="navbar">
+    <div slot="navbar" class="w-full">
         <Navbar />
     </div>
 

@@ -1,12 +1,14 @@
 <script lang="ts">
     import Section from "$components/Section.svelte";
     import { page } from '$app/stores';
-    import { ndk, user as currentUser } from "@kind0/ui-common";
+    import { ndk, user as currentUser, AvatarWithName } from "@kind0/ui-common";
     import { NDKArticle, zapInvoiceFromEvent, type NDKEventId, type NDKUser, type NDKZapInvoice, type Hexpubkey, NDKKind } from '@nostr-dev-kit/ndk';
     import ArticleContentCard from "$components/ContentCards/ArticleContentCard.svelte";
     import { derived, get, type Readable } from "svelte/store";
     import { getUserSupporters, userSubscription } from "$stores/user-view";
     import SupportUserCard from "$components/User/SupportUserCard.svelte";
+    import CurrentSupporterCard from "$components/User/CurrentSupporterCard.svelte";
+    import { UserCard } from "@nostr-dev-kit/ndk-svelte-components";
 
     let { id } = $page.params;
     let { npub } = $page.data;
@@ -85,16 +87,35 @@
 {/if} -->
 
 {#key id}
-    {#if !$userSupporters.find(e => e.pubkey === $currentUser.pubkey)}
-        <SupportUserCard {user} />
-    {/if}
+    <div class="flex flex-col gap-8">
+        {#if !$userSupporters.find(e => e.pubkey === $currentUser.pubkey)}
+            <SupportUserCard {user} />
+        {:else}
+            <CurrentSupporterCard {user} />
+        {/if}
 
-    <Section
-        title="Articles"
-        on:click={() => { expanded = true; }}
-    >
-        {#each $articles.values() as article (article.id)}
-            <ArticleContentCard {article} />
-        {/each}
-    </Section>
+        <Section
+            title="Articles"
+            on:click={() => { expanded = true; }}
+        >
+            {#each $articles.values() as article (article.id)}
+                <ArticleContentCard {article} skipAuthor={true} />
+            {/each}
+        </Section>
+
+        {#if $userSupporters.length > 0}
+            <Section
+                title="Supporters"
+                flow="column"
+            >
+                {#each $userSupporters as supportEvent (supportEvent.id)}
+                    <AvatarWithName  user={supportEvent.author} />
+                    {supportEvent.getMatchingTags("amount")[0][1]}
+                    {supportEvent.getMatchingTags("amount")[0][2]}
+                    {supportEvent.tagValue("cadence")}
+                    <!-- <UserCard ndk={$ndk} user={supportEvent.author} /> -->
+                {/each}
+            </Section>
+        {/if}
+    </div>
 {/key}

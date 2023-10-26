@@ -2,9 +2,9 @@
     import { AvatarWithName, LongFormIcon } from "@kind0/ui-common";
     import type { NDKArticle } from "@nostr-dev-kit/ndk";
     import ContentCard from "./ContentCard.svelte";
-    import { createEventDispatcher } from "svelte";
 
     export let article: NDKArticle;
+    export let skipAuthor = false;
 </script>
 
 {#if !article}
@@ -20,10 +20,12 @@
     >
         <LongFormIcon slot="icon" class="w-7 h-7" />
         <a href="/p/{article.author.npub}" slot="footer">
-            <AvatarWithName
-                pubkey={article.pubkey}
-                avatarClass="w-7 h-7 rounded-md"
-                nameClass="text-base-100-content items-start" />
+            {#if !skipAuthor}
+                <AvatarWithName
+                    pubkey={article.pubkey}
+                    avatarClass="w-7 h-7 rounded-md"
+                    nameClass="text-base-100-content items-start" />
+            {/if}
         </a>
     </ContentCard>
 {/if}

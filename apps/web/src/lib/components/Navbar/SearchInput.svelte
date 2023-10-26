@@ -202,9 +202,9 @@
                     <Hash class="w-12 h-12 object-cover inline-block rounded-sm text-base-100-content" />
 
                     <div class="w-0 mr-0 md:mr-10 flex flex-col flex-grow gap-0.5 items-start justify-between">
-                        <p class="text-base-100-content truncate text-base w-full leading-normal font-medium">Nostr Hashtag</p>
+                        <p class="text-base-100-content truncate text-base w-full leading-normal font-medium">Nostr Hashtag &amp; Labels</p>
 
-                        <p class="font-medium leading-[18px] text-xs truncate opacity-100 w-full">Bitcoin highlights</p>
+                        <p class="font-medium leading-[18px] text-xs truncate opacity-100 w-full">Bitcoin highlights, articles and labels</p>
                     </div>
                 </div>
 

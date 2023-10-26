@@ -5,7 +5,7 @@
     import { page } from '$app/stores';
     import MarkdownIt from 'markdown-it';
     import type { NDKEvent } from '@nostr-dev-kit/ndk';
-    import { ndk } from "@kind0/ui-common";
+    import { Toaster, ndk } from "@kind0/ui-common";
     import {NDKArticle} from "@nostr-dev-kit/ndk";
     import ReaderDVMTranscriptionHeader from '$lib/components/articles/dvm/ReaderDVMTranscriptionHeader.svelte';
 
@@ -78,7 +78,7 @@
         </Reader>
     {:else if article.kind === 31337}
         <EventCard draggable={false} event={article} skipFooter={false}  />
-    {:else if article.kind === NDKKind.DVMJobResult}
+    {:else if article.kind === 6000}
         <Reader
             {article}
             {content}
@@ -105,3 +105,5 @@
         </div>
     </div>
 {/await}
+
+<Toaster />

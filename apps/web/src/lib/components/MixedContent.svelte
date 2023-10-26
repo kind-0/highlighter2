@@ -18,8 +18,6 @@
     let highlights: Readable<NDKHighlight[]>;
     let notes: Readable<NDKEvent[]>;
 
-    let articlesExpanded = false;
-
     const filters: NDKFilter[] = [];
     const repostsFilters: NDKFilter[] = [];
 

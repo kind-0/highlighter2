@@ -11,7 +11,7 @@
 </script>
 
 <ThreeColumnsLayout>
-    <div slot="navbar">
+    <div slot="navbar" class="w-full">
         <Navbar />
     </div>
 

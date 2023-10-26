@@ -17,7 +17,7 @@
         <ul slot="dropdown-content" class="divide-y divide-base-300 menu p-0 w-[245px] rounded-box">
             <div>
                 <div class="flex justify-between items-center menu-title px-[22px] py-[19px] gap-2">
-                    <div class="w-0 flex flex-grow flex-row items-center gap-4">
+                    <a href="/p/{$user.npub}" class="w-0 flex flex-grow flex-row items-center gap-4">
                         <Avatar
                             ndk={$ndk}
                             user={$user}
@@ -33,7 +33,7 @@
                                 "
                             />
                         </div>
-                    </div>
+                    </a>
                     <GearIcon />
                 </div>
             </div>

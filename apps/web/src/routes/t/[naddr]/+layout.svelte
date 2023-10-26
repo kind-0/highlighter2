@@ -3,7 +3,6 @@
     import Navbar from '$lib/components/Navbar/Navbar.svelte';
     import Sidebar from "$components/sidebars/ReaderSidebar.svelte";
     import { ThreeColumnsLayout, ndk } from "@kind0/ui-common";
-    import type { NDKList } from "@nostr-dev-kit/ndk";
 
     let naddr: string;
 
@@ -11,7 +10,7 @@
 </script>
 
 <ThreeColumnsLayout>
-    <div slot="navbar">
+    <div slot="navbar" class="w-full">
         <Navbar />
     </div>
 
