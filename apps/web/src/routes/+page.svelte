@@ -148,7 +148,7 @@
     <section class="py-10 flex flex-col items-center gap-8 xl:gap-10 w-full min-h-screen">
         <div class="flex flex-col items-center justify-center lg:text-center">
             <div class="uppercase text-accent text-lg lg:text-xl tracking-widest font-semibold">Highlights</div>
-            <div class="text-base-100-content text-4xl lg:text-7xl font-bold whitespace-nowrap">
+            <div class="text-base-100-content text-4xl lg:text-7xl font-bold sm:whitespace-nowrap text-center">
                 Capture every passage
             </div>
         </div>
@@ -167,7 +167,7 @@
         </div>
 
         <div class="flex flex-col md:flex-row gap-32 max-w-5xl min-h-screen">
-            <div class="lg:w-1/2 text-base-100-content text-xl heading-10 flex flex-col gap-4 sticky top-20 h-fit">
+            <div class="lg:w-1/2 text-base-100-content text-xl heading-10 flex flex-col gap-4 lg:sticky top-20 h-fit">
                 <div class="sticky">
                     <mark>Highlights</mark>
                     <HighlightIcon class="inline-block w-6 h-6 text-accent -mt-6" />
@@ -175,12 +175,12 @@
 
                 <div>A way to quickly capture the ideas that resonate with you and inspire your thoughts.</div>
             </div>
-            <div class="lg:w-1/2 overflow-clip h-[150vh]">
-                <div class="mockup-browser bg-base-300 w-main">
+            <div class="lg:w-1/2 overflow-clip h-[150vh] w-screen px-2 overflow-x-hidden">
+                <div class="mockup-browser bg-base-300 lg:w-main">
                     <div class="mockup-browser-toolbar">
                         <div class="input">highlighter.com</div>
                     </div>
-                    <div class="flex justify-center px-4 bg-base-200">
+                    <div class="flex justify-center md:px-4 bg-base-200">
                         {#if $recentHighlights}
                             <HighlightList items={Array.from($recentHighlights).slice(10)} containerStyle={`w-32`} />
                         {/if}
@@ -190,12 +190,12 @@
         </div>
     </section>
 
-    <section class="py-10 flex flex-col items-center gap-8 xl:gap-10 w-full h-screen">
+    <section class="py-10 flex flex-col items-center gap-8 xl:gap-10 w-full min-h-screen">
         <div class="flex flex-col items-center justify-center lg:text-center">
             <div class="uppercase text-accent text-lg lg:text-xl tracking-widest font-semibold">
                 Unmatched Discovery
             </div>
-            <div class="text-base-100-content text-4xl lg:text-7xl font-bold whitespace-nowrap">
+            <div class="text-base-100-content text-4xl lg:text-7xl font-bold sm:whitespace-nowrap text-center">
                 Find your next favorite read
             </div>
         </div>
@@ -243,7 +243,7 @@
             <div class="uppercase text-accent text-lg lg:text-xl tracking-widest font-semibold">
                 Creators and you; nothing in between
             </div>
-            <div class="text-base-100-content text-4xl lg:text-7xl font-bold whitespace-nowrap">
+            <div class="text-base-100-content text-4xl lg:text-7xl font-bold sm:whitespace-nowrap text-center">
                 Support your favorite creators
             </div>
         </div>
@@ -324,7 +324,7 @@
             <div class="uppercase text-accent text-lg lg:text-xl tracking-widest font-semibold">
                 Protocols over platforms
             </div>
-            <div class="text-base-100-content text-4xl lg:text-7xl font-bold whitespace-nowrap">
+            <div class="text-base-100-content text-4xl lg:text-7xl font-bold sm:whitespace-nowrap text-center">
                 Not yet another platform
             </div>
         </div>
@@ -383,7 +383,7 @@
                 <div class="card-body">
                     <div class="flex flex-col md:flex-row">
                         <div class="lg:w-1/2 flex flex-col gap-8">
-                            <div class="card-title text-base-100-content whitespace-nowrap">
+                            <div class="card-title text-base-100-content sm:whitespace-nowrap text-center">
                                 New to Nostr?
                             </div>
 
@@ -397,7 +397,7 @@
                         <div class="divider md:divider-horizontal"></div>
 
                         <div class="lg:w-1/2 flex flex-col gap-8">
-                            <div class="card-title text-base-100-content whitespace-nowrap">
+                            <div class="card-title text-base-100-content sm:whitespace-nowrap text-center">
                                 Already have an account?
                             </div>
 
