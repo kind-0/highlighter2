@@ -8,7 +8,6 @@
     import { getUserSupporters, userSubscription } from "$stores/user-view";
     import SupportUserCard from "$components/User/SupportUserCard.svelte";
     import CurrentSupporterCard from "$components/User/CurrentSupporterCard.svelte";
-    import { UserCard } from "@nostr-dev-kit/ndk-svelte-components";
 
     let { id } = $page.params;
     let { npub } = $page.data;
@@ -88,7 +87,7 @@
 
 {#key id}
     <div class="flex flex-col gap-8">
-        {#if !$userSupporters.find(e => e.pubkey === $currentUser.pubkey)}
+        {#if !$userSupporters.find(e => e.pubkey === $currentUser?.pubkey)}
             <SupportUserCard {user} />
         {:else}
             <CurrentSupporterCard {user} />
