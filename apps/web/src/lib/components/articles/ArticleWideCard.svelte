@@ -39,7 +39,7 @@
 </script>
 
 <div class="flex flex-col-reverse md:flex-row gap-4 rounded-box w-full md:justify-start {$$props.class || ``}">
-    <figure class="rounded-lg {$$props.imageClass} !w-1/4 shrink-0">
+    <figure class="rounded-lg {$$props.imageClass} lg:!w-1/4 shrink-0">
         {#key image}
             <LazyLoadedImage
                 image={image}

@@ -8,7 +8,7 @@
 </script>
 
 {#if !article}
-    Invalid article
+    <!-- Invalid article -->
 {:else}
     <ContentCard
         title={article.title}

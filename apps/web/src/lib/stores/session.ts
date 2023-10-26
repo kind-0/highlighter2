@@ -127,6 +127,7 @@ export async function prepareSession(): Promise<void> {
                 appHandlers: userAppHandlers,
                 supportStore: userSupport,
                 dvmRequestsStore: userDVMRequests,
+                dvmResultsStore: userDVMResults,
                 listsStore: userLists,
                 followHashtagsStore: userFollowHashtags,
                 waitUntilEoseToResolve: !alreadyKnowFollows,
@@ -202,6 +203,7 @@ interface IFetchDataOptions {
     supportStore?: Writable<NDKEvent[]>;
     appHandlers?: Writable<Map<number, Map<AppHandlerType, Nip33EventPointer>>>;
     dvmRequestsStore?: Writable<Map<number, NDKDVMRequest[]>>;
+    dvmResultsStore?: Writable<Map<NDKEventId, NDKDVMJobResult[]>>;
     listsStore?: Writable<Map<string, NDKList>>;
     listsKinds?: number[];
     extraKinds?: number[];
@@ -232,7 +234,6 @@ async function fetchData(
     const mostRecentEvents: Map<string, NDKEvent> = new Map();
     let processedKind3Id: string | undefined = undefined;
     let kind3Key: string;
-    let eosed = false;
     const _ = d.extend(`fetch:${name}`);
 
     _({waitUntilEoseToResolve: opts.waitUntilEoseToResolve});
@@ -262,6 +263,8 @@ async function fetchData(
             processAppHandler(event);
         } else if (event.kind! >= 5000 && event.kind! <= 5999) {
             processDVMRequests(event);
+        } else if (event.kind! >= 6000 && event.kind! <= 6999) {
+            processDVMResults(event);
         } else if (NDKListKinds.includes(event.kind!) && opts.listsStore) {
             processList(event);
         }
@@ -323,6 +326,21 @@ async function fetchData(
             existingRequests.get(kind)!.push(dvmRequest);
 
             return existingRequests;
+        });
+    };
+
+    const processDVMResults = (event: NDKEvent) => {
+        const dvmRequest = NDKDVMJobResult.from(event);
+        opts.dvmResultsStore!.update((existingResults) => {
+            const jobRequestId = dvmRequest.tagValue("e");
+            if (!jobRequestId) return existingResults;
+            if (!existingResults.has(jobRequestId)) {
+                existingResults.set(jobRequestId, []);
+            }
+
+            existingResults.get(jobRequestId)!.push(dvmRequest);
+
+            return existingResults;
         });
     };
 
@@ -451,7 +469,6 @@ async function fetchData(
         userDataSubscription.on('event', processEvent);
 
         userDataSubscription.on('eose', () => {
-            eosed = true;
             _(`received eose`);
             console.log(`received eose`, opts.waitUntilEoseToResolve);
 

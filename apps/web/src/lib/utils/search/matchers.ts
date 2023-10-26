@@ -50,7 +50,7 @@ export async function tryToLoadBech32(data: string): Promise<MediaType | undefin
 
         if (!event) return;
 
-        if (event.kind! >= 65002 && event.kind! <= 65999) {
+        if (event.kind! >= 5000 && event.kind! <= 5999) {
             goto(`/dvm/${encodeURIComponent(bech32Match)}`);
             return "bech32";
         } else if (event.kind === NDKKind.Highlight) {

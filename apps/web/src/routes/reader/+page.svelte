@@ -35,7 +35,7 @@
 </script>
 
 <div class="flex flex-col overflow-x-hidden gap-8">
-    <DvmRecommendations />
+    <!-- <DvmRecommendations /> -->
 
     <RecentlyHighlighted />
 

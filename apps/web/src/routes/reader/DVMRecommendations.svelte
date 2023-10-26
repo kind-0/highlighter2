@@ -1,6 +1,6 @@
 <script lang="ts">
     import { ndk } from "@kind0/ui-common";
-    import { NDKDVMRequest, NDKKind, NDKUser, NDKEvent, NDKAppHandlerEvent, NDKDVMJobResult, type NDKTag, NDKArticle } from "@nostr-dev-kit/ndk";
+    import { NDKDVMRequest, NDKKind, NDKUser, NDKEvent, NDKAppHandlerEvent, NDKDVMJobResult } from "@nostr-dev-kit/ndk";
     import Section from "$components/Section.svelte";
     import { user, userDVMRequests, userDVMResults } from "$stores/session";
     import { contentDiscoveryApps } from "@kind0/ui-common";
@@ -25,8 +25,8 @@
     }
 
     $ndk.fetchEvents({
-        kinds: [NDKKind.DVMJobResult],
-        authors: [highlighterRecommendationsDVM.hexpubkey],
+        kinds: [6300 as number],
+        authors: [highlighterRecommendationsDVM.pubkey],
         "#p": [
             "fa984bd7dbb282f07e16e7ae87b26a2a7b9b90b7246a44771f0cf5ae58018f52"
         ]
@@ -40,12 +40,12 @@
 
     // By default, select the highlighter recommendations DVM -- change this to obey the user's NIP-89 event
     $: if (!selectedDVM && $contentDiscoveryApps) {
-        selectedDVM = $contentDiscoveryApps.find(h => h.pubkey === highlighterRecommendationsDVM.hexpubkey);
+        selectedDVM = $contentDiscoveryApps.find(h => h.pubkey === highlighterRecommendationsDVM.pubkey);
     }
 
-    /** Check if we have requests of kind 65008 that we can reuse for the initial load */
-    $: if ($userDVMRequests.get(65008) && $userDVMRequests.get(65008)!.length > 0 && !request) {
-        request = $userDVMRequests.get(65008)![0];
+    /** Check if we have requests of kind 5300 that we can reuse for the initial load */
+    $: if ($userDVMRequests.get(5300) && $userDVMRequests.get(5300)!.length > 0 && !request) {
+        request = $userDVMRequests.get(5300)![0];
 
         // check if the request was served
         if ($userDVMResults.get(request.id)) {
@@ -64,7 +64,7 @@
         selectedDVM = appHandlerEvent;
 
         request = new NDKDVMRequest($ndk);
-        request.kind = NDKKind.DVMNostrContentRecommendation;
+        request.kind = NDKKind.DVMReqDiscoveryNostrContent;
         request.tags.push(["p", dvmPubkey]);
 
         for (const interest of userInterest) {
@@ -73,13 +73,12 @@
 
         await request.sign();
         await request.publish();
+        console.log('request published', request.rawEvent());
         request = request;
     }
 
     $: if (request?.id) {
         const results = $userDVMResults.get(request.id);
-
-        console.log('dvm results', results);
 
         if (results) {
             recommendation = results
@@ -96,9 +95,8 @@
         <Section
             title="Suggested Content"
             on:click={() => { expanded = true; }}
-            {expanded}
         >
-            <div slot="actions" class="flex flex-col w-full">
+            <div slot="actions" class="flex flex-col items-end shrink">
                 <!-- svelte-ignore a11y-label-has-associated-control -->
                 <div class="dropdown">
                     <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
@@ -118,13 +116,14 @@
                         {/if}
                     </label>
                     <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-                    <ul tabindex="0" class="dropdown-content z-[1] menu mt-2 p-2 shadow bg-base-100 rounded-xl max-lg:w-full w-fit">
+                    <ul tabindex="0" class="dropdown-content z-50 menu mt-2 p-2 shadow bg-base-100 rounded-xl max-lg:w-full w-fit">
                         {#each $contentDiscoveryApps as contentDiscoveryApp}
                             {#await contentDiscoveryApp.fetchProfile() then profile}
                                 <li>
                                     <button
                                         on:click={() => requestRecommendation(contentDiscoveryApp)}
                                         disabled={!$user}
+                                        class="overflow-clip"
                                     >
                                         <div
                                             class="flex flex-row gap-4"
