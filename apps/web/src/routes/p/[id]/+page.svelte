@@ -109,9 +109,9 @@
             >
                 {#each $userSupporters as supportEvent (supportEvent.id)}
                     <AvatarWithName  user={supportEvent.author} />
-                    {supportEvent.getMatchingTags("amount")[0][1]}
+                    <!-- {supportEvent.getMatchingTags("amount")[0][1]}
                     {supportEvent.getMatchingTags("amount")[0][2]}
-                    {supportEvent.tagValue("cadence")}
+                    {supportEvent.tagValue("cadence")} -->
                     <!-- <UserCard ndk={$ndk} user={supportEvent.author} /> -->
                 {/each}
             </Section>
