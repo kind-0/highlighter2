@@ -28,7 +28,7 @@
             {#each $userShelves as userShelf (userShelf.id)}
                 {#if userShelf.items.length > 0}
                     <MenuItem
-                        href="/reader/{userShelf.encode()}"
+                        href="/p/{userShelf.author.npub}/lists"
                         innerClass="flex flex-row items-center gap-2"
                     >
                         <Avatar pubkey={userShelf.pubkey} size="tiny" type="square" />
@@ -40,7 +40,7 @@
             {#each $networkShelves as networkShelf}
                 {#if networkShelf.items.length > 0 && networkShelf.pubkey !== $user?.hexpubkey}
                     <li>
-                        <a href="/reader/{networkShelf.encode()}">
+                        <a href="/p/{networkShelf.author.npub}/lists">
                             <Avatar pubkey={networkShelf.pubkey} size="tiny" type="square" />
                             {networkShelf.title}
                         </a>
